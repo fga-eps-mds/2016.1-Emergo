@@ -17,12 +17,12 @@ import unlv.erc.emergo.R;
 /**
  * Created by mrvictor on 17/04/16.
  */
-public class lista_de_estados_activity extends Activity {
+public class list_of_states_activity extends Activity {
     ListView listView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lista_de_estados);
+        setContentView(R.layout.list_of_states);
 
 
         List<String> estados;

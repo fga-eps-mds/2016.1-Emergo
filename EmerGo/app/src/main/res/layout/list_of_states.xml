@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context=".controller.lista_de_estados_activity">
+    tools:context=".controller.list_of_states_activity">
 
     <ListView android:layout_width="wrap_content"
         android:layout_height="wrap_content"
