@@ -52,23 +52,22 @@ public class RouteActivity extends FragmentActivity implements OnMapReadyCallbac
         //Get user location - Lazy try.
         LocationManager locManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
         Location userLocation = locManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        final double userLong = userLocation.getLongitude();
-        final double userLat = userLocation.getLatitude();
+        double userLong = userLocation.getLongitude();
+        double userLat = userLocation.getLatitude();
 
         //Defines a listener to location changes, preventing NULL location objects.
-        private final LocationListener locationListener = new LocationListener() {
-            @Override
-            public void onLocationChanged(Location location){
-                userLong = location.getLongitude();
-                userLat = location.getLatitude();
-            }
-        };
+//        LocationListener locationListener = new LocationListener() {
+//            public void onLocationChanged(Location location){
+//                userLong = location.getLongitude();
+//                userLat = location.getLatitude();
+//            }
+//        };
 
         //Checks if the app is enabled to use GPS. In case of failure, requests access.
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION});
-        }
-        locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 10, locationListener);
+//        int isPermissionGranted = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
+//        if (isPermissionGranted == PackageManager.PERMISSION_GRANTED) {
+//            locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 10, locationListener);
+//        }
 
         // Add a marker on User's location and move the camera
         LatLng userGeopoint = new LatLng(userLat, userLong);
