@@ -1,8 +1,19 @@
 package unlv.erc.emergo.controller;
 
+import unlv.erc.emergo.R;
+
+import android.Manifest;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -38,9 +49,32 @@ public class RouteActivity extends FragmentActivity implements OnMapReadyCallbac
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        //Get user location - Lazy try.
+        LocationManager locManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+        Location userLocation = locManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        final double userLong = userLocation.getLongitude();
+        final double userLat = userLocation.getLatitude();
+
+        //Defines a listener to location changes, preventing NULL location objects.
+        private final LocationListener locationListener = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location){
+                userLong = location.getLongitude();
+                userLat = location.getLatitude();
+            }
+        };
+
+        //Checks if the app is enabled to use GPS. In case of failure, requests access.
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION});
+        }
+        locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 10, locationListener);
+
+        // Add a marker on User's location and move the camera
+        LatLng userGeopoint = new LatLng(userLat, userLong);
+        mMap.addMarker(new MarkerOptions().position(userGeopoint).title("Localização Atual"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(userGeopoint));
     }
+
+
 }
