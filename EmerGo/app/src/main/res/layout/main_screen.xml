@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fundo"
+    android:weightSum="1">
+
+    <Button
+        android:layout_width="130dp"
+        android:layout_height="100dp"
+        android:text="GO!"
+        android:id="@+id/button"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="164dp"
+        android:textSize="@dimen/abc_action_bar_default_height_material"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/gradientevermelho"
+        android:textColor="#ffffff"
+        android:textStyle="bold|italic"
+        android:clickable="true" />
+
+    <Button
+        android:layout_width="130dp"
+        android:layout_height="65dp"
+        android:text="Estou Bem"
+        android:id="@+id/button2"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.23"
+        android:layout_marginTop="74dp"
+        android:layout_below="@+id/button"
+        android:layout_alignStart="@+id/button"
+        android:background="@drawable/gradienteverde"
+        android:clickable="true" />
+
+    <ImageView
+        android:layout_width="220dp"
+        android:layout_height="90dp"
+        android:id="@+id/imageView"
+        android:layout_marginTop="33dp"
+        android:background="@drawable/emergo"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>
