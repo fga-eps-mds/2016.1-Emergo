@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="0dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:background="@drawable/tela_base"
+    tools:context="unlv.erc.emergo.view.TelaInformacaoUs"
+    android:clickable="true">
+
+    <Button
+        android:layout_width="153dp"
+        android:layout_height="91dp"
+        android:text="GO"
+        android:id="@+id/button3"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:translationZ="1500dp"
+        android:textStyle="normal|bold|italic"
+        android:textSize="55dp"
+        android:clickable="true"
+        android:textColor="#070707"
+        android:background="#f43939"
+        android:elevation="@dimen/abc_action_bar_overflow_padding_end_material"
+        android:visibility="visible"
+        android:typeface="sans"
+        android:onClick="cliqueGo" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nome:"
+        android:id="@+id/textView"
+        android:paddingLeft="20dp"
+        android: android:paddingTop="30dp"
+        android:textColor="#bee532"
+        android:textSize="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="...."
+        android:id="@+id/textView2"
+        android:layout_alignBottom="@+id/textView"
+        android:layout_alignStart="@+id/button3"
+        android:textSize="30dp"
+        android:textColor="#f1d929" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Endereço:"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/textView2"
+        android:paddingLeft="20dp"
+        android:layout_alignParentStart="true"
+        android:textColor="#f4e72a"
+        android:textSize="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="  ..."
+        android:id="@+id/textView4"
+        android:layout_alignBottom="@+id/textView3"
+        android:layout_toEndOf="@+id/textView3"
+        android:textSize="30dp"
+        android:textColor="#f1dd30" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Tipo de Gestão:"
+        android:paddingLeft="20dp"
+        android:id="@+id/textView5"
+        android:layout_below="@+id/textView3"
+        android:layout_alignParentStart="true"
+        android:textColor="#f0d615"
+        android:textSize="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="    ...."
+        android:id="@+id/textView6"
+        android:layout_alignBottom="@+id/textView5"
+        android:layout_toEndOf="@+id/textView5"
+        android:textColor="#ecde23"
+        android:textSize="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="UF:"
+        android:paddingLeft="20dp"
+        android:id="@+id/textView7"
+        android:layout_below="@+id/textView5"
+        android:layout_alignParentStart="true"
+        android:textSize="30dp"
+        android:textColor="#f1e831" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="   ...."
+        android:id="@+id/textView8"
+        android:layout_alignBottom="@+id/textView7"
+        android:layout_toEndOf="@+id/textView7"
+        android:textColor="#f5e323"
+        android:textSize="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Município:"
+        android:paddingLeft="20dp"
+        android:id="@+id/textView9"
+        android:layout_below="@+id/textView7"
+        android:layout_alignParentStart="true"
+        android:textSize="30dp"
+        android:textColor="#f0e21b" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="   ....."
+        android:id="@+id/textView10"
+        android:layout_alignBottom="@+id/textView9"
+        android:layout_toEndOf="@+id/textView9"
+        android:textColor="#f0e224"
+        android:textSize="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Bairro:"
+        android:id="@+id/textView11"
+        android:paddingLeft="20dp"
+        android:layout_below="@+id/textView9"
+        android:layout_alignParentStart="true"
+        android:textSize="30dp"
+        android:textColor="#f5f256" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="  ..."
+        android:id="@+id/textView12"
+        android:layout_alignBottom="@+id/textView11"
+        android:layout_toEndOf="@+id/textView"
+        android:textColor="#f9f615"
+        android:textSize="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="CEP:"
+        android:id="@+id/textView13"
+        android:paddingLeft="20dp"
+        android:layout_below="@+id/textView11"
+        android:layout_alignParentStart="true"
+        android:textSize="30dp"
+        android:textColor="#eddc1e" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="   ...."
+        android:id="@+id/textView14"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/textView13"
+        android:textColor="#e4fa1c"
+        android:textSize="30dp" />
+
+
+</RelativeLayout>

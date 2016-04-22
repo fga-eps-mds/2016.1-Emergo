@@ -7,17 +7,17 @@ public class HospitalUnit {
 
     private Integer id;
     private String no_fantasia;
-    private String ds_tipo_unidade;
-    private String no_logradouro;
-    private Integer nu_endereco;
-    private String no_bairro;
-    private Integer co_cep;
+    private String ds_tipo_unidade; // precisa mostrar nas informacoes //
+    private String no_logradouro;  //
+    private Integer nu_endereco;  // precisa mostrar informacoes
+    private String no_bairro; // precisa mostrar informacoes
+    private Integer co_cep; // precisa mostrar nas informacoes
     private String regiao;
-    private String uf;
-    private String municipio;
+    private String uf; // precisar mostrar nas informacoes
+    private String municipio; // precisar mostrar nas informacoes
     private Integer latitude;
     private Integer longitude;
-    private Character tipo_gestao;
+    private Character tipo_gestao; //precisa mostrar nas informacoes //
 
     public HospitalUnit(Integer id, String no_fantasia, String ds_tipo_unidade, String no_logradouro,
               Integer nu_endereco, String no_bairro, Integer co_cep, String regiao, String uf,
