@@ -8,34 +8,16 @@
     android:paddingRight="0dp"
     android:paddingTop="0dp"
     android:background="@drawable/tela_base"
-    tools:context="unlv.erc.emergo.view.TelaInformacaoUs"
+    tools:context=".view.InformationUsScreen"
     android:clickable="true">
-
-    <Button
-        android:layout_width="153dp"
-        android:layout_height="91dp"
-        android:text="GO"
-        android:id="@+id/button3"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:translationZ="1500dp"
-        android:textStyle="normal|bold|italic"
-        android:textSize="55dp"
-        android:clickable="true"
-        android:textColor="#070707"
-        android:background="#f43939"
-        android:elevation="@dimen/abc_action_bar_overflow_padding_end_material"
-        android:visibility="visible"
-        android:typeface="sans"
-        android:onClick="cliqueGo" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nome:"
-        android:id="@+id/textView"
+        android:id="@+id/nomeText1"
         android:paddingLeft="20dp"
-        android: android:paddingTop="30dp"
+        android:paddingTop="30dp"
         android:textColor="#bee532"
         android:textSize="30dp" />
 
@@ -44,32 +26,35 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="...."
-        android:id="@+id/textView2"
-        android:layout_alignBottom="@+id/textView"
-        android:layout_alignStart="@+id/button3"
+        android:id="@+id/nomeText2"
+        android:layout_alignBottom="@+id/nomeText1"
         android:textSize="30dp"
-        android:textColor="#f1d929" />
+        android:textColor="#f1d929"
+        android:layout_toEndOf="@+id/ufText2" />
 
     <TextView
+        android:textColor="#eff218"
+        android:textSize="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Endereço:"
-        android:id="@+id/textView3"
-        android:layout_below="@+id/textView2"
+        android:id="@+id/enderecoText1"
+        android:layout_below="@+id/nomeText2"
         android:paddingLeft="20dp"
+        android:paddingTop="40dp"
         android:layout_alignParentStart="true"
-        android:textColor="#f4e72a"
-        android:textSize="30dp" />
+        />
+
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="  ..."
-        android:id="@+id/textView4"
-        android:layout_alignBottom="@+id/textView3"
-        android:layout_toEndOf="@+id/textView3"
+        android:id="@+id/enderecoText2"
+        android:layout_alignBottom="@+id/enderecoText1"
+        android:layout_toEndOf="@+id/enderecoText1"
         android:textSize="30dp"
         android:textColor="#f1dd30" />
 
@@ -79,8 +64,9 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Tipo de Gestão:"
         android:paddingLeft="20dp"
-        android:id="@+id/textView5"
-        android:layout_below="@+id/textView3"
+        android:paddingTop = "40dp"
+        android:id="@+id/gestaoText1"
+        android:layout_below="@+id/enderecoText1"
         android:layout_alignParentStart="true"
         android:textColor="#f0d615"
         android:textSize="30dp" />
@@ -90,9 +76,9 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="    ...."
-        android:id="@+id/textView6"
-        android:layout_alignBottom="@+id/textView5"
-        android:layout_toEndOf="@+id/textView5"
+        android:id="@+id/gestaoText2"
+        android:layout_alignBottom="@+id/gestaoText1"
+        android:layout_toEndOf="@+id/gestaoText1"
         android:textColor="#ecde23"
         android:textSize="30dp" />
 
@@ -102,8 +88,9 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="UF:"
         android:paddingLeft="20dp"
-        android:id="@+id/textView7"
-        android:layout_below="@+id/textView5"
+        android:paddingTop="22dp"
+        android:id="@+id/ufText1"
+        android:layout_below="@+id/gestaoText1"
         android:layout_alignParentStart="true"
         android:textSize="30dp"
         android:textColor="#f1e831" />
@@ -113,9 +100,9 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="   ...."
-        android:id="@+id/textView8"
-        android:layout_alignBottom="@+id/textView7"
-        android:layout_toEndOf="@+id/textView7"
+        android:id="@+id/ufText2"
+        android:layout_alignBottom="@+id/ufText1"
+        android:layout_toEndOf="@+id/ufText1"
         android:textColor="#f5e323"
         android:textSize="30dp" />
 
@@ -125,8 +112,8 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Município:"
         android:paddingLeft="20dp"
-        android:id="@+id/textView9"
-        android:layout_below="@+id/textView7"
+        android:id="@+id/municipioText1"
+        android:layout_below="@+id/ufText1"
         android:layout_alignParentStart="true"
         android:textSize="30dp"
         android:textColor="#f0e21b" />
@@ -136,9 +123,9 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="   ....."
-        android:id="@+id/textView10"
-        android:layout_alignBottom="@+id/textView9"
-        android:layout_toEndOf="@+id/textView9"
+        android:id="@+id/municipioText2"
+        android:layout_alignBottom="@+id/municipioText1"
+        android:layout_toEndOf="@+id/municipioText1"
         android:textColor="#f0e224"
         android:textSize="30dp" />
 
@@ -147,9 +134,10 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Bairro:"
-        android:id="@+id/textView11"
+        android:id="@+id/bairroText1"
         android:paddingLeft="20dp"
-        android:layout_below="@+id/textView9"
+        android:paddingTop="40dp"
+        android:layout_below="@+id/municipioText1"
         android:layout_alignParentStart="true"
         android:textSize="30dp"
         android:textColor="#f5f256" />
@@ -159,9 +147,9 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="  ..."
-        android:id="@+id/textView12"
-        android:layout_alignBottom="@+id/textView11"
-        android:layout_toEndOf="@+id/textView"
+        android:id="@+id/bairroText2"
+        android:layout_alignBottom="@+id/bairroText1"
+        android:layout_toEndOf="@+id/nomeText1"
         android:textColor="#f9f615"
         android:textSize="30dp" />
 
@@ -170,23 +158,39 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="CEP:"
-        android:id="@+id/textView13"
+        android:id="@+id/cepText1"
         android:paddingLeft="20dp"
-        android:layout_below="@+id/textView11"
-        android:layout_alignParentStart="true"
         android:textSize="30dp"
-        android:textColor="#eddc1e" />
+        android:paddingBottom="10dp"
+        android:textColor="#eddc1e"
+        android:layout_below="@+id/bairroText1"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="   ...."
-        android:id="@+id/textView14"
-        android:layout_centerVertical="true"
-        android:layout_toEndOf="@+id/textView13"
+        android:id="@+id/cepText2"
         android:textColor="#e4fa1c"
-        android:textSize="30dp" />
+        android:textSize="30dp"
+        android:layout_alignTop="@+id/cepText1"
+        android:layout_toEndOf="@+id/cepText1" />
+
+    <Button
+        android:layout_width="153dp"
+        android:layout_height="87dp"
+        android:text="GO!"
+        android:id="@+id/buttonGo"
+        android:layout_gravity="center_horizontal"
+        android:textSize="@dimen/abc_action_bar_default_height_material"
+        android:background="@drawable/gradientevermelho"
+        android:textColor="#ffffff"
+        android:textStyle="bold|italic"
+        android:clickable="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="goClicked" />
 
 
 </RelativeLayout>

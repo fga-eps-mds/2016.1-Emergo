@@ -9,7 +9,7 @@
         android:layout_width="130dp"
         android:layout_height="100dp"
         android:text="GO!"
-        android:id="@+id/button"
+        android:id="@+id/buttonGo"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="164dp"
         android:textSize="@dimen/abc_action_bar_default_height_material"
@@ -18,20 +18,22 @@
         android:background="@drawable/gradientevermelho"
         android:textColor="#ffffff"
         android:textStyle="bold|italic"
-        android:clickable="true" />
+        android:clickable="true"
+        android:onClick="goClicked" />
 
     <Button
         android:layout_width="130dp"
         android:layout_height="65dp"
         android:text="Estou Bem"
-        android:id="@+id/button2"
+        android:id="@+id/buttonOkay"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.23"
         android:layout_marginTop="74dp"
-        android:layout_below="@+id/button"
-        android:layout_alignStart="@+id/button"
+        android:layout_below="@+id/buttonGo"
+        android:layout_alignStart="@+id/buttonGo"
         android:background="@drawable/gradienteverde"
-        android:clickable="true" />
+        android:clickable="true"
+        android:onClick="okayClicked" />
 
     <ImageView
         android:layout_width="220dp"
