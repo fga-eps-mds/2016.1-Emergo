@@ -18,7 +18,7 @@
         android:id="@+id/nomeText1"
         android:paddingLeft="20dp"
         android:paddingTop="30dp"
-        android:textColor="#bee532"
+        android:textColor="#cef442"
         android:textSize="30dp" />
 
     <TextView
@@ -29,47 +29,22 @@
         android:id="@+id/nomeText2"
         android:layout_alignBottom="@+id/nomeText1"
         android:textSize="30dp"
-        android:textColor="#f1d929"
+        android:textColor="#cef442"
         android:layout_toEndOf="@+id/ufText2" />
 
-    <TextView
-        android:textColor="#eff218"
-        android:textSize="30dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Endereço:"
-        android:id="@+id/enderecoText1"
-        android:layout_below="@+id/nomeText2"
-        android:paddingLeft="20dp"
-        android:paddingTop="40dp"
-        android:layout_alignParentStart="true"
-        />
-
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="  ..."
-        android:id="@+id/enderecoText2"
-        android:layout_alignBottom="@+id/enderecoText1"
-        android:layout_toEndOf="@+id/enderecoText1"
-        android:textSize="30dp"
-        android:textColor="#f1dd30" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Tipo de Gestão:"
+        android:text="Tipo de atendimento:"
         android:paddingLeft="20dp"
         android:paddingTop = "40dp"
         android:id="@+id/gestaoText1"
-        android:layout_below="@+id/enderecoText1"
         android:layout_alignParentStart="true"
-        android:textColor="#f0d615"
-        android:textSize="30dp" />
+        android:textColor="#cef442"
+        android:textSize="30dp"
+        android:layout_below="@+id/nomeText2" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -77,10 +52,12 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="    ...."
         android:id="@+id/gestaoText2"
-        android:layout_alignBottom="@+id/gestaoText1"
-        android:layout_toEndOf="@+id/gestaoText1"
-        android:textColor="#ecde23"
-        android:textSize="30dp" />
+        android:textColor="#cef442"
+        android:textSize="30dp"
+        android:layout_below="@+id/gestaoText1"
+        android:layout_above="@+id/ufText2"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -88,12 +65,13 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="UF:"
         android:paddingLeft="20dp"
-        android:paddingTop="22dp"
+        android:paddingTop="60dp"
         android:id="@+id/ufText1"
         android:layout_below="@+id/gestaoText1"
         android:layout_alignParentStart="true"
         android:textSize="30dp"
-        android:textColor="#f1e831" />
+        android:textColor="#cef442"
+        android:layout_alignEnd="@+id/bairroText1" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -102,8 +80,8 @@
         android:text="   ...."
         android:id="@+id/ufText2"
         android:layout_alignBottom="@+id/ufText1"
-        android:layout_toEndOf="@+id/ufText1"
-        android:textColor="#f5e323"
+        android:layout_toEndOf="@+id/cepText1"
+        android:textColor="#cef442"
         android:textSize="30dp" />
 
     <TextView
@@ -116,18 +94,7 @@
         android:layout_below="@+id/ufText1"
         android:layout_alignParentStart="true"
         android:textSize="30dp"
-        android:textColor="#f0e21b" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="   ....."
-        android:id="@+id/municipioText2"
-        android:layout_alignBottom="@+id/municipioText1"
-        android:layout_toEndOf="@+id/municipioText1"
-        android:textColor="#f0e224"
-        android:textSize="30dp" />
+        android:textColor="#cef442" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -136,11 +103,24 @@
         android:text="Bairro:"
         android:id="@+id/bairroText1"
         android:paddingLeft="20dp"
-        android:paddingTop="40dp"
+        android:paddingTop="60dp"
         android:layout_below="@+id/municipioText1"
         android:layout_alignParentStart="true"
         android:textSize="30dp"
-        android:textColor="#f5f256" />
+        android:textColor="#cef442" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="...."
+        android:id="@+id/municipioText2"
+        android:paddingLeft="20dp"
+        android:paddingBottom="1dp"
+        android:textColor="#cef442"
+        android:textSize="30dp"
+        android:layout_below="@+id/municipioText1"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -150,7 +130,7 @@
         android:id="@+id/bairroText2"
         android:layout_alignBottom="@+id/bairroText1"
         android:layout_toEndOf="@+id/nomeText1"
-        android:textColor="#f9f615"
+        android:textColor="#cef442"
         android:textSize="30dp" />
 
     <TextView
@@ -162,7 +142,7 @@
         android:paddingLeft="20dp"
         android:textSize="30dp"
         android:paddingBottom="10dp"
-        android:textColor="#eddc1e"
+        android:textColor="#cef442"
         android:layout_below="@+id/bairroText1"
         android:layout_alignParentStart="true" />
 
@@ -172,7 +152,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="   ...."
         android:id="@+id/cepText2"
-        android:textColor="#e4fa1c"
+        android:textColor="#cef442"
         android:textSize="30dp"
         android:layout_alignTop="@+id/cepText1"
         android:layout_toEndOf="@+id/cepText1" />
@@ -191,6 +171,8 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:onClick="goClicked" />
+
+
 
 
 </RelativeLayout>

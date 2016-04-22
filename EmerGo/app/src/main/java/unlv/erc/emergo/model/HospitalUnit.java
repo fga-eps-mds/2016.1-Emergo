@@ -15,13 +15,13 @@ public class HospitalUnit {
     private String regiao;
     private String uf; // precisar mostrar nas informacoes
     private String municipio; // precisar mostrar nas informacoes
-    private Integer latitude;
-    private Integer longitude;
+    private Double latitude;
+    private Double longitude;
     private Character tipo_gestao; //precisa mostrar nas informacoes //
 
     public HospitalUnit(Integer id, String no_fantasia, String ds_tipo_unidade, String no_logradouro,
               Integer nu_endereco, String no_bairro, Integer co_cep, String regiao, String uf,
-              String municipio, Integer latitude, Integer longitude, Character tipo_gestao) {
+              String municipio, Double latitude, Double longitude, Character tipo_gestao) {
         this.id = id;
         this.no_fantasia = no_fantasia;
         this.ds_tipo_unidade = ds_tipo_unidade;
@@ -117,19 +117,19 @@ public class HospitalUnit {
         this.municipio = municipio;
     }
 
-    public Integer getLatitude() {
+    public Double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(Integer latitude) {
+    public void setLatitude(Double latitude) {
         this.latitude = latitude;
     }
 
-    public Integer getLongitude() {
+    public Double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(Integer longitude) {
+    public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
 
