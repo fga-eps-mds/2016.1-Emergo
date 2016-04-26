@@ -1,4 +1,4 @@
-package unlv.erc.emergo.controller;
+package unlv.erc.emergo.Controller;
 
 import android.app.Activity;
 import android.content.Context;
@@ -17,7 +17,7 @@ import unlv.erc.emergo.R;
 /**
  * Created by mrvictor on 17/04/16.
  */
-public class list_of_states_activity extends Activity {
+public class ListOfStatesActivity extends Activity {
     ListView listView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

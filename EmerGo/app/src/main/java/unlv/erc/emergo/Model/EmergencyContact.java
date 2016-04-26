@@ -2,12 +2,7 @@
  * EmergencyContatct.java
  */
 
-package unlv.erc.emergo.model;
-
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-
-import java.util.Arrays;
+package unlv.erc.emergo.Model;
 
 
 public class EmergencyContact {
