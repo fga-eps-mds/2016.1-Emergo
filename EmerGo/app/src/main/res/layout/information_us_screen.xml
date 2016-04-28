@@ -8,154 +8,9 @@
     android:paddingRight="0dp"
     android:paddingTop="0dp"
     android:background="@drawable/tela_base"
-    tools:context=".view.InformationUsScreen"
+    tools:context=".controller.InformationUsScreen"
     android:clickable="true">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Nome:"
-        android:id="@+id/nomeText1"
-        android:paddingLeft="20dp"
-        android:paddingTop="30dp"
-        android:textColor="#cef442"
-        android:textSize="30dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="...."
-        android:id="@+id/nomeText2"
-        android:layout_alignBottom="@+id/nomeText1"
-        android:textSize="30dp"
-        android:textColor="#cef442"
-        android:layout_toEndOf="@+id/ufText2" />
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Tipo de atendimento:"
-        android:paddingLeft="20dp"
-        android:paddingTop = "40dp"
-        android:id="@+id/gestaoText1"
-        android:layout_alignParentStart="true"
-        android:textColor="#cef442"
-        android:textSize="30dp"
-        android:layout_below="@+id/nomeText2" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="    ...."
-        android:id="@+id/gestaoText2"
-        android:textColor="#cef442"
-        android:textSize="30dp"
-        android:layout_below="@+id/gestaoText1"
-        android:layout_above="@+id/ufText2"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="UF:"
-        android:paddingLeft="20dp"
-        android:paddingTop="60dp"
-        android:id="@+id/ufText1"
-        android:layout_below="@+id/gestaoText1"
-        android:layout_alignParentStart="true"
-        android:textSize="30dp"
-        android:textColor="#cef442"
-        android:layout_alignEnd="@+id/bairroText1" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="   ...."
-        android:id="@+id/ufText2"
-        android:layout_alignBottom="@+id/ufText1"
-        android:layout_toEndOf="@+id/cepText1"
-        android:textColor="#cef442"
-        android:textSize="30dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Município:"
-        android:paddingLeft="20dp"
-        android:id="@+id/municipioText1"
-        android:layout_below="@+id/ufText1"
-        android:layout_alignParentStart="true"
-        android:textSize="30dp"
-        android:textColor="#cef442" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Bairro:"
-        android:id="@+id/bairroText1"
-        android:paddingLeft="20dp"
-        android:paddingTop="60dp"
-        android:layout_below="@+id/municipioText1"
-        android:layout_alignParentStart="true"
-        android:textSize="30dp"
-        android:textColor="#cef442" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="...."
-        android:id="@+id/municipioText2"
-        android:paddingLeft="20dp"
-        android:paddingBottom="1dp"
-        android:textColor="#cef442"
-        android:textSize="30dp"
-        android:layout_below="@+id/municipioText1"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="  ..."
-        android:id="@+id/bairroText2"
-        android:layout_alignBottom="@+id/bairroText1"
-        android:layout_toEndOf="@+id/nomeText1"
-        android:textColor="#cef442"
-        android:textSize="30dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="CEP:"
-        android:id="@+id/cepText1"
-        android:paddingLeft="20dp"
-        android:textSize="30dp"
-        android:paddingBottom="10dp"
-        android:textColor="#cef442"
-        android:layout_below="@+id/bairroText1"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="   ...."
-        android:id="@+id/cepText2"
-        android:textColor="#cef442"
-        android:textSize="30dp"
-        android:layout_alignTop="@+id/cepText1"
-        android:layout_toEndOf="@+id/cepText1" />
 
     <Button
         android:layout_width="153dp"
@@ -172,7 +27,12 @@
         android:layout_centerHorizontal="true"
         android:onClick="goClicked" />
 
-
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/hospital_information"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>

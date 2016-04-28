@@ -1,11 +1,9 @@
-package unlv.erc.emergo.view;
+package unlv.erc.emergo.controller;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 import unlv.erc.emergo.R;
 
@@ -28,7 +26,8 @@ public class MainScreen extends Activity {
 
     public void okayClicked(View main_Screen){
         //implementar okay
-
+        Intent infoHosp = new Intent(this , InformationUsScreen.class);
+        startActivity(infoHosp);
 
     }
 }
