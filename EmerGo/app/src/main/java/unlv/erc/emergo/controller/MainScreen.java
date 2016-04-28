@@ -26,8 +26,7 @@ public class MainScreen extends Activity {
 
     public void okayClicked(View main_Screen){
         //implementar okay
-        Intent infoHosp = new Intent(this , InformationUsScreen.class);
-        startActivity(infoHosp);
+
 
     }
 }

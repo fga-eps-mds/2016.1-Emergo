@@ -23,15 +23,20 @@ public class InformationUsScreen extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.information_us_screen);
 
-        ListView hospInfo = (ListView) findViewById(R.id.hospital_information);
+        ListView hospInfo = (ListView) findViewById(R.id.hospInformation);
         List <String> listOfInformations = new ArrayList<String>();
 
-        String nome = "Nome: ";
-        String gestao = "Tipo de atendimento: ";
-        String uf = "UF: ";
-        String municipio = "Município: ";
-        String bairro = "Bairro: ";
-        String cep = "Cep: ";
+        String padding = "\n";
+        String titulo = "        Informações da Unidade de Saúde";
+        String nome = "  Nome: " + "nome";
+        String gestao = "  Tipo de atendimento: " + "atende";
+        String uf = "  UF: " + "uf";
+        String municipio = "  Município: " + "municipio";
+        String bairro = "  Bairro: " + "bairro";
+        String cep = "  Cep: " + "cep";
+
+        listOfInformations.add(padding);
+        listOfInformations.add(titulo);
         listOfInformations.add(nome);
         listOfInformations.add(gestao);
         listOfInformations.add(uf);
@@ -39,12 +44,10 @@ public class InformationUsScreen extends Activity {
         listOfInformations.add(bairro);
         listOfInformations.add(cep);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this ,
-                                                                R.layout.information_us_screen ,
-                                                                listOfInformations );
+        ArrayAdapter<String> adapter = new ArrayAdapter <String> (this ,
+                                                            android.R.layout.simple_list_item_1,
+                                                            listOfInformations );
         hospInfo.setAdapter(adapter);
-
-
 
     }
 
