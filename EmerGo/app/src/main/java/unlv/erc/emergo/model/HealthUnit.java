@@ -19,9 +19,6 @@ public class HealthUnit {
     private double longitude = 0;
     private String managementType = "";
 
-    public HealthUnit () {
-
-    }
 
     public HealthUnit (String nameHospital, String address, String addressNumber, String district,
                        String state, String city){

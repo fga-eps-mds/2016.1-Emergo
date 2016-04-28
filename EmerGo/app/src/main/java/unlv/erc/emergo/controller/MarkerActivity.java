@@ -19,6 +19,8 @@ import java.util.ArrayList;
  */
 public class MarkerActivity {
 
+
+
     //The use od this function requires the method onMapReady
     protected void setMarkerOnMap(GoogleMap map,double lat,double lng, string title) {
        map.addMarker(new MarkerOptions()
