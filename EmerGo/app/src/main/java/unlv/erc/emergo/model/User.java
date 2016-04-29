@@ -1,14 +1,9 @@
-import java.util.ArrayList;
-import java.util.Date;
-
-package unlv.erc.emergo.model;
-
 package unlv.erc.emergo.model;
 
 import java.util.ArrayList;
 import java.util.Date;
 
-public class User {
+public class User{
     private String name;
     private Date dateBirth;
     private String tpBlood;
