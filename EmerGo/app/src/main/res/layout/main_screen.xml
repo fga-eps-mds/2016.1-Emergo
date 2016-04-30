@@ -2,8 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fundo"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:background="#ffffff">
 
     <Button
         android:layout_width="130dp"
@@ -19,7 +19,8 @@
         android:textColor="#ffffff"
         android:textStyle="bold|italic"
         android:clickable="true"
-        android:onClick="goClicked" />
+        android:onClick="goClicked"
+        android:focusableInTouchMode="false" />
 
     <Button
         android:layout_width="130dp"
@@ -38,8 +39,8 @@
     <ImageView
         android:layout_width="220dp"
         android:layout_height="90dp"
-        android:id="@+id/imageView"
-        android:layout_marginTop="33dp"
+        android:id="@+id/logoEmerGo"
+        android:layout_marginTop="41dp"
         android:background="@drawable/emergo"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
