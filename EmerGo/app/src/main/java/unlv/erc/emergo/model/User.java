@@ -1,16 +1,14 @@
 package unlv.erc.emergo.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 
-/**
- * Created by naiara on 17/04/16.
- */
 public class User {
 
     private String name = "";
     private Date birthday;
     private String typeBlood = "";
-    private String allergy = "";
+    private ArrayList<String> allergy;
     private boolean cardiac = false;
     private boolean diabetic = false;
     private boolean hypertension = false;
@@ -18,12 +16,6 @@ public class User {
 
     public User(){
 
-    }
-
-    public User(String name, Date birthday, String typeBlood){
-        this.name = name;
-        this.birthday = birthday;
-        this.typeBlood = typeBlood;
     }
 
     public String getName(){
@@ -50,12 +42,12 @@ public class User {
         this.typeBlood = typeBlood;
     }
 
-    public String getAllergy(){
+    public ArrayList<String> getAllergy(){
         return allergy;
     }
 
     public void setAllergy(String allergy){
-        this.allergy = allergy;
+       this.allergy.add(allergy);
     }
 
     public boolean getCardiac(){
@@ -89,5 +81,4 @@ public class User {
     public void setSeropositive(boolean seropositive){
         this.seropositive = seropositive;
     }
-
 }
