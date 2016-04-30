@@ -22,13 +22,15 @@ public class HealthUnit {
 
 
     public HealthUnit (String nameHospital, String address, String addressNumber, String district,
-                       String state, String city){
+                       String state, String city,double latitude, double longitude){
         this.nameHospital = nameHospital;
         this.address = address;
         this.addressNumber = addressNumber;
         this.district = district;
         this.state = state;
         this.city = city;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public int getId() {
