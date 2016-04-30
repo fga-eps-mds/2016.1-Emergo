@@ -1,8 +1,8 @@
 package unlv.erc.emergo.model;
 
-/**
- * Created by naiara on 17/04/16.
- */
+
+import com.google.android.gms.maps.model.Marker;
+
 public class HealthUnit {
 
     private int id = 0;
@@ -18,6 +18,7 @@ public class HealthUnit {
     private double latitude = 0;
     private double longitude = 0;
     private String managementType = "";
+    private Marker marker;
 
 
     public HealthUnit (String nameHospital, String address, String addressNumber, String district,
@@ -134,5 +135,8 @@ public class HealthUnit {
         this.managementType = managementType;
     }
 
+    public boolean getMarkerStatus(){
+       return  this.marker.isVisible();
+    }
 
 }
