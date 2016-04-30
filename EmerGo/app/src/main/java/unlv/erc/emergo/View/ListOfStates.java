@@ -1,24 +1,26 @@
-package unlv.erc.emergo.Controller;
+package unlv.erc.emergo.View;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import unlv.erc.emergo.Model.HospitalUnit;
 import unlv.erc.emergo.R;
 
-/**
- * Created by mrvictor on 17/04/16.
- */
-public class ListOfStatesActivity extends Activity {
-    ListView listView;
+public class ListOfStates extends Activity {
+    static ArrayList<HospitalUnit> hospitalList = new ArrayList<HospitalUnit>();
+    View convertView;
+    Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,18 +60,28 @@ public class ListOfStatesActivity extends Activity {
         estados.add("Sergipe - SE");
         estados.add("Tocantins - TO");
 
-        adaptador = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, estados);
+        adaptador = new ArrayAdapter<String>(this, R.layout.list_of_states, estados);
         estadosOpcoes.setAdapter(adaptador);
         estadosOpcoes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 0:
-                        Context contexto = getApplicationContext();
-                        String texto = "ACRE CARAI";
-                        int duracao = Toast.LENGTH_SHORT;
-                        Toast toast = Toast.makeText(contexto, texto, duracao);
-                        toast.show();
+
+                        for(int aux=0;aux<hospitalList.size();aux++){
+                            if(position == 0 && hospitalList.get(aux).getUf() == "AC"){
+                                HospitalUnit hospitalPosition = hospitalList.get(position);
+                                convertView = LayoutInflater.from(context).inflate(R.layout.item,null);
+
+                                TextView textView = (TextView) convertView.findViewById(R.id.distanceText);
+                                textView.setText((CharSequence) hospitalPosition.getNome());
+
+                                setDistance(convertView, position);
+
+                                Intent listHospitalAcre = new Intent(ListOfStates.this,HospitalList.class);
+                                startActivity(listHospitalAcre);
+                            }
+                        }
                         break;
 
 
@@ -79,5 +91,23 @@ public class ListOfStatesActivity extends Activity {
                 }
             }
         });
+    }
+
+    public void setDistance(View convertView, int position) {
+
+        if (this.hospitalList.get(position).getDistance() < 1f) {
+            // Setting distance of drugstore on list item
+            TextView textViewDistance = (TextView) convertView.findViewById(R.id.distanceText);
+            textViewDistance.setText(this.hospitalList.get(position).getDistance() + " m");
+        } else {
+            // Setting distance of drugstore on list item
+            TextView textViewDistance = (TextView) convertView.findViewById(R.id.distanceText);
+            textViewDistance.setText(convertToKM(this.hospitalList.get(position).getDistance()).toString() + " Km");
+        }
+    }
+
+    private Float convertToKM(Float distance){
+
+        return distance/1000;
     }
 }
