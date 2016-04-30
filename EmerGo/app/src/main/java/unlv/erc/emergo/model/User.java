@@ -1,87 +1,84 @@
-/**
- * Class User.java
- */
-
 package unlv.erc.emergo.model;
 
 import java.util.ArrayList;
 import java.util.Date;
 
 public class User {
-    private String name;
-    private Date dateBirth;
-    private String tpBlood;
-    private ArrayList<String> alergias[];
-    private boolean hipertenso;
-    private boolean diabetico;
-    private boolean cardiaco;
-    private boolean soro_positivo;
 
-    public User() {
+    private String name = "";
+    private Date birthday;
+    private String typeBlood = "";
+    private ArrayList<String> allergy;
+    private boolean cardiac = false;
+    private boolean diabetic = false;
+    private boolean hypertension = false;
+    private boolean seropositive = false;
+
+    public User(){
 
     }
 
-    public String getName() {
+    public String getName(){
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(String name){
         this.name = name;
     }
 
-    public Date getDateBirth() {
-        return dateBirth;
+    public Date getBirthday(){
+        return birthday;
     }
 
-    public void setDateBirth(Date dateBirth) {
-        this.dateBirth = dateBirth;
+    public void setBirthday(Date birthday){
+        this.birthday = birthday;
     }
 
-    public String getTpBlood() {
-        return tpBlood;
+    public String getTypeBlood(){
+        return typeBlood;
     }
 
-    public void setTpBlood(String tpBlood) {
-        this.tpBlood = tpBlood;
+    public void setTypeBlood(String typeBlood){
+        this.typeBlood = typeBlood;
     }
 
-    public ArrayList<String>[] getAlergias() {
-        return alergias;
+    public ArrayList<String> getAllergy(){
+        return allergy;
     }
 
-    public void setAlergias(ArrayList<String>[] alergias) {
-        this.alergias = alergias;
+    public void setAllergy(String allergy){
+       this.allergy.add(allergy);
     }
 
-    public boolean isHipertenso() {
-        return hipertenso;
+    public boolean getCardiac(){
+        return cardiac;
     }
 
-    public void setHipertenso(boolean hipertenso) {
-        this.hipertenso = hipertenso;
+    public void setCardiac(boolean cardiac){
+        this.cardiac = cardiac;
     }
 
-    public boolean isDiabetico() {
-        return diabetico;
+    public boolean getDiabetic(){
+        return diabetic;
     }
 
-    public void setDiabetico(boolean diabetico) {
-        this.diabetico = diabetico;
+    public void setDiabetic(boolean diabetic){
+        this.diabetic = diabetic;
     }
 
-    public boolean isCardiaco() {
-        return cardiaco;
+    public boolean getHypertension(){
+        return hypertension;
     }
 
-    public void setCardiaco(boolean cardiaco) {
-        this.cardiaco = cardiaco;
+    public void setHypertension(boolean hypertension){
+        this.hypertension = hypertension;
     }
 
-    public boolean isSoro_positivo() {
-        return soro_positivo;
+    public boolean getSeropositive(){
+        return seropositive;
     }
 
-    public void setSoro_positivo(boolean soro_positivo) {
-        this.soro_positivo = soro_positivo;
+    public void setSeropositive(boolean seropositive){
+        this.seropositive = seropositive;
     }
 }
