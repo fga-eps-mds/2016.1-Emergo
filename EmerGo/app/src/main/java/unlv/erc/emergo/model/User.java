@@ -2,9 +2,10 @@ package unlv.erc.emergo.model;
 
 import java.util.Date;
 
-/**
- * Created by naiara on 17/04/16.
- */
+import java.text.ParseException;
+
+
+
 public class User {
 
     private String name = "";
@@ -20,7 +21,7 @@ public class User {
 
     }
 
-    public User(String name, Date birthday, String typeBlood){
+    public User(String name, Date birthday, String typeBlood) throws ParseException {
         this.name = name;
         this.birthday = birthday;
         this.typeBlood = typeBlood;
