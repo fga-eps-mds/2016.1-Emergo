@@ -14,7 +14,12 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -32,21 +37,49 @@ public class RouteActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Firebase.setAndroidContext(this);
         setContentView(R.layout.activity_route);
 
-        map = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
-        setGabrielHomeMarker(map, -15.812140, -47.976671, "Casa Do Gabriel");
+//        map = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
+//        setGabrielHomeMarker(map, -15.812140, -47.976671, "Casa Do Gabriel");
 
         //map.addMarker(new MarkerOptions().position(location).title("ALGUM NOME AQUI"));
         //map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat,lng),20));
-        map.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
+//        map.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
+
+        getDataFromFirebase();
     }
 
-    protected void setGabrielHomeMarker(GoogleMap map, double lat, double lng, String name){
-         map.addMarker(new MarkerOptions()
-                .position(new LatLng(lat,lng))
-                .title(name));
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, lng), 20));
+//    protected void setGabrielHomeMarker(GoogleMap map, double lat, double lng, String name){
+//         map.addMarker(new MarkerOptions()
+//                 .position(new LatLng(lat, lng))
+//                 .title(name));
+//        map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, lng), 20));
+//    }
+
+    private void getDataFromFirebase() {
+        Firebase ref = new Firebase("https://emergodf.firebaseio.com/EmerGo");
+
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                int usNumber = 1;
+                for (DataSnapshot allUSs : snapshot.getChildren()) {
+                    Log.i("us number", usNumber + "");
+                    for(DataSnapshot usValues : allUSs.getChildren()) {
+                        //usValues.getKey() sao os nomes dos atributos, ex.: regiao e no_fantasia
+                        //usValues.getValue() sao os valores do atributos
+                        Log.i(usValues.getKey().toString(), usValues.getValue().toString());
+                    }
+                    usNumber++;
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                Log.e("Error", "It was not possible to get the data from Firebase");
+            }
+        });
     }
 }
 
