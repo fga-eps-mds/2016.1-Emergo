@@ -12,9 +12,6 @@ import unlv.erc.emergo.Model.HospitalUnit;
 
 import static java.util.Collections.sort;
 
-/**
- * Created by victor on 29/04/16.
- */
 public class HospitalUnitController {
     private static HospitalUnitController instance = null;
     private static Context context;
@@ -39,6 +36,34 @@ public class HospitalUnitController {
     }
 
     public static List<HospitalUnit> getHospitalList() {
+        String nameHospital;
+        Integer id;
+        Double latitude;
+        Double longitude;
+        String uf;
+
+        nameHospital = "Unidade Básica de Saúde Centro de Saúde 6 do Gama";
+        id = 6;
+        latitude = -16.02824;
+        longitude = -48.05841;
+        uf = "DF";
+
+        String nameHospital2;
+        Integer id2;
+        Double latitude2;
+        Double longitude2;
+        String uf2;
+
+        nameHospital2 = "Unidade Básica de Saúde Centro de Saúde 8 do Gama";
+        id2 = 6;
+        latitude2 = -16.01888;
+        longitude2 = -48.06828;
+        uf2 = "DF";
+
+        HospitalUnit novoHospital = new HospitalUnit(nameHospital,latitude,longitude,id,uf);
+        hospitalList.add(novoHospital);
+        HospitalUnit novoHospital2 =  new HospitalUnit(nameHospital2,latitude,longitude2,id2,uf2);
+        hospitalList.add(novoHospital2);
         return hospitalList;
     }
 
@@ -46,6 +71,9 @@ public class HospitalUnitController {
         HospitalUnitController.hospitalList = hospitalList;
     }
 
+    public void initHospitalUnitController(){
+        hospitalList = getHospitalList();
+    }
     public static void setInstance(HospitalUnitController instance) {
         HospitalUnitController.instance = instance;
     }
@@ -58,9 +86,9 @@ public class HospitalUnitController {
         HospitalUnitController.context = context;
     }
 
-    public static List<HospitalUnit> getAllHospitals(){
+    /*public static List<HospitalUnit> getAllHospitals(){
         return hospitalList;
-    }
+    }*/
 
     public static HospitalUnitController getInstance(Context context) {
         if (instance == null) {
