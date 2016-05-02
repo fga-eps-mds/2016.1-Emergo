@@ -138,5 +138,38 @@ public class HealthUnitTest extends TestCase{
         assertEquals("",healthUnit.getRegion());
     }
 
-    
+    public void  testSetRegionNull(){
+        HealthUnit healthUnit = new HealthUnit();
+        healthUnit.setRegion("Centro Oeste");
+        boolean result = true;
+        if(healthUnit.getRegion().trim() == null){
+            assertFalse(result);
+        }else{
+            assertTrue(result);
+        }
+    }
+
+    public void testGetState(){
+        HealthUnit healthUnit = new HealthUnit();
+        String state = "Goías";
+        healthUnit.setState("Goías");
+        assertEquals(state,healthUnit.getState());
+    }
+
+    public void testSetStateEmpty(){
+        HealthUnit healthUnit = new HealthUnit();
+        healthUnit.setState("");
+        assertEquals("",healthUnit.getState());
+    }
+
+    public void testSetStateNull(){
+        HealthUnit healthUnit = new HealthUnit();
+        healthUnit.setState("Goías");
+        boolean result = true;
+        if(healthUnit.getState().trim() ==  null){
+            assertFalse(true);
+        }else{
+            assertTrue(result);
+        }
+    }
 }
