@@ -124,4 +124,19 @@ public class HealthUnitTest extends TestCase{
             assertTrue(result);
         }
     }
+
+    public void testGetRegion(){
+        HealthUnit healthUnit = new HealthUnit();
+        String region = "Centro Oeste";
+        healthUnit.setRegion("Centro Oeste");
+        assertEquals(region,healthUnit.getRegion());
+    }
+
+    public void testSetRegionEmpty(){
+        HealthUnit healthUnit = new HealthUnit();
+        healthUnit.setRegion("");
+        assertEquals("",healthUnit.getRegion());
+    }
+
+    
 }
