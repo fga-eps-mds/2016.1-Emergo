@@ -100,7 +100,7 @@ public class HealthUnitTest extends TestCase{
             assertTrue(result);
         }
     }
-    
+
     public void testGetDistrict(){
         HealthUnit healthUnit = new HealthUnit();
         String district = "Distrito Federal";
@@ -112,5 +112,16 @@ public class HealthUnitTest extends TestCase{
         HealthUnit healthUnit = new HealthUnit();
         healthUnit.setDistrict("");
         assertEquals("",healthUnit.getDistrict());
+    }
+
+    public void testSetDistrictNull(){
+        HealthUnit healthUnit = new HealthUnit();
+        healthUnit.setDistrict("Distrito Federal");
+        boolean result = true;
+        if(healthUnit.getDistrict().trim() == null){
+            assertFalse(result);
+        }else{
+            assertTrue(result);
+        }
     }
 }
