@@ -4,7 +4,7 @@ import junit.framework.TestCase;
 
 
 public class HealthUnitTest extends TestCase{
-    
+
     public void testGetNameHealthUnit(){
         HealthUnit healthUnit = new HealthUnit();
         String nameHospital = "Hospital Regional do Gama";
@@ -31,8 +31,25 @@ public class HealthUnitTest extends TestCase{
 
     public void testGetUnitType(){
         HealthUnit healthUnit = new HealthUnit();
-        String unitType = "Unidade básica de saúde";
-        healthUnit.setUnitType("Unidade básica de saúde");
+        String unitType = "Unidade Básica de saúde";
+        healthUnit.setUnitType("Unidade Básica de saúde");
         assertEquals(unitType,healthUnit.getUnitType());
+    }
+
+    public void testSetUnitTypeEmpty(){
+        HealthUnit healthUnit = new HealthUnit();
+        healthUnit.setUnitType("");
+        assertEquals(healthUnit,healthUnit.getUnitType());
+    }
+
+    public void testSetUnitTypeNull(){
+        HealthUnit healthUnit = new HealthUnit();
+        healthUnit.setUnitType("Unidade Básica");
+        boolean result = true;
+        if(healthUnit.getUnitType()==null){
+            assertFalse(result);
+        }else{
+            assertTrue(result);
+        }
     }
 }
