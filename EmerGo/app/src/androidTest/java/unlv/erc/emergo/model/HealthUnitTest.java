@@ -172,4 +172,28 @@ public class HealthUnitTest extends TestCase{
             assertTrue(result);
         }
     }
+
+    public void testGetCity(){
+        HealthUnit healthUnit = new HealthUnit();
+        String city = "Gama";
+        healthUnit.setCity("Gama");
+        assertEquals(city,healthUnit.getCity());
+    }
+
+    public void testSetCityEmpty(){
+        HealthUnit healthUnit = new HealthUnit();
+        healthUnit.setCity("");
+        assertEquals("",healthUnit.getCity());
+    }
+
+    public void testSetCityNull(){
+        HealthUnit healthUnit = new HealthUnit();
+        healthUnit.setCity("Gama");
+        boolean result = true;
+        if(healthUnit.getCity().trim() == null){
+            assertFalse(result);
+        }else{
+            assertTrue(result);
+        }
+    }
 }
