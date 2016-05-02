@@ -93,11 +93,19 @@ public class HealthUnitTest extends TestCase{
     public void testSetAdressNumberNull(){
         HealthUnit healthUnit = new HealthUnit();
         healthUnit.setAddressNumber("05");
-        boolean result = false;
+        boolean result = true;
         if(healthUnit.getAddressNumber().trim() == null){
             assertFalse(result);
         }else{
             assertTrue(result);
         }
+    }
+
+    //Primeiro test pra commit
+    public void testGetDistrict(){
+        HealthUnit healthUnit = new HealthUnit();
+        String district = "Distrito Federal";
+        healthUnit.setDistrict("Distrito Federal");
+        assertEquals(district,healthUnit.getDistrict());
     }
 }

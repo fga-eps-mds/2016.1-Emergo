@@ -1,8 +1,5 @@
 package unlv.erc.emergo.model;
 
-/**
- * Created by naiara on 17/04/16.
- */
 public class HealthUnit {
 
     private int id = 0;
@@ -93,7 +90,7 @@ public class HealthUnit {
         return region;
     }
 
-    public void setRegio(String region){
+    public void setRegion(String region){
         this.region = region;
     }
 
