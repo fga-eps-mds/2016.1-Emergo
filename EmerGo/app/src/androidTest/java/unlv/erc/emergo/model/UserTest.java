@@ -1,13 +1,7 @@
 package unlv.erc.emergo.model;
-import android.annotation.TargetApi;
-import android.os.Build;
-
-import java.text.ParseException;
-
+import junit.framework.TestCase;
 
 //import org.junit.Test;
-
-import junit.framework.TestCase;
 
 
 public class UserTest extends TestCase {
@@ -57,9 +51,6 @@ public class UserTest extends TestCase {
         }
     }
 
-
-
-
     public void testSetNameLowerThree(){
         User user = new User();
         user.setName("Ana");
@@ -71,11 +62,38 @@ public class UserTest extends TestCase {
         }
     }
 
+    public void testSetTypeBloodNull() {
+        User user = new User();
 
+        user.setTypeBlood("AB+");
+        boolean result = true;
+        if(user.getTypeBlood()==null){
+            assertFalse(result);
+        }else{
+            assertTrue(result);
+        }
+    }
 
+    public void testSetTypeBloodLowerOrEqualsTwo(){
+        User user = new User();
 
+        user.setTypeBlood("A-");
+        boolean result = true;
+        if(user.getTypeBlood().length()<=2){
+            assertFalse(result);
+        }else{
+            assertTrue(result);
+        }
+    }
 
-
-
-
+    public void testSetAllergyBiggerTwoHundred(){
+        User user = new User();
+        user.setAllergy("Alergia");
+        boolean result = true;
+        if(user.getAllergy().trim().length()>200){
+            assertFalse(result);
+        }else{
+            assertTrue(result);
+        }
+    }
 }
