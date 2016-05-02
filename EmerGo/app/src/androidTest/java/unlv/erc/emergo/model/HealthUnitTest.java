@@ -22,7 +22,7 @@ public class HealthUnitTest extends TestCase{
         HealthUnit healthUnit = new HealthUnit();
         healthUnit.setNameHospital("Hospital Regional do Gama");
         boolean result = true;
-        if(healthUnit.getNameHospital()==null){
+        if(healthUnit.getNameHospital() == null){
             assertFalse(result);
         }else{
             assertTrue(result);
@@ -39,14 +39,38 @@ public class HealthUnitTest extends TestCase{
     public void testSetUnitTypeEmpty(){
         HealthUnit healthUnit = new HealthUnit();
         healthUnit.setUnitType("");
-        assertEquals(healthUnit,healthUnit.getUnitType());
+        assertEquals("",healthUnit.getUnitType());
     }
 
     public void testSetUnitTypeNull(){
         HealthUnit healthUnit = new HealthUnit();
         healthUnit.setUnitType("Unidade Básica");
         boolean result = true;
-        if(healthUnit.getUnitType()==null){
+        if(healthUnit.getUnitType() == null){
+            assertFalse(result);
+        }else{
+            assertTrue(result);
+        }
+    }
+
+    public void testGetAdress(){
+        HealthUnit healthUnit = new HealthUnit();
+        String adress = "QR 602 Conjunto 06 Casa 05";
+        healthUnit.setAddress("QR 602 Conjunto 06 Casa 05");
+        assertEquals(adress,healthUnit.getAddress());
+    }
+
+    public void testSetAdressEmpty(){
+        HealthUnit healthUnit = new HealthUnit();
+        healthUnit.setAddress("");
+        assertEquals("",healthUnit.getAddress());
+    }
+
+    public void testSetAdressNull(){
+        HealthUnit healthUnit = new HealthUnit();
+        healthUnit.setAddress("QR 602 Conjunto 06 Casa 05");
+        boolean result = true;
+        if(healthUnit.getAddress() == null){
             assertFalse(result);
         }else{
             assertTrue(result);
