@@ -100,12 +100,17 @@ public class HealthUnitTest extends TestCase{
             assertTrue(result);
         }
     }
-
-    //Primeiro test pra commit
+    
     public void testGetDistrict(){
         HealthUnit healthUnit = new HealthUnit();
         String district = "Distrito Federal";
         healthUnit.setDistrict("Distrito Federal");
         assertEquals(district,healthUnit.getDistrict());
+    }
+
+    public void testSetDistrictEmpty(){
+        HealthUnit healthUnit = new HealthUnit();
+        healthUnit.setDistrict("");
+        assertEquals("",healthUnit.getDistrict());
     }
 }
