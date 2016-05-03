@@ -196,4 +196,28 @@ public class HealthUnitTest extends TestCase{
             assertTrue(result);
         }
     }
+
+    public void testGetmanagementType(){
+        HealthUnit healthUnit = new HealthUnit();
+        String managementType = "Publica";
+        healthUnit.setManagementType("Publica");
+        assertEquals(managementType,healthUnit.getManagementType());
+    }
+
+    public void testSetManagementTypeEmpty(){
+        HealthUnit healthUnit = new HealthUnit();
+        healthUnit.setManagementType("");
+        assertEquals("",healthUnit.getManagementType());
+    }
+
+    public void testSetManagementTypeNull(){
+        HealthUnit healthUnit = new HealthUnit();
+        healthUnit.setManagementType("Publica");
+        boolean result = true;
+        if(healthUnit.getManagementType().trim() == null){
+            assertFalse(result);
+        }else{
+            assertTrue(result);
+        }
+    }
 }
