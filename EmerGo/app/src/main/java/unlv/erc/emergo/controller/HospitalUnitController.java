@@ -54,16 +54,57 @@ public class HospitalUnitController {
         Double longitude2;
         String uf2;
 
-        nameHospital2 = "Centro de Saúde 8 do Gama";
+        nameHospital2 = "Unidade de Saúde Centro de Saúde 8 do Gama";
         id2 = 6;
         latitude2 = -16.01888;
         longitude2 = -48.06828;
         uf2 = "DF";
 
+        String nameHospital3;
+        Integer id3;
+        Double latitude3;
+        Double longitude3;
+        String uf3;
+
+        nameHospital3 = "Hospital Dia da Asa Sul";
+        id3 = 6;
+        latitude3 = -15.82632;
+        longitude3 = -47.92385;
+        uf3 = "DF";
+
+        String nameHospital4;
+        Integer id4;
+        Double latitude4;
+        Double longitude4;
+        String uf4;
+
+        nameHospital4 = "Humanus Psicologia Especializada";
+        id4 = 6;
+        latitude4 = -15.78014;
+        longitude4 = -47.92916;
+        uf4 = "DF";
+
+        String nameHospital5;
+        Integer id5;
+        Double latitude5;
+        Double longitude5;
+        String uf5;
+
+        nameHospital5 = "Centro Oftalmologico Oculistas Associados";
+        id5 = 6;
+        latitude5 = -15.76404;
+        longitude5 = -47.89142;
+        uf5 = "DF";
+
         HospitalUnit novoHospital = new HospitalUnit(nameHospital,latitude,longitude,id,uf);
         hospitalList.add(novoHospital);
-        HospitalUnit novoHospital2 =  new HospitalUnit(nameHospital2,latitude,longitude2,id2,uf2);
+        HospitalUnit novoHospital2 =  new HospitalUnit(nameHospital2,latitude2,longitude2,id2,uf2);
         hospitalList.add(novoHospital2);
+        HospitalUnit novoHospital3 = new HospitalUnit(nameHospital3,latitude3,longitude3,id3,uf3);
+        hospitalList.add(novoHospital3);
+        HospitalUnit novoHospital4 = new HospitalUnit(nameHospital4,latitude4,longitude4,id4,uf4);
+        hospitalList.add(novoHospital4);
+        HospitalUnit novoHospital5 = new HospitalUnit(nameHospital5,latitude5,longitude5,id5,uf5);
         return hospitalList;
     }
 
