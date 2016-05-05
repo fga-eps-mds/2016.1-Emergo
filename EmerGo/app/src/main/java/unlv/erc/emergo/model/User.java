@@ -2,7 +2,7 @@
  * Class User.java
  */
 
-package unlv.erc.emergo.Model;
+package unlv.erc.emergo.model;
 
 import java.util.ArrayList;
 import java.util.Date;

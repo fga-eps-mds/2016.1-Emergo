@@ -1,4 +1,4 @@
-package unlv.erc.emergo.View;
+package unlv.erc.emergo.view;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -9,10 +9,10 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import Adapter.HospitalUnitAdapter;
-import Helper.GPSTracker;
-import unlv.erc.emergo.Controller.HospitalUnitController;
-import unlv.erc.emergo.Model.HospitalUnit;
+import adapter.HospitalUnitAdapter;
+import helper.GPSTracker;
+import unlv.erc.emergo.controller.HospitalUnitController;
+import unlv.erc.emergo.model.HospitalUnit;
 import unlv.erc.emergo.R;
 
 public class HospitalList extends Activity {

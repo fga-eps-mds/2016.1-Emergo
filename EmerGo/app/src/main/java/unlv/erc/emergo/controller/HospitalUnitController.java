@@ -1,4 +1,4 @@
-package unlv.erc.emergo.Controller;
+package unlv.erc.emergo.controller;
 
 import android.content.Context;
 import android.location.Location;
@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-import Helper.GPSTracker;
-import unlv.erc.emergo.Model.HospitalUnit;
+import helper.GPSTracker;
+import unlv.erc.emergo.model.HospitalUnit;
 
 import static java.util.Collections.sort;
 
@@ -42,7 +42,7 @@ public class HospitalUnitController {
         Double longitude;
         String uf;
 
-        nameHospital = "Unidade Básica de Saúde Centro de Saúde 6 do Gama";
+        nameHospital = "Centro de Saúde 6 do Gama";
         id = 6;
         latitude = -16.02824;
         longitude = -48.05841;
@@ -54,7 +54,7 @@ public class HospitalUnitController {
         Double longitude2;
         String uf2;
 
-        nameHospital2 = "Unidade Básica de Saúde Centro de Saúde 8 do Gama";
+        nameHospital2 = "Centro de Saúde 8 do Gama";
         id2 = 6;
         latitude2 = -16.01888;
         longitude2 = -48.06828;

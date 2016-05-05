@@ -1,4 +1,4 @@
-package Adapter;
+package adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import unlv.erc.emergo.Model.HospitalUnit;
+import unlv.erc.emergo.model.HospitalUnit;
 import unlv.erc.emergo.R;
 
 /**

@@ -2,7 +2,7 @@
  * EmergencyContatct.java
  */
 
-package unlv.erc.emergo.Model;
+package unlv.erc.emergo.model;
 
 
 public class EmergencyContact {

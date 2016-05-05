@@ -1,4 +1,4 @@
-package unlv.erc.emergo.View;
+package unlv.erc.emergo.view;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,7 +14,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import unlv.erc.emergo.Model.HospitalUnit;
+import unlv.erc.emergo.model.HospitalUnit;
 import unlv.erc.emergo.R;
 
 public class ListOfStates extends Activity {
@@ -30,7 +30,7 @@ public class ListOfStates extends Activity {
         List<String> estados;
         ArrayAdapter<String> adaptador;
         ListView estadosOpcoes;
-        estadosOpcoes = (ListView) findViewById(R.id.lista_de_Estados);
+        estadosOpcoes = (ListView) findViewById(R.id.list_of_states);
         estados = new ArrayList<String>();
         estados.add("Acre - AC");
         estados.add("Alagoas - AL");
