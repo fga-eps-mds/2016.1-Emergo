@@ -156,6 +156,66 @@ public class HospitalUnitController {
         longitude10 = -43.11966;
         uf10 = "MG";
 
+        String nameHospital11;
+        Integer id11;
+        Double latitude11;
+        Double longitude11;
+        String uf11;
+
+        nameHospital11 = "Radiodente Radiologia Digital";
+        id11 = 8;
+        latitude11 = -16.64768;
+        longitude11 = -49.49683;
+        uf11 = "GO";
+
+        String nameHospital12;
+        Integer id12;
+        Double latitude12;
+        Double longitude12;
+        String uf12;
+
+        nameHospital12 = "Unidade de Saúde da Família Demolândia";
+        id12 = 8;
+        latitude12 = -16.254801619746;
+        longitude12 = -49.3611056454839;
+        uf12 = "GO";
+
+        String nameHospital13;
+        Integer id13;
+        Double latitude13;
+        Double longitude13;
+        String uf13;
+
+        nameHospital13 = "Unidade Básica de Saúde DR.Osvaldo Cassiano de Faria IV";
+        id13 = 8;
+        latitude13 = -16.8069880059216;
+        longitude13 = -49.9227871292957;
+        uf13 = "GO";
+
+        String nameHospital14;
+        Integer id14;
+        Double latitude14;
+        Double longitude14;
+        String uf14;
+
+        nameHospital14 = "Centro de Saúde de Paraúna";
+        id14 = 8;
+        latitude14 = -16.94833;
+        longitude14 = -50.46422;
+        uf14 = "GO";
+
+        String nameHospital15;
+        Integer id15;
+        Double latitude15;
+        Double longitude15;
+        String uf15;
+
+        nameHospital15 = "Unidade Básica de Saúde Família Mesquita";
+        id15 = 8;
+        latitude15 = -16.0778689384456;
+        longitude15 = -47.8703713417039;
+        uf15 = "GO";
+
         HospitalUnit novoHospitalDistritoFederal = new HospitalUnit(nameHospital,latitude,longitude,id,uf);
         hospitalList.add(novoHospitalDistritoFederal);
         HospitalUnit novoHospitalDistritoFederal2 =  new HospitalUnit(nameHospital2,latitude2,longitude2,id2,uf2);
@@ -176,6 +236,17 @@ public class HospitalUnitController {
         hospitalList.add(novoHospitalMinasGerais4);
         HospitalUnit novoHospitalMinasGerais5 = new HospitalUnit(nameHospital10,latitude10,longitude10,id10,uf10);
         hospitalList.add(novoHospitalMinasGerais5);
+        HospitalUnit novoHospitalGoias = new HospitalUnit(nameHospital11,latitude11,longitude11,id11,uf11);
+        hospitalList.add(novoHospitalGoias);
+        HospitalUnit novoHospitalGoias2 = new HospitalUnit(nameHospital12,latitude12,longitude12,id12,uf12);
+        hospitalList.add(novoHospitalGoias2);
+        HospitalUnit novoHospitalGoias3 = new HospitalUnit(nameHospital13,latitude13,longitude13,id13,uf13);
+        hospitalList.add(novoHospitalGoias3);
+        HospitalUnit novoHospitalGoias4 = new HospitalUnit(nameHospital14,latitude14,longitude14,id14,uf14);
+        hospitalList.add(novoHospitalGoias4);
+        HospitalUnit novoHospitalGoias5 = new HospitalUnit(nameHospital15,latitude15,longitude15,id15,uf15);
+        hospitalList.add(novoHospitalGoias5);
+
         return hospitalList;
     }
 
