@@ -33,7 +33,7 @@ public class HospitalList extends Activity {
         // Instancing controller
         final HospitalUnitController hospitalUnitController = HospitalUnitController.getInstance(getApplicationContext());
         // Initialize and fill list of hospital
-        hospitalList = (ArrayList<HospitalUnit>) HospitalUnitController.getAllHospitals();
+        hospitalList = (ArrayList<HospitalUnit>) HospitalUnitController.getHospitalList();
 
         if(gps.canGetLocation()) {
 

@@ -96,15 +96,86 @@ public class HospitalUnitController {
         longitude5 = -47.89142;
         uf5 = "DF";
 
-        HospitalUnit novoHospital = new HospitalUnit(nameHospital,latitude,longitude,id,uf);
-        hospitalList.add(novoHospital);
-        HospitalUnit novoHospital2 =  new HospitalUnit(nameHospital2,latitude2,longitude2,id2,uf2);
-        hospitalList.add(novoHospital2);
-        HospitalUnit novoHospital3 = new HospitalUnit(nameHospital3,latitude3,longitude3,id3,uf3);
-        hospitalList.add(novoHospital3);
-        HospitalUnit novoHospital4 = new HospitalUnit(nameHospital4,latitude4,longitude4,id4,uf4);
-        hospitalList.add(novoHospital4);
-        HospitalUnit novoHospital5 = new HospitalUnit(nameHospital5,latitude5,longitude5,id5,uf5);
+        String nameHospital6;
+        Integer id6;
+        Double latitude6;
+        Double longitude6;
+        String uf6;
+
+        nameHospital6 = "Posto de Saúde Emilia Lanna";
+        id6 = 12;
+        latitude6 = -21.38801;
+        longitude6 = -42.69907;
+        uf6 = "MG";
+
+        String nameHospital7;
+        Integer id7;
+        Double latitude7;
+        Double longitude7;
+        String uf7;
+
+        nameHospital7 = "Matozinhos Unidade Básica de Saúde Tonico Cota";
+        id7 = 12;
+        latitude7 = -19.5453643798822;
+        longitude7 = -44.0831565856921;
+        uf7 = "MG";
+
+        String nameHospital8;
+        Integer id8;
+        Double latitude8;
+        Double longitude8;
+        String uf8;
+
+        nameHospital8 = "Posto de Saúde de Vitorinos";
+        id8 = 12;
+        latitude8 = -21.0221461475547;
+        longitude8 = -43.41887066418;
+        uf8 = "MG";
+
+        String nameHospital9;
+        Integer id9;
+        Double latitude9;
+        Double longitude9;
+        String uf9;
+
+        nameHospital9 = "Centro de Saúde DR. Alpheu Gonçalves de Quadros";
+        id9 = 12;
+        latitude9 = -16.74587;
+        longitude9 = -43.84289;
+        uf9 = "MG";
+
+        String nameHospital10;
+        Integer id10;
+        Double latitude10;
+        Double longitude10;
+        String uf10;
+
+        nameHospital10 = "Unidade de Saúde da Familia Avelino Dias Pimont";
+        id10 = 12;
+        latitude10 = -21.47177;
+        longitude10 = -43.11966;
+        uf10 = "MG";
+
+        HospitalUnit novoHospitalDistritoFederal = new HospitalUnit(nameHospital,latitude,longitude,id,uf);
+        hospitalList.add(novoHospitalDistritoFederal);
+        HospitalUnit novoHospitalDistritoFederal2 =  new HospitalUnit(nameHospital2,latitude2,longitude2,id2,uf2);
+        hospitalList.add(novoHospitalDistritoFederal2);
+        HospitalUnit novoHospitalDistritoFederal3 = new HospitalUnit(nameHospital3,latitude3,longitude3,id3,uf3);
+        hospitalList.add(novoHospitalDistritoFederal3);
+        HospitalUnit novoHospitalDistritoFederal4 = new HospitalUnit(nameHospital4,latitude4,longitude4,id4,uf4);
+        hospitalList.add(novoHospitalDistritoFederal4);
+        HospitalUnit novoHospitalDistritoFederal5 = new HospitalUnit(nameHospital5,latitude5,longitude5,id5,uf5);
+        hospitalList.add(novoHospitalDistritoFederal5);
+        HospitalUnit novoHospitalMinasGerais = new HospitalUnit(nameHospital6,latitude6,longitude6,id6,uf6);
+        hospitalList.add(novoHospitalMinasGerais);
+        HospitalUnit novoHospitalMinasGerais2 = new HospitalUnit(nameHospital7,latitude7,longitude7,id7,uf7);
+        hospitalList.add(novoHospitalMinasGerais2);
+        HospitalUnit novoHospitalMinasGerais3 = new HospitalUnit(nameHospital8,latitude8,longitude8,id8,uf8);
+        hospitalList.add(novoHospitalMinasGerais3);
+        HospitalUnit novoHospitalMinasGerais4 = new HospitalUnit(nameHospital9,latitude9,longitude9,id9,uf9);
+        hospitalList.add(novoHospitalMinasGerais4);
+        HospitalUnit novoHospitalMinasGerais5 = new HospitalUnit(nameHospital10,latitude10,longitude10,id10,uf10);
+        hospitalList.add(novoHospitalMinasGerais5);
         return hospitalList;
     }
 
