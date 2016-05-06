@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 import adapter.HospitalUnitAdapter;
 import helper.GPSTracker;
-import unlv.erc.emergo.controller.HospitalUnitController;
+import unlv.erc.emergo.controller.HealthUnitController;
 import unlv.erc.emergo.model.HospitalUnit;
 import unlv.erc.emergo.R;
 
@@ -31,13 +31,13 @@ public class HospitalList extends Activity {
         gps = new GPSTracker(this);
 
         // Instancing controller
-        final HospitalUnitController hospitalUnitController = HospitalUnitController.getInstance(getApplicationContext());
+        final HealthUnitController hospitalUnitController = HealthUnitController.getInstance(getApplicationContext());
         // Initialize and fill list of hospital
-        hospitalList = (ArrayList<HospitalUnit>) HospitalUnitController.getHospitalList();
+        hospitalList = (ArrayList<HospitalUnit>) HealthUnitController.getHospitalList();
 
         if(gps.canGetLocation()) {
 
-            HospitalUnitController.setDistance(getApplicationContext(), hospitalList);
+            HealthUnitController.setDistance(getApplicationContext(), hospitalList);
             // Initializing new HospitalAdapter with list of hospitals
             HospitalUnitAdapter adapter = new HospitalUnitAdapter(getApplicationContext(), hospitalList);
             // Setting adapter to listView
@@ -50,7 +50,7 @@ public class HospitalList extends Activity {
             @Override
             public void onItemClick(AdapterView adapterView, View view, int position,
                                     long id) {
-                HospitalUnitController.setHospitalUnit(hospitalList.get(position));
+                HealthUnitController.setHospitalUnit(hospitalList.get(position));
 
                 /*Intent intent = new Intent(getBaseContext(), GoogleMapHospital.class);
 
