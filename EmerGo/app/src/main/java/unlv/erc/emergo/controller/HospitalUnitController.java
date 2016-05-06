@@ -32,6 +32,20 @@ public class HospitalUnitController {
     }
 
     public static void setHospitalUnit(HospitalUnit hospitalUnit) {
+        String nameHospital;
+        Integer id;
+        Double latitude;
+        Double longitude;
+        String uf;
+
+        nameHospital = "Centro de Saúde 6 do Gama";
+        id = 6;
+        latitude = -16.02824;
+        longitude = -48.05841;
+        uf = "DF";
+
+
+        hospitalList.add(new HospitalUnit(nameHospital,latitude,longitude,id,uf));
         HospitalUnitController.hospitalUnit = hospitalUnit;
     }
 

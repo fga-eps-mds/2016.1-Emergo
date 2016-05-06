@@ -1,4 +1,4 @@
-package unlv.erc.emergo.view;
+package unlv.erc.emergo.controller;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -15,7 +15,7 @@ import unlv.erc.emergo.controller.HospitalUnitController;
 import unlv.erc.emergo.model.HospitalUnit;
 import unlv.erc.emergo.R;
 
-public class HospitalList extends Activity {
+public class HospitalListController extends Activity {
     ListView listView;
     ArrayList<HospitalUnit> hospitalList;
     GPSTracker gps;
