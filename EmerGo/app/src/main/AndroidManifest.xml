@@ -33,7 +33,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".controller.HospitalListController">
+        <activity android:name=".controller.HealthUnitListController">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
