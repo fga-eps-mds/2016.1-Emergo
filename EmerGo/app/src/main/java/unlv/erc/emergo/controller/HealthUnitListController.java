@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import adapter.HospitalUnitAdapter;
+import adapter.HealthUnitAdapter;
 import helper.GPSTracker;
 import unlv.erc.emergo.model.HealthUnit;
 import unlv.erc.emergo.R;
@@ -38,7 +38,7 @@ public class HealthUnitListController extends Activity {
 
             HealthUnitController.setDistance(getApplicationContext(), hospitalList);
             // Initializing new HospitalAdapter with list of hospitals
-            HospitalUnitAdapter adapter = new HospitalUnitAdapter(getApplicationContext(), hospitalList);
+            HealthUnitAdapter adapter = new HealthUnitAdapter(getApplicationContext(), hospitalList);
             // Setting adapter to listView
             listView.setAdapter(adapter);
         }else {
