@@ -90,5 +90,4 @@ public class User {
     public void setSeropositive(boolean seropositive){
         this.seropositive = seropositive;
     }
-
 }

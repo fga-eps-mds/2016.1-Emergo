@@ -1,5 +1,8 @@
 package unlv.erc.emergo.model;
+
 import junit.framework.TestCase;
+
+import java.text.ParseException;
 
 //import org.junit.Test;
 
@@ -104,7 +107,7 @@ public class UserTest extends TestCase {
         }
     }
 
-    public void testSetAllergyBiggerTwoHundred(){
+    public void testSetAllergyBiggerTwoHundred() throws ParseException {
         User user = new User();
         user.setAllergy("Alergia");
         final int MAXIMUM = 200;

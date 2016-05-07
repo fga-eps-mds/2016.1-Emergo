@@ -220,4 +220,18 @@ public class HealthUnitTest extends TestCase{
             assertTrue(result);
         }
     }
+
+    public void testGetLatitude(){
+        HealthUnit healthUnit = new HealthUnit();
+        Double latitude = -15.875370;
+        healthUnit.setLatitude(-15.875370);
+        assertEquals(latitude,healthUnit.getLatitute());
+    }
+
+    public  void testGetLongitude(){
+        HealthUnit healthUnit = new HealthUnit();
+        Double longitude = -47.803885;
+        healthUnit.setLongitude(-47.803885);
+        assertEquals(longitude,healthUnit.getLongitude());
+    }
 }
