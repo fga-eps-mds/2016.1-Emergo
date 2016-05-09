@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import unlv.erc.emergo.R;
 
@@ -17,6 +19,15 @@ public class MainScreen extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_screen);
 
+        Button buttonGo = (Button) findViewById(R.id.buttonGo);
+
+        buttonGo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainScreen.this, "Função ainda não habilitada!!", Toast.LENGTH_LONG).show();
+            }
+        });
+
     }
 
     public void goClicked(View main_Screen){
@@ -25,8 +36,8 @@ public class MainScreen extends Activity {
     }
 
     public void okayClicked(View main_Screen){
-        //implementar okay
-
-
+        Intent i = new Intent();
+        i.setClass(this, MapScreen.class);
+        startActivity(i);
     }
 }

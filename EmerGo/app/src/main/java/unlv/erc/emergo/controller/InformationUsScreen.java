@@ -31,7 +31,7 @@ public class InformationUsScreen extends Activity {
         String nome = "  Nome: " + "nome";
         String gestao = "  Tipo de atendimento: " + "atende";
         String uf = "  UF: " + "uf";
-        String municipio = "  Município: " + "municipio";
+        String municipio = "  Cidade: " + "cidade";
         String bairro = "  Bairro: " + "bairro";
         String cep = "  Cep: " + "cep";
 
