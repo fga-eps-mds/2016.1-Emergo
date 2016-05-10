@@ -1,4 +1,4 @@
-package unlv.erc.emergo.view;
+package unlv.erc.emergo.controller;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -9,15 +9,14 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import adapter.HospitalUnitAdapter;
+import adapter.HealthUnitAdapter;
 import helper.GPSTracker;
-import unlv.erc.emergo.controller.HealthUnitController;
-import unlv.erc.emergo.model.HospitalUnit;
+import unlv.erc.emergo.model.HealthUnit;
 import unlv.erc.emergo.R;
 
-public class HospitalList extends Activity {
+public class HealthUnitListController extends Activity {
     ListView listView;
-    ArrayList<HospitalUnit> hospitalList;
+    ArrayList<HealthUnit> hospitalList;
     GPSTracker gps;
 
     @Override
@@ -33,13 +32,13 @@ public class HospitalList extends Activity {
         // Instancing controller
         final HealthUnitController hospitalUnitController = HealthUnitController.getInstance(getApplicationContext());
         // Initialize and fill list of hospital
-        hospitalList = (ArrayList<HospitalUnit>) HealthUnitController.getHospitalList();
+        hospitalList = (ArrayList<HealthUnit>) HealthUnitController.healthUnitList;
 
         if(gps.canGetLocation()) {
 
             HealthUnitController.setDistance(getApplicationContext(), hospitalList);
             // Initializing new HospitalAdapter with list of hospitals
-            HospitalUnitAdapter adapter = new HospitalUnitAdapter(getApplicationContext(), hospitalList);
+            HealthUnitAdapter adapter = new HealthUnitAdapter(getApplicationContext(), hospitalList);
             // Setting adapter to listView
             listView.setAdapter(adapter);
         }else {
@@ -50,7 +49,7 @@ public class HospitalList extends Activity {
             @Override
             public void onItemClick(AdapterView adapterView, View view, int position,
                                     long id) {
-                HealthUnitController.setHospitalUnit(hospitalList.get(position));
+                HealthUnitController.setHealthUnit(hospitalList.get(position));
 
                 /*Intent intent = new Intent(getBaseContext(), GoogleMapHospital.class);
 

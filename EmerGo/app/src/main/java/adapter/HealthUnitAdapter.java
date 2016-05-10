@@ -8,18 +8,16 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import unlv.erc.emergo.model.HospitalUnit;
+import unlv.erc.emergo.model.HealthUnit;
 import unlv.erc.emergo.R;
 
-/**
- * Created by victor on 29/04/16.
- */
-public class HospitalUnitAdapter extends ArrayAdapter<HospitalUnit> {
+
+public class HealthUnitAdapter extends ArrayAdapter<HealthUnit> {
     private Context context;
-    private ArrayList<HospitalUnit> hospitalList;
+    private ArrayList<HealthUnit> hospitalList;
     public static final int COUNT = 20;
 
-    public HospitalUnitAdapter(Context context, ArrayList<HospitalUnit> hospitalList){
+    public HealthUnitAdapter(Context context, ArrayList<HealthUnit> hospitalList){
         super(context, 0, hospitalList);
         setContext(context);
         setHospitalList(hospitalList);
@@ -39,16 +37,16 @@ public class HospitalUnitAdapter extends ArrayAdapter<HospitalUnit> {
         this.context = context;
     }
 
-    public ArrayList<HospitalUnit> getHospitalList() {
+    public ArrayList<HealthUnit> getHospitalList() {
         return hospitalList;
     }
 
-    public void setHospitalList(ArrayList<HospitalUnit> hospitalList) {
+    public void setHospitalList(ArrayList<HealthUnit> hospitalList) {
         this.hospitalList = hospitalList;
     }
 
     @Override
-    public HospitalUnit getItem(int position) {
+    public HealthUnit getItem(int position) {
 
         return hospitalList.get(position);
     }
@@ -74,7 +72,7 @@ public class HospitalUnitAdapter extends ArrayAdapter<HospitalUnit> {
 
     public View populateAdapter(View convertView, int position){
 
-        HospitalUnit hospitalPosition = this.hospitalList.get(position);
+        HealthUnit hospitalPosition = this.hospitalList.get(position);
         convertView = LayoutInflater.from(this.context).inflate(R.layout.item, null);
 
         TextView textView = (TextView) convertView.findViewById(R.id.distanceText);

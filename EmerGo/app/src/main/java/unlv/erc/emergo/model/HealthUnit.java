@@ -3,7 +3,7 @@ package unlv.erc.emergo.model;
 /**
  * Created by mrvictor on 16/04/16.
  */
-public class HospitalUnit {
+public class HealthUnit {
     private String nome;
     private Double latitude;
     private Double longitude;
@@ -12,7 +12,7 @@ public class HospitalUnit {
     private Float distance;
 
 
-    public HospitalUnit(String nome, Double latitude, Double longitude, Integer id, String uf) {
+    public HealthUnit(String nome, Double latitude, Double longitude, Integer id, String uf) {
         setNome(nome);
         setLatitude(latitude);
         setLongitude(longitude);
