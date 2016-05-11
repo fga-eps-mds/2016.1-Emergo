@@ -14,14 +14,14 @@ import java.util.List;
 
 import unlv.erc.emergo.R;
 
-public class InformationUsScreen extends Activity {
+public class InformationUsScreenController extends Activity {
 
 
     //nome , tipo de atendimento , uf , municipio , bairro , cep
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.information_us_screen);
+
 
         ListView hospInfo = (ListView) findViewById(R.id.hospInformation);
         List <String> listOfInformations = new ArrayList<String>();
@@ -45,8 +45,8 @@ public class InformationUsScreen extends Activity {
         listOfInformations.add(cep);
 
         ArrayAdapter<String> adapter = new ArrayAdapter <String> (this ,
-                android.R.layout.simple_list_item_1,
-                listOfInformations );
+                                                            android.R.layout.simple_list_item_1,
+                                                            listOfInformations );
         hospInfo.setAdapter(adapter);
 
     }
