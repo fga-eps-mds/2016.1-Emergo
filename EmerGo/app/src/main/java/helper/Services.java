@@ -38,25 +38,12 @@ public class Services extends AppCompatActivity{
                     for (DataSnapshot usValues : allUSs.getChildren()) {
                         //usValues.getKey() sao os nomes dos atributos, ex.: regiao e no_fantasia
                         //usValues.getValue() sao os valores do atributos
-                        if (usValues.getKey().equalsIgnoreCase("no_fantasia")) {
-                            nameHospital = usValues.getValue().toString();
+                        if (usValues.getKey().equalsIgnoreCase("co_cep")) {
+                            adressNumber = usValues.getValue().toString();
                         }
                         if (usValues.getKey().equalsIgnoreCase("ds_tipo_unidade")) {
                             unityType = usValues.getValue().toString();
                         }
-                        if (usValues.getKey().equalsIgnoreCase("uf")) {
-                            state = usValues.getValue().toString();
-                        }
-                        if (usValues.getKey().equalsIgnoreCase("municipio")) {
-                            city = usValues.getValue().toString();
-                        }
-                        if (usValues.getKey().equalsIgnoreCase("no_bairro")) {
-                            district = usValues.getValue().toString();
-                        }
-                        if (usValues.getKey().equalsIgnoreCase("co_cep")) {
-                            adressNumber = usValues.getValue().toString();
-                        }
-
                         if (usValues.getKey().equalsIgnoreCase("lat")) {
                             if ( (double) usValues.getValue() - location.latitude < ACCEPTABLEDISTANCE ||
                                     (double) usValues.getValue() - location.latitude > -(ACCEPTABLEDISTANCE)) {
@@ -70,6 +57,19 @@ public class Services extends AppCompatActivity{
                                 longChecked = true;
                                 longitude = (double) usValues.getValue();
                             }
+                        }
+                        if (usValues.getKey().equalsIgnoreCase("municipio")) {
+                            city = usValues.getValue().toString();
+                        }
+                        if (usValues.getKey().equalsIgnoreCase("no_bairro")) {
+                            district = usValues.getValue().toString();
+                        }
+                        if (usValues.getKey().equalsIgnoreCase("no_fantasia")) {
+                            nameHospital = usValues.getValue().toString();
+                        }
+
+                        if (usValues.getKey().equalsIgnoreCase("uf")) {
+                            state = usValues.getValue().toString();
                         }
 
                         if (latChecked && longChecked) {

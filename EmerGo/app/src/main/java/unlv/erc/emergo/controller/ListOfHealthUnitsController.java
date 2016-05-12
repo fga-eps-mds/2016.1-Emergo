@@ -61,10 +61,9 @@ public class ListOfHealthUnitsController extends Activity {
     public void openInformationScreen(){
 
         Intent informationScreen = new Intent();
+        informationScreen.putExtra("position", numberOfUsClicked);
         informationScreen.setClass(ListOfHealthUnitsController.this, InformationUsScreenController.class);
         startActivity(informationScreen);
-//        informationUsScreenController.addInformationToList(HealthUnitController.getClosestsUs()
-//                .get(numberOfUsClicked));
     }
 
     public List<String> set50closestUs(ArrayList<HealthUnit> closest , List<String> closestsUs){
