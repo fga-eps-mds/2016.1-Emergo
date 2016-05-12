@@ -21,8 +21,8 @@ public class HealthUnitController {
     public static HealthUnit createHealthUnit(Double latitude , Double longitude , String nameHospital,
                                               String unityType , String state , String city ,
                                               String district , String adressNumber) {
-        HealthUnit healthUnit = new HealthUnit(latitude, longitude, nameHospital, unityType, state, city,
-                district, adressNumber);
+        HealthUnit healthUnit = new HealthUnit(latitude, longitude, nameHospital, unityType, adressNumber,
+                district, state, city );
         return healthUnit;
     }
 

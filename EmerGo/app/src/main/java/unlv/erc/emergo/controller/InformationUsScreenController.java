@@ -1,6 +1,7 @@
 package unlv.erc.emergo.controller;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,15 +22,20 @@ public class InformationUsScreenController extends Activity {
     private List <String> listOfInformations = new ArrayList<String>();
     private ListView hospInfo;
     private HealthUnit healthUnit = new HealthUnit(13.234 , 24.457 , "Casa Das rosas" , "Isolado" , "454445" , "sobradinho" ,"df" , "brasilia");
-
+    private Intent receive;
+    int numberUs;
     //nome , tipo de atendimento , uf , municipio , bairro , cep
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.information_us_screen);
 
+        receive = getIntent();
+        numberUs = receive.getIntExtra("position" , 0) + 1;
+
+
         hospInfo = (ListView) findViewById(R.id.hospInformation);
-        addInformationToList(healthUnit);
+        addInformationToList(HealthUnitController.getClosestsUs().get(numberUs));
 
     }
 
@@ -39,11 +45,10 @@ public class InformationUsScreenController extends Activity {
         String titulo = "        Informações da Unidade de Saúde";
         String nome = "  Nome: " + hospital.getNameHospital();
         String gestao = "  Tipo de atendimento: " + hospital.getUnitType();
-        String uf = "  UF: " + hospital.getState();
+        String uf = "  UF: " + hospital.getState()  ;
         String municipio = "  Cidade: " + hospital.getCity();
         String bairro = "  Bairro: " + hospital.getDistrict();
         String cep = "  Cep: " + hospital.getAddressNumber();
-        Log.i("entrei aquiii", "asdfasdf");
         listOfInformations.add(padding);
         listOfInformations.add(titulo);
         listOfInformations.add(nome);
