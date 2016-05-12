@@ -3,6 +3,7 @@ package unlv.erc.emergo.controller;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -30,10 +31,22 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
     private GoogleMap mMap;
     private Services services = new Services();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map_screen);
+
+        /*mMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
+            @Override
+            public void onMyLocationChange(Location location) {
+                LatLng userLocation = new LatLng(location.getLatitude() , location.getLongitude());
+                mMap.addMarker(new MarkerOptions().position(userLocation).title("Sua posição")
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom
+                        (new LatLng(userLocation.latitude, userLocation.longitude), 13.0f));
+            }
+        });*/
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -58,7 +71,9 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
         Intent mapActivity = new Intent();
         mapActivity.setClass(this, MapScreenController.class);
         startActivity(mapActivity);
+        finish();
     }
+
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -73,4 +88,5 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
         services.setMarkersOnMap(mMap , HealthUnitController.getClosestsUs() );
 
     }
+
 }

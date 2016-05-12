@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by leonardo on 04/05/16.
  */
-public class InformationUsScreenTest extends TestCase{
+public class InformationUsScreenControllerTest extends TestCase{
 
     List<String> listOfInformations = new ArrayList<String>();
 

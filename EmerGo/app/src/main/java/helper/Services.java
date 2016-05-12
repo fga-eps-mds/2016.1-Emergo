@@ -1,5 +1,6 @@
 package helper;
 
+import android.location.Location;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -23,7 +24,7 @@ import unlv.erc.emergo.model.HealthUnit;
 public class Services extends AppCompatActivity{
 
 
-    public void selectHealhUnitys(final LatLng location ) {
+    public void selectHealhUnitys(final LatLng location) {
 
         Firebase ref = new Firebase("https://emergodf.firebaseio.com/EmerGo");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -89,6 +90,7 @@ public class Services extends AppCompatActivity{
 
                 }
                 Log.i("Database", "has finished");
+                Log.i("Have been added" , HealthUnitController.getClosestsUs().size() + "US");
             }
 
             @Override
@@ -114,9 +116,10 @@ public class Services extends AppCompatActivity{
         }
     }
 
-    public LatLng getUserPosition(){
+    /*public LatLng getUserPosition(){
         GPSTracker gps = new GPSTracker(this.getBaseContext());
         boolean canGetLocation = gps.canGetLocation();
+        Log.i("ENTREEEEEEI NO METODOOO" , canGetLocation + "");
         if(canGetLocation){
             double userLongitude = gps.getLongitude();
             double userLatitude = gps.getLatitude();
@@ -124,6 +127,6 @@ public class Services extends AppCompatActivity{
             return userGeopoint;
         }
         return null;
-    }
+    }*/
 
 }

@@ -2,6 +2,7 @@ package unlv.erc.emergo.controller;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
@@ -13,28 +14,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 import unlv.erc.emergo.R;
+import unlv.erc.emergo.model.HealthUnit;
 
 public class InformationUsScreenController extends Activity {
 
+    private List <String> listOfInformations = new ArrayList<String>();
+    private ListView hospInfo;
+    private HealthUnit healthUnit = new HealthUnit(13.234 , 24.457 , "Casa Das rosas" , "Isolado" , "454445" , "sobradinho" ,"df" , "brasilia");
 
     //nome , tipo de atendimento , uf , municipio , bairro , cep
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.information_us_screen);
 
+        hospInfo = (ListView) findViewById(R.id.hospInformation);
+        addInformationToList(healthUnit);
 
-        ListView hospInfo = (ListView) findViewById(R.id.hospInformation);
-        List <String> listOfInformations = new ArrayList<String>();
+    }
+
+    public void  addInformationToList(HealthUnit hospital){
 
         String padding = "\n";
         String titulo = "        Informações da Unidade de Saúde";
-        String nome = "  Nome: " + "nome";
-        String gestao = "  Tipo de atendimento: " + "atende";
-        String uf = "  UF: " + "uf";
-        String municipio = "  Cidade: " + "cidade";
-        String bairro = "  Bairro: " + "bairro";
-        String cep = "  Cep: " + "cep";
-
+        String nome = "  Nome: " + hospital.getNameHospital();
+        String gestao = "  Tipo de atendimento: " + hospital.getUnitType();
+        String uf = "  UF: " + hospital.getState();
+        String municipio = "  Cidade: " + hospital.getCity();
+        String bairro = "  Bairro: " + hospital.getDistrict();
+        String cep = "  Cep: " + hospital.getAddressNumber();
+        Log.i("entrei aquiii", "asdfasdf");
         listOfInformations.add(padding);
         listOfInformations.add(titulo);
         listOfInformations.add(nome);
@@ -43,12 +52,14 @@ public class InformationUsScreenController extends Activity {
         listOfInformations.add(municipio);
         listOfInformations.add(bairro);
         listOfInformations.add(cep);
+        showInformationOnScreen();
+    }
 
+    public void showInformationOnScreen(){
         ArrayAdapter<String> adapter = new ArrayAdapter <String> (this ,
-                                                            android.R.layout.simple_list_item_1,
-                                                            listOfInformations );
+                android.R.layout.simple_list_item_1,
+                listOfInformations );
         hospInfo.setAdapter(adapter);
-
     }
 
 

@@ -8,7 +8,7 @@
     android:paddingRight="0dp"
     android:paddingTop="0dp"
     android:background="@drawable/tela_base"
-    tools:context=".controller.InformationUsScreen"
+    tools:context=".controller.InformationUsScreenController"
     android:clickable="true">
 
 
