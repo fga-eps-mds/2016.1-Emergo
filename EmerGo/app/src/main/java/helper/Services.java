@@ -1,10 +1,7 @@
 package helper;
 
-import android.location.Location;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-
 
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -14,15 +11,12 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.nio.channels.AlreadyConnectedException;
 import java.util.ArrayList;
-
 
 import unlv.erc.emergo.controller.HealthUnitController;
 import unlv.erc.emergo.model.HealthUnit;
 
 public class Services extends AppCompatActivity{
-
 
     public void selectHealhUnitys(final LatLng location) {
 
@@ -81,6 +75,8 @@ public class Services extends AppCompatActivity{
                         if (latChecked && longChecked) {
                             latChecked = false;
                             longChecked = false;
+
+
                             HealthUnit health = HealthUnitController.createHealthUnit(latitude, longitude, nameHospital,
                                     unityType, state, city, district, adressNumber);
                             HealthUnitController.setClosestsUs(health);
