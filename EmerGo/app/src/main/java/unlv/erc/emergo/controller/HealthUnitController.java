@@ -2,6 +2,7 @@ package unlv.erc.emergo.controller;
 
 import android.content.Context;
 import android.location.Location;
+import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
 
@@ -28,23 +29,6 @@ public class HealthUnitController {
 
     public HealthUnitController(Context context) {
 
-    }
-
-    public static void setDistance(Context context, ArrayList<HealthUnit> healthUnitList ,
-                                      LatLng userGeopoint) {
-
-        GPSTracker gps = new GPSTracker(context);
-        boolean canGetLocation = gps.canGetLocation();
-        if(canGetLocation) {
-            for (int aux = 0; aux < healthUnitList.size(); aux++) {
-                float resultsAdapter[] = new float[1];
-                // REVIEW FUNCTION
-                Location.distanceBetween(healthUnitList.get(aux).getLatitude(),
-                        healthUnitList.get(aux).getLongitude(),
-                        userGeopoint.latitude, userGeopoint.longitude, resultsAdapter);
-                healthUnitList.get(aux).setDistance(resultsAdapter[0]);
-            }
-        }
     }
 
 
