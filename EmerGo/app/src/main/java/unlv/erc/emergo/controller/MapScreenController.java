@@ -23,9 +23,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import helper.Services;
 import unlv.erc.emergo.R;
 
-/**
- * Created by Matheus on 24/04/2016.
- */
 public class MapScreenController extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
@@ -38,17 +35,6 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
 
         setContentView(R.layout.map_screen);
 
-        /*mMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
-            @Override
-            public void onMyLocationChange(Location location) {
-                LatLng userLocation = new LatLng(location.getLatitude() , location.getLongitude());
-                mMap.addMarker(new MarkerOptions().position(userLocation).title("Sua posição")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom
-                        (new LatLng(userLocation.latitude, userLocation.longitude), 13.0f));
-            }
-        });*/
-
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -56,7 +42,7 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
     }
 
     public void goClicked(View map_screen){
-        Toast.makeText(this , "Estamos construindo" , Toast.LENGTH_SHORT).show();
+        Toast.makeText(this , "Função não habilitada!" , Toast.LENGTH_SHORT).show();
         Intent routeActivity = new Intent();
         routeActivity.setClass(this, RouteActivity.class);
         startActivity(routeActivity);

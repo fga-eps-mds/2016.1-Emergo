@@ -21,10 +21,9 @@ public class InformationUsScreenController extends Activity {
 
     private List <String> listOfInformations = new ArrayList<String>();
     private ListView hospInfo;
-    private HealthUnit healthUnit = new HealthUnit(13.234 , 24.457 , "Casa Das rosas" , "Isolado" , "454445" , "sobradinho" ,"df" , "brasilia");
     private Intent receive;
     int numberUs;
-    //nome , tipo de atendimento , uf , municipio , bairro , cep
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

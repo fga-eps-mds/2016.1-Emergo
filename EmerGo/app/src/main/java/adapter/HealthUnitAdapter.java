@@ -11,9 +11,6 @@ import java.util.ArrayList;
 import unlv.erc.emergo.model.HealthUnit;
 import unlv.erc.emergo.R;
 
-/**
- * Created by victor on 29/04/16.
- */
 public class HealthUnitAdapter extends ArrayAdapter<HealthUnit> {
     private Context context;
     private ArrayList<HealthUnit> hospitalList;

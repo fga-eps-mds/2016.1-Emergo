@@ -31,26 +31,6 @@ public class HealthUnitController {
 
     }
 
-
-    public static class DistanceComparator implements Comparator<HealthUnit>{
-
-        /**
-         * Use responseHandler created to request the requested through a URL.
-         *
-         * @param HealthUnit
-         *          A stablishment to be compared.
-         *
-         * @param HealthUnit2
-         *          A stablishment to be compared.
-         *
-         * @return which stablishment has the gratter distance.
-         */
-        public int compare(HealthUnit HealthUnit, HealthUnit HealthUnit2) {
-            // Needs reduce in the complexity
-            return HealthUnit.getDistance()<(HealthUnit2.getDistance())? -1 : 1;
-        }
-    }
-
     public static ArrayList<HealthUnit> getClosestsUs() {
         return closestsUs;
     }

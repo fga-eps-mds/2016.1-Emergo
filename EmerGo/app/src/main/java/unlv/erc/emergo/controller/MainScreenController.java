@@ -27,8 +27,7 @@ public class MainScreenController extends Activity {
         super.onCreate(savedInstanceState);
 
         Firebase.setAndroidContext(this);
-        LatLng a = new LatLng(-16.002955 , -48.0616721);
-        services.selectHealhUnitys(a);
+        services.selectHealhUnitys(services.getUserPosition());
 
         setContentView(R.layout.main_screen);
         goButton = (Button) findViewById(R.id.buttonGo);
@@ -36,8 +35,8 @@ public class MainScreenController extends Activity {
     }
 
     public void goClicked(View main_Screen){
-        // needs to be implemented
-        Toast.makeText(this , "Estamos construindo!" , Toast.LENGTH_SHORT).show();
+
+        Toast.makeText(this , "Função não habilitada!" , Toast.LENGTH_SHORT).show();
     }
 
     public void okayClicked(View main_Screen){

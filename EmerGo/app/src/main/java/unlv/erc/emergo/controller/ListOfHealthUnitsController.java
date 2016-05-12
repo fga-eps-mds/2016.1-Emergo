@@ -42,11 +42,9 @@ public class ListOfHealthUnitsController extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_of_health_unit);
-        //AQUI ORDENAMOS POR DISTANCIA
-        LatLng a = new LatLng(-16.002955 , -48.0616721);
-        services.setDistance(this,HealthUnitController.getClosestsUs(),a);
-        ordenaPorDistancia(HealthUnitController.getClosestsUs());
-     //   fifthClosestsUs = get50closestUs(HealthUnitController.getClosestsUs());
+
+        services.setDistance(this,HealthUnitController.getClosestsUs(), services.getUserPosition());
+        fifthClosestsUs = get50closestUs(HealthUnitController.getClosestsUs());
 
         adapter = new ArrayAdapter<String>(this, R.layout.item, R.id.hospitalUnitText, fifthClosestsUs);
         uSsList = (ListView) findViewById(R.id.list_of_hospitalUnit);
@@ -69,36 +67,16 @@ public class ListOfHealthUnitsController extends Activity {
         startActivity(informationScreen);
     }
 
-    public void ordenaPorDistancia(ArrayList<HealthUnit> closest){
-        int aux,flag;
-        HealthUnit helper;
-        for(aux = 0; aux < closest.size()-1; aux++){
-            for(flag = aux+1; flag < closest.size(); flag++){
-                if(closest.get(aux).getDistance()>closest.get(flag).getDistance()){
-                    helper = closest.get(flag);
-                    closest.add(flag,closest.get(aux));
-                    closest.add(aux,helper);
-                    Log.i("Ordenando...","");
-                }
-            }
-        }
-        Log.i("Ordenamos por distancia","");
-    }
 
     public List<String> get50closestUs(ArrayList<HealthUnit> closest){
         final int MAXNUMBERUS = 50;
         List<String> closestsUs = new ArrayList<String>();
         int numberOfUs;
-        for(numberOfUs = 0 ; numberOfUs < MAXNUMBERUS ; numberOfUs++){
+        for(numberOfUs = 1 ; numberOfUs < MAXNUMBERUS ; numberOfUs++){
             closestsUs.add(closest.get(numberOfUs).getNameHospital());
         }
         Log.i("distancia + proxima: ",closest.get(0).getDistance()+"");
         return closestsUs;
-    }
-
-    private Float convertToKM(Float distance){
-
-        return distance/1000;
     }
 
 }

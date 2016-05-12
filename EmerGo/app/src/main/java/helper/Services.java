@@ -125,4 +125,13 @@ public class Services extends AppCompatActivity{
         }
     }
 
+    public LatLng getUserPosition(){
+        GPSTracker gps = new GPSTracker(this.getBaseContext());
+        boolean canGetLocation = gps.canGetLocation();
+        double userLongitude = gps.getLongitude();
+        double userLatitude = gps.getLatitude();
+        LatLng userGeopoint = new LatLng(userLatitude, userLongitude);
+        return userGeopoint;
+    }
+
 }
