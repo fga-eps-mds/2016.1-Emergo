@@ -5,9 +5,9 @@ import java.util.Date;
 
 public class User {
 
-    private String name = "";
+    private String name;
     private Date birthday;
-    private String typeBlood = "";
+    private String typeBlood;
     private ArrayList<String> allergy;
     private boolean cardiac = false;
     private boolean diabetic = false;
