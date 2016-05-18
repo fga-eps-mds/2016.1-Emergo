@@ -3,19 +3,14 @@ package unlv.erc.emergo.controller;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.firebase.client.Firebase;
-import com.google.android.gms.maps.model.LatLng;
-
-import java.util.ArrayList;
 
 import helper.Services;
 import unlv.erc.emergo.R;
-import unlv.erc.emergo.model.HealthUnit;
 
 public class MainScreenController extends Activity {
 

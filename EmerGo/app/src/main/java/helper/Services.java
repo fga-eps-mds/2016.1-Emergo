@@ -1,8 +1,8 @@
 package helper;
 
+import android.app.Activity;
 import android.content.Context;
 import android.location.Location;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.firebase.client.DataSnapshot;
@@ -14,18 +14,62 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import unlv.erc.emergo.controller.HealthUnitController;
 import unlv.erc.emergo.model.HealthUnit;
 
-public class Services extends AppCompatActivity{
-
+public class Services extends Activity {
+    private static final String URL_BASE_DB = "https://emergodf.firebaseio.com/EmerGo";
+    private List<HealthUnit> healthUnitList;
     public void selectHealhUnitys(final LatLng location) {
 
-        Firebase ref = new Firebase("https://emergodf.firebaseio.com/EmerGo");
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+        Firebase ref = new Firebase(URL_BASE_DB);
 
-            @Override
+        //healthUnitList = HealthUnit.listAll(HealthUnit.class);
+        Log.d("Lista preenchida", "LISTA PREENCHIDA");
+
+        if (healthUnitList == null || healthUnitList.isEmpty()) {
+            Log.d("LISTA VAZIA", "CHOREMOS");
+
+            ref.child("EmerGo").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for (DataSnapshot child : dataSnapshot.getChildren()) {
+                        String nameHospital = child.child("no_fantasia").getValue().toString();
+                        String state = child.child("uf").getValue().toString();
+                        String district = child.child("no_bairro").getValue().toString();
+                        String city = child.child("municipio").getValue().toString();
+                        String adressNumber = child.child("co_cep").getValue().toString();
+                        String unitType = child.child("ds_tipo_unidade").getValue().toString();
+                        double longitude = (double) child.child("long").getValue();
+                        double latitude = (double) child.child("lat").getValue();
+
+                        HealthUnit healthUnit = new HealthUnit(latitude, longitude, nameHospital,
+                                unitType, adressNumber, district,
+                                state, city);
+                        HealthUnit health = HealthUnitController.createHealthUnit(latitude, longitude, nameHospital,
+                                unitType, state, city, district, adressNumber);
+                        HealthUnitController.setClosestsUs(health);
+                        healthUnit.save();
+                        Log.d("LOG 42!", nameHospital + " " + city);
+                    }
+                    //healthUnitList = HealthUnit.listAll(HealthUnit.class);
+                    Log.d("ACABOU", "FINISH");
+                }
+
+                @Override
+                public void onCancelled(FirebaseError firebaseError) {
+
+                }
+            });
+        } else {
+            Log.d("LOG 14", "LISTA PREENCHIDA OFFLINE");
+        }
+    }
+        //ref.addListenerForSingleValueEvent(new ValueEventListener() {
+
+            /*@Override
             public void onDataChange(DataSnapshot snapshot) {
 
                 boolean latChecked, longChecked;
@@ -97,7 +141,7 @@ public class Services extends AppCompatActivity{
             }
 
         });
-    }
+    }*/
 
 
     public void setMarkersOnMap(GoogleMap map,ArrayList<HealthUnit> uSs){
@@ -133,5 +177,4 @@ public class Services extends AppCompatActivity{
         LatLng userGeopoint = new LatLng(userLatitude, userLongitude);
         return userGeopoint;
     }
-
 }
