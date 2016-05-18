@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">EmerGo</string>
+
     <string name="title_activity_route">Route</string>
+    <string name="go">GO!</string>
+    <string name="google_app_id">AIzaSyAjQACxkB2XL85lcOPRKMJNRSiUd4sn8ho</string>
 </resources>
