@@ -20,14 +20,14 @@ public class HealthUnit {
 
     public HealthUnit(Double latitude, Double longitude, String nameHospital, String unitType,
                       String addressNumber, String district, String state, String city) {
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.nameHospital = nameHospital;
-        this.unitType = unitType;
-        this.addressNumber = addressNumber;
-        this.district = district;
-        this.state = state;
-        this.city = city;
+        setLatitude(latitude);
+        setLongitude(longitude);
+        setNameHospital(nameHospital);
+        setUnitType(unitType);
+        setAddressNumber(addressNumber);
+        setDistrict(district);
+        setState(state);
+        setCity(city);
     }
 
     public Double getLatitude() {
