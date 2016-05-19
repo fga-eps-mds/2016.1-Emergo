@@ -2,27 +2,17 @@ package unlv.erc.emergo.controller;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.android.gms.drive.internal.StringListResponse;
-import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import adapter.HealthUnitAdapter;
-import helper.GPSTracker;
 import helper.Services;
 import unlv.erc.emergo.R;
 import unlv.erc.emergo.model.HealthUnit;
