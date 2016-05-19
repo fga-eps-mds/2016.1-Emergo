@@ -15,14 +15,14 @@ import unlv.erc.emergo.R;
 public class MainScreenController extends Activity {
 
     private Button goButton , fineButton;
-    private Services services = new Services();
+    private Services services;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         Firebase.setAndroidContext(this);
-        services.selectHealhUnitys(services.getUserPosition());
+
 
         setContentView(R.layout.main_screen);
         goButton = (Button) findViewById(R.id.buttonGo);
@@ -35,6 +35,9 @@ public class MainScreenController extends Activity {
     }
 
     public void okayClicked(View main_Screen){
+
+        this.services = new Services();
+        this.services.selectHealhUnitys(services.getUserPosition());
 
         Intent mapScreen = new Intent();
         mapScreen.setClass(this, MapScreenController.class);
