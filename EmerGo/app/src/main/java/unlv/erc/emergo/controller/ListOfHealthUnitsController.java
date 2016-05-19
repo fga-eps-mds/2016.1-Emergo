@@ -42,7 +42,7 @@ public class ListOfHealthUnitsController extends Activity {
         services.setDistance(this, HealthUnitController.getClosestsUs(), services.getUserPosition());
         fifthClosestsUs = get50closestUs(HealthUnitController.getClosestsUs());
 
-        uSsList = (ListView) findViewById(R.id.list_of_hospitalUnit);
+        setuSsList((ListView) findViewById(R.id.list_of_hospitalUnit));
         uSsList.setAdapter(new ArrayAdapter<String>(this, R.layout.item, R.id.hospitalUnitText,
                             fifthClosestsUs));
         uSsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -74,5 +74,8 @@ public class ListOfHealthUnitsController extends Activity {
         Log.i("distancia + proxima: ",closest.get(0).getDistance()+"");
         return closestsUs;
     }
-
+    
+    public void setuSsList(ListView uSsList) {
+        this.uSsList = uSsList;
+    }
 }

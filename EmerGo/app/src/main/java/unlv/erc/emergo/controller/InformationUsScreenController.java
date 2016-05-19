@@ -33,26 +33,28 @@ public class InformationUsScreenController extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.information_us_screen);
 
-        receive = getIntent();
-        numberUsSelected = receive.getIntExtra("position" , 0) + CORRECTINDEX;
+        setReceive(getIntent());
+        setNumberUsSelected(receive.getIntExtra("position" , 0)
+                + CORRECTINDEX);
 
-
-        hospInfo = (ListView) findViewById(R.id.hospInformation);
+        setHospInfo((ListView) findViewById(R.id.hospInformation));
         setInformation(HealthUnitController.getClosestsUs().get(numberUsSelected));
         addInformationToList();
 
     }
 
     public void setInformation(HealthUnit hospital){
-        padding = "\n";
-        titulo = "        Informações da Unidade de Saúde";
-        nome = "  Nome: " + hospital.getNameHospital();
-        gestao = "  Tipo de atendimento: " + hospital.getUnitType();
-        uf = "  UF: " + hospital.getState()  ;
-        municipio = "  Cidade: " + hospital.getCity();
-        bairro = "  Bairro: " + hospital.getDistrict();
-        cep = "  Cep: " + hospital.getAddressNumber();
+        setPadding("\n");
+        setTitulo("        Informações da Unidade de Saúde");
+        setNome("  Nome: " + hospital.getNameHospital());
+        setGestao("  Tipo de atendimento: " + hospital.getUnitType());
+        setUf("  UF: " + hospital.getState());
+        setMunicipio("  Cidade: " + hospital.getCity());
+        setBairro("  Bairro: " + hospital.getDistrict());
+        setCep("  Cep: " + hospital.getAddressNumber());
     }
+
+
 
     public void  addInformationToList(){
 
@@ -77,5 +79,50 @@ public class InformationUsScreenController extends Activity {
 
     public void goClicked(View v) {
         Toast.makeText(this , "Go clicked" , Toast.LENGTH_SHORT).show();
+    }
+
+    public void setHospInfo(ListView hospInfo) {
+        this.hospInfo = hospInfo;
+    }
+
+    public void setReceive(Intent receive) {
+        this.receive = receive;
+    }
+
+    public void setNumberUsSelected(int numberUsSelected) {
+        this.numberUsSelected = numberUsSelected;
+    }
+
+
+    public void setPadding(String padding) {
+        this.padding = padding;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setGestao(String gestao) {
+        this.gestao = gestao;
+    }
+
+    public void setUf(String uf) {
+        this.uf = uf;
+    }
+
+    public void setMunicipio(String municipio) {
+        this.municipio = municipio;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
     }
 }
