@@ -22,7 +22,11 @@ public class InformationUsScreenController extends Activity {
     private List <String> listOfInformations = new ArrayList<String>();
     private ListView hospInfo;
     private Intent receive;
-    int numberUs;
+    private final Integer CORRECTINDEX = 1; // acces the correct index
+    private int numberUsSelected;
+    private String padding ,titulo, nome ,gestao , uf ,municipio ,
+                    bairro ,cep ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,24 +34,28 @@ public class InformationUsScreenController extends Activity {
         setContentView(R.layout.information_us_screen);
 
         receive = getIntent();
-        numberUs = receive.getIntExtra("position" , 0) + 1;
+        numberUsSelected = receive.getIntExtra("position" , 0) + CORRECTINDEX;
 
 
         hospInfo = (ListView) findViewById(R.id.hospInformation);
-        addInformationToList(HealthUnitController.getClosestsUs().get(numberUs));
+        setInformation(HealthUnitController.getClosestsUs().get(numberUsSelected));
+        addInformationToList();
 
     }
 
-    public void  addInformationToList(HealthUnit hospital){
+    public void setInformation(HealthUnit hospital){
+        padding = "\n";
+        titulo = "        Informações da Unidade de Saúde";
+        nome = "  Nome: " + hospital.getNameHospital();
+        gestao = "  Tipo de atendimento: " + hospital.getUnitType();
+        uf = "  UF: " + hospital.getState()  ;
+        municipio = "  Cidade: " + hospital.getCity();
+        bairro = "  Bairro: " + hospital.getDistrict();
+        cep = "  Cep: " + hospital.getAddressNumber();
+    }
 
-        String padding = "\n";
-        String titulo = "        Informações da Unidade de Saúde";
-        String nome = "  Nome: " + hospital.getNameHospital();
-        String gestao = "  Tipo de atendimento: " + hospital.getUnitType();
-        String uf = "  UF: " + hospital.getState()  ;
-        String municipio = "  Cidade: " + hospital.getCity();
-        String bairro = "  Bairro: " + hospital.getDistrict();
-        String cep = "  Cep: " + hospital.getAddressNumber();
+    public void  addInformationToList(){
+
         listOfInformations.add(padding);
         listOfInformations.add(titulo);
         listOfInformations.add(nome);
