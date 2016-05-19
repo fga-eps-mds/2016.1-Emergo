@@ -24,6 +24,7 @@ public class MainScreenController extends Activity {
         super.onCreate(savedInstanceState);
 
         Firebase.setAndroidContext(this);
+
         SugarContext.init(this);
        // services.selectHealhUnitys(services.getUserPosition());
 
@@ -32,6 +33,7 @@ public class MainScreenController extends Activity {
         services.setDataOnSugar();
 
         Log.i("log", "FIIM ALELUIA ALELIA KAKAKAK");
+
 
         setContentView(R.layout.main_screen);
         goButton = (Button) findViewById(R.id.buttonGo);
@@ -44,6 +46,9 @@ public class MainScreenController extends Activity {
     }
 
     public void okayClicked(View main_Screen){
+
+        this.services = new Services();
+      //  this.services.selectHealhUnitys(services.getUserPosition());
 
         Intent mapScreen = new Intent();
         mapScreen.setClass(this, MapScreenController.class);
