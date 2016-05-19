@@ -3,32 +3,39 @@ package unlv.erc.emergo.model;
 
 import com.orm.SugarRecord;
 
-public class HealthUnit extends SugarRecord{
+public class HealthUnit extends SugarRecord {
 
     private Double latitude;
     private Double longitude;
-    private String nameHospital;
+    String no_fantasia;
     private String unitType;
     private String addressNumber;
-    private String district;
+    private String no_bairro;
     private String state;
-    private String city;
+    String municipio;
     private Float distance;
+    //  private Integer id;
 
     public HealthUnit(){
 
     }
 
-    public HealthUnit(Double latitude, Double longitude, String nameHospital, String unitType,
-                      String addressNumber, String district, String state, String city) {
+    public HealthUnit (String no_fantasia, String no_bairro, String municipio){
+        this.no_fantasia = no_fantasia;
+        this.no_bairro = no_bairro;
+        this.municipio = municipio;
+    }
+
+    public HealthUnit(Double latitude, Double longitude, String no_fantasia, String unitType,
+                      String addressNumber, String no_bairro, String state, String municipio) {
         this.latitude = latitude;
         this.longitude = longitude;
-        this.nameHospital = nameHospital;
+        this.no_fantasia = no_fantasia;
         this.unitType = unitType;
         this.addressNumber = addressNumber;
-        this.district = district;
+        this.no_bairro = no_bairro;
         this.state = state;
-        this.city = city;
+        this.municipio = municipio;
     }
 
     public Double getLatitude() {
@@ -47,12 +54,12 @@ public class HealthUnit extends SugarRecord{
         this.longitude = longitude;
     }
 
-    public String getNameHospital() {
-        return nameHospital;
+    public String getNo_fantasia() {
+        return no_fantasia;
     }
 
-    public void setNameHospital(String nameHospital) {
-        this.nameHospital = nameHospital;
+    public void setNo_fantasia(String no_fantasia) {
+        this.no_fantasia = no_fantasia;
     }
 
     public String getUnitType() {
@@ -71,12 +78,12 @@ public class HealthUnit extends SugarRecord{
         this.addressNumber = addressNumber;
     }
 
-    public String getDistrict() {
-        return district;
+    public String getNo_bairro() {
+        return no_bairro;
     }
 
-    public void setDistrict(String district) {
-        this.district = district;
+    public void setNo_bairro(String no_bairro) {
+        this.no_bairro = no_bairro;
     }
 
     public String getState() {
@@ -87,12 +94,12 @@ public class HealthUnit extends SugarRecord{
         this.state = state;
     }
 
-    public String getCity() {
-        return city;
+    public String getMunicipio() {
+        return municipio;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setMunicipio(String municipio) {
+        this.municipio = municipio;
     }
 
     public Float getDistance() {
@@ -102,5 +109,14 @@ public class HealthUnit extends SugarRecord{
     public void setDistance(Float distance) {
         this.distance = distance;
     }
+
+  /*  public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }*/
+
 }
 

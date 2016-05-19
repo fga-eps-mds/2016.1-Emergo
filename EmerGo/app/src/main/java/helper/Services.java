@@ -1,8 +1,6 @@
 package helper;
 
-import android.app.Activity;
-import android.content.Context;
-import android.location.Location;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.firebase.client.DataSnapshot;
@@ -19,57 +17,18 @@ import java.util.List;
 import unlv.erc.emergo.controller.HealthUnitController;
 import unlv.erc.emergo.model.HealthUnit;
 
-public class Services extends Activity {
-    private static final String URL_BASE_DB = "https://emergodf.firebaseio.com/EmerGo";
-    private List<HealthUnit> healthUnitList;
+public class Services extends AppCompatActivity{
+
+
+    private static final String URL_BASE_DB = "https://emergodf.firebaseio.com/";
+    public List<HealthUnit> mList;
+
     public void selectHealhUnitys(final LatLng location) {
 
-        Firebase ref = new Firebase(URL_BASE_DB);
+        Firebase ref = new Firebase("https://emergodf.firebaseio.com/EmerGo");
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
 
-        //healthUnitList = HealthUnit.listAll(HealthUnit.class);
-        Log.d("Lista preenchida", "LISTA PREENCHIDA");
-
-        if (healthUnitList == null || healthUnitList.isEmpty()) {
-            Log.d("LISTA VAZIA", "CHOREMOS");
-
-            ref.child("EmerGo").addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    for (DataSnapshot child : dataSnapshot.getChildren()) {
-                        String nameHospital = child.child("no_fantasia").getValue().toString();
-                        String state = child.child("uf").getValue().toString();
-                        String district = child.child("no_bairro").getValue().toString();
-                        String city = child.child("municipio").getValue().toString();
-                        String adressNumber = child.child("co_cep").getValue().toString();
-                        String unitType = child.child("ds_tipo_unidade").getValue().toString();
-                        double longitude = (double) child.child("long").getValue();
-                        double latitude = (double) child.child("lat").getValue();
-
-                        HealthUnit healthUnit = new HealthUnit(latitude, longitude, nameHospital,
-                                unitType, adressNumber, district,
-                                state, city);
-                        HealthUnit health = HealthUnitController.createHealthUnit(latitude, longitude, nameHospital,
-                                unitType, state, city, district, adressNumber);
-                        HealthUnitController.setClosestsUs(health);
-                        healthUnit.save();
-                        Log.d("LOG 42!", nameHospital + " " + city);
-                    }
-                    //healthUnitList = HealthUnit.listAll(HealthUnit.class);
-                    Log.d("ACABOU", "FINISH");
-                }
-
-                @Override
-                public void onCancelled(FirebaseError firebaseError) {
-
-                }
-            });
-        } else {
-            Log.d("LOG 14", "LISTA PREENCHIDA OFFLINE");
-        }
-    }
-        //ref.addListenerForSingleValueEvent(new ValueEventListener() {
-
-            /*@Override
+            @Override
             public void onDataChange(DataSnapshot snapshot) {
 
                 boolean latChecked, longChecked;
@@ -121,8 +80,6 @@ public class Services extends Activity {
                         if (latChecked && longChecked) {
                             latChecked = false;
                             longChecked = false;
-
-
                             HealthUnit health = HealthUnitController.createHealthUnit(latitude, longitude, nameHospital,
                                     unityType, state, city, district, adressNumber);
                             HealthUnitController.setClosestsUs(health);
@@ -141,40 +98,92 @@ public class Services extends Activity {
             }
 
         });
-    }*/
+    }
 
 
     public void setMarkersOnMap(GoogleMap map,ArrayList<HealthUnit> uSs){
+        //WE should define how many markers we shall show to the user
+        //This method should be used to add many Markers on map
         int markersQuantity;
         for(markersQuantity = 0; markersQuantity < uSs.size(); markersQuantity++){
             map.addMarker(new MarkerOptions()
                     .position(new LatLng(uSs.get(markersQuantity).getLatitude()
                             ,uSs.get(markersQuantity).getLongitude()))
-                    .title(uSs.get(markersQuantity).getNameHospital() + "")
+                    .title(uSs.get(markersQuantity).getNo_fantasia() + "")
                     .snippet(uSs.get(markersQuantity).getUnitType()));
 
         }
     }
 
-    public void setDistance(Context context, ArrayList<HealthUnit> healthUnitList ,LatLng userGeopoint) {
-
-        Log.i("TAMANHO DO VETOR:",healthUnitList.size()+"");
-        float resultsAdapter[] = new float[1];
-        int cont = 0;
-        for (int aux = 0; aux < healthUnitList.size(); aux++) {
-            Location.distanceBetween(healthUnitList.get(aux).getLatitude(),
-                    healthUnitList.get(aux).getLongitude(),
-                    userGeopoint.latitude, userGeopoint.longitude, resultsAdapter);
-                    healthUnitList.get(aux).setDistance(resultsAdapter[0]);
-        }
-    }
-
-    public LatLng getUserPosition(){
+    /*public LatLng getUserPosition(){
         GPSTracker gps = new GPSTracker(this.getBaseContext());
         boolean canGetLocation = gps.canGetLocation();
-        double userLongitude = gps.getLongitude();
-        double userLatitude = gps.getLatitude();
-        LatLng userGeopoint = new LatLng(userLatitude, userLongitude);
-        return userGeopoint;
+        Log.i("ENTREEEEEEI NO METODOOO" , canGetLocation + "");
+        if(canGetLocation){
+            double userLongitude = gps.getLongitude();
+            double userLatitude = gps.getLatitude();
+            LatLng userGeopoint = new LatLng(userLatitude , userLongitude);
+            return userGeopoint;
+        }
+        return null;
+    }*/
+
+
+    // @Override
+    //protected void onCreate(Bundle savedInstanceState) {
+    public void setDataOnSugar(){
+        //  super.onCreate(savedInstanceState);
+        //  setContentView(R.layout.activity_main);
+
+        // mListView = (ListView) findViewById(R.id.listView);
+
+
+        Firebase.setAndroidContext(this);
+        Firebase ref = new Firebase(URL_BASE_DB);
+
+        if (mList == null || mList.isEmpty()) {
+            Log.d("log123", "lista vazia");
+
+            ref.child("EmerGo").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    for (DataSnapshot child : dataSnapshot.getChildren()) {
+                        String no_fantasia = child.child("no_fantasia").getValue().toString();
+                        String no_bairro = child.child("no_bairro").getValue().toString();
+                        String municipio = child.child("municipio").getValue().toString();
+
+                        HealthUnit model = new HealthUnit(no_fantasia, no_bairro, municipio);
+                        model.save();
+
+                        Log.d("log123", no_fantasia + "  " + no_bairro + " " + municipio);
+                    }
+
+                    mList = HealthUnit.listAll(HealthUnit.class);
+
+                    Log.d("log123", "acabou");
+
+                    //  mListViewAdapter = new ListViewAdapter(MainActivity.this, mList);
+                    // mListView.setAdapter(mListViewAdapter);
+
+
+                }
+
+                @Override
+                public void onCancelled(FirebaseError firebaseError) {
+
+                }
+            });
+        }
+        else
+        {
+
+            Log.d("log123", "preenchida offline");
+            // mListViewAdapter = new ListViewAdapter(MainActivity.this, mList);
+            //  mListView.setAdapter(mListViewAdapter);
+        }
+
+
     }
+
 }
