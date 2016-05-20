@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.firebase.client.Firebase;
 import com.orm.SugarContext;
 
+import dao.DataAccessObject;
 import helper.Services;
 import unlv.erc.emergo.R;
 
@@ -20,6 +21,7 @@ public class MainScreenController extends Activity {
 
     private Button goButton , fineButton;
     private Services services = new Services();
+    private DataAccessObject dataAccessObject = new DataAccessObject(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +34,7 @@ public class MainScreenController extends Activity {
 
 
         Log.i("log", "testeeeeeeeeeeeeeeeeeeee");
-        services.setDataOnSugar();
+        dataAccessObject.setDataOnSugar(); //New DB Handler!
 
         Log.i("log", "FIIM ALELUIA ALELIA KAKAKAK");
 
