@@ -68,14 +68,5 @@ public class MainScreenController extends Activity {
         fineButton.setOnClickListener(okayListener);
     }
 
-    public void goClicked(View main_Screen){
-
-
-    }
-
-    public void okayClicked(View main_Screen){
-
-
-    }
 
 }
