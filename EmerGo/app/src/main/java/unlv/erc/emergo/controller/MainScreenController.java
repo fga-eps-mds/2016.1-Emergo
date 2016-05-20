@@ -53,7 +53,7 @@ public class MainScreenController extends Activity {
             public void onClick(View v) {
 
 
-                services.selectHealhUnitys(services.getUserPosition());
+                dataAccessObject.setDataOnSugar();
 
                 Intent mapScreen = new Intent();
                 mapScreen.setClass(getBaseContext(), MapScreenController.class);

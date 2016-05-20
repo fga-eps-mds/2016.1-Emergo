@@ -8,6 +8,8 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
+import java.util.List;
+
 import unlv.erc.emergo.model.HealthUnit;
 
 /**
@@ -17,6 +19,8 @@ public class DataAccessObject {
 
 
     private Context context;
+    private static final String URL_BASE_DB = "https://emergodf.firebaseio.com/";
+    public List<HealthUnit> mList;
 
     public DataAccessObject(Context context) {
 
@@ -32,6 +36,8 @@ public class DataAccessObject {
 
         Firebase.setAndroidContext(this.context);
         Firebase ref = new Firebase(URL_BASE_DB);  //PRECISA ARRUMAR AQUI
+
+
 
         if (mList == null || mList.isEmpty()) { //PRECISA ARRUMAR AQUI
             Log.d("log123", "lista vazia");
