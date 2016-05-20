@@ -52,7 +52,6 @@ public class MainScreenController extends Activity {
             @Override
             public void onClick(View v) {
 
-                Services services = new Services();
 
                 services.selectHealhUnitys(services.getUserPosition());
 
