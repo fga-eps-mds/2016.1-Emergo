@@ -113,7 +113,7 @@ public class Services extends AppCompatActivity{
             map.addMarker(new MarkerOptions()
                     .position(new LatLng(uSs.get(markersQuantity).getLatitude()
                             ,uSs.get(markersQuantity).getLongitude()))
-                    .title(uSs.get(markersQuantity).getNo_fantasia() + "")
+                    .title(uSs.get(markersQuantity).getNameHospital() + "")
                     .snippet(uSs.get(markersQuantity).getUnitType()));
 
         }

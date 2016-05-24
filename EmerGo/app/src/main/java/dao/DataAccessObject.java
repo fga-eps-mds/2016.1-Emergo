@@ -10,6 +10,7 @@ import com.firebase.client.ValueEventListener;
 
 import java.util.List;
 
+import unlv.erc.emergo.controller.HealthUnitController;
 import unlv.erc.emergo.model.HealthUnit;
 
 /**
@@ -20,7 +21,6 @@ public class DataAccessObject {
 
     private Context context;
     private static final String URL_BASE_DB = "https://emergodf.firebaseio.com/";
-    public List<HealthUnit> mList;
 
     public DataAccessObject(Context context) {
 
@@ -39,7 +39,8 @@ public class DataAccessObject {
 
 
 
-        if (mList == null || mList.isEmpty()) { //PRECISA ARRUMAR AQUI
+        if (HealthUnitController.getClosestsUs().size() == 0 ||
+                HealthUnitController.getClosestsUs() == null) { //PRECISA ARRUMAR AQUI
             Log.d("log123", "lista vazia");
 
             ref.child("EmerGo").addValueEventListener(new ValueEventListener() {
@@ -47,24 +48,28 @@ public class DataAccessObject {
                 public void onDataChange(DataSnapshot dataSnapshot) {
 
                     for (DataSnapshot child : dataSnapshot.getChildren()) {
-                        String no_fantasia = child.child("no_fantasia").getValue().toString();
-                        String no_bairro = child.child("no_bairro").getValue().toString();
-                        String municipio = child.child("municipio").getValue().toString();
+                        double latitude = (double) child.child("lat").getValue();
+                        double longitude = (double) child.child("long").getValue();
+                        String nameHospital = child.child("no_fantasia").getValue().toString();
+                        String unitType = child.child("ds_tipo_unidade").getValue().toString();
+                        String addressNumber = child.child("co_cep").getValue().toString();
+                        String district = child.child("no_bairro").getValue().toString();
+                        String state = child.child("uf").getValue().toString();
+                        String city = child.child("municipio").getValue().toString();
 
-                        HealthUnit model = new HealthUnit(no_fantasia, no_bairro, municipio);
+                        HealthUnit model = new HealthUnit(latitude,longitude,nameHospital,unitType,
+                                                        addressNumber,district,state,city);
                         model.save();
+                        HealthUnitController.setClosestsUs(model);
 
-                        Log.d("log123", no_fantasia + "  " + no_bairro + " " + municipio);
                     }
 
-                    mList = HealthUnit.listAll(HealthUnit.class); //PRECISA ARRUMAR AQUI - mList??????
+
 
                     Log.d("log123", "acabou");
 
                     //  mListViewAdapter = new ListViewAdapter(MainActivity.this, mList);
                     // mListView.setAdapter(mListViewAdapter);
-
-
                 }
 
                 @Override

@@ -14,6 +14,7 @@ import com.firebase.client.Firebase;
 import com.orm.SugarContext;
 
 import dao.DataAccessObject;
+import helper.GPSTracker;
 import helper.Services;
 import unlv.erc.emergo.R;
 
@@ -30,10 +31,10 @@ public class MainScreenController extends Activity {
         Firebase.setAndroidContext(this);
 
         SugarContext.init(this);
-       // services.selectHealhUnitys(services.getUserPosition());
-
 
         Log.i("log", "testeeeeeeeeeeeeeeeeeeee");
+        GPSTracker gps = new GPSTracker(this);
+
         dataAccessObject.setDataOnSugar(); //New DB Handler!
 
         Log.i("log", "FIIM ALELUIA ALELIA KAKAKAK");
