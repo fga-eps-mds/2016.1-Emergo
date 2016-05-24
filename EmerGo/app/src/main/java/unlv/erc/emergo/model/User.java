@@ -3,6 +3,8 @@ package unlv.erc.emergo.model;
 import java.util.ArrayList;
 import java.util.Date;
 
+import java.text.ParseException;
+
 public class User {
 
     private String name;
@@ -16,6 +18,12 @@ public class User {
 
     public User(){
 
+    }
+
+    public User(String name, Date birthday, String typeBlood) throws ParseException {
+        this.name = name;
+        this.birthday = birthday;
+        this.typeBlood = typeBlood;
     }
 
     public String getName(){

@@ -5,9 +5,6 @@ import junit.framework.TestCase;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by leonardo on 04/05/16.
- */
 public class InformationUsScreenControllerTest extends TestCase{
 
     List<String> listOfInformations = new ArrayList<String>();

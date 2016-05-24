@@ -109,6 +109,4 @@ public class HealthUnit {
     public void setId(Integer id) {
         this.id = id;
     }
-
 }
-
