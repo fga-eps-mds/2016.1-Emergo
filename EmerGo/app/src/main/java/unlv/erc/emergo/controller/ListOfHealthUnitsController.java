@@ -1,10 +1,25 @@
 package unlv.erc.emergo.controller;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import helper.Services;
+import unlv.erc.emergo.R;
+import unlv.erc.emergo.model.HealthUnit;
 
 public class ListOfHealthUnitsController extends Activity {
 
-  /*  private List<String> fifthClosestsUs = new ArrayList<String>();
+    private List<String> fifthClosestsUs = new ArrayList<String>();
     private ArrayAdapter<String> adapter;
     private ListView uSsList ;
     private View convertView;
@@ -50,8 +65,8 @@ public class ListOfHealthUnitsController extends Activity {
         for(numberOfUs = 1 ; numberOfUs < MAXNUMBERUS ; numberOfUs++){
             closestsUs.add(closest.get(numberOfUs).getNameHospital());
         }
-        Log.i("distancia + proxima: ",closest.get(0).getDistance()+"");
+        Log.i("distancia + proxima: ", closest.get(0).getDistance() + "");
         return closestsUs;
-    }*/
+    }
 
 }

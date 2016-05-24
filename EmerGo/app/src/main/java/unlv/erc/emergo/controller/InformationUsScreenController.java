@@ -37,7 +37,7 @@ public class InformationUsScreenController extends Activity {
 
     public void  addInformationToList(HealthUnit hospital){
 
-      /*  String padding = "\n";
+        String padding = "\n";
         String titulo = "        Informações da Unidade de Saúde";
         String nome = "  Nome: " + hospital.getNameHospital();
         String gestao = "  Tipo de atendimento: " + hospital.getUnitType();
@@ -53,7 +53,7 @@ public class InformationUsScreenController extends Activity {
         listOfInformations.add(municipio);
         listOfInformations.add(bairro);
         listOfInformations.add(cep);
-        showInformationOnScreen();*/
+        showInformationOnScreen();
     }
 
     public void showInformationOnScreen(){
