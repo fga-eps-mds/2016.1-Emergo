@@ -14,6 +14,17 @@ public class UserTest extends TestCase {
         assertEquals(name,user.getName());
     }
 
+    public void testSetName(){
+        User user = new User();
+        user.setName("Maria Joaquina");
+        assertEquals("Maria Joaquina", user.getName());
+    }
+
+    public void testSetNameEmpty(){
+        User user = new User();
+        user.setName("");
+        assertEquals("", user.getName());
+    }
 
 
 }
