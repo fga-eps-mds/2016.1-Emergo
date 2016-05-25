@@ -26,5 +26,19 @@ public class UserTest extends TestCase {
         assertEquals("", user.getName());
     }
 
+    // tests for typeBlood
+
+    public void testSetTypeBloodBiggerThree(){
+        User user = new User();
+        user.setTypeBlood("AB-");
+        final int MAXIMUM = 3;
+        boolean result = true;
+        if(user.getTypeBlood().length()>MAXIMUM){
+            assertFalse(result);
+        }else{
+            assertTrue(result);
+        }
+    }
+
 
 }
