@@ -1,17 +1,11 @@
 package unlv.erc.emergo.controller;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.location.Location;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.Toast;
 
-import com.google.android.gms.auth.GooglePlayServicesAvailabilityException;
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -52,6 +46,12 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
         Intent listOfHealth = new Intent();
         listOfHealth.setClass(this , ListOfHealthUnitsController.class);
         startActivity(listOfHealth);
+    }
+
+    public void openConfig(View map_screen){
+        Intent config = new Intent();
+        config.setClass(this , UserController.class);
+        startActivity(config);
     }
 
     public void openMap(View mapScreen){
