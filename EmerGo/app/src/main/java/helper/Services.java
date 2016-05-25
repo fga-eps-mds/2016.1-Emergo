@@ -1,7 +1,9 @@
 package helper;
 
-import android.content.Context;
-import android.location.Location;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
@@ -14,11 +16,16 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import unlv.erc.emergo.controller.HealthUnitController;
 import unlv.erc.emergo.model.HealthUnit;
 
 public class Services extends AppCompatActivity{
+
+
+    private static final String URL_BASE_DB = "https://emergodf.firebaseio.com/";
+    public List<HealthUnit> mList;
 
     public void selectHealhUnitys(final LatLng location) {
 
@@ -77,8 +84,6 @@ public class Services extends AppCompatActivity{
                         if (latChecked && longChecked) {
                             latChecked = false;
                             longChecked = false;
-
-
                             HealthUnit health = HealthUnitController.createHealthUnit(latitude, longitude, nameHospital,
                                     unityType, state, city, district, adressNumber);
                             HealthUnitController.setClosestsUs(health);
@@ -101,6 +106,8 @@ public class Services extends AppCompatActivity{
 
 
     public void setMarkersOnMap(GoogleMap map,ArrayList<HealthUnit> uSs){
+        //WE should define how many markers we shall show to the user
+        //This method should be used to add many Markers on map
         int markersQuantity;
         for(markersQuantity = 0; markersQuantity < uSs.size(); markersQuantity++){
             map.addMarker(new MarkerOptions()
@@ -112,26 +119,67 @@ public class Services extends AppCompatActivity{
         }
     }
 
-    public void setDistance(Context context, ArrayList<HealthUnit> healthUnitList ,LatLng userGeopoint) {
-
-        Log.i("TAMANHO DO VETOR:",healthUnitList.size()+"");
-        float resultsAdapter[] = new float[1];
-        int cont = 0;
-        for (int aux = 0; aux < healthUnitList.size(); aux++) {
-            Location.distanceBetween(healthUnitList.get(aux).getLatitude(),
-                    healthUnitList.get(aux).getLongitude(),
-                    userGeopoint.latitude, userGeopoint.longitude, resultsAdapter);
-                    healthUnitList.get(aux).setDistance(resultsAdapter[0]);
-        }
-    }
-
-    public LatLng getUserPosition(){
+    /*public LatLng getUserPosition(){
         GPSTracker gps = new GPSTracker(this.getBaseContext());
         boolean canGetLocation = gps.canGetLocation();
+        Log.i("ENTREEEEEEI NO METODOOO" , canGetLocation + "");
+        if(canGetLocation){
+            double userLongitude = gps.getLongitude();
+            double userLatitude = gps.getLatitude();
+            LatLng userGeopoint = new LatLng(userLatitude , userLongitude);
+            return userGeopoint;
+        }
+        return null;
+    }*/
+
+
+    // @Override
+    //protected void onCreate(Bundle savedInstanceState) {
+
+
+    public LatLng getUserPosition(){
+        GPSTracker gps = new GPSTracker(this);
+        boolean canGetLocation = gps.canGetLocation();
+        gps.getLocation();
         double userLongitude = gps.getLongitude();
         double userLatitude = gps.getLatitude();
         LatLng userGeopoint = new LatLng(userLatitude, userLongitude);
         return userGeopoint;
     }
 
+
+    public void showSettingsAlert(){
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this.getBaseContext());
+
+        // Setting Dialog Title
+        alertDialog.setTitle("GPS is settings");
+
+        // Setting Dialog Message
+        alertDialog.setMessage("GPS is not enabled. Do you want to go to settings menu?");
+
+        // Setting Icon to Dialog
+        //alertDialog.setIcon(R.drawable.delete);
+
+        // On pressing Settings button
+        alertDialog.setPositiveButton("Settings", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog,int which) {
+                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                startActivity(intent);
+            }
+        });
+
+        // on pressing cancel button
+        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        // Showing Alert Message
+        alertDialog.show();
+    }
+
+
 }
+
+

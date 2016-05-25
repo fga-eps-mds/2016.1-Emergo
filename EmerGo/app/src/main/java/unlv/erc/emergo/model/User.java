@@ -1,11 +1,11 @@
 package unlv.erc.emergo.model;
 
+import com.orm.SugarRecord;
+
 import java.util.ArrayList;
 import java.util.Date;
 
-import java.text.ParseException;
-
-public class User {
+public class User extends SugarRecord {
 
     private String name;
     private Date birthday;
@@ -20,9 +20,9 @@ public class User {
 
     }
 
-    public User(String name, Date birthday, String typeBlood) throws ParseException {
+    public User(String name, String typeBlood){
         this.name = name;
-        this.birthday = birthday;
+        //this.birthday = birthday;
         this.typeBlood = typeBlood;
     }
 

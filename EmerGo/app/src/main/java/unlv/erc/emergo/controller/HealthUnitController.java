@@ -20,9 +20,9 @@ public class HealthUnitController {
     static ArrayList<HealthUnit> closestsUs = new ArrayList<HealthUnit>();
 
     public static HealthUnit createHealthUnit(Double latitude , Double longitude , String nameHospital,
-                                              String unityType , String state , String city ,
-                                              String district , String adressNumber) {
-        HealthUnit healthUnit = new HealthUnit(latitude, longitude, nameHospital, unityType, adressNumber,
+                                              String unityType , String addressNumber , String district ,
+                                              String state, String city) {
+        HealthUnit healthUnit = new HealthUnit(latitude, longitude, nameHospital, unityType, addressNumber,
                 district, state, city );
         return healthUnit;
     }

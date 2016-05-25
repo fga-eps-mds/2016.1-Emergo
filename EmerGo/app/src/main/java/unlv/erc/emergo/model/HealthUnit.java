@@ -1,7 +1,9 @@
 package unlv.erc.emergo.model;
 
 
-public class HealthUnit {
+import com.orm.SugarRecord;
+
+public class HealthUnit extends SugarRecord{
 
     private Double latitude;
     private Double longitude;
@@ -12,7 +14,7 @@ public class HealthUnit {
     private String state;
     private String city;
     private Float distance;
-    private Integer id;
+
 
     public HealthUnit(){
 
@@ -100,13 +102,5 @@ public class HealthUnit {
 
     public void setDistance(Float distance) {
         this.distance = distance;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 }
