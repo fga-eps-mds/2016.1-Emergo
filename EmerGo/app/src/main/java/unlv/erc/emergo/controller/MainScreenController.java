@@ -57,7 +57,7 @@ public class MainScreenController extends Activity {
                 dataAccessObject.setDataOnSugar();
 
                 Intent mapScreen = new Intent();
-                mapScreen.setClass(getBaseContext(), MapScreenController.class);
+                mapScreen.setClass(getBaseContext(), MapMap.class);
                 startActivity(mapScreen);
 
             }
