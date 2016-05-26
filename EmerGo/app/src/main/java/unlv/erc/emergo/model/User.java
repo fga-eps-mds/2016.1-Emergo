@@ -1,11 +1,9 @@
 package unlv.erc.emergo.model;
 
-import com.orm.SugarRecord;
-
 import java.util.ArrayList;
 import java.util.Date;
 
-public class User extends SugarRecord {
+public class User{
 
     private String name;
     private Date birthday;
@@ -15,7 +13,7 @@ public class User extends SugarRecord {
     private Boolean diabetic = false;
     private Boolean hypertension = false;
     private Boolean seropositive = false;
-
+    private String id;
     public User(){
 
     }
@@ -24,6 +22,14 @@ public class User extends SugarRecord {
         this.name = name;
         //this.birthday = birthday;
         this.typeBlood = typeBlood;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName(){

@@ -57,7 +57,7 @@ public class DataAccessObject {
 
                         HealthUnit model = new HealthUnit(latitude,longitude,nameHospital,unitType,
                                                         addressNumber,district,state,city);
-                        model.save();
+//                        model.save();
                         HealthUnitController.setClosestsUs(model);
 
                     }
