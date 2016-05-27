@@ -114,7 +114,7 @@ public class RegisterUserController extends Activity {
             seropositive.requestFocus();
         }else {
             myDatabase.insertUser(id,nameUser,birthdayUser,typeBloodUser,cardiacUser,diabeticUser,
-                                  hypertensionUser,seropositiveUser);
+                    hypertensionUser,seropositiveUser);
             showMessage("Usuário Cadastrado Com Sucesso!");
         }
     }
@@ -153,7 +153,7 @@ public class RegisterUserController extends Activity {
             }
         }else {
             myDatabase.updateUser(id, nameUser, birthdayUser, typeBloodUser, cardiacUser, typeBloodUser,
-                                    hypertensionUser, seropositiveUser);
+                    hypertensionUser, seropositiveUser);
             showMessage("Alteração Realizada Com Sucesso!");
         }
     }

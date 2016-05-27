@@ -48,7 +48,7 @@ public class DataAccessObject {
                         String city = child.child("municipio").getValue().toString();
 
                         HealthUnit model = new HealthUnit(latitude,longitude,nameHospital,unitType,
-                                                        addressNumber,district,state,city);
+                                addressNumber,district,state,city);
                         HealthUnitController.setClosestsUs(model);
 
                     }
