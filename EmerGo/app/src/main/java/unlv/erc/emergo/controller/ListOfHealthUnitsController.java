@@ -13,6 +13,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
+import adapter.HealthUnitAdapter;
 import helper.Services;
 import unlv.erc.emergo.R;
 import unlv.erc.emergo.model.HealthUnit;
@@ -28,10 +29,6 @@ public class ListOfHealthUnitsController extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_of_health_unit);
-
-
-        //services.setDistance(this, HealthUnitController.getClosestsUs(), services.getUserPosition());
-
 
 
         fifthClosestsUs = get50closestUs(HealthUnitController.getClosestsUs());

@@ -2,12 +2,15 @@ package unlv.erc.emergo.controller;
 
 
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import helper.GPSTracker;
 import unlv.erc.emergo.R;
 
 public class MapMap extends FragmentActivity {
@@ -15,6 +18,11 @@ public class MapMap extends FragmentActivity {
     @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mapmap);
+
+        GPSTracker gps = new GPSTracker(this);
+        Location userLocation = gps.getLocation();
+        Log.i("latitude", userLocation.getLatitude() + "");
+        Log.i("Longitude" , userLocation.getLongitude() + "");
 
     }
 
