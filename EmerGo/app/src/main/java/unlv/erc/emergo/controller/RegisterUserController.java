@@ -48,7 +48,7 @@ public class RegisterUserController extends Activity {
         setContentView(R.layout.register_user);
 
         myDatabase = new DatabaseHelper(this);
-        Boolean databaseEmpty = myDatabase.isDatabaseEmpty();
+
 
         fullName = (EditText) findViewById(R.id.fullNameEditText);
         birthday = (EditText) findViewById(R.id.birthdayEditText);
@@ -63,7 +63,7 @@ public class RegisterUserController extends Activity {
         deleteButton = (Button) findViewById(R.id.deleteButton);
 
 
-        if(databaseEmpty == false) {
+
             saveButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     createUser();
@@ -74,10 +74,8 @@ public class RegisterUserController extends Activity {
                     upgradeUser();
                 }
             });
-        }else{
-            showMessage("JA TA PREENCHIDO");
         }
-    }
+
 
 
     public void createUser(){
@@ -91,7 +89,7 @@ public class RegisterUserController extends Activity {
         seropositiveUser = seropositive.getSelectedItem().toString();
 
         if(nameUser.isEmpty()) {
-            showMessage("Nome Vazio! Informe seu nome compleo");
+            showMessage("Nome Vazio! Informe seu nome completo");
             fullName.requestFocus();
         }else if(birthdayUser.isEmpty()){
             showMessage("Data de Nascimento vazia! Informe sua data de nascimento");
