@@ -11,14 +11,19 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.google.android.gms.maps.model.Tile;
+import org.osmdroid.api.IMapController;
+import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.MapView;
+import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 
-import org.osmdroid.views.overlay.ItemizedIconOverlay;
+import java.util.Map;
 
 import helper.GPSTracker;
 import unlv.erc.emergo.R;
 
 public class MapMap extends Activity {
+
+    public static final int ZOOM_LEVEL = 13; 
 
     @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +32,19 @@ public class MapMap extends Activity {
         GPSTracker gps = new GPSTracker(this);
         Location userLocation = gps.getLocation();
         Log.i("latitude", userLocation.getLatitude() + "");
-        Log.i("Longitude" , userLocation.getLongitude() + "");
+        Log.i("Longitude", userLocation.getLongitude() + "");
+
+        MapView map = (MapView) findViewById(R.id.map);
+        map.setTileSource(TileSourceFactory.MAPNIK);
+
+        map.setBuiltInZoomControls(true);
+        map.setMultiTouchControls(true);
+
+        IMapController mapController = map.getController();
+        mapController.setZoom(ZOOM_LEVEL);
+        GeoPoint userGeoPoint = new GeoPoint(userLocation.getLatitude(),
+                                            userLocation.getLongitude());
+        mapController.setCenter(userGeoPoint);
 
 
     }
