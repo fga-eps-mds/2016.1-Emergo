@@ -34,13 +34,10 @@ public class DataAccessObject {
 
         // mListView = (ListView) findViewById(R.id.listView);
 
-        Firebase.setAndroidContext(this.context);
         Firebase ref = new Firebase(URL_BASE_DB);  //PRECISA ARRUMAR AQUI
 
-
-
         if (HealthUnitController.getClosestsUs().size() == 0 ||
-                HealthUnitController.getClosestsUs() == null) { //PRECISA ARRUMAR AQUI
+                HealthUnitController.getClosestsUs() == null) {
             Log.d("log123", "lista vazia");
 
             ref.child("EmerGo").addValueEventListener(new ValueEventListener() {
@@ -64,9 +61,8 @@ public class DataAccessObject {
 
                     }
 
-
-
                     Log.d("log123", "acabou");
+                    Log.i("Database has finished" , HealthUnitController.getClosestsUs().size() + "Us");
 
                     //  mListViewAdapter = new ListViewAdapter(MainActivity.this, mList);
                     // mListView.setAdapter(mListViewAdapter);
@@ -80,7 +76,6 @@ public class DataAccessObject {
         }
         else
         {
-
             Log.d("log123", "preenchida offline");
             // mListViewAdapter = new ListViewAdapter(MainActivity.this, mList);
             //  mListView.setAdapter(mListViewAdapter);

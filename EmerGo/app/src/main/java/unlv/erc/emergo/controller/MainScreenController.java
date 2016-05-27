@@ -29,16 +29,9 @@ public class MainScreenController extends Activity {
         super.onCreate(savedInstanceState);
 
         Firebase.setAndroidContext(this);
-
         SugarContext.init(this);
 
-        Log.i("log", "testeeeeeeeeeeeeeeeeeeee");
-        GPSTracker gps = new GPSTracker(this);
-
         dataAccessObject.setDataOnSugar(); //New DB Handler!
-
-        Log.i("log", "FIIM ALELUIA ALELIA KAKAKAK");
-
 
         OnClickListener goListener = new OnClickListener() {
             @Override
@@ -52,9 +45,6 @@ public class MainScreenController extends Activity {
         OnClickListener okayListener = new OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-                dataAccessObject.setDataOnSugar();
 
                 Intent mapScreen = new Intent();
                 mapScreen.setClass(getBaseContext(), MapMap.class);
