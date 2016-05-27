@@ -2,7 +2,6 @@ package unlv.erc.emergo.controller;
 
 import android.app.Activity;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
@@ -37,7 +36,6 @@ public class RegisterUserController extends Activity {
     private String id = "1";
 
     DatabaseHelper myDatabase;
-    private SQLiteDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -167,19 +165,6 @@ public class RegisterUserController extends Activity {
             myDatabase.deleteUser(id);
             showMessage("Usuario excluido com sucesso");
         }
-    }
-    public void disableOptions() {
-
-        fullName.setClickable(false);
-        birthday.setClickable(false);
-        typeBlood.setClickable(false);
-        cardiac.setClickable(false);
-        diabect.setClickable(false);
-        hypertension.setClickable(false);
-        seropositive.setClickable(false);
-        saveButton.setClickable(false);
-        updateButton.setClickable(true);
-        deleteButton.setClickable(true);
     }
 
     public void showMessage(String message){
