@@ -2,32 +2,29 @@ package helper;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import unlv.erc.emergo.model.User;
-
-public class DatabaseHelper extends SQLiteOpenHelper{
+public class DatabaseHelper extends SQLiteOpenHelper {
     private static DatabaseHelper database;
     private static SQLiteDatabase sqliteDatabase;
-    private static String tableColumns[]={"nameUser","birthdayUser","typeBlood","cardiacUser",
-                                          "diabeticUser","hipertensionUser","seropositiveUser",
-                                          "IDUser"};
-    private static final String DATABASE_NAME = "emerGo";
-    private static final int VERSION = 42;
 
-    private static final String USER_TABLE = "[User]";
-    private static final String DROP_TABLE_USER = "DROP TABLE IF EXISTS" + USER_TABLE;
+    public static final String DATABASE_NAME = "emerGo";
+    public static final int VERSION = 42;
+
+    public static final String USER_TABLE = "User";
+    public static final String DROP_TABLE_USER = "DROP TABLE IF EXISTS" + USER_TABLE;
     private static final String HEALTHUNIT_TABLE = "[HealthUnit]";
     //User data
     public static final String NAMEUSER = "[nameUser]";
     public static final String BIRTHDAYUSER = "[birthdayUser]";
     public static final String TYPEBLOODUSER = "[typeBloodUser]";
-    private static final String CARDIACUSER = "[cardiacUser]";
-    private static final String DIABETICUSER = "[diabeticUser]";
-    private static final String HYPERTENSIONUSER = "[hipertensionUser]";
-    private static final String SEROPOSITIVEUSER = "[seropositiveUser]";
-    private static final String USER_ID = "[IDUser]";
+    public static final String CARDIACUSER = "[cardiacUser]";
+    public static final String DIABETICUSER = "[diabeticUser]";
+    public static final String HYPERTENSIONUSER = "[hipertensionUser]";
+    public static final String SEROPOSITIVEUSER = "[seropositiveUser]";
+    public static final String USER_ID = "[IDUser]";
 
     //HealthUnit data
     private static final String LATITUDE = "[latitude]";
@@ -39,15 +36,15 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     private static final String STATE = "[state]";
     private static final String CITY = "[city]";
 
-    private static final String CREATE_USER = "CREATE TABLE " + USER_TABLE + " (" +
+    public static final String CREATE_USER = "CREATE TABLE " + USER_TABLE + " (" +
+            USER_ID + "INTEGER PRIMARY KEY AUTO INCREMENT," +
             NAMEUSER + " VARCHAR(42), "+
             BIRTHDAYUSER + " VARCHAR(10), "+
             TYPEBLOODUSER+ " VARCHAR(3), "+
             CARDIACUSER + " VARCHAR(4), "+
             DIABETICUSER + " VARCHAR(4), "+
             HYPERTENSIONUSER + "VARCHAR(4), "+
-            SEROPOSITIVEUSER + "VARCHAR(4), "+
-            USER_ID + "INTEGER PRIMARY KEY); ";
+            SEROPOSITIVEUSER + "VARCHAR(4)); ";
 
     private static final String CREATE_HEALTHUNIT = "CREATE TABLE " + HEALTHUNIT_TABLE + " (" +
             LATITUDE + "FLOAT, " +
@@ -74,34 +71,48 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         onCreate(database);
     }
 
-    public boolean insertUser(User user){
+    public boolean insertUser(String id,String name,String birthday,String typeBlood,String cardiac,
+                              String diabetic,String hypertension,String seropositive){
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("nameUser", user.getName());
-        contentValues.put("birthdayUser",user.getBirthday());
-        contentValues.put("typeBloodUser",user.getTypeBlood());
-        contentValues.put("cardiacUser",user.getCardiac());
-        contentValues.put("diabeticUser",user.getDiabetic());
-        contentValues.put("hypertensionUser",user.getHypertension());
-        contentValues.put("seropositiveUser",user.getSeropositive());
-        contentValues.put("IDUser",user.getID());
-        database.insert(USER_TABLE,null,contentValues);
-        database.close();
+        contentValues.put(USER_ID, id);
+        contentValues.put(NAMEUSER, name);
+        contentValues.put(BIRTHDAYUSER,birthday);
+        contentValues.put(TYPEBLOODUSER,typeBlood);
+        contentValues.put(CARDIACUSER,cardiac);
+        contentValues.put(DIABETICUSER,diabetic);
+        contentValues.put(HYPERTENSIONUSER,hypertension);
+        contentValues.put(SEROPOSITIVEUSER,seropositive);
+
+        long result = database.insert(USER_TABLE,null,contentValues);
+        if(result == -1){
+            return false;
+        }else {
+            return true;
+        }
+    }
+    public boolean updateUser(String id,String nameUser,String birthday,String typeBlood,String cardiac,
+                              String diabetic,String hypertension,String seropositive) {
+        SQLiteDatabase database = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(NAMEUSER, nameUser);
+        contentValues.put(BIRTHDAYUSER,birthday);
+        contentValues.put(TYPEBLOODUSER,typeBlood);
+        contentValues.put(CARDIACUSER,cardiac);
+        contentValues.put(DIABETICUSER,diabetic);
+        contentValues.put(HYPERTENSIONUSER,hypertension);
+        contentValues.put(SEROPOSITIVEUSER,seropositive);
+
+        database.update(USER_TABLE, contentValues, "[IDUser] = ? ",new String[]{id});
         return true;
     }
-    public boolean updateUser (Integer id,User user) {
+    public Cursor getUser(){
         SQLiteDatabase database = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("nameUser", user.getName());
-        contentValues.put("birthdayUser",user.getBirthday());
-        contentValues.put("typeBloodUser",user.getTypeBlood());
-        contentValues.put("cardiacUser",user.getCardiac());
-        contentValues.put("diabeticUser",user.getDiabetic());
-        contentValues.put("hypertensionUser",user.getHypertension());
-        contentValues.put("seropositiveUser",user.getSeropositive());
-        contentValues.put("IDUser",user.getID());
-        database.update(USER_TABLE, contentValues, "id = ? "+id,null);
-        database.close();
-        return true;
+        Cursor cursor = database.rawQuery("SELECT * FROM " + USER_TABLE,null);
+        return cursor;
+    }
+    public Integer deleteUser(String id){
+        SQLiteDatabase database = this.getWritableDatabase();
+        return database.delete(USER_TABLE, "[IDUser] = ? ",new String[]{id});
     }
 }
