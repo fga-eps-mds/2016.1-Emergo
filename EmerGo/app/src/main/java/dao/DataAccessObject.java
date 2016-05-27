@@ -11,9 +11,7 @@ import com.firebase.client.ValueEventListener;
 import unlv.erc.emergo.controller.HealthUnitController;
 import unlv.erc.emergo.model.HealthUnit;
 
-/**
- * Created by AndreBedran on 5/18/16.
- */
+
 public class DataAccessObject {
 
 
@@ -27,18 +25,12 @@ public class DataAccessObject {
     }
 
     public void setDataOnSugar(){
-        //  super.onCreate(savedInstanceState);
-        //  setContentView(R.layout.activity_main);
-
-        // mListView = (ListView) findViewById(R.id.listView);
 
         Firebase.setAndroidContext(this.context);
-        Firebase ref = new Firebase(URL_BASE_DB);  //PRECISA ARRUMAR AQUI
-
-
+        Firebase ref = new Firebase(URL_BASE_DB);
 
         if (HealthUnitController.getClosestsUs().size() == 0 ||
-                HealthUnitController.getClosestsUs() == null) { //PRECISA ARRUMAR AQUI
+                HealthUnitController.getClosestsUs() == null) {
             Log.d("log123", "lista vazia");
 
             ref.child("EmerGo").addValueEventListener(new ValueEventListener() {
@@ -57,17 +49,10 @@ public class DataAccessObject {
 
                         HealthUnit model = new HealthUnit(latitude,longitude,nameHospital,unitType,
                                                         addressNumber,district,state,city);
-//                        model.save();
                         HealthUnitController.setClosestsUs(model);
 
                     }
-
-
-
                     Log.d("log123", "acabou");
-
-                    //  mListViewAdapter = new ListViewAdapter(MainActivity.this, mList);
-                    // mListView.setAdapter(mListViewAdapter);
                 }
                 @Override
                 public void onCancelled(FirebaseError firebaseError) {
@@ -77,8 +62,6 @@ public class DataAccessObject {
         }
         else{
             Log.d("log123", "preenchida offline");
-            // mListViewAdapter = new ListViewAdapter(MainActivity.this, mList);
-            //  mListView.setAdapter(mListViewAdapter);
         }
     }
 }

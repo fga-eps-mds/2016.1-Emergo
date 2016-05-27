@@ -11,13 +11,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import helper.DatabaseHelper;
 import helper.MaskHelper;
 import unlv.erc.emergo.R;
-import unlv.erc.emergo.model.User;
 
 
 public class RegisterUserController extends Activity {
@@ -39,7 +35,6 @@ public class RegisterUserController extends Activity {
     private String hypertensionUser;
     private String seropositiveUser;
     private String id = "1";
-    private static List<User> userList = new ArrayList<User>();
 
     DatabaseHelper myDatabase;
     private SQLiteDatabase database;
@@ -63,15 +58,18 @@ public class RegisterUserController extends Activity {
         updateButton = (Button) findViewById(R.id.updateButton);
         deleteButton = (Button) findViewById(R.id.deleteButton);
 
-        if(verifDatabase() == false){
+        if(verifDatabase() == false) {
             saveButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     createUser();
                 }
             });
+        }else{
+            myDatabase.getUser();
+            saveButton.setEnabled(false);
             updateButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    upgradeUser();
+                    updateUser();
                     showUser();
                 }
             });
@@ -80,8 +78,6 @@ public class RegisterUserController extends Activity {
                     deleteUser();
                 }
             });
-        }else{
-            disableOptions();
         }
     }
 
@@ -117,13 +113,13 @@ public class RegisterUserController extends Activity {
             showMessage("Você possui soropositivo? Informe se sim ou não");
             seropositive.requestFocus();
         }else {
-            myDatabase.insertUser(id,nameUser,birthdayUser,typeBloodUser,cardiacUser,typeBloodUser,
+            myDatabase.insertUser(id,nameUser,birthdayUser,typeBloodUser,cardiacUser,diabeticUser,
                                   hypertensionUser,seropositiveUser);
             showMessage("Usuário Cadastrado Com Sucesso!");
         }
     }
 
-    public void upgradeUser(){
+    public void updateUser(){
         nameUser = fullName.getText().toString();
         birthdayUser = birthday.getText().toString();
         typeBloodUser = typeBlood.getSelectedItem().toString();
@@ -132,17 +128,45 @@ public class RegisterUserController extends Activity {
         hypertensionUser = hypertension.getSelectedItem().toString();
         seropositiveUser = seropositive.getSelectedItem().toString();
 
-
-
-            myDatabase.updateUser(id,nameUser,birthdayUser,typeBloodUser,cardiacUser,typeBloodUser,
-                    hypertensionUser,seropositiveUser);
+        if(myDatabase.getUser()==null) {
+            if (nameUser.isEmpty()) {
+                showMessage("Nome Vazio! Informe seu nome completo");
+                fullName.requestFocus();
+            } else if (birthdayUser.isEmpty()) {
+                showMessage("Data de Nascimento vazia! Informe sua data de nascimento");
+                birthday.requestFocus();
+            } else if (typeBloodUser.isEmpty()) {
+                showMessage("Tipo Sanguíneo vazio! Informe o seu tipo sanguíneo");
+                typeBlood.requestFocus();
+            } else if (cardiacUser.isEmpty()) {
+                showMessage("Você é cardiaco? Informe se sim ou não");
+                cardiac.requestFocus();
+            } else if (diabeticUser.isEmpty()) {
+                showMessage("Você é diabetico? Informe se sim ou não");
+                diabect.requestFocus();
+            } else if (hypertensionUser.isEmpty()) {
+                showMessage("Você é hipertenso? Informe se sim ou não");
+                hypertension.requestFocus();
+            } else if (seropositiveUser.isEmpty()) {
+                showMessage("Você possui soropositivo? Informe se sim ou não");
+                seropositive.requestFocus();
+            }
+        }else {
+            myDatabase.updateUser(id, nameUser, birthdayUser, typeBloodUser, cardiacUser, typeBloodUser,
+                                    hypertensionUser, seropositiveUser);
             showMessage("Alteração Realizada Com Sucesso!");
-
+        }
     }
 
     public void deleteUser(){
-        myDatabase.deleteUser(id);
-        showMessage("Usuario excluido com sucesso");
+        Cursor res = myDatabase.getUser();
+        if(res.getCount() == 0){
+            showMessageDialog("Ficha Medica Vazia!","Cadastre uma ficha medica antes.");
+            return;
+        }else {
+            myDatabase.deleteUser(id);
+            showMessage("Usuario excluido com sucesso");
+        }
     }
     public void disableOptions() {
 
@@ -158,17 +182,6 @@ public class RegisterUserController extends Activity {
         deleteButton.setClickable(true);
     }
 
-    public void clearText(){
-
-        fullName.setText("");
-        birthday.setText("");
-        typeBlood.requestFocus();
-        cardiac.requestFocus();
-        diabect.requestFocus();
-        hypertension.requestFocus();
-        seropositive.requestFocus();
-    }
-
     public void showMessage(String message){
         Toast.makeText(this,""+message,Toast.LENGTH_SHORT).show();
     }
@@ -182,20 +195,21 @@ public class RegisterUserController extends Activity {
     public void showUser(){
         Cursor res = myDatabase.getUser();
         if(res.getCount() == 0){
-            showMessageDialog("Error","Nothing found");
+            showMessageDialog("Ficha Medica Vazia!","Cadastre uma ficha medica antes.");
             return;
         }
         StringBuffer buffer = new StringBuffer();
         while (res.moveToNext()){
-            buffer.append("NAME :"+ res.getString(0)+"\n");
-            buffer.append("BIRTHDAY :"+ res.getString(1)+"\n");
+            buffer.append("NAME :"+ res.getString(1)+"\n");
+            buffer.append("BIRTHDAY :"+ res.getString(2)+"\n");
         }
         showMessageDialog("Data",buffer.toString());
     }
     public boolean verifDatabase(){
         Cursor cursor = myDatabase.getUser();
         if(cursor.getCount()==0){
-            showMessageDialog("Error","Nothing found");
+            showMessageDialog("Ficha Medica","Não foi encontrado nenhum cadastro.\n" +
+                    "Sinta se a vontade para realizar um cadastro");
             return false;
         }else
             return true;

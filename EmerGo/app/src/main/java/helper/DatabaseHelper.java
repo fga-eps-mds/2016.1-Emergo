@@ -7,8 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    private static DatabaseHelper database;
-    private static SQLiteDatabase sqliteDatabase;
 
     public static final String DATABASE_NAME = "emerGo";
     public static final int VERSION = 42;
@@ -16,6 +14,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String USER_TABLE = "User";
     public static final String DROP_TABLE_USER = "DROP TABLE IF EXISTS" + USER_TABLE;
     private static final String HEALTHUNIT_TABLE = "[HealthUnit]";
+
     //User data
     public static final String NAMEUSER = "[nameUser]";
     public static final String BIRTHDAYUSER = "[birthdayUser]";
@@ -37,7 +36,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String CITY = "[city]";
 
     public static final String CREATE_USER = "CREATE TABLE " + USER_TABLE + " (" +
-            USER_ID + "INTEGER PRIMARY KEY AUTO INCREMENT," +
+            USER_ID + "INTEGER PRIMARY KEY," +
             NAMEUSER + " VARCHAR(42), "+
             BIRTHDAYUSER + " VARCHAR(10), "+
             TYPEBLOODUSER+ " VARCHAR(3), "+
@@ -85,6 +84,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(SEROPOSITIVEUSER,seropositive);
 
         long result = database.insert(USER_TABLE,null,contentValues);
+        database.close();
         if(result == -1){
             return false;
         }else {
@@ -104,6 +104,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(SEROPOSITIVEUSER,seropositive);
 
         database.update(USER_TABLE, contentValues, "[IDUser] = ? ",new String[]{id});
+        database.close();
         return true;
     }
     public Cursor getUser(){
