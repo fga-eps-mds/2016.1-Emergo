@@ -29,12 +29,9 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.0.0-alpha2'
-    compile 'com.google.android.gms:play-services:8.4.0'
-    compile 'com.google.android.gms:play-services-ads:8.4.0'
-    compile 'com.google.android.gms:play-services-identity:8.4.0'
-    compile 'com.google.android.gms:play-services-gcm:8.4.0'
-    compile 'com.google.android.gms:play-services:8.4.0'
     compile 'com.google.android.gms:play-services-maps:8.4.0'
     compile 'com.firebase:firebase-client-android:2.5.2+'
-    compile 'com.google.android.gms:play-services:8.4.0'
+    compile 'com.github.satyan:sugar:1.4'
+    compile 'org.osmdroid:osmdroid-android:5.1@aar'
+    compile 'org.slf4j:slf4j-simple:1.6.1'
 }

@@ -75,7 +75,7 @@ public class HealthUnitAdapter extends ArrayAdapter<HealthUnit> {
         convertView = LayoutInflater.from(this.context).inflate(R.layout.item, null);
 
         TextView textView = (TextView) convertView.findViewById(R.id.distanceText);
-        textView.setText((CharSequence) hospitalPosition.getNameHospital());
+       //nai textView.setText((CharSequence) hospitalPosition.getNameHospital());
 
         setDistance(convertView, position);
 

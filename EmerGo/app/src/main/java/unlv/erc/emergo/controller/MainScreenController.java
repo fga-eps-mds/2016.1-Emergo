@@ -1,49 +1,74 @@
 package unlv.erc.emergo.controller;
 
 import android.app.Activity;
+import android.app.Service;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.firebase.client.Firebase;
-import com.google.android.gms.maps.model.LatLng;
+import com.orm.SugarContext;
 
-import java.util.ArrayList;
-
+import dao.DataAccessObject;
+import helper.GPSTracker;
 import helper.Services;
 import unlv.erc.emergo.R;
-import unlv.erc.emergo.model.HealthUnit;
 
 public class MainScreenController extends Activity {
 
     private Button goButton , fineButton;
     private Services services = new Services();
+    private DataAccessObject dataAccessObject = new DataAccessObject(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         Firebase.setAndroidContext(this);
-        services.selectHealhUnitys(services.getUserPosition());
+
+        SugarContext.init(this);
+
+        Log.i("log", "testeeeeeeeeeeeeeeeeeeee");
+        GPSTracker gps = new GPSTracker(this);
+
+        dataAccessObject.setDataOnSugar(); //New DB Handler!
+
+        Log.i("log", "FIIM ALELUIA ALELIA KAKAKAK");
+
+
+        OnClickListener goListener = new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //TO-DO!
+
+            }
+        };
+
+        OnClickListener okayListener = new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                dataAccessObject.setDataOnSugar();
+
+                Intent mapScreen = new Intent();
+                mapScreen.setClass(getBaseContext(), MapMap.class);
+                startActivity(mapScreen);
+
+            }
+        };
 
         setContentView(R.layout.main_screen);
         goButton = (Button) findViewById(R.id.buttonGo);
+        goButton.setOnClickListener(goListener);
         fineButton = (Button) findViewById(R.id.buttonOkay);
+        fineButton.setOnClickListener(okayListener);
     }
 
-    public void goClicked(View main_Screen){
-
-        Toast.makeText(this , "Função não habilitada!" , Toast.LENGTH_SHORT).show();
-    }
-
-    public void okayClicked(View main_Screen){
-
-        Intent mapScreen = new Intent();
-        mapScreen.setClass(this, MapScreenController.class);
-        startActivity(mapScreen);
-    }
 
 }

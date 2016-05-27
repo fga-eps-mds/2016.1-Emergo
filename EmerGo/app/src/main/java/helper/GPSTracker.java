@@ -28,7 +28,7 @@ public class GPSTracker extends Service implements LocationListener {
 
     public GPSTracker(Context context) {
         this.context = context;
-        getLocation();
+        //getLocation();
     }
 
     public Location getLocation() {
@@ -112,7 +112,9 @@ public class GPSTracker extends Service implements LocationListener {
 
     @Override
     public void onLocationChanged(Location location) {
-
+        this.location = location;
+        getLatitude();
+        getLongitude();
     }
 
     @Override

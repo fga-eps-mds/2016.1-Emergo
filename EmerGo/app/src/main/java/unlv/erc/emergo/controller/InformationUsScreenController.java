@@ -3,12 +3,9 @@ package unlv.erc.emergo.controller;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -81,6 +78,7 @@ public class InformationUsScreenController extends Activity {
         Toast.makeText(this , "Go clicked" , Toast.LENGTH_SHORT).show();
     }
 
+
     public void setHospInfo(ListView hospInfo) {
         this.hospInfo = hospInfo;
     }
@@ -126,3 +124,5 @@ public class InformationUsScreenController extends Activity {
         this.cep = cep;
     }
 }
+
+
