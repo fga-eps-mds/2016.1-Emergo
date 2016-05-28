@@ -11,6 +11,7 @@ public class User{
     private String seropositive;
     private String observations;
     private Integer ID;
+    
     public User(){
 
     }
@@ -28,6 +29,12 @@ public class User{
         setID(id);
     }
 
+    public User(String name, String birthday) {
+        setName(name);
+        setBirthday(birthday);
+
+    }
+
     public String getObservations() {
         return observations;
     }
@@ -35,6 +42,7 @@ public class User{
     public void setObservations(String observations) {
         this.observations = observations;
     }
+
 
     public Integer getID() {
         return ID;
