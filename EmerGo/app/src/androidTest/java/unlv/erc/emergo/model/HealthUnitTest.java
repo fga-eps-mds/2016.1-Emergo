@@ -138,6 +138,17 @@ public class HealthUnitTest extends TestCase{
         assertEquals("",healthUnit.getCity());
     }
 
+    public void testSetCityNull(){
+        HealthUnit healthUnit = new HealthUnit();
+        healthUnit.setCity("Gama");
+        boolean result = true;
+        if(healthUnit.getCity().trim() == null){
+            assertFalse(result);
+        }else{
+            assertTrue(result);
+        }
+    }
+
 
 
 }
