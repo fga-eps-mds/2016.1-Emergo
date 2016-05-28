@@ -101,5 +101,13 @@ public class HealthUnitTest extends TestCase{
         }
     }
 
+    public void testGetState(){
+        HealthUnit healthUnit = new HealthUnit();
+        String state = "Goías";
+        healthUnit.setState("Goías");
+        assertEquals(state,healthUnit.getState());
+    }
+
+
 
 }
