@@ -90,5 +90,19 @@ public class UserTest extends TestCase {
         }
     }
 
+    // tests for allergies
+
+    public void testSetAllergyLowerFour(){
+        User user = new User();
+        final int MINIMUM = 4;
+        user.setAllergy("Camarão");
+        boolean result = true;
+        if(user.getAllergy().trim().length() < MINIMUM){
+            assertFalse(result);
+        }else{
+            assertTrue(result);
+        }
+    }
+
 
 }
