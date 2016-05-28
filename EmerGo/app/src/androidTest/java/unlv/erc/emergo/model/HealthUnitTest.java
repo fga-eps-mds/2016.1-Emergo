@@ -84,4 +84,11 @@ public class HealthUnitTest extends TestCase{
         assertEquals(district,healthUnit.getDistrict());
     }
 
+    public void testSetDistrictEmpty(){
+        HealthUnit healthUnit = new HealthUnit();
+        healthUnit.setDistrict("");
+        assertEquals("",healthUnit.getDistrict());
+    }
+
+
 }
