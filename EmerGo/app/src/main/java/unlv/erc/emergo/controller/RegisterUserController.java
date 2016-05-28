@@ -81,9 +81,6 @@ public class RegisterUserController extends Activity {
         Cursor result = myDatabase.getUser();
         boolean sucess = true;
         if(result.getCount() == 0){
-            showMessageDialog("Espaços Vazios!","Preencha os campos acima para concluir o cadastro");
-            return;
-        }else {
             nameUser = checksName(fullName.getText().toString());
             birthdayUser = birthday.getText().toString();
             typeBloodUser = checkTypeBlood(typeBlood.getSelectedItem().toString());
@@ -99,6 +96,8 @@ public class RegisterUserController extends Activity {
             } else {
                 showMessage("Usuário Não Cadastrado! Tente Novamente");
             }
+        }else {
+            showMessageDialog("Erro!","Não é possível cadastrar mais uma ficha médica");
         }
     }
 
