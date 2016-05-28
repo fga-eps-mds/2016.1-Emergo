@@ -9,9 +9,7 @@ import org.osmdroid.DefaultResourceProxyImpl;
 
 import unlv.erc.emergo.R;
 
-/**
- * Created by leonardo on 28/05/16.
- */
+
 public class CustomResourceProxy extends DefaultResourceProxyImpl {
 
     private final Context mContext;
