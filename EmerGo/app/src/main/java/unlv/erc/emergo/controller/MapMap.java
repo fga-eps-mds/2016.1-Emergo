@@ -53,7 +53,7 @@ public class MapMap extends Activity {
         setInitialZoomLevel(userLocation, map);
 
         GeoPoint geoLocation = new GeoPoint(userLocation);
-// ----------------------------------------------------------
+
 
         ArrayList<OverlayItem> items = new ArrayList<OverlayItem>
                 ();
@@ -126,7 +126,7 @@ public class MapMap extends Activity {
     private MapView setMapOnActivity() {
         MapView map = (MapView) findViewById(R.id.map);
         map.setTileSource(TileSourceFactory.MAPNIK);
-        map.setBuiltInZoomControls(true);
+        //map.setBuiltInZoomControls(true);
         map.setMultiTouchControls(true);
         return map;
     }

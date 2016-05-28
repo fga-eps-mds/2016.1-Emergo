@@ -23,7 +23,7 @@ public class CustomResourceProxy extends DefaultResourceProxyImpl {
         switch (pResId){
             case person:
                 //your image goes here!!!
-                return BitmapFactory.decodeResource(mContext.getResources(), R.drawable.person);
+                return BitmapFactory.decodeResource(mContext.getResources(), R.drawable.circular_progress_bar);
         }
         return super.getBitmap(pResId);
     }
@@ -32,7 +32,7 @@ public class CustomResourceProxy extends DefaultResourceProxyImpl {
     public Drawable getDrawable(final bitmap pResId) {
         switch (pResId){
             case person:
-                return mContext.getResources().getDrawable(R.drawable.person);
+                return mContext.getResources().getDrawable(R.drawable.circular_progress_bar);
         }
         return super.getDrawable(pResId);
     }
