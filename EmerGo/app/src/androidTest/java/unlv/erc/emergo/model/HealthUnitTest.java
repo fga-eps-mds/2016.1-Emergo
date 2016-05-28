@@ -114,6 +114,17 @@ public class HealthUnitTest extends TestCase{
         assertEquals("",healthUnit.getState());
     }
 
+    public void testSetStateNull(){
+        HealthUnit healthUnit = new HealthUnit();
+        healthUnit.setState("Goías");
+        boolean result = true;
+        if(healthUnit.getState().trim() ==  null){
+            assertFalse(true);
+        }else{
+            assertTrue(result);
+        }
+    }
+
 
 
 }
