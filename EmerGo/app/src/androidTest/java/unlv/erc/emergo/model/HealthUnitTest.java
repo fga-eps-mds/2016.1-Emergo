@@ -60,4 +60,10 @@ public class HealthUnitTest extends TestCase{
         assertEquals(adressNumber,healthUnit.getAddressNumber());
     }
 
+    public void testSetAdressNumberEmpty(){
+        HealthUnit healthUnit = new HealthUnit();
+        healthUnit.setAddressNumber("");
+        assertEquals("",healthUnit.getAddressNumber());
+    }
+
 }
