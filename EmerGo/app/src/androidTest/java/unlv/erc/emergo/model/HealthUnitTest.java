@@ -66,4 +66,15 @@ public class HealthUnitTest extends TestCase{
         assertEquals("",healthUnit.getAddressNumber());
     }
 
+    public void testSetAdressNumberNull(){
+        HealthUnit healthUnit = new HealthUnit();
+        healthUnit.setAddressNumber("05");
+        boolean result = true;
+        if(healthUnit.getAddressNumber().trim() == null){
+            assertFalse(result);
+        }else{
+            assertTrue(result);
+        }
+    }
+
 }
