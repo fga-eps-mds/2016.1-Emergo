@@ -26,6 +26,11 @@ public class User{
         setID(id);
     }
 
+    public User(String name, String birthday) {
+        setName(name);
+        setBirthday(birthday);
+    }
+
     public Integer getID() {
         return ID;
     }
