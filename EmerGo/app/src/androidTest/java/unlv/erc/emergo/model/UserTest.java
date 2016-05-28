@@ -66,5 +66,17 @@ public class UserTest extends TestCase {
         }
     }
 
+    public void testSetTypeBloodNull() {
+        User user = new User();
+
+        user.setTypeBlood("AB+");
+        boolean result = true;
+        if(user.getTypeBlood()==null){
+            assertFalse(result);
+        }else{
+            assertTrue(result);
+        }
+    }
+
 
 }
