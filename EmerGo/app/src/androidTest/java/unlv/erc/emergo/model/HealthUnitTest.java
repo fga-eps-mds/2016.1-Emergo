@@ -108,6 +108,12 @@ public class HealthUnitTest extends TestCase{
         assertEquals(state,healthUnit.getState());
     }
 
+    public void testSetStateEmpty(){
+        HealthUnit healthUnit = new HealthUnit();
+        healthUnit.setState("");
+        assertEquals("",healthUnit.getState());
+    }
+
 
 
 }
