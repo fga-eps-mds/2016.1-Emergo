@@ -9,71 +9,71 @@ public class InformationUsScreenControllerTest extends TestCase{
 
     List<String> listOfInformations = new ArrayList<String>();
 
-    public void testIfListAddTitulo(){
-        boolean resultado = true;
-        String titulo = "        Informações da Unidade de Saúde";
-        String tituloTest =  "        Informações da Unidade de Saúde";
-        listOfInformations.add(titulo);
+    public void testIfListAddTitle (){
+        boolean result = true;
+        String title = "        Informações da Unidade de Saúde";
+        String titleTest =  "        Informações da Unidade de Saúde";
+        listOfInformations.add(title);
         int tamanho = listOfInformations.size();
-        if(listOfInformations.get(tamanho -1).contentEquals(tituloTest)){
-            assertTrue(resultado);
+        if(listOfInformations.get(tamanho -1).contentEquals(titleTest)){
+            assertTrue(result);
         }else{
-            assertFalse(resultado);
+            assertFalse(result);
         }
 
     }
 
     public void testIfListAddNome(){
 
-        boolean resultado = true;
-        String nome = "  Nome: ";
-        String nomeTest =  "  Nome: ";
-        listOfInformations.add(nome);
+        boolean result = true;
+        String name = "  Nome: ";
+        String nameTest =  "  Nome: ";
+        listOfInformations.add(name);
         int tamanho = listOfInformations.size();
-        if(listOfInformations.get(tamanho -1).contentEquals(nomeTest)){
-            assertTrue(resultado);
+        if(listOfInformations.get(tamanho -1).contentEquals(nameTest)){
+            assertTrue(result);
         }else{
-            assertFalse(resultado);
+            assertFalse(result);
         }
     }
 
-    public void testIfListAddGestao(){
-        boolean resultado = true;
-        String gestao = "  Tipo de atendimento: " ;
+    public void testIfListAddManagement(){
+        boolean result = true;
+        String management = "  Tipo de atendimento: " ;
         String gestaoTest =  "  Tipo de atendimento: " ;
-        listOfInformations.add(gestao);
+        listOfInformations.add(management);
         int tamanho = listOfInformations.size();
         if(listOfInformations.get(tamanho -1).contentEquals(gestaoTest)){
-            assertTrue(resultado);
+            assertTrue(result);
         }else{
-            assertFalse(resultado);
+            assertFalse(result);
         }
 
     }
 
     public void testIfListAddUf(){
-        boolean resultado = true;
+        boolean result = true;
         String uf = "  UF: " ;
         String ufTest =  "  UF: " ;
         listOfInformations.add(uf);
         int tamanho = listOfInformations.size();
         if(listOfInformations.get(tamanho -1).contentEquals(ufTest)){
-            assertTrue(resultado);
+            assertTrue(result);
         }else{
-            assertFalse(resultado);
+            assertFalse(result);
         }
     }
 
-    public void testIfListAddMunicipio(){
-        boolean resultado = true;
-        String municipio = "  Município: " ;
-        String municipioTest =  "  Município: " ;
-        listOfInformations.add(municipio);
+    public void testIfListAddDistrict(){
+        boolean result = true;
+        String district = "  Município: " ;
+        String districtTest =  "  Município: " ;
+        listOfInformations.add(district);
         int tamanho = listOfInformations.size();
-        if(listOfInformations.get(tamanho -1).contentEquals(municipioTest)){
-            assertTrue(resultado);
+        if(listOfInformations.get(tamanho -1).contentEquals(districtTest)){
+            assertTrue(result);
         }else{
-            assertFalse(resultado);
+            assertFalse(result);
         }
 
     }
@@ -92,17 +92,16 @@ public class InformationUsScreenControllerTest extends TestCase{
 
     }
 
-    public void testIfListAddCep(){
-        boolean resultado = true;
-        String cep = "  Bairro: ";
-        String cepTest =  "  Bairro: " ;
-        listOfInformations.add(cep);
+    public void testIfListAddAddressNumber(){
+        boolean result = true;
+        String addressNumber = "  Bairro: ";
+        String adderssNumberTest =  "  Bairro: " ;
+        listOfInformations.add(addressNumber);
         int tamanho = listOfInformations.size();
-        if(listOfInformations.get(tamanho -1).contentEquals(cepTest)){
-            assertTrue(resultado);
+        if(listOfInformations.get(tamanho -1).contentEquals(adderssNumberTest)){
+            assertTrue(result);
         }else{
-            assertFalse(resultado);
+            assertFalse(result);
         }
-
     }
 }

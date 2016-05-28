@@ -169,7 +169,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Salvar"
+        android:text="Salvar Ficha Médica"
         android:id="@+id/saveButton"
         android:layout_below="@+id/hipertensionSpinner"
         android:layout_toEndOf="@+id/cardiacTextView"
@@ -181,7 +181,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Alterar"
+        android:text="Alterar Ficha Médica"
         android:id="@+id/updateButton"
         android:layout_below="@+id/saveButton"
         android:layout_alignLeft="@+id/saveButton"
@@ -190,7 +190,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Excluir"
+        android:text="Excluir Ficha Médica"
         android:id="@+id/deleteButton"
         android:layout_below="@+id/updateButton"
         android:layout_alignLeft="@+id/updateButton"
