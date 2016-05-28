@@ -17,6 +17,17 @@ public class HealthUnitTest extends TestCase{
         healthUnit.setNameHospital("");
         assertEquals("", healthUnit.getNameHospital());
     }
-    
+
+    public void testSetHealthUnitNull(){
+        HealthUnit healthUnit = new HealthUnit();
+        healthUnit.setNameHospital("Hospital Regional do Gama");
+        boolean result = true;
+        if(healthUnit.getNameHospital().trim() == null){
+            assertFalse(result);
+        }else{
+            assertTrue(result);
+        }
+    }
+
 
 }
