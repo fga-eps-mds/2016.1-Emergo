@@ -125,6 +125,13 @@ public class HealthUnitTest extends TestCase{
         }
     }
 
+    public void testGetCity(){
+        HealthUnit healthUnit = new HealthUnit();
+        String city = "Gama";
+        healthUnit.setCity("Gama");
+        assertEquals(city,healthUnit.getCity());
+    }
+
 
 
 }
