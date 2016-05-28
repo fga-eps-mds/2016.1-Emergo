@@ -78,5 +78,17 @@ public class UserTest extends TestCase {
         }
     }
 
+    public void testSetTypeBloodLowerOrEqualsTwo(){
+        User user = new User();
+        final int MINIMUM = 2;
+        user.setTypeBlood("A-");
+        boolean result = true;
+        if(user.getTypeBlood().length()<=MINIMUM){
+            assertFalse(result);
+        }else{
+            assertTrue(result);
+        }
+    }
+
 
 }
