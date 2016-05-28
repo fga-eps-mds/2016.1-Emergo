@@ -42,4 +42,15 @@ public class HealthUnitTest extends TestCase{
         assertEquals("",healthUnit.getUnitType());
     }
 
+    public void testSetUnitTypeNull(){
+        HealthUnit healthUnit = new HealthUnit();
+        healthUnit.setUnitType("Unidade Básica");
+        boolean result = true;
+        if(healthUnit.getUnitType().trim() == null){
+            assertFalse(result);
+        }else{
+            assertTrue(result);
+        }
+    }
+
 }
