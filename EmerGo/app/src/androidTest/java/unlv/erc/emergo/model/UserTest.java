@@ -104,5 +104,17 @@ public class UserTest extends TestCase {
         }
     }
 
+    public void testSetAllergyBiggerTwoHundred() throws ParseException {
+        User user = new User();
+        user.setAllergy("Alergia");
+        final int MAXIMUM = 200;
+        boolean result = true;
+        if(user.getAllergy().trim().length()>MAXIMUM){
+            assertFalse(result);
+        }else{
+            assertTrue(result);
+        }
+    }
+
 
 }
