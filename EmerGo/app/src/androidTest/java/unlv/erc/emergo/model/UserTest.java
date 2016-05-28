@@ -38,6 +38,18 @@ public class UserTest extends TestCase {
         }
     }
 
+    public void testSetNameMaximumSize(){
+        User user = new User();
+        final int MAXIMUM = 42;
+        user.setName("Pedro Alvares Cabral de Valentina");
+        boolean result = true;
+        if(user.getName().trim().length()>MAXIMUM){
+            assertFalse(result);
+        }else{
+            assertTrue(result);
+        }
+    }
+
 
 
     // tests for typeBlood
