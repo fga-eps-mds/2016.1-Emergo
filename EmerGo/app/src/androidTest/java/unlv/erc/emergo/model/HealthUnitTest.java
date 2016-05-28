@@ -53,20 +53,20 @@ public class HealthUnitTest extends TestCase{
         }
     }
 
-    public void testGetAdressNumber(){
+    public void testGetAddressNumber(){
         HealthUnit healthUnit = new HealthUnit();
         String adressNumber = "05";
         healthUnit.setAddressNumber("05");
         assertEquals(adressNumber,healthUnit.getAddressNumber());
     }
 
-    public void testSetAdressNumberEmpty(){
+    public void testSetAddressNumberEmpty(){
         HealthUnit healthUnit = new HealthUnit();
         healthUnit.setAddressNumber("");
         assertEquals("",healthUnit.getAddressNumber());
     }
 
-    public void testSetAdressNumberNull(){
+    public void testSetAddressNumberNull(){
         HealthUnit healthUnit = new HealthUnit();
         healthUnit.setAddressNumber("05");
         boolean result = true;
@@ -75,6 +75,13 @@ public class HealthUnitTest extends TestCase{
         }else{
             assertTrue(result);
         }
+    }
+
+    public void testGetDistrict(){
+        HealthUnit healthUnit = new HealthUnit();
+        String district = "Distrito Federal";
+        healthUnit.setDistrict("Distrito Federal");
+        assertEquals(district,healthUnit.getDistrict());
     }
 
 }
