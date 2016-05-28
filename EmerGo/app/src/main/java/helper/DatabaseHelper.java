@@ -23,6 +23,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DIABETICUSER = "[diabeticUser]";
     public static final String HYPERTENSIONUSER = "[hipertensionUser]";
     public static final String SEROPOSITIVEUSER = "[seropositiveUser]";
+    public static final String OBSERVATIONS = "[observationsUser]";
     public static final String USER_ID = "[IDUser]";
 
     //HealthUnit data
@@ -39,11 +40,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             USER_ID + "INTEGER PRIMARY KEY," +
             NAMEUSER + " VARCHAR(42), "+
             BIRTHDAYUSER + " VARCHAR(10), "+
-            TYPEBLOODUSER+ " VARCHAR(3), "+
-            CARDIACUSER + " VARCHAR(4), "+
-            DIABETICUSER + " VARCHAR(4), "+
-            HYPERTENSIONUSER + "VARCHAR(4), "+
-            SEROPOSITIVEUSER + "VARCHAR(4)); ";
+            TYPEBLOODUSER+ " VARCHAR(8), "+
+            CARDIACUSER + " VARCHAR(8), "+
+            DIABETICUSER + " VARCHAR(8), "+
+            HYPERTENSIONUSER + "VARCHAR(8)," +
+            SEROPOSITIVEUSER + "VARCHAR(8),"+
+            OBSERVATIONS + "VARCHAR(4242)); ";
 
     private static final String CREATE_HEALTHUNIT = "CREATE TABLE " + HEALTHUNIT_TABLE + " (" +
             LATITUDE + "FLOAT, " +
@@ -71,7 +73,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public boolean insertUser(String id,String name,String birthday,String typeBlood,String cardiac,
-                              String diabetic,String hypertension,String seropositive){
+                              String diabetic,String hypertension,String seropositive,
+                              String observations){
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(USER_ID, id);
@@ -82,6 +85,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(DIABETICUSER,diabetic);
         contentValues.put(HYPERTENSIONUSER,hypertension);
         contentValues.put(SEROPOSITIVEUSER,seropositive);
+        contentValues.put(OBSERVATIONS,observations);
 
         long result = database.insert(USER_TABLE,null,contentValues);
         database.close();
@@ -92,7 +96,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
     public boolean updateUser(String id,String nameUser,String birthday,String typeBlood,String cardiac,
-                              String diabetic,String hypertension,String seropositive) {
+                              String diabetic,String hypertension,String seropositive,String observation) {
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(NAMEUSER, nameUser);
@@ -102,6 +106,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(DIABETICUSER,diabetic);
         contentValues.put(HYPERTENSIONUSER,hypertension);
         contentValues.put(SEROPOSITIVEUSER,seropositive);
+        contentValues.put(OBSERVATIONS,observation);
 
         database.update(USER_TABLE, contentValues, "[IDUser] = ? ",new String[]{id});
         database.close();

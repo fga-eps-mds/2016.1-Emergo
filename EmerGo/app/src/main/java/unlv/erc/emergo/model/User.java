@@ -9,13 +9,14 @@ public class User{
     private String diabetic;
     private String hypertension;
     private String seropositive;
+    private String observations;
     private Integer ID;
     public User(){
 
     }
 
     public User(String name,String birthday,String typeBlood,String cardiac,String diabetic,
-                String hypertension,String seropositive,Integer id){
+                String hypertension,String seropositive,String observations,Integer id){
         setName(name);
         setBirthday(birthday);
         setTypeBlood(typeBlood);
@@ -23,7 +24,16 @@ public class User{
         setDiabetic(diabetic);
         setHypertension(hypertension);
         setSeropositive(seropositive);
+        setObservations(observations);
         setID(id);
+    }
+
+    public String getObservations() {
+        return observations;
+    }
+
+    public void setObservations(String observations) {
+        this.observations = observations;
     }
 
     public Integer getID() {

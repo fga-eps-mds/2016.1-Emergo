@@ -18,6 +18,7 @@ import unlv.erc.emergo.R;
 public class RegisterUserController extends Activity {
     private EditText fullName;
     private EditText birthday;
+    private EditText observations;
     private Spinner typeBlood;
     private Spinner cardiac;
     private Spinner diabect;
@@ -30,6 +31,7 @@ public class RegisterUserController extends Activity {
     private String birthdayUser;
     private String typeBloodUser;
     private String cardiacUser;
+    private String observationsUser;
     private String diabeticUser;
     private String hypertensionUser;
     private String seropositiveUser;
@@ -46,6 +48,7 @@ public class RegisterUserController extends Activity {
 
         fullName = (EditText) findViewById(R.id.fullNameEditText);
         birthday = (EditText) findViewById(R.id.birthdayEditText);
+        observations = (EditText) findViewById(R.id.observationsEditText);
         typeBlood = (Spinner) findViewById(R.id.typeBloodSpinner);
         birthday.addTextChangedListener(MaskHelper.insert("##/##/####", birthday));
         cardiac = (Spinner) findViewById(R.id.cardiacSpinner);
@@ -81,16 +84,17 @@ public class RegisterUserController extends Activity {
         Cursor result = myDatabase.getUser();
         boolean sucess = true;
         if(result.getCount() == 0){
-            nameUser = checksName(fullName.getText().toString());
+            nameUser = fullName.getText().toString();
             birthdayUser = birthday.getText().toString();
-            typeBloodUser = checkTypeBlood(typeBlood.getSelectedItem().toString());
-            cardiacUser = checkCardiac(cardiac.getSelectedItem().toString());
-            diabeticUser = checkDiabetic(diabect.getSelectedItem().toString());
-            hypertensionUser = checkHipertension(hypertension.getSelectedItem().toString());
-            seropositiveUser = checkSeropositive(seropositive.getSelectedItem().toString());
+            typeBloodUser = typeBlood.getSelectedItem().toString();
+            observationsUser = observations.getText().toString();
+            cardiacUser = cardiac.getSelectedItem().toString();
+            diabeticUser = diabect.getSelectedItem().toString();
+            hypertensionUser = hypertension.getSelectedItem().toString();
+            seropositiveUser = seropositive.getSelectedItem().toString();
 
             sucess = myDatabase.insertUser(id, nameUser, birthdayUser, typeBloodUser, cardiacUser, diabeticUser,
-                    hypertensionUser, seropositiveUser);
+                    hypertensionUser, seropositiveUser,observationsUser);
             if (sucess == true) {
                 showMessage("Usuário Cadastrado Com Sucesso!");
             } else {
@@ -110,16 +114,17 @@ public class RegisterUserController extends Activity {
             showMessageDialog("Ficha Médica Vazia!","Cadastre uma ficha médica antes");
             return;
         }else{
-            nameUser = checksName(fullName.getText().toString());
+            nameUser = fullName.getText().toString();
             birthdayUser = birthday.getText().toString();
-            typeBloodUser = checkTypeBlood(typeBlood.getSelectedItem().toString());
-            cardiacUser = checkCardiac(cardiac.getSelectedItem().toString());
-            diabeticUser = checkDiabetic(diabect.getSelectedItem().toString());
-            hypertensionUser = checkHipertension(hypertension.getSelectedItem().toString());
-            seropositiveUser = checkSeropositive(seropositive.getSelectedItem().toString());
+            typeBloodUser = typeBlood.getSelectedItem().toString();
+            observationsUser = observations.getText().toString();
+            cardiacUser = cardiac.getSelectedItem().toString();
+            diabeticUser = diabect.getSelectedItem().toString();
+            hypertensionUser = hypertension.getSelectedItem().toString();
+            seropositiveUser = seropositive.getSelectedItem().toString();
 
             sucess = myDatabase.updateUser(id, nameUser, birthdayUser, typeBloodUser, cardiacUser, typeBloodUser,
-                    hypertensionUser, seropositiveUser);
+                    hypertensionUser, seropositiveUser,observationsUser);
             if(sucess == true){
                 showMessage("Alteração Realizada Com Sucesso!");
             }else{
@@ -146,51 +151,5 @@ public class RegisterUserController extends Activity {
         builder.setTitle(title);
         builder.setMessage(message);
         builder.show();
-    }
-    public String checksName(String nameUser){
-        final int MINIMUM = 3;
-        if(nameUser.isEmpty()){
-            showMessage("Nome Vazio! Informe seu nome completo");
-            fullName.requestFocus();
-        }else if(nameUser.trim().length()<MINIMUM){
-            showMessage("Informe um nome com no mínimo 3 caracteres");
-            fullName.requestFocus();
-        }
-        return nameUser;
-    }
-    public String checkTypeBlood(String typeBloodUser){
-        if(typeBloodUser.isEmpty()){
-            showMessage("Tipo Sanguíneo vazio! Informe o seu tipo sanguíneo");
-            typeBlood.requestFocus();
-        }
-        return typeBloodUser;
-    }
-    public String checkCardiac(String cardiacUser){
-        if(cardiacUser.isEmpty()){
-            showMessage("Você é cardiaco? Informe se sim ou não");
-            cardiac.requestFocus();
-        }
-        return cardiacUser;
-    }
-    public String checkHipertension(String hypertensionUser){
-        if(hypertensionUser.isEmpty()){
-            showMessage("Você é hipertenso? Informe se sim ou não");
-            hypertension.requestFocus();
-        }
-        return hypertensionUser;
-    }
-    public String checkSeropositive(String seropositiveUser){
-        if(seropositiveUser.isEmpty()){
-            showMessage("Você possui soropositivo? Informe se sim ou não");
-            hypertension.requestFocus();
-        }
-        return seropositiveUser;
-    }
-    public String checkDiabetic(String diabeticUser){
-        if(diabeticUser.isEmpty()){
-            showMessage("Você é diabetico? Informe se sim ou não");
-            diabect.requestFocus();
-        }
-        return diabeticUser;
     }
 }
