@@ -4,6 +4,7 @@ package unlv.erc.emergo.controller;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import org.osmdroid.ResourceProxy;
 import org.osmdroid.api.IMapController;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.util.ResourceProxyImpl;
+import org.osmdroid.views.MapController;
 import org.osmdroid.views.MapView;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.views.overlay.ItemizedIconOverlay;
@@ -25,6 +27,7 @@ import org.osmdroid.views.overlay.ItemizedOverlay;
 import org.osmdroid.views.overlay.ItemizedOverlayWithFocus;
 import org.osmdroid.views.overlay.Overlay;
 import org.osmdroid.views.overlay.OverlayItem;
+import org.osmdroid.views.overlay.PathOverlay;
 import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider;
 import org.osmdroid.views.overlay.mylocation.IMyLocationProvider;
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
@@ -65,6 +68,9 @@ public class MapMap extends Activity {
         addUsOnArray(items , HealthUnitController.getClosestsUs());
 
         setOverlayItemsOnMap(map, items);
+
+        setRoute(map,new GeoPoint(userLocation),new GeoPoint(HealthUnitController.getClosestsUs().get(0).getLatitude(),
+                                                             HealthUnitController.getClosestsUs().get(0).getLongitude()));
 
     }
 
@@ -129,6 +135,14 @@ public class MapMap extends Activity {
         //map.setBuiltInZoomControls(true);
         map.setMultiTouchControls(true);
         return map;
+    }
+
+    public void setRoute(MapView mMapView, GeoPoint userPosition, GeoPoint unitPosition){
+        mMapView.getController().setCenter(userPosition);
+        PathOverlay myPath = new PathOverlay(Color.RED, this);
+        myPath.addPoint(userPosition);
+        myPath.addPoint(unitPosition);
+        mMapView.getOverlays().add(myPath);
     }
 
     public void goClicked(View map_screen) {
