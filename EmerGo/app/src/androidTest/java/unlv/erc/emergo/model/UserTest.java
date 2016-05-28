@@ -26,6 +26,20 @@ public class UserTest extends TestCase {
         assertEquals("", user.getName());
     }
 
+    public void testSetNameLowerThree(){
+        User user = new User();
+        user.setName("Ana");
+        final int MINIMUM = 3;
+        boolean result = true;
+        if(user.getName().trim().length()<MINIMUM){
+            assertFalse(result);
+        }else{
+            assertTrue(result);
+        }
+    }
+
+
+
     // tests for typeBlood
 
     public void testSetTypeBloodBiggerThree(){
