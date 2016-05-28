@@ -53,4 +53,11 @@ public class HealthUnitTest extends TestCase{
         }
     }
 
+    public void testGetAdressNumber(){
+        HealthUnit healthUnit = new HealthUnit();
+        String adressNumber = "05";
+        healthUnit.setAddressNumber("05");
+        assertEquals(adressNumber,healthUnit.getAddressNumber());
+    }
+
 }
