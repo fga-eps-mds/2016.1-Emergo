@@ -36,5 +36,10 @@ public class HealthUnitTest extends TestCase{
         assertEquals(unitType,healthUnit.getUnitType());
     }
 
+    public void testSetUnitTypeEmpty(){
+        HealthUnit healthUnit = new HealthUnit();
+        healthUnit.setUnitType("");
+        assertEquals("",healthUnit.getUnitType());
+    }
 
 }
