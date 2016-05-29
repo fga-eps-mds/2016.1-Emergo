@@ -246,7 +246,7 @@
         android:id="@+id/updateButton"
         android:textSize="13dp"
         android:clickable="true"
-        android:layout_below="@+id/observationsEditText"
+        android:layout_alignTop="@+id/saveButton"
         android:layout_toLeftOf="@+id/soropositiveSpinner"
         android:layout_toStartOf="@+id/soropositiveSpinner" />
 

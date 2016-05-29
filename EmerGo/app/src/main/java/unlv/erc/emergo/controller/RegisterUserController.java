@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import helper.DatabaseHelper;
+import dao.UserDao;
 import helper.MaskHelper;
 import unlv.erc.emergo.R;
 
@@ -38,14 +38,14 @@ public class RegisterUserController extends Activity {
     private String seropositiveUser;
     private String id = "1";
 
-    DatabaseHelper myDatabase;
+    UserDao myDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_user);
 
-        myDatabase = new DatabaseHelper(this);
+        myDatabase = new UserDao(this);
 
         fullName = (EditText) findViewById(R.id.fullNameEditText);
         birthday = (EditText) findViewById(R.id.birthdayEditText);
@@ -90,7 +90,7 @@ public class RegisterUserController extends Activity {
 
                 birthdayUser = birthday.getText().toString();
                 observationsUser = observations.getText().toString();
-                nameUser = String.valueOf(checksName(fullName.getText().toString()));
+                nameUser = fullName.getText().toString();
                 typeBloodUser = typeBlood.getSelectedItem().toString();
                 cardiacUser = cardiac.getSelectedItem().toString();
                 diabeticUser = diabect.getSelectedItem().toString();
@@ -118,21 +118,23 @@ public class RegisterUserController extends Activity {
         if(result.getCount() == 0){
             showMessageDialog("Ficha Médica Vazia!","Cadastre uma ficha médica antes");
             return;
-        }else{
-            nameUser = fullName.getText().toString();
+        }else
+            if(checksName(fullName.getText().toString()) == false){
+
             birthdayUser = birthday.getText().toString();
-            typeBloodUser = typeBlood.getSelectedItem().toString();
             observationsUser = observations.getText().toString();
+            nameUser = fullName.getText().toString();
+            typeBloodUser = typeBlood.getSelectedItem().toString();
             cardiacUser = cardiac.getSelectedItem().toString();
             diabeticUser = diabect.getSelectedItem().toString();
-            hypertensionUser = hypertension.getSelectedItem().toString();
+            hypertensionUser = diabect.getSelectedItem().toString();
             seropositiveUser = seropositive.getSelectedItem().toString();
 
-            sucess = myDatabase.updateUser(id, nameUser, birthdayUser, typeBloodUser, cardiacUser, typeBloodUser,
+            sucess = myDatabase.updateUser(id, nameUser, birthdayUser, typeBloodUser, cardiacUser, diabeticUser,
                     hypertensionUser, seropositiveUser,observationsUser);
-            if(sucess == true){
+            if (sucess == true) {
                 showMessage("Alteração Realizada Com Sucesso!");
-            }else{
+            } else {
                 showMessage("Não foi possível fazer a alteração, tente novamente");
             }
         }
@@ -162,11 +164,30 @@ public class RegisterUserController extends Activity {
         if(nameUser.isEmpty()){
             showMessage("Nome Vazio! Informe seu nome");
             return true;
-        }while(nameUser.trim().length()<MINIMUM){
+        }if(nameUser.trim().length()<MINIMUM){
             showMessage("Informe um nome com no mínimo 3 caracteres");
             fullName.requestFocus();
             return true;
         }
+        return false;
+    }
+    public boolean checkBirthday(String birthdayUser){
+        String dayUser = birthdayUser.substring(0,10);
+        int day = Integer.parseInt(dayUser);
+        int mouth = Integer.parseInt(birthdayUser.substring(2,4));
+        int year = Integer.parseInt(birthdayUser.substring(4,8));
+
+        if(day < 1 || day > 31){
+            showMessage("Dia inválido! Informe um dia válido entre 1 e 31");
+            return true;
+        }else if(mouth < 1 || mouth > 12){
+            showMessage("Mês inválido! Informe um mês válido entre 1 e 12");
+            return true;
+        }else if(year < 1942 || year > 2016){
+            showMessage("Ano inválido! Informe um ano válido entre 1942 e o ano atual");
+            return true;
+        }
+        birthdayUser = day + "/" + mouth + "/" + year;
         return false;
     }
     public void goClicked(View map_screen){

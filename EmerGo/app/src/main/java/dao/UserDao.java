@@ -1,4 +1,4 @@
-package helper;
+package dao;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,14 +6,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class DatabaseHelper extends SQLiteOpenHelper {
+public class UserDao extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "emerGo";
     public static final int VERSION = 42;
 
     public static final String USER_TABLE = "User";
     public static final String DROP_TABLE_USER = "DROP TABLE IF EXISTS" + USER_TABLE;
-    private static final String HEALTHUNIT_TABLE = "[HealthUnit]";
 
     //User data
     public static final String NAMEUSER = "[nameUser]";
@@ -26,16 +25,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String OBSERVATIONS = "[observationsUser]";
     public static final String USER_ID = "[IDUser]";
 
-    //HealthUnit data
-    private static final String LATITUDE = "[latitude]";
-    private static final String LONGITUDE = "[longitude]";
-    private static final String NAMEHOSPITAL = "[nameHospital]";
-    private static final String UNITTYPE = "[unitType]";
-    private static final String ADDRESSNUMBER = "[addressNumber]";
-    private static final String DISTRICT = "[district]";
-    private static final String STATE = "[state]";
-    private static final String CITY = "[city]";
-
     public static final String CREATE_USER = "CREATE TABLE " + USER_TABLE + " (" +
             USER_ID + "INTEGER PRIMARY KEY," +
             NAMEUSER + " VARCHAR(42), "+
@@ -45,19 +34,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             DIABETICUSER + " VARCHAR(8), "+
             HYPERTENSIONUSER + "VARCHAR(8)," +
             SEROPOSITIVEUSER + "VARCHAR(8),"+
-            OBSERVATIONS + "VARCHAR(4242)); ";
+            OBSERVATIONS + "VARCHAR(442)); ";
 
-    private static final String CREATE_HEALTHUNIT = "CREATE TABLE " + HEALTHUNIT_TABLE + " (" +
-            LATITUDE + "FLOAT, " +
-            LONGITUDE + "FLOAT, "+
-            NAMEHOSPITAL + "VARCHAR (70), " +
-            UNITTYPE + "VARCHAR(42), " +
-            ADDRESSNUMBER + "VARCHAR(42), "+
-            DISTRICT + "VARCHAR(42), " +
-            STATE + "VARCHAR(42), " +
-            CITY + "VARCHAR(42)); ";
-
-    public DatabaseHelper(Context context) {
+    public UserDao(Context context) {
         super(context, DATABASE_NAME, null, VERSION);
     }
 
