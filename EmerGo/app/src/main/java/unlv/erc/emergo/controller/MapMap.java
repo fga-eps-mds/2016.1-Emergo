@@ -58,7 +58,7 @@ public class MapMap extends Activity {
 
         setOverlayItemsOnMap(map, items);
 
-        setRoute(map,new GeoPoint(userLocation),new GeoPoint(HealthUnitController.getClosestsUs().get(0).getLatitude(),
+        setRoute(map,geoLocation,new GeoPoint(HealthUnitController.getClosestsUs().get(0).getLatitude(),
                                                              HealthUnitController.getClosestsUs().get(0).getLongitude()));
 
     }
@@ -141,6 +141,7 @@ public class MapMap extends Activity {
         Intent listOfHealth = new Intent();
         listOfHealth.setClass(this , ListOfHealthUnitsController.class);
         startActivity(listOfHealth);
+        finish();
     }
 
     public void openMap(View mapScreen){

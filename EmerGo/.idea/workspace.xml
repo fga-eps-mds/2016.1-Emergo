@@ -41,11 +41,11 @@
       <file leaf-file-name="MapMap.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/unlv/erc/emergo/controller/MapMap.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6938776">
-              <caret line="153" column="1" selection-start-line="153" selection-start-column="1" selection-end-line="153" selection-end-column="1" />
+            <state vertical-scroll-proportion="4.6356587">
+              <caret line="129" column="54" selection-start-line="129" selection-start-column="54" selection-end-line="129" selection-end-column="54" />
               <folding>
                 <element signature="e#1454#1467#0" expanded="true" />
-                <element signature="e#3027#3040#0" expanded="true" />
+                <element signature="e#3012#3025#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1934,11 +1934,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/unlv/erc/emergo/controller/MapMap.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/list_of_health_unit.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/information_us_screen.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/unlv/erc/emergo/controller/InformationUsScreenController.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/unlv/erc/emergo/controller/ListOfHealthUnitsController.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/unlv/erc/emergo/controller/MapMap.java" />
       </list>
     </option>
   </component>
@@ -2408,7 +2408,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12850468" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3271028" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -2521,11 +2521,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/unlv/erc/emergo/controller/MapMap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6938776">
-          <caret line="153" column="1" selection-start-line="153" selection-start-column="1" selection-end-line="153" selection-end-column="1" />
+        <state vertical-scroll-proportion="4.6356587">
+          <caret line="129" column="54" selection-start-line="129" selection-start-column="54" selection-end-line="129" selection-end-column="54" />
           <folding>
             <element signature="e#1454#1467#0" expanded="true" />
-            <element signature="e#3027#3040#0" expanded="true" />
+            <element signature="e#3012#3025#0" expanded="true" />
           </folding>
         </state>
       </provider>
