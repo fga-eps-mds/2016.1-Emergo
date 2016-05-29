@@ -20,29 +20,29 @@
     
     <string name="cardiac_prompt">Cardiaco</string>
     <string-array name="cardiac">
-        <item>Sim</item>
         <item>Não</item>
+        <item>Sim</item>
         <item>Não Sei</item>
     </string-array>
 
     <string name="diabetic_prompt">Diabetico</string>
     <string-array name="diabetic">
-        <item>Sim</item>
         <item>Não</item>
+        <item>Sim</item>
         <item>Não Sei</item>
     </string-array>
 
     <string name="hypertension_prompt">Hipertenso</string>
     <string-array name="hypertension">
-        <item>Sim</item>
         <item>Não</item>
+        <item>Sim</item>
         <item>Não Sei</item>
     </string-array>
 
     <string name="seropositive_prompt">Soropositivo</string>
     <string-array name="seropositive">
-        <item>Sim</item>
         <item>Não</item>
+        <item>Sim</item>
         <item>Não Sei</item>
     </string-array>
 </resources>

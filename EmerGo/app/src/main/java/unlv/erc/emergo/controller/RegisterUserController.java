@@ -1,6 +1,7 @@
 package unlv.erc.emergo.controller;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -84,27 +85,31 @@ public class RegisterUserController extends Activity {
         Cursor result = myDatabase.getUser();
         boolean sucess = true;
         if(result.getCount() == 0){
-            nameUser = fullName.getText().toString();
-            birthdayUser = birthday.getText().toString();
-            typeBloodUser = typeBlood.getSelectedItem().toString();
-            observationsUser = observations.getText().toString();
-            cardiacUser = cardiac.getSelectedItem().toString();
-            diabeticUser = diabect.getSelectedItem().toString();
-            hypertensionUser = hypertension.getSelectedItem().toString();
-            seropositiveUser = seropositive.getSelectedItem().toString();
 
-            sucess = myDatabase.insertUser(id, nameUser, birthdayUser, typeBloodUser, cardiacUser, diabeticUser,
-                    hypertensionUser, seropositiveUser,observationsUser);
-            if (sucess == true) {
-                showMessage("Usuário Cadastrado Com Sucesso!");
-            } else {
-                showMessage("Usuário Não Cadastrado! Tente Novamente");
+            if(checksName(fullName.getText().toString()) == false){
+
+                birthdayUser = birthday.getText().toString();
+                observationsUser = observations.getText().toString();
+                nameUser = String.valueOf(checksName(fullName.getText().toString()));
+                typeBloodUser = typeBlood.getSelectedItem().toString();
+                cardiacUser = cardiac.getSelectedItem().toString();
+                diabeticUser = diabect.getSelectedItem().toString();
+                hypertensionUser = diabect.getSelectedItem().toString();
+                seropositiveUser = seropositive.getSelectedItem().toString();
+
+                sucess = myDatabase.insertUser(id, nameUser, birthdayUser, typeBloodUser, cardiacUser, diabeticUser,
+                        hypertensionUser, seropositiveUser,observationsUser);
+                if (sucess == true) {
+                    showMessage("Usuário Cadastrado Com Sucesso!");
+                } else {
+                    showMessage("Usuário Não Cadastrado! Tente Novamente");
+                }
             }
+
         }else {
             showMessageDialog("Erro!","Não é possível cadastrar mais uma ficha médica");
         }
     }
-
 
     public void updateUser(){
 
@@ -151,5 +156,45 @@ public class RegisterUserController extends Activity {
         builder.setTitle(title);
         builder.setMessage(message);
         builder.show();
+    }
+    public boolean checksName(String nameUser){
+        final int MINIMUM = 3;
+        if(nameUser.isEmpty()){
+            showMessage("Nome Vazio! Informe seu nome");
+            return true;
+        }while(nameUser.trim().length()<MINIMUM){
+            showMessage("Informe um nome com no mínimo 3 caracteres");
+            fullName.requestFocus();
+            return true;
+        }
+        return false;
+    }
+    public void goClicked(View map_screen){
+        Toast.makeText(this , "Função não habilitada!" , Toast.LENGTH_SHORT).show();
+        Intent routeActivity = new Intent();
+        routeActivity.setClass(this, RouteActivity.class);
+        startActivity(routeActivity);
+        finish();
+    }
+
+    public void listMapsImageClicked(View map_screen){
+        Intent listOfHealth = new Intent();
+        listOfHealth.setClass(this , ListOfHealthUnitsController.class);
+        startActivity(listOfHealth);
+        finish();
+    }
+
+    public void openConfig(View map_screen){
+        Intent config = new Intent();
+        config.setClass(this , RegisterUserController.class);
+        startActivity(config);
+        finish();
+    }
+
+    public void openMap(View mapScreen){
+        Intent mapActivity = new Intent();
+        mapActivity.setClass(this, MapScreenController.class);
+        startActivity(mapActivity);
+        finish();
     }
 }
