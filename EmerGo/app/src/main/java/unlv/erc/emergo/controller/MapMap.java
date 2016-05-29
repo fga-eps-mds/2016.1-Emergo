@@ -3,38 +3,24 @@ package unlv.erc.emergo.controller;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import org.osmdroid.ResourceProxy;
 import org.osmdroid.api.IMapController;
 import org.osmdroid.util.GeoPoint;
-import org.osmdroid.util.ResourceProxyImpl;
-import org.osmdroid.views.MapController;
 import org.osmdroid.views.MapView;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.views.overlay.ItemizedIconOverlay;
-import org.osmdroid.views.overlay.ItemizedOverlay;
 import org.osmdroid.views.overlay.ItemizedOverlayWithFocus;
-import org.osmdroid.views.overlay.Overlay;
 import org.osmdroid.views.overlay.OverlayItem;
 import org.osmdroid.views.overlay.PathOverlay;
-import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider;
-import org.osmdroid.views.overlay.mylocation.IMyLocationProvider;
-import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Map;
 
 import helper.GPSTracker;
 import unlv.erc.emergo.R;
@@ -42,24 +28,27 @@ import unlv.erc.emergo.model.HealthUnit;
 
 public class MapMap extends Activity {
 
+
     public static final int ZOOM_LEVEL = 13;
+    GPSTracker gps = new GPSTracker(this);
 
     @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mapmap);
 
-        GPSTracker gps = new GPSTracker(this);
+
         Location userLocation = gps.getLocation();
 
         MapView map = setMapOnActivity();
 
         setInitialZoomLevel(userLocation, map);
 
+        Drawable marker = getResources().getDrawable(R.drawable.my_location);
+
         GeoPoint geoLocation = new GeoPoint(userLocation);
 
 
-        ArrayList<OverlayItem> items = new ArrayList<OverlayItem>
-                ();
+        ArrayList<OverlayItem> items = new ArrayList<OverlayItem> ();
 
         OverlayItem userOverLayItem = getUserOverLayItem(geoLocation);
 
@@ -132,7 +121,6 @@ public class MapMap extends Activity {
     private MapView setMapOnActivity() {
         MapView map = (MapView) findViewById(R.id.map);
         map.setTileSource(TileSourceFactory.MAPNIK);
-        //map.setBuiltInZoomControls(true);
         map.setMultiTouchControls(true);
         return map;
     }

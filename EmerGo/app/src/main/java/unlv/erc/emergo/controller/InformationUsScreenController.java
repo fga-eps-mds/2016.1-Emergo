@@ -73,11 +73,23 @@ public class InformationUsScreenController extends Activity {
         hospInfo.setAdapter(adapter);
     }
 
-
-    public void goClicked(View v) {
-        Toast.makeText(this , "Go clicked" , Toast.LENGTH_SHORT).show();
+    public void goClicked(View map_screen) {
+        Toast.makeText(this, "Função não habilitada!", Toast.LENGTH_SHORT).show();
     }
 
+    public void listMapsImageClicked(View map_screen){
+        Intent listOfHealth = new Intent();
+        listOfHealth.setClass(this, ListOfHealthUnitsController.class);
+        startActivity(listOfHealth);
+        finish();
+    }
+
+    public void openMap(View mapScreen){
+        Intent mapActivity = new Intent();
+        mapActivity.setClass(this, MapMap.class);
+        startActivity(mapActivity);
+        finish();
+    }
 
     public void setHospInfo(ListView hospInfo) {
         this.hospInfo = hospInfo;

@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,11 +63,29 @@ public class ListOfHealthUnitsController extends Activity {
         for(numberOfUs = 1 ; numberOfUs < MAXNUMBERUS ; numberOfUs++){
             closestsUs.add(closest.get(numberOfUs).getNameHospital());
         }
-        Log.i("distancia + proxima: ", closest.get(0).getDistance() + "");
         return closestsUs;
     }
     
     public void setuSsList(ListView uSsList) {
         this.uSsList = uSsList;
     }
+
+    public void goClicked(View map_screen) {
+        Toast.makeText(this, "Função não habilitada!", Toast.LENGTH_SHORT).show();
+    }
+
+    public void listMapsImageClicked(View map_screen){
+        Intent listOfHealth = new Intent();
+        listOfHealth.setClass(this , ListOfHealthUnitsController.class);
+        startActivity(listOfHealth);
+        finish();
+    }
+
+    public void openMap(View mapScreen){
+        Intent mapActivity = new Intent();
+        mapActivity.setClass(this, MapMap.class);
+        startActivity(mapActivity);
+        finish();
+    }
+
 }
