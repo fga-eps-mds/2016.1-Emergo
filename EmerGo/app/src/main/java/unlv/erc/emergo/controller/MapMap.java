@@ -48,10 +48,10 @@ public class MapMap extends Activity {
         GeoPoint geoLocation = new GeoPoint(userLocation);
 
 
-        ArrayList<OverlayItem> items = new ArrayList<OverlayItem> ();
+        ArrayList<OverlayItem> items = new ArrayList<>();
 
         OverlayItem userOverLayItem = getUserOverLayItem(geoLocation);
-
+        userOverLayItem.setMarker(marker);
         items.add(userOverLayItem);
 
         addUsOnArray(items , HealthUnitController.getClosestsUs());
