@@ -14,7 +14,7 @@ import unlv.erc.emergo.model.HealthUnit;
 
 public class DataAccessObject {
 
-
+    private Integer id = 1;
     private Context context;
     private static final String URL_BASE_DB = "https://emergodf.firebaseio.com/";
 
@@ -47,7 +47,7 @@ public class DataAccessObject {
                         String state = child.child("uf").getValue().toString();
                         String city = child.child("municipio").getValue().toString();
 
-                        HealthUnit model = new HealthUnit(latitude,longitude,nameHospital,unitType,
+                        HealthUnit model = new HealthUnit(id,latitude,longitude,nameHospital,unitType,
                                 addressNumber,district,state,city);
                         HealthUnitController.setClosestsUs(model);
 

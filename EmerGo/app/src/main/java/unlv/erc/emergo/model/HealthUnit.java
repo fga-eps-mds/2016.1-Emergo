@@ -1,9 +1,7 @@
 package unlv.erc.emergo.model;
 
 
-import com.orm.SugarRecord;
-
-public class HealthUnit extends SugarRecord{
+public class HealthUnit {
 
     private Double latitude;
     private Double longitude;
@@ -14,14 +12,16 @@ public class HealthUnit extends SugarRecord{
     private String state;
     private String city;
     private Float distance;
-
+    private Integer id;
 
     public HealthUnit(){
 
     }
 
-    public HealthUnit(Double latitude, Double longitude, String nameHospital, String unitType,
-                      String addressNumber, String district, String state, String city) {
+    public HealthUnit(Integer id,Double latitude, Double longitude, String nameHospital,
+                      String unitType,String addressNumber, String district, String state,
+                      String city) {
+        setId(id);
         setLatitude(latitude);
         setLongitude(longitude);
         setNameHospital(nameHospital);
@@ -30,6 +30,14 @@ public class HealthUnit extends SugarRecord{
         setDistrict(district);
         setState(state);
         setCity(city);
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Double getLatitude() {
