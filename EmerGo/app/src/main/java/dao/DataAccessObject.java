@@ -8,6 +8,7 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import unlv.erc.emergo.controller.HealthUnitController;
@@ -35,15 +36,16 @@ public class DataAccessObject {
         // mListView = (ListView) findViewById(R.id.listView);
 
         Firebase ref = new Firebase(URL_BASE_DB);  //PRECISA ARRUMAR AQUI
-
-        if (HealthUnitController.getClosestsUs().size() == 0 ||
-                HealthUnitController.getClosestsUs() == null) {
+        HealthUnit healthUnit = new HealthUnit();
+        List<HealthUnit> list = new ArrayList<>();
+        list = healthUnit.listAll(HealthUnit.class);
+        if (list.size() == 0 || list == null ) {
             Log.d("log123", "lista vazia");
 
             ref.child("EmerGo").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-
+                    HealthUnit model;
                     for (DataSnapshot child : dataSnapshot.getChildren()) {
                         double latitude = (double) child.child("lat").getValue();
                         double longitude = (double) child.child("long").getValue();
@@ -54,7 +56,7 @@ public class DataAccessObject {
                         String state = child.child("uf").getValue().toString();
                         String city = child.child("municipio").getValue().toString();
 
-                        HealthUnit model = new HealthUnit(latitude,longitude,nameHospital,unitType,
+                        model = new HealthUnit(latitude,longitude,nameHospital,unitType,
                                                         addressNumber,district,state,city);
                         model.save();
                         HealthUnitController.setClosestsUs(model);
@@ -76,6 +78,9 @@ public class DataAccessObject {
         }
         else
         {
+            for(int aux = 0 ; aux < list.size(); aux++){
+                HealthUnitController.setClosestsUs(list.get(aux));
+            }
             Log.d("log123", "preenchida offline");
             // mListViewAdapter = new ListViewAdapter(MainActivity.this, mList);
             //  mListView.setAdapter(mListViewAdapter);
