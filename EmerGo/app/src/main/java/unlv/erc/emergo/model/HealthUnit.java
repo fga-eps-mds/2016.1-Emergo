@@ -32,6 +32,18 @@ public class HealthUnit {
         setCity(city);
     }
 
+    public HealthUnit (Double latitude, Double longitude, String nameHospital, String unitType,
+                       String addressNumber, String district, String state, String city) {
+        setLatitude(latitude);
+        setLongitude(longitude);
+        setNameHospital(nameHospital);
+        setUnitType(unitType);
+        setAddressNumber(addressNumber);
+        setDistrict(district);
+        setState(state);
+        setCity(city);
+    }
+
     public Integer getId() {
         return id;
     }
