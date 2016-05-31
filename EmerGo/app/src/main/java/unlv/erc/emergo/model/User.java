@@ -5,14 +5,14 @@ import java.util.Date;
 
 public class User {
 
-    private String name = "";
+    private String name;
     private Date birthday;
-    private String typeBlood = "";
+    private String typeBlood;
     private ArrayList<String> allergy;
-    private boolean cardiac = false;
-    private boolean diabetic = false;
-    private boolean hypertension = false;
-    private boolean seropositive = false;
+    private Boolean cardiac = false;
+    private Boolean diabetic = false;
+    private Boolean hypertension = false;
+    private Boolean seropositive = false;
 
     public User(){
 

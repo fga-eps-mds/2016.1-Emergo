@@ -12,11 +12,11 @@ import java.util.Arrays;
 public class EmergencyContact {
 
     private String name;
-    private Integer phone[];
+    private String phone[];
 
-    public EmergencyContact(String name, Integer[] phone) {
-        this.name = name;
-        this.phone = phone;
+    public EmergencyContact(String name, String phone) {
+        setName(name);
+        setPhone(phone);
     }
 
     public String getName() {
@@ -27,12 +27,12 @@ public class EmergencyContact {
         this.name = name;
     }
 
-    public Integer[] getPhone() {
+    public String[] getPhone() {
         return phone;
     }
 
-    public void setPhone(Integer[] phone) {
-        this.phone = phone;
+    public void setPhone(String phone) {
+        this.phone[phone.length()] = phone;
     }
 
 

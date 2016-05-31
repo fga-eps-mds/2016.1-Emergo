@@ -19,32 +19,42 @@ public class InformationUsScreenController extends Activity {
     private List <String> listOfInformations = new ArrayList<String>();
     private ListView hospInfo;
     private Intent receive;
-    int numberUs;
+    private final Integer CORRECTINDEX = 1; // acces the correct index
+    private int numberUsSelected;
+    private String padding ,titulo, nome ,gestao , uf ,municipio ,
+                    bairro ,cep ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.information_us_screen);
 
-        receive = getIntent();
-        numberUs = receive.getIntExtra("position" , 0) + 1;
+        setReceive(getIntent());
+        setNumberUsSelected(receive.getIntExtra("position" , 0)
+                + CORRECTINDEX);
 
-
-        hospInfo = (ListView) findViewById(R.id.hospInformation);
-        addInformationToList(HealthUnitController.getClosestsUs().get(numberUs));
+        setHospInfo((ListView) findViewById(R.id.hospInformation));
+        setInformation(HealthUnitController.getClosestsUs().get(numberUsSelected));
+        addInformationToList();
 
     }
 
-    public void  addInformationToList(HealthUnit hospital){
+    public void setInformation(HealthUnit hospital){
+        setPadding("\n");
+        setTitulo("        Informações da Unidade de Saúde");
+        setNome("  Nome: " + hospital.getNameHospital());
+        setGestao("  Tipo de atendimento: " + hospital.getUnitType());
+        setUf("  UF: " + hospital.getState());
+        setMunicipio("  Cidade: " + hospital.getCity());
+        setBairro("  Bairro: " + hospital.getDistrict());
+        setCep("  Cep: " + hospital.getAddressNumber());
+    }
 
-        String padding = "\n";
-        String titulo = "        Informações da Unidade de Saúde";
-        String nome = "  Nome: " + hospital.getNameHospital();
-        String gestao = "  Tipo de atendimento: " + hospital.getUnitType();
-        String uf = "  UF: " + hospital.getState()  ;
-        String municipio = "  Cidade: " + hospital.getCity();
-        String bairro = "  Bairro: " + hospital.getDistrict();
-        String cep = "  Cep: " + hospital.getAddressNumber();
+
+
+    public void  addInformationToList(){
+
         listOfInformations.add(padding);
         listOfInformations.add(titulo);
         listOfInformations.add(nome);
@@ -63,8 +73,71 @@ public class InformationUsScreenController extends Activity {
         hospInfo.setAdapter(adapter);
     }
 
+    public void goClicked(View map_screen) {
+        Intent mapRoute = new Intent();
+        mapRoute.setClass(this, RouteActivity.class);
+        startActivity(mapRoute);
+        finish();
+    }
 
-    public void goClicked(View v) {
-        Toast.makeText(this , "Go clicked" , Toast.LENGTH_SHORT).show();
+    public void listMapsImageClicked(View map_screen){
+        Intent listOfHealth = new Intent();
+        listOfHealth.setClass(this, ListOfHealthUnitsController.class);
+        startActivity(listOfHealth);
+        finish();
+    }
+
+    public void openMap(View mapScreen){
+        Intent mapActivity = new Intent();
+        mapActivity.setClass(this, MapScreenController.class);
+        startActivity(mapActivity);
+        finish();
+    }
+
+    public void setHospInfo(ListView hospInfo) {
+        this.hospInfo = hospInfo;
+    }
+
+    public void setReceive(Intent receive) {
+        this.receive = receive;
+    }
+
+    public void setNumberUsSelected(int numberUsSelected) {
+        this.numberUsSelected = numberUsSelected;
+    }
+
+
+    public void setPadding(String padding) {
+        this.padding = padding;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setGestao(String gestao) {
+        this.gestao = gestao;
+    }
+
+    public void setUf(String uf) {
+        this.uf = uf;
+    }
+
+    public void setMunicipio(String municipio) {
+        this.municipio = municipio;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
     }
 }
+
+

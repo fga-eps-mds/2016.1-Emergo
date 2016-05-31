@@ -1,16 +1,21 @@
 package dao;
 
 import android.content.Context;
+import android.content.Intent;
+import android.provider.ContactsContract;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import unlv.erc.emergo.controller.HealthUnitController;
+import unlv.erc.emergo.controller.MainScreenController;
 import unlv.erc.emergo.model.HealthUnit;
 
 /**
@@ -29,24 +34,18 @@ public class DataAccessObject {
     }
 
     public void setDataOnSugar(){
-        //  super.onCreate(savedInstanceState);
-        //  setContentView(R.layout.activity_main);
 
-        // mListView = (ListView) findViewById(R.id.listView);
+        Firebase ref = new Firebase(URL_BASE_DB);
+        HealthUnit healthUnit = new HealthUnit();
+        List<HealthUnit> list;
+        list = healthUnit.listAll(HealthUnit.class);
 
-        Firebase.setAndroidContext(this.context);
-        Firebase ref = new Firebase(URL_BASE_DB);  //PRECISA ARRUMAR AQUI
-
-
-
-        if (HealthUnitController.getClosestsUs().size() == 0 ||
-                HealthUnitController.getClosestsUs() == null) { //PRECISA ARRUMAR AQUI
+        if (list.size() == 0 || list == null ) {
             Log.d("log123", "lista vazia");
-
             ref.child("EmerGo").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-
+                    HealthUnit model;
                     for (DataSnapshot child : dataSnapshot.getChildren()) {
                         double latitude = (double) child.child("lat").getValue();
                         double longitude = (double) child.child("long").getValue();
@@ -57,19 +56,14 @@ public class DataAccessObject {
                         String state = child.child("uf").getValue().toString();
                         String city = child.child("municipio").getValue().toString();
 
-                        HealthUnit model = new HealthUnit(latitude,longitude,nameHospital,unitType,
+                        model = new HealthUnit(latitude,longitude,nameHospital,unitType,
                                                         addressNumber,district,state,city);
                         model.save();
                         HealthUnitController.setClosestsUs(model);
 
                     }
-
-
-
                     Log.d("log123", "acabou");
-
-                    //  mListViewAdapter = new ListViewAdapter(MainActivity.this, mList);
-                    // mListView.setAdapter(mListViewAdapter);
+                    Log.i("Database has finished" , HealthUnitController.getClosestsUs().size() + "Us");
                 }
 
                 @Override
@@ -80,8 +74,11 @@ public class DataAccessObject {
         }
         else
         {
-
+            for(int aux = 0 ; aux < list.size(); aux++){
+                HealthUnitController.setClosestsUs(list.get(aux));
+            }
             Log.d("log123", "preenchida offline");
+            Log.i("Database has finished", HealthUnitController.getClosestsUs().size() + "Us");
             // mListViewAdapter = new ListViewAdapter(MainActivity.this, mList);
             //  mListView.setAdapter(mListViewAdapter);
         }
