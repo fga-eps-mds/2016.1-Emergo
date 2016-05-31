@@ -68,7 +68,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nome"
-        android:id="@+id/nomeTextView"
+        android:id="@+id/fullNameTextView"
         android:autoText="false"
         android:textSize="18sp"
         android:layout_alignParentTop="true"
@@ -80,7 +80,7 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:id="@+id/fullNameEditText"
-        android:layout_below="@+id/nomeTextView"
+        android:layout_below="@+id/fullNameTextView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:hint="Insira seu nome"/>

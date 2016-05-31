@@ -101,9 +101,9 @@ public class UserTest extends TestCase {
         user.setTypeBlood("A-");
         boolean result = true;
         if(user.getTypeBlood().length()<=MAXIMUM_TYPEBLOOD-1){
-            assertFalse(result);
-        }else{
             assertTrue(result);
+        }else{
+            assertFalse(result);
         }
     }
 

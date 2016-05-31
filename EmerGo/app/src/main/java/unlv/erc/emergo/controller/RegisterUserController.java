@@ -11,6 +11,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import dao.UserDao;
 import helper.MaskHelper;
 import unlv.erc.emergo.R;
@@ -86,7 +90,8 @@ public class RegisterUserController extends Activity {
         boolean sucess = true;
         if(result.getCount() == 0){
 
-            if(checksName(fullName.getText().toString()) == false){
+            if(checksName(fullName.getText().toString()) == false
+                    && checkBirthday(birthday.getText().toString()) == false){
 
                 birthdayUser = birthday.getText().toString();
                 observationsUser = observations.getText().toString();
@@ -172,23 +177,31 @@ public class RegisterUserController extends Activity {
         return false;
     }
     public boolean checkBirthday(String birthdayUser){
-        String dayUser = birthdayUser.substring(0,10);
-        int day = Integer.parseInt(dayUser);
-        int mouth = Integer.parseInt(birthdayUser.substring(2,4));
-        int year = Integer.parseInt(birthdayUser.substring(4,8));
+        if(!birthdayUser.isEmpty() && birthdayUser!=null){
+            try {
+                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+                format.setLenient(false);
+                Date userDate = format.parse(birthdayUser);
 
-        if(day < 1 || day > 31){
-            showMessage("Dia inválido! Informe um dia válido entre 1 e 31");
-            return true;
-        }else if(mouth < 1 || mouth > 12){
-            showMessage("Mês inválido! Informe um mês válido entre 1 e 12");
-            return true;
-        }else if(year < 1942 || year > 2016){
-            showMessage("Ano inválido! Informe um ano válido entre 1942 e o ano atual");
+                if (userDate.before(new Date())) {
+                    this.birthdayUser = birthdayUser;
+                    return false;
+                }
+
+                else{
+                    showMessage("Ops, essa data é inválida");
+                    return true;
+                }
+            }
+            catch (ParseException excecao){
+                showMessage("Ops, essa data é inválida");
+                return true;
+            }
+        }
+        else{
+            showMessage("Informe a sua data de nascimento");
             return true;
         }
-        birthdayUser = day + "/" + mouth + "/" + year;
-        return false;
     }
     public void goClicked(View map_screen){
         Toast.makeText(this , "Função não habilitada!" , Toast.LENGTH_SHORT).show();

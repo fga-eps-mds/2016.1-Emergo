@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "unlv.erc.emergo"
-        minSdkVersion 16
+        minSdkVersion 18
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -36,13 +36,13 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.0.0-alpha2'
     //compile 'com.android.support:appcompat-v7:23.0.3'
     compile 'com.google.android.gms:play-services-maps:8.4.0'
-    compile 'com.firebase:firebase-client-android:2.5.2+'
+    compile 'com.firebase:firebase-client-android:2.5.2'
     compile 'com.github.satyan:sugar:1.4'
     //compile 'com.android.support:support-annotations:23.0.3'
 
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.0'
     androidTestCompile 'com.android.support.test:testing-support-lib:0.1'
-
+    androidTestCompile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.0'
 }
 
 apply plugin: 'com.android.application'
