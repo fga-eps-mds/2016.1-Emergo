@@ -29,7 +29,7 @@ import unlv.erc.emergo.model.HealthUnit;
 public class MapMap extends Activity {
 
 
-    public static final int ZOOM_LEVEL = 13;
+    public static final int ZOOM_LEVEL = 14;
     GPSTracker gps = new GPSTracker(this);
 
     @Override public void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,7 @@ public class MapMap extends Activity {
 
         setInitialZoomLevel(userLocation, map);
 
-        Drawable marker = getResources().getDrawable(R.drawable.my_location);
+        Drawable marker = getResources().getDrawable(R.drawable.person);
 
         GeoPoint geoLocation = new GeoPoint(userLocation);
 
@@ -58,8 +58,8 @@ public class MapMap extends Activity {
 
         setOverlayItemsOnMap(map, items);
 
-        setRoute(map,geoLocation,new GeoPoint(HealthUnitController.getClosestsUs().get(0).getLatitude(),
-                                                             HealthUnitController.getClosestsUs().get(0).getLongitude()));
+        //setRoute(map,geoLocation,new GeoPoint(HealthUnitController.getClosestsUs().get(0).getLatitude(),
+                                                            // HealthUnitController.getClosestsUs().get(0).getLongitude()));
 
     }
 
