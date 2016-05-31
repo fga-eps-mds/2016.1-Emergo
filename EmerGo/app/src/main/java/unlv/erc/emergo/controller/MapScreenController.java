@@ -1,59 +1,138 @@
 package unlv.erc.emergo.controller;
 
+
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.location.Location;
-import android.location.LocationManager;
-import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
 
-import com.google.android.gms.auth.GooglePlayServicesAvailabilityException;
-import com.google.android.gms.maps.CameraUpdate;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
+import android.graphics.drawable.Drawable;
+import android.location.Location;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.view.View;
+
+
+import org.osmdroid.api.IMapController;
+import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.MapView;
+import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
+import org.osmdroid.views.overlay.ItemizedIconOverlay;
+import org.osmdroid.views.overlay.ItemizedOverlayWithFocus;
+import org.osmdroid.views.overlay.OverlayItem;
+
+import java.util.ArrayList;
 
 import helper.GPSTracker;
-import helper.Services;
 import unlv.erc.emergo.R;
+import unlv.erc.emergo.model.HealthUnit;
 
-public class MapScreenController extends FragmentActivity implements OnMapReadyCallback {
-
-    private GoogleMap mMap;
-    private Services services = new Services();
+public class MapScreenController extends Activity {
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public static final int ZOOM_LEVEL = 14;
+    GPSTracker gps = new GPSTracker(this);
+
+    @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.map_screen);
 
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+
+        Location userLocation = gps.getLocation();
+        GeoPoint geoLocation = new GeoPoint(userLocation);
+
+        MapView map = setMapOnActivity();
+
+        setInitialZoomLevel(userLocation, map);
+
+        Drawable marker = getResources().getDrawable(R.drawable.person);
+
+        ArrayList<OverlayItem> items = new ArrayList<>();
+
+        OverlayItem userOverLayItem = getUserOverLayItem(geoLocation);
+        userOverLayItem.setMarker(marker);
+        items.add(userOverLayItem);
+
+        addUsOnArray(items , HealthUnitController.getClosestsUs());
+
+        setOverlayItemsOnMap(map, items);
 
     }
 
-    public void goClicked(View map_screen){
-        Toast.makeText(this , "Função não habilitada!" , Toast.LENGTH_SHORT).show();
-        Intent routeActivity = new Intent();
-        routeActivity.setClass(this, RouteActivity.class);
-        startActivity(routeActivity);
+    public void addUsOnArray(ArrayList<OverlayItem> items ,
+                             ArrayList<HealthUnit> healthUnits){
+        for(int numberOfUs = 0 ; numberOfUs < healthUnits.size() ;
+                numberOfUs++){
+            items.add(getUnitOverLayItem(healthUnits.get(numberOfUs).getNameHospital(),
+                    healthUnits.get(numberOfUs).getUnitType(),
+                    new GeoPoint(healthUnits.get(numberOfUs).getLatitude() ,
+                            healthUnits.get(numberOfUs).getLongitude())));
+
+        }
+    }
+
+    private OverlayItem getUnitOverLayItem(String unityName ,
+                                           String unitType ,
+                                           GeoPoint geoLocation) {
+        return new OverlayItem
+                (unityName , unitType  , geoLocation);
+    }
+
+
+    private void setOverlayItemsOnMap(MapView map, ArrayList<OverlayItem> items) {
+        CustomResourceProxy resource = new CustomResourceProxy(this);
+        ItemizedOverlayWithFocus<OverlayItem> mOverlay = new
+                ItemizedOverlayWithFocus<OverlayItem>(items,
+                new ItemizedIconOverlay.OnItemGestureListener<OverlayItem>() {
+                    @Override
+                    public boolean onItemSingleTapUp(final int index, final OverlayItem item) {
+                        return true;
+                    }
+
+                    @Override
+                    public boolean onItemLongPress(final int index, final OverlayItem item) {
+                        return false;
+                    }
+                } , resource);
+        mOverlay.setFocusItemsOnTap(true);
+        map.getOverlays().add(mOverlay);
+    }
+
+    @NonNull
+    private OverlayItem getUserOverLayItem(GeoPoint geoLocation) {
+        return new OverlayItem
+                    ("Vocẽ está aqui" , ""  , geoLocation);
+    }
+
+
+    private void setInitialZoomLevel(Location userLocation, MapView map) {
+        IMapController mapController = map.getController();
+        mapController.setZoom(ZOOM_LEVEL);
+        GeoPoint userGeoPoint = new GeoPoint(userLocation.getLatitude(),
+                                            userLocation.getLongitude());
+        mapController.setCenter(userGeoPoint);
+    }
+
+    @NonNull
+    private MapView setMapOnActivity() {
+        MapView map = (MapView) findViewById(R.id.map);
+        map.setTileSource(TileSourceFactory.MAPNIK);
+        map.setMultiTouchControls(true);
+        return map;
+    }
+
+    public void goClicked(View map_screen) {
+        Intent mapRoute = new Intent();
+        mapRoute.putExtra("latitude" , gps.getLocation().getLatitude());
+        mapRoute.putExtra("longitude" , gps.getLocation().getLongitude());
+        mapRoute.setClass(this, RouteActivity.class);
+        startActivity(mapRoute);
+        finish();
     }
 
     public void listMapsImageClicked(View map_screen){
         Intent listOfHealth = new Intent();
         listOfHealth.setClass(this , ListOfHealthUnitsController.class);
         startActivity(listOfHealth);
+        finish();
     }
 
     public void openMap(View mapScreen){
@@ -63,29 +142,5 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
         finish();
     }
 
-
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-
-        //LatLng a = new LatLng(-16.002955 , -48.0616721);
-        GPSTracker gps = new GPSTracker(this);
-        LatLng userLocation;
-
-        double latitude = gps.getLatitude();
-        double longitude = gps.getLongitude();
-        userLocation = new LatLng(latitude , longitude);
-
-
-        mMap = googleMap;
-
-        mMap.addMarker(new MarkerOptions().position(userLocation).title("Sua posição")
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom
-                (new LatLng(userLocation.latitude,
-                        userLocation.longitude), 13.0f));
-
-        services.setMarkersOnMap(mMap , HealthUnitController.getClosestsUs() );
-
-    }
 
 }

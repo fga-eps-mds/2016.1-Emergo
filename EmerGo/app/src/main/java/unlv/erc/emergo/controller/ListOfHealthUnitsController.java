@@ -1,10 +1,8 @@
 package unlv.erc.emergo.controller;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -14,7 +12,6 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import adapter.HealthUnitAdapter;
 import helper.Services;
 import unlv.erc.emergo.R;
 import unlv.erc.emergo.model.HealthUnit;
@@ -71,7 +68,10 @@ public class ListOfHealthUnitsController extends Activity {
     }
 
     public void goClicked(View map_screen) {
-        Toast.makeText(this, "Função não habilitada!", Toast.LENGTH_SHORT).show();
+        Intent mapRoute = new Intent();
+        mapRoute.setClass(this, RouteActivity.class);
+        startActivity(mapRoute);
+        finish();
     }
 
     public void listMapsImageClicked(View map_screen){
@@ -83,7 +83,7 @@ public class ListOfHealthUnitsController extends Activity {
 
     public void openMap(View mapScreen){
         Intent mapActivity = new Intent();
-        mapActivity.setClass(this, MapMap.class);
+        mapActivity.setClass(this, MapScreenController.class);
         startActivity(mapActivity);
         finish();
     }

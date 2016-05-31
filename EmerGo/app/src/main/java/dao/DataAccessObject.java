@@ -1,7 +1,10 @@
 package dao;
 
 import android.content.Context;
+import android.content.Intent;
+import android.provider.ContactsContract;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -12,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import unlv.erc.emergo.controller.HealthUnitController;
+import unlv.erc.emergo.controller.MainScreenController;
 import unlv.erc.emergo.model.HealthUnit;
 
 /**
@@ -30,18 +34,14 @@ public class DataAccessObject {
     }
 
     public void setDataOnSugar(){
-        //  super.onCreate(savedInstanceState);
-        //  setContentView(R.layout.activity_main);
 
-        // mListView = (ListView) findViewById(R.id.listView);
-
-        Firebase ref = new Firebase(URL_BASE_DB);  //PRECISA ARRUMAR AQUI
+        Firebase ref = new Firebase(URL_BASE_DB);
         HealthUnit healthUnit = new HealthUnit();
-        List<HealthUnit> list = new ArrayList<>();
+        List<HealthUnit> list;
         list = healthUnit.listAll(HealthUnit.class);
+
         if (list.size() == 0 || list == null ) {
             Log.d("log123", "lista vazia");
-
             ref.child("EmerGo").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -62,12 +62,8 @@ public class DataAccessObject {
                         HealthUnitController.setClosestsUs(model);
 
                     }
-
                     Log.d("log123", "acabou");
                     Log.i("Database has finished" , HealthUnitController.getClosestsUs().size() + "Us");
-
-                    //  mListViewAdapter = new ListViewAdapter(MainActivity.this, mList);
-                    // mListView.setAdapter(mListViewAdapter);
                 }
 
                 @Override
@@ -82,6 +78,7 @@ public class DataAccessObject {
                 HealthUnitController.setClosestsUs(list.get(aux));
             }
             Log.d("log123", "preenchida offline");
+            Log.i("Database has finished", HealthUnitController.getClosestsUs().size() + "Us");
             // mListViewAdapter = new ListViewAdapter(MainActivity.this, mList);
             //  mListView.setAdapter(mListViewAdapter);
         }

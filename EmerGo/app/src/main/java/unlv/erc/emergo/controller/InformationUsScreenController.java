@@ -74,7 +74,10 @@ public class InformationUsScreenController extends Activity {
     }
 
     public void goClicked(View map_screen) {
-        Toast.makeText(this, "Função não habilitada!", Toast.LENGTH_SHORT).show();
+        Intent mapRoute = new Intent();
+        mapRoute.setClass(this, RouteActivity.class);
+        startActivity(mapRoute);
+        finish();
     }
 
     public void listMapsImageClicked(View map_screen){
@@ -86,7 +89,7 @@ public class InformationUsScreenController extends Activity {
 
     public void openMap(View mapScreen){
         Intent mapActivity = new Intent();
-        mapActivity.setClass(this, MapMap.class);
+        mapActivity.setClass(this, MapScreenController.class);
         startActivity(mapActivity);
         finish();
     }

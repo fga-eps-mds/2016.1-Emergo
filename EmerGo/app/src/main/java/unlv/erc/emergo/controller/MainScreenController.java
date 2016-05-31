@@ -1,10 +1,8 @@
 package unlv.erc.emergo.controller;
 
 import android.app.Activity;
-import android.app.Service;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -14,7 +12,6 @@ import com.firebase.client.Firebase;
 import com.orm.SugarContext;
 
 import dao.DataAccessObject;
-import helper.GPSTracker;
 import helper.Services;
 import unlv.erc.emergo.R;
 
@@ -31,7 +28,7 @@ public class MainScreenController extends Activity {
         Firebase.setAndroidContext(this);
         SugarContext.init(this);
 
-        dataAccessObject.setDataOnSugar(); //New DB Handler!
+        dataAccessObject.setDataOnSugar();
 
         OnClickListener goListener = new OnClickListener() {
             @Override
@@ -47,9 +44,9 @@ public class MainScreenController extends Activity {
             public void onClick(View v) {
 
                 Intent mapScreen = new Intent();
-                mapScreen.setClass(getBaseContext(), MapMap.class);
+                mapScreen.setClass(getBaseContext(), MapScreenController.class);
                 startActivity(mapScreen);
-
+                Toast.makeText(MainScreenController.this ,"Carregando USs no mapa" , Toast.LENGTH_SHORT).show();
             }
         };
 
