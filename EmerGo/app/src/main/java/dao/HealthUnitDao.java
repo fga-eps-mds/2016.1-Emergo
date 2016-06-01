@@ -25,7 +25,6 @@ public class HealthUnitDao extends SQLiteOpenHelper{
     public static final String DISTRICT = "[district]";
     public static final String STATE = "[state]";
     public static final String CITY = "[city]";
-    public static final String HEALTHUNIT_ID = "[IDHealthUnit]";
 
     public static final String CREATE_HEALTHUNIT = "CREATE TABLE " + HEALTHUNIT_TABLE + " (" +
             ZIPCODE + "INTEGER PRIMARY KEY, "+
@@ -56,14 +55,13 @@ public class HealthUnitDao extends SQLiteOpenHelper{
     public boolean insertHealthUnit(HealthUnit healthUnit){
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(ZIPCODE, healthUnit.getZipCode());
         contentValues.put(LATITUDE, healthUnit.getLatitude());
         contentValues.put(LONGITUDE,healthUnit.getLongitude());
-        contentValues.put(NAMEHOSPITAL,healthUnit.getNameHospital());
-        contentValues.put(UNITTYPE,healthUnit.getUnitType());
+        contentValues.put(NAMEHOSPITAL, healthUnit.getNameHospital());
+        contentValues.put(UNITTYPE, healthUnit.getUnitType());
         contentValues.put(DISTRICT,healthUnit.getDistrict());
-        contentValues.put(STATE,healthUnit.getState());
-        contentValues.put(CITY,healthUnit.getCity());
+        contentValues.put(STATE, healthUnit.getState());
+        contentValues.put(CITY, healthUnit.getCity());
 
         long result = database.insert(HEALTHUNIT_TABLE,null,contentValues);
         database.close();

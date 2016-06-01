@@ -7,31 +7,32 @@ public class HealthUnit {
     private Double longitude;
     private String nameHospital;
     private String unitType;
-    private Integer zipCode;
+    private String addressNumber;
     private String district;
     private String state;
     private String city;
     private Float distance;
-
+    private Integer id;
 
     public HealthUnit(){
 
     }
 
-    public HealthUnit(Integer zipCode,Double latitude, Double longitude, String nameHospital,
-                      String unitType,String district, String state,
+    public HealthUnit(Integer id,Double latitude, Double longitude, String nameHospital,
+                      String unitType,String addressNumber, String district, String state,
                       String city) {
-        setZipCode(zipCode);
+        setId(id);
         setLatitude(latitude);
         setLongitude(longitude);
         setNameHospital(nameHospital);
         setUnitType(unitType);
+        setAddressNumber(addressNumber);
         setDistrict(district);
         setState(state);
         setCity(city);
     }
 
-    /*public HealthUnit (Double latitude, Double longitude, String nameHospital, String unitType,
+    public HealthUnit (Double latitude, Double longitude, String nameHospital, String unitType,
                        String addressNumber, String district, String state, String city) {
         setLatitude(latitude);
         setLongitude(longitude);
@@ -41,7 +42,15 @@ public class HealthUnit {
         setDistrict(district);
         setState(state);
         setCity(city);
-    }*/
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Double getLatitude() {
         return latitude;
@@ -75,12 +84,12 @@ public class HealthUnit {
         this.unitType = unitType;
     }
 
-    public Integer getZipCode() {
-        return zipCode;
+    public String getAddressNumber() {
+        return addressNumber;
     }
 
-    public void setZipCode(Integer zipCode) {
-        this.zipCode = zipCode;
+    public void setAddressNumber(String addressNumber) {
+        this.addressNumber = addressNumber;
     }
 
     public String getDistrict() {
