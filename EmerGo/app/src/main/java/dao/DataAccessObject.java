@@ -18,9 +18,6 @@ import unlv.erc.emergo.controller.HealthUnitController;
 import unlv.erc.emergo.controller.MainScreenController;
 import unlv.erc.emergo.model.HealthUnit;
 
-/**
- * Created by AndreBedran on 5/18/16.
- */
 public class DataAccessObject {
 
 
@@ -79,13 +76,6 @@ public class DataAccessObject {
             }
             Log.d("log123", "preenchida offline");
             Log.i("Database has finished", HealthUnitController.getClosestsUs().size() + "Us");
-            // mListViewAdapter = new ListViewAdapter(MainActivity.this, mList);
-            //  mListView.setAdapter(mListViewAdapter);
         }
-
-
-
     }
-
-
 }

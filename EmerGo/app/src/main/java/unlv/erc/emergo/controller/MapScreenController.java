@@ -8,7 +8,9 @@ import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 
 import org.osmdroid.api.IMapController;
@@ -30,30 +32,35 @@ public class MapScreenController extends Activity {
 
     public static final int ZOOM_LEVEL = 14;
     GPSTracker gps = new GPSTracker(this);
+    Location userLocation;
+    GeoPoint geoLocation;
 
     @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map_screen);
 
+        try{
+            userLocation = gps.getLocation();
+            geoLocation = new GeoPoint(userLocation);
+            MapView map = setMapOnActivity();
 
-        Location userLocation = gps.getLocation();
-        GeoPoint geoLocation = new GeoPoint(userLocation);
+            setInitialZoomLevel(userLocation, map);
 
-        MapView map = setMapOnActivity();
+            Drawable marker = getResources().getDrawable(R.drawable.person);
 
-        setInitialZoomLevel(userLocation, map);
+            ArrayList<OverlayItem> items = new ArrayList<>();
+            OverlayItem userOverLayItem = getUserOverLayItem(geoLocation);
+            userOverLayItem.setMarker(marker);
+            items.add(userOverLayItem);
+            addUsOnArray(items, HealthUnitController.getClosestsUs());
 
-        Drawable marker = getResources().getDrawable(R.drawable.person);
+            setOverlayItemsOnMap(map, items);
 
-        ArrayList<OverlayItem> items = new ArrayList<>();
+        }catch (NullPointerException excetion){
 
-        OverlayItem userOverLayItem = getUserOverLayItem(geoLocation);
-        userOverLayItem.setMarker(marker);
-        items.add(userOverLayItem);
-
-        addUsOnArray(items , HealthUnitController.getClosestsUs());
-
-        setOverlayItemsOnMap(map, items);
+            Toast.makeText(this, "O GPS PRECISA ESTAR HABILITADO", Toast.LENGTH_LONG).show();
+            finish();
+        }
 
     }
 

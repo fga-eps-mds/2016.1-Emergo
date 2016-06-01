@@ -36,6 +36,7 @@ public class MainScreenController extends Activity {
 
                 //TO-DO!
 
+
             }
         };
 
@@ -46,7 +47,6 @@ public class MainScreenController extends Activity {
                 Intent mapScreen = new Intent();
                 mapScreen.setClass(getBaseContext(), MapScreenController.class);
                 startActivity(mapScreen);
-                Toast.makeText(MainScreenController.this ,"Carregando USs no mapa" , Toast.LENGTH_SHORT).show();
             }
         };
 
