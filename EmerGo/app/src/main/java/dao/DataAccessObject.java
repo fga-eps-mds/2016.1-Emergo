@@ -59,8 +59,10 @@ public class DataAccessObject {
                         HealthUnitController.setClosestsUs(model);
 
                     }
+                    Toast.makeText(context, "Atualize o mapa para carregar mais USs" ,
+                            Toast.LENGTH_LONG).show();
                     Log.d("log123", "acabou");
-                    Log.i("Database has finished" , HealthUnitController.getClosestsUs().size() + "Us");
+                    Log.i("Database has finished", HealthUnitController.getClosestsUs().size() + "Us");
                 }
 
                 @Override
@@ -77,5 +79,6 @@ public class DataAccessObject {
             Log.d("log123", "preenchida offline");
             Log.i("Database has finished", HealthUnitController.getClosestsUs().size() + "Us");
         }
+
     }
 }
