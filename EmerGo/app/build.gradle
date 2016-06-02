@@ -38,6 +38,7 @@ dependencies {
     compile 'org.osmdroid:osmdroid-android:5.1@aar'
     compile 'org.slf4j:slf4j-simple:1.6.1'
 
+
     //compile 'com.android.support:support-annotations:23.0.3'
 
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.0'

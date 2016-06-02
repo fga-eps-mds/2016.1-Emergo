@@ -56,12 +56,11 @@ public class MapScreenController extends Activity {
 
             setOverlayItemsOnMap(map, items);
 
-        }catch (NullPointerException excetion){
+        }catch (NullPointerException | SecurityException excetion){
 
             Toast.makeText(this, "O GPS PRECISA ESTAR HABILITADO", Toast.LENGTH_LONG).show();
             finish();
         }
-
     }
 
     public void addUsOnArray(ArrayList<OverlayItem> items ,

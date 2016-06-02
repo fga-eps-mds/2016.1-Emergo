@@ -37,6 +37,7 @@ public class DataAccessObject {
         List<HealthUnit> list;
         list = healthUnit.listAll(HealthUnit.class);
 
+
         if (list.size() == 0 || list == null ) {
             Log.d("log123", "lista vazia");
             ref.child("EmerGo").addValueEventListener(new ValueEventListener() {

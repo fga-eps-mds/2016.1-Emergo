@@ -47,6 +47,7 @@ public class MainScreenController extends Activity {
                 Intent mapScreen = new Intent();
                 mapScreen.setClass(getBaseContext(), MapScreenController.class);
                 startActivity(mapScreen);
+
             }
         };
 
@@ -55,7 +56,7 @@ public class MainScreenController extends Activity {
         goButton.setOnClickListener(goListener);
         fineButton = (Button) findViewById(R.id.buttonOkay);
         fineButton.setOnClickListener(okayListener);
-    }
 
+    }
 
 }
