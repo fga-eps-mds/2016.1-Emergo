@@ -2,6 +2,7 @@ package unlv.erc.emergo.controller;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -21,6 +22,7 @@ import unlv.erc.emergo.R;
 
 
 public class RegisterUserController extends Activity {
+    private static RegisterUserController instance = null;
     private EditText fullName;
     private EditText birthday;
     private EditText observations;
@@ -41,8 +43,22 @@ public class RegisterUserController extends Activity {
     private String hypertensionUser;
     private String seropositiveUser;
     private String id = "1";
-
+    private static final String ID_FIELD =  "idField";
     UserDao myDatabase;
+
+    private Activity activity;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+
+    public RegisterUserController(Activity activity) {
+        this.activity = activity;
+        sharedPreferences = activity.getSharedPreferences(ID_FIELD, activity.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+    }
+
+    public RegisterUserController() {
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -231,4 +247,13 @@ public class RegisterUserController extends Activity {
         startActivity(mapActivity);
         finish();
     }
+
+    /*public static RegisterUserController getInstance(Context context) {
+        if(RegisterUserController.instance!= null){
+
+        }else{
+            RegisterUserController.instance = new RegisterUserController(context);
+        }
+        return RegisterUserController.instance;
+    }*/
 }
