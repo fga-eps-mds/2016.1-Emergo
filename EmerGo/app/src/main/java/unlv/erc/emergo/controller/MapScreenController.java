@@ -2,16 +2,19 @@ package unlv.erc.emergo.controller;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Polyline;
 
 import org.osmdroid.api.IMapController;
 import org.osmdroid.util.GeoPoint;
@@ -19,11 +22,17 @@ import org.osmdroid.views.MapView;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.views.overlay.ItemizedIconOverlay;
 import org.osmdroid.views.overlay.ItemizedOverlayWithFocus;
+import org.osmdroid.views.overlay.Overlay;
 import org.osmdroid.views.overlay.OverlayItem;
 
+
 import java.util.ArrayList;
+import java.util.List;
 
 import helper.GPSTracker;
+import osmdroid.OSRMRoadManager;
+import osmdroid.Road;
+import osmdroid.RoadManager;
 import unlv.erc.emergo.R;
 import unlv.erc.emergo.model.HealthUnit;
 
@@ -34,6 +43,7 @@ public class MapScreenController extends Activity {
     GPSTracker gps = new GPSTracker(this);
     Location userLocation;
     GeoPoint geoLocation;
+    MapView map;
 
     @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,13 +52,13 @@ public class MapScreenController extends Activity {
         try{
             userLocation = gps.getLocation();
             geoLocation = new GeoPoint(userLocation);
-            MapView map = setMapOnActivity();
+            map = setMapOnActivity();
 
             setInitialZoomLevel(userLocation, map);
 
             Drawable marker = getResources().getDrawable(R.drawable.person);
 
-            ArrayList<OverlayItem> items = new ArrayList<>();
+            ArrayList<OverlayItem> items = new ArrayList<OverlayItem>();
             OverlayItem userOverLayItem = getUserOverLayItem(geoLocation);
             userOverLayItem.setMarker(marker);
             items.add(userOverLayItem);
@@ -56,11 +66,43 @@ public class MapScreenController extends Activity {
 
             setOverlayItemsOnMap(map, items);
 
-        }catch (NullPointerException | SecurityException excetion){
+        }catch (NullPointerException ex){
 
             Toast.makeText(this, "O GPS PRECISA ESTAR HABILITADO", Toast.LENGTH_LONG).show();
             finish();
         }
+
+        RoadManager roadManager = new OSRMRoadManager(this);
+        ArrayList<GeoPoint> waypoints = new ArrayList<GeoPoint>();
+        waypoints.add(geoLocation);
+        waypoints.add(new GeoPoint(HealthUnitController.getClosestsUs().
+                get(0).getLatitude(),
+                HealthUnitController.getClosestsUs().
+                        get(0).getLongitude()));
+
+        Road road = roadManager.getRoad(waypoints);
+        Polyline roadOverlay =  RoadManager.buildRoadOverlay(road, this);
+
+        List<LatLng> list = roadOverlay.getPoints();
+        List<GeoPoint> list1 = new ArrayList<GeoPoint>();
+        for(int aux = 0 ; aux < list.size(); aux++) {
+           list1.add(new GeoPoint(list.get(aux).latitude,
+                                    list.get(aux).longitude));
+        }
+
+        ArrayList<OverlayItem> routePoints = new ArrayList<OverlayItem>();
+        for(int aux = 0 ; aux < list1.size(); aux++) {
+            OverlayItem routePoint = getUserOverLayItem(list1.get(aux));
+            routePoints.add(routePoint);
+        }
+
+        setOverlayItemsOnMap(map , routePoints);
+
+
+        map.invalidate(); // refresh the map
+
+
+
     }
 
     public void addUsOnArray(ArrayList<OverlayItem> items ,
