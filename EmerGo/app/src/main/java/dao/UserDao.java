@@ -8,24 +8,24 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class UserDao extends SQLiteOpenHelper {
 
-    public static final String DATABASE_NAME = "emerGo";
-    public static final int VERSION = 42;
+    private static final String DATABASE_NAME = "emerGo";
+    private static final int VERSION = 42;
 
-    public static final String USER_TABLE = "User";
-    public static final String DROP_TABLE_USER = "DROP TABLE IF EXISTS" + USER_TABLE;
+    private static final String USER_TABLE = "User";
+    private static final String DROP_TABLE_USER = "DROP TABLE IF EXISTS" + USER_TABLE;
 
     //User data
-    public static final String NAMEUSER = "[nameUser]";
-    public static final String BIRTHDAYUSER = "[birthdayUser]";
-    public static final String TYPEBLOODUSER = "[typeBloodUser]";
-    public static final String CARDIACUSER = "[cardiacUser]";
-    public static final String DIABETICUSER = "[diabeticUser]";
-    public static final String HYPERTENSIONUSER = "[hipertensionUser]";
-    public static final String SEROPOSITIVEUSER = "[seropositiveUser]";
-    public static final String OBSERVATIONS = "[observationsUser]";
-    public static final String USER_ID = "[IDUser]";
+    private static final String NAMEUSER = "[nameUser]";
+    private static final String BIRTHDAYUSER = "[birthdayUser]";
+    private static final String TYPEBLOODUSER = "[typeBloodUser]";
+    private static final String CARDIACUSER = "[cardiacUser]";
+    private static final String DIABETICUSER = "[diabeticUser]";
+    private static final String HYPERTENSIONUSER = "[hipertensionUser]";
+    private static final String SEROPOSITIVEUSER = "[seropositiveUser]";
+    private static final String OBSERVATIONS = "[observationsUser]";
+    private static final String USER_ID = "[IDUser]";
 
-    public static final String CREATE_USER = "CREATE TABLE " + USER_TABLE + " (" +
+    private static final String CREATE_USER = "CREATE TABLE " + USER_TABLE + " (" +
             USER_ID + "INTEGER PRIMARY KEY," +
             NAMEUSER + " VARCHAR(42), "+
             BIRTHDAYUSER + " VARCHAR(10), "+

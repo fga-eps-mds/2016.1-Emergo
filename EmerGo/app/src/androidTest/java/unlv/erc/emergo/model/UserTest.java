@@ -2,9 +2,6 @@ package unlv.erc.emergo.model;
 
 import junit.framework.TestCase;
 
-//import org.junit.Test;
-
-
 public class UserTest extends TestCase {
 
     private User user;
@@ -58,19 +55,12 @@ public class UserTest extends TestCase {
 
     // tests birthday
 
-    public void testGetBirthday(){
-        user = new User();
-        String birthday = "12/03/1990";
-        user.setName("12/03/1990");
-        assertEquals(birthday,user.getBirthday());
-    }
-
     public void testSetBirthday(){
         user = new User();
         user.setBirthday("12/03/1990");
         assertEquals("12/03/1990", user.getBirthday());
     }
-    
+
     // tests for typeBlood
 
     public void testSetTypeBloodBiggerThree(){
@@ -106,5 +96,4 @@ public class UserTest extends TestCase {
             assertFalse(result);
         }
     }
-
 }

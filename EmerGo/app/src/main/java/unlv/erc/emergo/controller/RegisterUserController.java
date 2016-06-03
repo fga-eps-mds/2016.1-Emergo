@@ -2,7 +2,6 @@ package unlv.erc.emergo.controller;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -22,7 +21,6 @@ import unlv.erc.emergo.R;
 
 
 public class RegisterUserController extends Activity {
-    private static RegisterUserController instance = null;
     private EditText fullName;
     private EditText birthday;
     private EditText observations;
@@ -43,18 +41,8 @@ public class RegisterUserController extends Activity {
     private String hypertensionUser;
     private String seropositiveUser;
     private String id = "1";
-    private static final String ID_FIELD =  "idField";
+
     UserDao myDatabase;
-
-    private Activity activity;
-    SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editor;
-
-    public RegisterUserController(Activity activity) {
-        this.activity = activity;
-        sharedPreferences = activity.getSharedPreferences(ID_FIELD, activity.MODE_PRIVATE);
-        editor = sharedPreferences.edit();
-    }
 
     public RegisterUserController() {
 
@@ -100,7 +88,7 @@ public class RegisterUserController extends Activity {
     }
 
 
-    public void createUser(){
+    private void createUser(){
 
         Cursor result = myDatabase.getUser();
         boolean sucess = true;
@@ -123,24 +111,23 @@ public class RegisterUserController extends Activity {
                 if (sucess == true) {
                     showMessage("Usuário Cadastrado Com Sucesso!");
                 } else {
-                    showMessage("Usuário Não Cadastrado! Tente Novamente");
+                    showMessage("Usuário Não Cadastrado! Tente Novamente.");
                 }
             }
 
         }else {
-            showMessageDialog("Erro!","Não é possível cadastrar mais uma ficha médica");
+            showMessageDialog("Erro!","Não É Possível Cadastrar Mais De Uma Ficha Médica.");
         }
     }
 
-    public void updateUser(){
-
+    private void updateUser(){
         Cursor result = myDatabase.getUser();
         boolean sucess = true;
         if(result.getCount() == 0){
-            showMessageDialog("Ficha Médica Vazia!","Cadastre uma ficha médica antes");
+            showMessageDialog("Ficha Médica Vazia!","Cadastre Uma Ficha Médica Antes.");
             return;
-        }else
-            if(checksName(fullName.getText().toString()) == false){
+        }else if(checksName(fullName.getText().toString()) == false
+                && checkBirthday(birthday.getText().toString()) == false){
 
             birthdayUser = birthday.getText().toString();
             observationsUser = observations.getText().toString();
@@ -156,69 +143,75 @@ public class RegisterUserController extends Activity {
             if (sucess == true) {
                 showMessage("Alteração Realizada Com Sucesso!");
             } else {
-                showMessage("Não foi possível fazer a alteração, tente novamente");
+                showMessage("Não Foi Possível Fazer A Alteração, Tente Novamente.");
             }
         }
     }
-    public void deleteUser(){
+    private void deleteUser(){
         Cursor res = myDatabase.getUser();
         if(res.getCount() == 0){
-            showMessageDialog("Ficha Medica Vazia!","Cadastre uma ficha medica antes");
+            showMessageDialog("Ficha Médica Vazia!","Cadastre Uma Ficha Médica Antes.");
             return;
         }else {
             myDatabase.deleteUser(id);
-            showMessage("Usuario excluido com sucesso");
+            showMessage("Usuario Excluido Com Sucesso.");
         }
     }
-    public void showMessage(String message){
+    private void showMessage(String message){
         Toast.makeText(this,""+message,Toast.LENGTH_SHORT).show();
     }
-    public void showMessageDialog(String title,String message){
+    private void showMessageDialog(String title,String message){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
         builder.setTitle(title);
         builder.setMessage(message);
         builder.show();
     }
-    public boolean checksName(String nameUser){
+    private boolean checksName(String nameUser){
         final int MINIMUM = 3;
         if(nameUser.isEmpty()){
-            showMessage("Nome Vazio! Informe seu nome");
+            showMessage("Nome Vazio! Informe Seu Nome.");
             return true;
         }if(nameUser.trim().length()<MINIMUM){
-            showMessage("Informe um nome com no mínimo 3 caracteres");
+            showMessage("Informe um nome com no mínimo 3 caracteres.");
             fullName.requestFocus();
             return true;
         }
         return false;
     }
-    public boolean checkBirthday(String birthdayUser){
+    private boolean checkBirthday(String birthdayUser){
+        final int MINIMUMYEAR = 42;
         if(!birthdayUser.isEmpty() && birthdayUser!=null){
             try {
                 SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
                 format.setLenient(false);
                 Date userDate = format.parse(birthdayUser);
 
-                if (userDate.before(new Date())) {
+                if (userDate.before(new Date())){
+                    if(userDate.getYear() < MINIMUMYEAR){
+                        showMessage("Informe um ano superior a 1942.");
+                        return true;
+                    }
                     this.birthdayUser = birthdayUser;
                     return false;
                 }
 
                 else{
-                    showMessage("Ops, essa data é inválida");
+                    showMessage("Ops, essa data é inválida!.");
                     return true;
                 }
             }
             catch (ParseException excecao){
-                showMessage("Ops, essa data é inválida");
+                showMessage("Ano Bissexto! Tente colocar 01/03/ e o ano que você nasceu.");
                 return true;
             }
         }
         else{
-            showMessage("Informe a sua data de nascimento");
+            showMessage("Informe a sua data de nascimento.");
             return true;
         }
     }
+
     public void goClicked(View map_screen){
         Toast.makeText(this , "Função não habilitada!" , Toast.LENGTH_SHORT).show();
         Intent routeActivity = new Intent();
@@ -247,13 +240,4 @@ public class RegisterUserController extends Activity {
         startActivity(mapActivity);
         finish();
     }
-
-    /*public static RegisterUserController getInstance(Context context) {
-        if(RegisterUserController.instance!= null){
-
-        }else{
-            RegisterUserController.instance = new RegisterUserController(context);
-        }
-        return RegisterUserController.instance;
-    }*/
 }
