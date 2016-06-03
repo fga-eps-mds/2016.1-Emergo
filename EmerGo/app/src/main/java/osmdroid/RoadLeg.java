@@ -6,6 +6,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
 
+import java.util.ArrayList;
+
 public class RoadLeg implements Parcelable {
     /** in km */
     public double mLength;
