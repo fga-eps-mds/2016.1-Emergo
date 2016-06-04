@@ -1,33 +1,36 @@
 package unlv.erc.emergo.model;
 
-
 import junit.framework.TestCase;
 
 public class UserTest extends TestCase {
 
-    // tests for user
+    private User user;
+    final int MAXIMUM_LENGHT_NAME = 42;
+    final int MAXIMUM_TYPEBLOOD = 3;
+
+    // tests for name
 
     public void testGetName(){
-        User user = new User();
+        user = new User();
         String name = "Peter";
         user.setName("Peter");
         assertEquals(name,user.getName());
     }
 
     public void testSetName(){
-        User user = new User();
+        user = new User();
         user.setName("Maria Joaquina");
         assertEquals("Maria Joaquina", user.getName());
     }
 
     public void testSetNameEmpty(){
-        User user = new User();
+        user = new User();
         user.setName("");
         assertEquals("", user.getName());
     }
 
     public void testSetNameLowerThree(){
-        User user = new User();
+        user = new User();
         user.setName("Ana");
         final int MINIMUM = 3;
         boolean result = true;
@@ -39,27 +42,32 @@ public class UserTest extends TestCase {
     }
 
     public void testSetNameMaximumSize(){
-        User user = new User();
-        final int MAXIMUM = 42;
+        user = new User();
+
         user.setName("Pedro Alvares Cabral de Valentina");
         boolean result = true;
-        if(user.getName().trim().length()>MAXIMUM){
+        if(user.getName().trim().length()>MAXIMUM_LENGHT_NAME){
             assertFalse(result);
         }else{
             assertTrue(result);
         }
     }
 
+    // tests birthday
 
+    public void testSetBirthday(){
+        user = new User();
+        user.setBirthday("12/03/1990");
+        assertEquals("12/03/1990", user.getBirthday());
+    }
 
     // tests for typeBlood
 
     public void testSetTypeBloodBiggerThree(){
-        User user = new User();
+        user = new User();
         user.setTypeBlood("AB-");
-        final int MAXIMUM = 3;
         boolean result = true;
-        if(user.getTypeBlood().length()>MAXIMUM){
+        if(user.getTypeBlood().length()>MAXIMUM_TYPEBLOOD){
             assertFalse(result);
         }else{
             assertTrue(result);
@@ -67,12 +75,12 @@ public class UserTest extends TestCase {
     }
 
     public void testSetTypeBloodNull() {
-        User user = new User();
-
+        user = new User();
         user.setTypeBlood("AB+");
         boolean result = true;
         if(user.getTypeBlood()==null){
-            assertFalse(result);
+            result = false;
+            assertTrue(result);
         }else{
             assertTrue(result);
         }
@@ -80,41 +88,12 @@ public class UserTest extends TestCase {
 
     public void testSetTypeBloodLowerOrEqualsTwo(){
         User user = new User();
-        final int MINIMUM = 2;
         user.setTypeBlood("A-");
         boolean result = true;
-        if(user.getTypeBlood().length()<=MINIMUM){
-            assertFalse(result);
-        }else{
+        if(user.getTypeBlood().length()<=MAXIMUM_TYPEBLOOD-1){
             assertTrue(result);
+        }else{
+            assertFalse(result);
         }
     }
-
-    // tests for allergies
-
-    public void testSetAllergyLowerFour(){
-        User user = new User();
-        final int MINIMUM = 4;
-        user.setAllergy("Camarão");
-        boolean result = true;
-        if(user.getAllergy().trim().length() < MINIMUM){
-            assertFalse(result);
-        }else{
-            assertTrue(result);
-        }
-    }
-
-    public void testSetAllergyBiggerTwoHundred() throws ParseException {
-        User user = new User();
-        user.setAllergy("Alergia");
-        final int MAXIMUM = 200;
-        boolean result = true;
-        if(user.getAllergy().trim().length()>MAXIMUM){
-            assertFalse(result);
-        }else{
-            assertTrue(result);
-        }
-    }
-
-
 }

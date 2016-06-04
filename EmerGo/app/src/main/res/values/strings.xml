@@ -4,4 +4,45 @@
     <string name="title_activity_route">Route</string>
     <string name="go">GO!</string>
     <string name="google_app_id">AIzaSyAjQACxkB2XL85lcOPRKMJNRSiUd4sn8ho</string>
+
+    <string name="typeBlood_prompt">Tipos Sanguíneos</string>
+    <string-array name="typeBlood">
+        <item>A+</item>
+        <item>B+</item>
+        <item>AB+</item>
+        <item>0+</item>
+        <item>A-</item>
+        <item>B-</item>
+        <item>AB-</item>
+        <item>O-</item>
+        <item>Não Sei</item>
+    </string-array>
+    
+    <string name="cardiac_prompt">Cardiaco</string>
+    <string-array name="cardiac">
+        <item>Não</item>
+        <item>Sim</item>
+        <item>Não Sei</item>
+    </string-array>
+
+    <string name="diabetic_prompt">Diabetico</string>
+    <string-array name="diabetic">
+        <item>Não</item>
+        <item>Sim</item>
+        <item>Não Sei</item>
+    </string-array>
+
+    <string name="hypertension_prompt">Hipertenso</string>
+    <string-array name="hypertension">
+        <item>Não</item>
+        <item>Sim</item>
+        <item>Não Sei</item>
+    </string-array>
+
+    <string name="seropositive_prompt">Soropositivo</string>
+    <string-array name="seropositive">
+        <item>Não</item>
+        <item>Sim</item>
+        <item>Não Sei</item>
+    </string-array>
 </resources>

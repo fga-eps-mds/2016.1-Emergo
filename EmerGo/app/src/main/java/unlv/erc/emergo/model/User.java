@@ -1,84 +1,104 @@
 package unlv.erc.emergo.model;
 
-import java.util.ArrayList;
-import java.util.Date;
-
-public class User {
+public class User{
 
     private String name;
-    private Date birthday;
+    private String birthday;
     private String typeBlood;
-    private ArrayList<String> allergy;
-    private Boolean cardiac = false;
-    private Boolean diabetic = false;
-    private Boolean hypertension = false;
-    private Boolean seropositive = false;
+    private String cardiac;
+    private String diabetic;
+    private String hypertension;
+    private String seropositive;
+    private String observations;
+    private Integer ID;
 
     public User(){
 
     }
 
-    public String getName(){
+    public User(String name,String birthday,String typeBlood,String cardiac,String diabetic,
+                String hypertension,String seropositive,String observations,Integer id){
+        setName(name);
+        setBirthday(birthday);
+        setTypeBlood(typeBlood);
+        setCardiac(cardiac);
+        setDiabetic(diabetic);
+        setHypertension(hypertension);
+        setSeropositive(seropositive);
+        setObservations(observations);
+        setID(id);
+    }
+
+    public String getObservations() {
+        return observations;
+    }
+
+    public void setObservations(String observations) {
+        this.observations = observations;
+    }
+
+
+    public Integer getID() {
+        return ID;
+    }
+
+    public void setID(Integer ID) {
+        this.ID = ID;
+    }
+
+    public String getName() {
         return name;
     }
 
-    public void setName(String name){
+    public void setName(String name) {
         this.name = name;
     }
 
-    public Date getBirthday(){
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday){
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 
-    public String getTypeBlood(){
+    public String getTypeBlood() {
         return typeBlood;
     }
 
-    public void setTypeBlood(String typeBlood){
+    public void setTypeBlood(String typeBlood) {
         this.typeBlood = typeBlood;
     }
 
-    public ArrayList<String> getAllergy(){
-        return allergy;
-    }
-
-    public void setAllergy(String allergy){
-       this.allergy.add(allergy);
-    }
-
-    public boolean getCardiac(){
+    public String getCardiac() {
         return cardiac;
     }
 
-    public void setCardiac(boolean cardiac){
+    public void setCardiac(String cardiac) {
         this.cardiac = cardiac;
     }
 
-    public boolean getDiabetic(){
+    public String getDiabetic() {
         return diabetic;
     }
 
-    public void setDiabetic(boolean diabetic){
+    public void setDiabetic(String diabetic) {
         this.diabetic = diabetic;
     }
 
-    public boolean getHypertension(){
+    public String getHypertension() {
         return hypertension;
     }
 
-    public void setHypertension(boolean hypertension){
+    public void setHypertension(String hypertension) {
         this.hypertension = hypertension;
     }
 
-    public boolean getSeropositive(){
+    public String getSeropositive() {
         return seropositive;
     }
 
-    public void setSeropositive(boolean seropositive){
+    public void setSeropositive(String seropositive) {
         this.seropositive = seropositive;
     }
 }

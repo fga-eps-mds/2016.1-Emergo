@@ -57,6 +57,4 @@ public class MainScreenController extends Activity {
         fineButton = (Button) findViewById(R.id.buttonOkay);
         fineButton.setOnClickListener(okayListener);
     }
-
-
 }
