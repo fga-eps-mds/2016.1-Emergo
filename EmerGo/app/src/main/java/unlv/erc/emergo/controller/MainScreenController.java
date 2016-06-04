@@ -35,8 +35,8 @@ public class MainScreenController extends Activity {
     }
 
     public void goClicked(View main_Screen){
-
-        Toast.makeText(this , "Função não habilitada!" , Toast.LENGTH_SHORT).show();
+        CallingMethods callingMethods = new CallingMethods();
+        callingMethods.call(main_Screen);
     }
 
     public void okayClicked(View main_Screen){

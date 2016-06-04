@@ -42,10 +42,8 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
     }
 
     public void goClicked(View map_screen){
-        Toast.makeText(this , "Função não habilitada!" , Toast.LENGTH_SHORT).show();
-        Intent routeActivity = new Intent();
-        routeActivity.setClass(this, RouteActivity.class);
-        startActivity(routeActivity);
+        CallingMethods callingMethods = new CallingMethods();
+        callingMethods.call(map_screen);
     }
 
     public void listMapsImageClicked(View map_screen){
