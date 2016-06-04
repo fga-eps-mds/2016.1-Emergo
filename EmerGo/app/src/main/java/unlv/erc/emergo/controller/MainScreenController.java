@@ -21,6 +21,7 @@ public class MainScreenController extends Activity {
 
     private Button goButton , fineButton;
     private Services services = new Services();
+    CallingMethods callingMethods = new CallingMethods();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,6 @@ public class MainScreenController extends Activity {
     }
 
     public void goClicked(View main_Screen){
-        CallingMethods callingMethods = new CallingMethods();
         callingMethods.call(main_Screen);
     }
 

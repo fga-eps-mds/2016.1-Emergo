@@ -42,7 +42,7 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
     }
 
     public void goClicked(View map_screen){
-        CallingMethods callingMethods = new CallingMethods();
+        CallingMethods callMethods = new CallingMethods();
         callingMethods.call(map_screen);
     }
 
