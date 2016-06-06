@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clickable="false"
-    tools:context=".controller.RegisterUserController"
+    tools:context=".controller.MedicalRecordsController"
     android:background="@drawable/background">
 
     <Button

@@ -17,12 +17,12 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 
-public class RegisterUserControllerTest extends ActivityInstrumentationTestCase2<RegisterUserController>{
+public class RegisterUserControllerTest extends ActivityInstrumentationTestCase2<MedicalRecordsController>{
     private UiDevice device;
-    private RegisterUserController register;
+    private MedicalRecordsController register;
 
     public RegisterUserControllerTest() {
-        super(RegisterUserController.class);
+        super(MedicalRecordsController.class);
     }
 
     @Before

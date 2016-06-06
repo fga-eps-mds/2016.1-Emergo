@@ -20,7 +20,7 @@ import helper.MaskHelper;
 import unlv.erc.emergo.R;
 
 
-public class RegisterUserController extends Activity {
+public class MedicalRecordsController extends Activity {
     private EditText fullName;
     private EditText birthday;
     private EditText observations;
@@ -44,14 +44,14 @@ public class RegisterUserController extends Activity {
 
     UserDao myDatabase;
 
-    public RegisterUserController() {
+    public MedicalRecordsController() {
 
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.register_user);
+        setContentView(R.layout.medical_records);
 
         myDatabase = new UserDao(this);
 
@@ -229,7 +229,7 @@ public class RegisterUserController extends Activity {
 
     public void openConfig(View map_screen){
         Intent config = new Intent();
-        config.setClass(this , RegisterUserController.class);
+        config.setClass(this , ConfigController.class);
         startActivity(config);
         finish();
     }

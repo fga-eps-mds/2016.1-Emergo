@@ -51,7 +51,7 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
 
     public void openConfig(View map_screen){
         Intent config = new Intent();
-        config.setClass(this , RegisterUserController.class);
+        config.setClass(this , ConfigController.class);
         startActivity(config);
     }
 
