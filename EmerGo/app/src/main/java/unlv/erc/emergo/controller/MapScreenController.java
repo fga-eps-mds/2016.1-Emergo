@@ -131,14 +131,18 @@ public class MapScreenController extends Activity {
         Intent listOfHealth = new Intent();
         listOfHealth.setClass(this , ListOfHealthUnitsController.class);
         startActivity(listOfHealth);
-        finish();
+    }
+
+    public void open_search(View mapScreen){
+        Intent openSearch = new Intent();
+        openSearch.setClass(this , SearchUsController.class);
+        startActivity(openSearch);
     }
 
     public void openMap(View mapScreen){
         Intent mapActivity = new Intent();
         mapActivity.setClass(this, MapScreenController.class);
         startActivity(mapActivity);
-        finish();
     }
 
 

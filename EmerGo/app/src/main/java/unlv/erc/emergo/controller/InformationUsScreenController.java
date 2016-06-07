@@ -80,6 +80,12 @@ public class InformationUsScreenController extends Activity {
         finish();
     }
 
+    public void open_search(View mapScreen){
+        Intent openSearch = new Intent();
+        openSearch.setClass(this , SearchUsController.class);
+        startActivity(openSearch);
+    }
+
     public void listMapsImageClicked(View map_screen){
         Intent listOfHealth = new Intent();
         listOfHealth.setClass(this, ListOfHealthUnitsController.class);

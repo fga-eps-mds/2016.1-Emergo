@@ -59,6 +59,7 @@
         android:id="@+id/iconSearch"
         android:background="@drawable/icon_search"
         android:layout_alignTop="@+id/iconMenu"
+        android:onClick="open_search"
         android:layout_alignStart="@+id/iconList"
         android:clickable="true" />
 
@@ -66,10 +67,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/hospInformation"
-        android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/iconMenu"
-        android:layout_above="@+id/iconMap"/>
+        android:layout_above="@+id/iconMap"
+        android:layout_below="@+id/iconMenu" />
 
 
 </RelativeLayout>

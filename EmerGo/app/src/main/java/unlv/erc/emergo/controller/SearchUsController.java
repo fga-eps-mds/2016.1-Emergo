@@ -19,10 +19,12 @@ import unlv.erc.emergo.model.HealthUnit;
 
 public class SearchUsController extends AppCompatActivity implements SearchView.OnQueryTextListener{
 
-    SearchView mSearchView;
+    private SearchView mSearchView;
     private List<String> searchUss = new ArrayList<String>();
     private int numberOfUsClicked;
     private ListView uSsList;
+    private CharSequence Busca;
+    ArrayList<String> closestsUs;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,11 +60,12 @@ public class SearchUsController extends AppCompatActivity implements SearchView.
     }
 
     public ArrayList<String> getSearchsUs(ArrayList<HealthUnit> closest){
-        final int MAXNUMBERUS = 2731;
-        ArrayList<String> closestsUs = new ArrayList<String>();
+        final int MAXNUMBERUS = 50;
+        Busca = mSearchView.getQuery();
+        closestsUs = new ArrayList<String>();
         int numberOfUs;
         for(numberOfUs = 1 ; numberOfUs < MAXNUMBERUS ; numberOfUs++){
-            if (closest.get(numberOfUs).getNameHospital().contains((CharSequence) mSearchView)) {
+            if (closest.get(numberOfUs).getNameHospital().toLowerCase().contains(Busca)) {
                 closestsUs.add(closest.get(numberOfUs).getNameHospital());
             }
         }

@@ -51,7 +51,7 @@ public class ListOfHealthUnitsController extends Activity {
 
 
     public List<String> get50closestUs(ArrayList<HealthUnit> closest){
-        final int MAXNUMBERUS = 50;
+        final int MAXNUMBERUS = 2731;
         List<String> closestsUs = new ArrayList<String>();
         int numberOfUs;
         for(numberOfUs = 1 ; numberOfUs < MAXNUMBERUS ; numberOfUs++){
@@ -83,6 +83,12 @@ public class ListOfHealthUnitsController extends Activity {
         mapActivity.setClass(this, MapScreenController.class);
         startActivity(mapActivity);
         finish();
+    }
+
+    public void open_search(View mapScreen){
+        Intent openSearch = new Intent();
+        openSearch.setClass(this , SearchUsController.class);
+        startActivity(openSearch);
     }
 
 }
