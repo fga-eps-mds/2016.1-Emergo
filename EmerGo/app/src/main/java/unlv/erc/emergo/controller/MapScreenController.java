@@ -1,14 +1,19 @@
 package unlv.erc.emergo.controller;
 
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 
+import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.view.View;
+import android.widget.Toast;
 
 
 import org.osmdroid.api.IMapController;
@@ -31,7 +36,8 @@ public class MapScreenController extends Activity {
     public static final int ZOOM_LEVEL = 14;
     GPSTracker gps = new GPSTracker(this);
 
-    @Override public void onCreate(Bundle savedInstanceState) {
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map_screen);
 
@@ -50,29 +56,29 @@ public class MapScreenController extends Activity {
         userOverLayItem.setMarker(marker);
         items.add(userOverLayItem);
 
-        addUsOnArray(items , HealthUnitController.getClosestsUs());
+        addUsOnArray(items, HealthUnitController.getClosestsUs());
 
         setOverlayItemsOnMap(map, items);
 
     }
 
-    public void addUsOnArray(ArrayList<OverlayItem> items ,
-                             ArrayList<HealthUnit> healthUnits){
-        for(int numberOfUs = 0 ; numberOfUs < healthUnits.size() ;
-                numberOfUs++){
+    public void addUsOnArray(ArrayList<OverlayItem> items,
+                             ArrayList<HealthUnit> healthUnits) {
+        for (int numberOfUs = 0; numberOfUs < healthUnits.size();
+             numberOfUs++) {
             items.add(getUnitOverLayItem(healthUnits.get(numberOfUs).getNameHospital(),
                     healthUnits.get(numberOfUs).getUnitType(),
-                    new GeoPoint(healthUnits.get(numberOfUs).getLatitude() ,
+                    new GeoPoint(healthUnits.get(numberOfUs).getLatitude(),
                             healthUnits.get(numberOfUs).getLongitude())));
 
         }
     }
 
-    private OverlayItem getUnitOverLayItem(String unityName ,
-                                           String unitType ,
+    private OverlayItem getUnitOverLayItem(String unityName,
+                                           String unitType,
                                            GeoPoint geoLocation) {
         return new OverlayItem
-                (unityName , unitType  , geoLocation);
+                (unityName, unitType, geoLocation);
     }
 
 
@@ -90,7 +96,7 @@ public class MapScreenController extends Activity {
                     public boolean onItemLongPress(final int index, final OverlayItem item) {
                         return false;
                     }
-                } , resource);
+                }, resource);
         mOverlay.setFocusItemsOnTap(true);
         map.getOverlays().add(mOverlay);
     }
@@ -98,7 +104,7 @@ public class MapScreenController extends Activity {
     @NonNull
     private OverlayItem getUserOverLayItem(GeoPoint geoLocation) {
         return new OverlayItem
-                    ("Vocẽ está aqui" , ""  , geoLocation);
+                ("Vocẽ está aqui", "", geoLocation);
     }
 
 
@@ -106,7 +112,7 @@ public class MapScreenController extends Activity {
         IMapController mapController = map.getController();
         mapController.setZoom(ZOOM_LEVEL);
         GeoPoint userGeoPoint = new GeoPoint(userLocation.getLatitude(),
-                                            userLocation.getLongitude());
+                userLocation.getLongitude());
         mapController.setCenter(userGeoPoint);
     }
 
@@ -119,12 +125,20 @@ public class MapScreenController extends Activity {
     }
 
     public void goClicked(View map_screen) {
-        Intent mapRoute = new Intent();
-        mapRoute.putExtra("latitude" , gps.getLocation().getLatitude());
-        mapRoute.putExtra("longitude" , gps.getLocation().getLongitude());
-        mapRoute.setClass(this, RouteActivity.class);
-        startActivity(mapRoute);
-        finish();
+        Intent in = new Intent(Intent.ACTION_CALL);
+        in.setData(Uri.parse(String.valueOf(983664836)));
+        in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        startActivity(in);
     }
 
     public void listMapsImageClicked(View map_screen){

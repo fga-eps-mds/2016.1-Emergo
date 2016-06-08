@@ -18,6 +18,7 @@ import static java.util.Collections.sort;
 public class HealthUnitController {
     private static HealthUnitController instance = null;
     static ArrayList<HealthUnit> closestsUs = new ArrayList<HealthUnit>();
+    static ArrayList<HealthUnit> searchClosestsUs = new ArrayList<HealthUnit>();
 
     public static HealthUnit createHealthUnit(Double latitude , Double longitude , String nameHospital,
                                               String unityType , String addressNumber , String district ,
@@ -33,6 +34,10 @@ public class HealthUnitController {
 
     public static ArrayList<HealthUnit> getClosestsUs() {
         return closestsUs;
+    }
+
+    public static ArrayList<HealthUnit> getSearchsUs() {
+        return searchClosestsUs;
     }
 
     public static void setClosestsUs(HealthUnit healthUnit) {

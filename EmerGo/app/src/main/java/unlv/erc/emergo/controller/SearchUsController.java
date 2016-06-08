@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -25,6 +26,7 @@ public class SearchUsController extends AppCompatActivity implements SearchView.
     private ListView uSsList;
     private CharSequence Busca;
     ArrayList<String> closestsUs;
+    ArrayList<HealthUnit> abc;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,10 +34,10 @@ public class SearchUsController extends AppCompatActivity implements SearchView.
     }
 
     public void openInformationUsScreen(){
-
+        final int CORRECTINDEX = 1;
         Intent informationScreen = new Intent();
-        informationScreen.putExtra("position", numberOfUsClicked);
-        informationScreen.setClass(SearchUsController.this, InformationUsScreenController.class);
+        informationScreen.putExtra("position", numberOfUsClicked + CORRECTINDEX);
+        informationScreen.setClass(SearchUsController.this, InformationSearchScreenController.class);
         startActivity(informationScreen);
     }
 
@@ -60,13 +62,15 @@ public class SearchUsController extends AppCompatActivity implements SearchView.
     }
 
     public ArrayList<String> getSearchsUs(ArrayList<HealthUnit> closest){
-        final int MAXNUMBERUS = 50;
+        //final int MAXNUMBERUS = 50;
         Busca = mSearchView.getQuery();
-        closestsUs = new ArrayList<String>();
+        closestsUs = new ArrayList<>();
+        abc = new ArrayList<>();
         int numberOfUs;
-        for(numberOfUs = 1 ; numberOfUs < MAXNUMBERUS ; numberOfUs++){
+        for(numberOfUs = 1 ; numberOfUs < HealthUnitController.getSearchsUs().size() ; numberOfUs++){
             if (closest.get(numberOfUs).getNameHospital().toLowerCase().contains(Busca)) {
-                closestsUs.add(closest.get(numberOfUs).getNameHospital());
+                closestsUs.add(closest.get(numberOfUs ).getNameHospital());
+                abc.add(HealthUnitController.getClosestsUs().get(numberOfUs));
             }
         }
         return closestsUs;
@@ -85,15 +89,16 @@ public class SearchUsController extends AppCompatActivity implements SearchView.
     @Override
     public boolean onQueryTextChange(String newText) {
 
-        searchUss = getSearchsUs(HealthUnitController.getClosestsUs());
+        searchUss = getSearchsUs(HealthUnitController.getSearchsUs());
 
         setuSsList((ListView) findViewById(R.id.list_of_search_us));
-        uSsList.setAdapter(new ArrayAdapter<String>(this, R.layout.item, R.id.hospitalUnitText,
+        uSsList.setAdapter(new ArrayAdapter<>(this, R.layout.item, R.id.hospitalUnitText,
                 searchUss));
         uSsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 numberOfUsClicked = parent.getPositionForView(view);
+                Log.i("position" , numberOfUsClicked + "");
                 openInformationUsScreen();
             }
         });

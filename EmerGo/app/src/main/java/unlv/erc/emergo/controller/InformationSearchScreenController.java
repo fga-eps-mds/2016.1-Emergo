@@ -1,12 +1,12 @@
 package unlv.erc.emergo.controller;
 
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,15 +14,16 @@ import java.util.List;
 import unlv.erc.emergo.R;
 import unlv.erc.emergo.model.HealthUnit;
 
-public class InformationUsScreenController extends Activity {
+public class InformationSearchScreenController extends Activity{
 
-    private List <String> listOfInformations = new ArrayList<String>();
+
+    private List<String> listOfInformations = new ArrayList<String>();
     private ListView hospInfo;
     private Intent receive;
     //private final Integer CORRECTINDEX = 1; // acces the correct index
     private int numberUsSelected;
     private String padding ,titulo, nome ,gestao , uf ,municipio ,
-                    bairro ,cep ;
+            bairro ,cep ;
 
 
     @Override
@@ -34,7 +35,7 @@ public class InformationUsScreenController extends Activity {
         setNumberUsSelected(receive.getIntExtra("position" , 0));
 
         setHospInfo((ListView) findViewById(R.id.hospInformation));
-        setInformation(HealthUnitController.getClosestsUs().get(numberUsSelected));
+        setInformation(HealthUnitController.getSearchsUs().get(numberUsSelected));
         addInformationToList();
 
     }
@@ -144,5 +145,3 @@ public class InformationUsScreenController extends Activity {
         this.cep = cep;
     }
 }
-
-

@@ -14,6 +14,8 @@
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="com.andre.mapas.MAPS_RECEIVE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <uses-feature
         android:glEsVersion="0x00020000"
@@ -29,7 +31,7 @@
         android:theme="@style/AppTheme" >
 
         <activity
-            android:name=".controller.MainScreenController" >
+            android:name=".controller.LoadingScreenController" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -43,8 +45,21 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".controller.MainScreenController" >
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".controller.InformationUsScreenController" >
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".controller.InformationSearchScreenController" >
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
