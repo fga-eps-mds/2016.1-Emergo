@@ -44,16 +44,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".controller.RouteActivity"
-            android:label="@string/title_activity_route" >
-            <intent-filter>
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".controller.MapScreenController"
-            android:label="@string/title_activity_route" >
+
+        <activity android:name=".controller.MapScreenController" >
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>

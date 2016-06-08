@@ -2,7 +2,10 @@ package unlv.erc.emergo.controller;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -13,6 +16,13 @@ import com.orm.SugarContext;
 
 import dao.DataAccessObject;
 import helper.Services;
+import android.Manifest;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import unlv.erc.emergo.R;
 
 public class MainScreenController extends Activity {
@@ -29,6 +39,8 @@ public class MainScreenController extends Activity {
         SugarContext.init(this);
 
         dataAccessObject.setDataOnSugar();
+
+
 
         OnClickListener goListener = new OnClickListener() {
             @Override

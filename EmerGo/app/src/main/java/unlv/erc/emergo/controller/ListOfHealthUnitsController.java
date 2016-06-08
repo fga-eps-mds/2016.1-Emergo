@@ -68,10 +68,7 @@ public class ListOfHealthUnitsController extends Activity {
     }
 
     public void goClicked(View map_screen) {
-        Intent mapRoute = new Intent();
-        mapRoute.setClass(this, RouteActivity.class);
-        startActivity(mapRoute);
-        finish();
+
     }
 
     public void listMapsImageClicked(View map_screen){
