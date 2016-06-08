@@ -101,7 +101,8 @@
         android:layout_below="@+id/phoneTextView"
         android:layout_alignParentStart="true"
         android:id="@+id/phoneEditText"
-        android:hint="(dd) yyyyy-dddd" />
+        android:hint="(ddd)yyyy-dddd"
+        android:layout_toStartOf="@+id/addNewContact" />
 
     <Button
         android:text="Delete"
@@ -128,7 +129,7 @@
         android:layout_toStartOf="@+id/deleteButtonFirstContact" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:hint="Insira o nome do contato de emergência"
@@ -153,20 +154,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="phone"
-        android:hint="(dd) yyyyy-dddd"
+        android:hint="(ddd)yyyy-dddd"
         android:ems="10"
         android:layout_below="@+id/phoneSecondContactTextView"
-        android:layout_alignEnd="@+id/nameSecondContactEditText"
         android:layout_alignParentStart="true"
-        android:id="@+id/phoneSecondContactEditText" />
+        android:id="@+id/phoneSecondContactEditText"
+        android:layout_alignEnd="@+id/phoneEditText" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="phone"
-        android:hint="(dd) yyyyy-dddd"
+        android:hint="(ddd)yyyy-dddd"
         android:ems="10"
-        android:id="@+id/editText9"
+        android:id="@+id/phoneLastContactEditText"
         android:layout_below="@+id/phoneLastContactTextView"
         android:layout_alignParentStart="true"
         android:layout_toStartOf="@+id/buttonGo"
@@ -183,7 +184,7 @@
         android:layout_alignParentStart="true" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:hint="Insira o nome do contato de emergência"

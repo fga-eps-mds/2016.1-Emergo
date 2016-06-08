@@ -40,7 +40,7 @@ public class MedicalRecordsController extends Activity {
     private String diabeticUser;
     private String hypertensionUser;
     private String seropositiveUser;
-    private String id = "1";
+    private Integer id = 1;
 
     UserDao myDatabase;
 

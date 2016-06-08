@@ -51,7 +51,7 @@ public class UserDao extends SQLiteOpenHelper {
         onCreate(database);
     }
 
-    public boolean insertUser(String id,String name,String birthday,String typeBlood,String cardiac,
+    public boolean insertUser(Integer id,String name,String birthday,String typeBlood,String cardiac,
                               String diabetic,String hypertension,String seropositive,
                               String observations){
         SQLiteDatabase database = this.getWritableDatabase();
@@ -74,7 +74,7 @@ public class UserDao extends SQLiteOpenHelper {
             return true;
         }
     }
-    public boolean updateUser(String id,String nameUser,String birthday,String typeBlood,String cardiac,
+    public boolean updateUser(Integer id,String nameUser,String birthday,String typeBlood,String cardiac,
                               String diabetic,String hypertension,String seropositive,String observation) {
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -87,7 +87,7 @@ public class UserDao extends SQLiteOpenHelper {
         contentValues.put(SEROPOSITIVEUSER,seropositive);
         contentValues.put(OBSERVATIONS,observation);
 
-        database.update(USER_TABLE, contentValues, "[IDUser] = ? ",new String[]{id});
+        database.update(USER_TABLE, contentValues, "[IDUser] = ? ",new String[]{String.valueOf(id)});
         database.close();
         return true;
     }
@@ -96,8 +96,8 @@ public class UserDao extends SQLiteOpenHelper {
         Cursor cursor = database.rawQuery("SELECT * FROM " + USER_TABLE,null);
         return cursor;
     }
-    public Integer deleteUser(String id){
+    public Integer deleteUser(Integer id){
         SQLiteDatabase database = this.getWritableDatabase();
-        return database.delete(USER_TABLE, "[IDUser] = ? ",new String[]{id});
+        return database.delete(USER_TABLE, "[IDUser] = ? ",new String[]{String.valueOf(id)});
     }
 }
