@@ -3,9 +3,11 @@ package unlv.erc.emergo.controller;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -15,6 +17,7 @@ import com.firebase.client.Firebase;
 import com.orm.SugarContext;
 
 import dao.DataAccessObject;
+import helper.GPSTracker;
 import helper.Services;
 import android.Manifest;
 
@@ -39,8 +42,6 @@ public class MainScreenController extends Activity {
         SugarContext.init(this);
 
         dataAccessObject.setDataOnSugar();
-
-
 
         OnClickListener goListener = new OnClickListener() {
             @Override
@@ -70,5 +71,6 @@ public class MainScreenController extends Activity {
         fineButton.setOnClickListener(okayListener);
 
     }
+
 
 }
