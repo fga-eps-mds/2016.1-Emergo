@@ -2,6 +2,7 @@ package unlv.erc.emergo.controller;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -33,6 +34,15 @@ public class MainScreenController extends Activity {
         setContentView(R.layout.main_screen);
         goButton = (Button) findViewById(R.id.buttonGo);
         fineButton = (Button) findViewById(R.id.buttonOkay);
+
+        goButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse("tel:91907175"));
+                startActivity(callIntent);
+            }
+        });
     }
 
     public void goClicked(View main_Screen){
