@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -32,7 +33,9 @@ import java.util.Map;
 
 import helper.GPSTracker;
 import helper.Services;
+
 import android.Manifest;
+
 import unlv.erc.emergo.R;
 
 public class MapScreenController extends FragmentActivity implements OnMapReadyCallback {
@@ -44,7 +47,6 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.map_screen);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -57,13 +59,13 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
         Toast.makeText(this, "Função não habilitada!", Toast.LENGTH_SHORT).show();
     }
 
-    public void listMapsImageClicked(View map_screen){
+    public void listMapsImageClicked(View map_screen) {
         Intent listOfHealth = new Intent();
-        listOfHealth.setClass(this , ListOfHealthUnitsController.class);
+        listOfHealth.setClass(this, ListOfHealthUnitsController.class);
         startActivity(listOfHealth);
     }
 
-    public void openMap(View mapScreen){
+    public void openMap(View mapScreen) {
         Intent mapActivity = new Intent();
         mapActivity.setClass(this, MapScreenController.class);
         startActivity(mapActivity);
@@ -74,24 +76,32 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
-        try{
+        try {
             checkPermissions();
-            GPSTracker gps = new GPSTracker(this);
-            Location location = gps.getLocation();
-            LatLng userLatLng = new LatLng(-15.689874 , -47.829876);
+//            GPSTracker gps = new GPSTracker(this);
+//            Location location = gps.getLocation();
+//            LatLng userLatLng = new LatLng(-15.689874 , -47.829876);
+//
+//            mMap = googleMap;
+//            mMap.addMarker(new MarkerOptions().position(userLatLng).title("Sua posição")
+//                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+//            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom
+//                    (new LatLng(userLatLng.latitude, userLatLng.longitude), 13.0f));
+//
+//            services.setMarkersOnMap(mMap , HealthUnitController.getClosestsUs() );
 
-            mMap = googleMap;
-            mMap.addMarker(new MarkerOptions().position(userLatLng).title("Sua posição")
-                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom
-                    (new LatLng(userLatLng.latitude, userLatLng.longitude), 13.0f));
+            Uri gmmIntentUri = Uri.parse("google.navigation:q=-15.689874, -47.829876");
+            Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+            mapIntent.setPackage("com.google.android.apps.maps");
+            if (mapIntent.resolveActivity(getPackageManager()) != null) {
 
-            services.setMarkersOnMap(mMap , HealthUnitController.getClosestsUs() );
+                startActivity(mapIntent);
+            }
 
-        }catch (NullPointerException nullPointer){
-            Toast.makeText(this, "Habilite o GPS" , Toast.LENGTH_LONG).show();
+        } catch (NullPointerException nullPointer) {
+            Toast.makeText(this, "Habilite o GPS", Toast.LENGTH_LONG).show();
             Intent mainScreen = new Intent();
-            mainScreen.setClass(this , MainScreenController.class);
+            mainScreen.setClass(this, MainScreenController.class);
             startActivity(mainScreen);
             finish();
         }
