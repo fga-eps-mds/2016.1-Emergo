@@ -24,6 +24,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
@@ -78,25 +79,28 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
 
         try {
             checkPermissions();
-//            GPSTracker gps = new GPSTracker(this);
-//            Location location = gps.getLocation();
-//            LatLng userLatLng = new LatLng(-15.689874 , -47.829876);
-//
-//            mMap = googleMap;
-//            mMap.addMarker(new MarkerOptions().position(userLatLng).title("Sua posição")
-//                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
-//            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom
-//                    (new LatLng(userLatLng.latitude, userLatLng.longitude), 13.0f));
-//
-//            services.setMarkersOnMap(mMap , HealthUnitController.getClosestsUs() );
 
-            Uri gmmIntentUri = Uri.parse("google.navigation:q=-15.689874, -47.829876");
-            Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-            mapIntent.setPackage("com.google.android.apps.maps");
-            if (mapIntent.resolveActivity(getPackageManager()) != null) {
+            LatLng userLatLng = new LatLng(-15.689874 , -47.829876);
 
-                startActivity(mapIntent);
-            }
+            mMap = googleMap;
+            mMap.addMarker(new MarkerOptions().position(userLatLng).title("Sua posição")
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom
+                    (new LatLng(userLatLng.latitude, userLatLng.longitude), 13.0f));
+            mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+                @Override
+                public void onInfoWindowClick(Marker marker) {
+                    try{
+                        if (!marker.getSnippet().contentEquals("Sua posição")){
+                            Toast.makeText(MapScreenController.this , "tracar rota" , Toast.LENGTH_LONG).show();
+                        }
+                    }catch (NullPointerException ex){
+                        Toast.makeText(MapScreenController.this , "Não pode traçar rota para a sua posição" , Toast.LENGTH_LONG).show();
+                    }
+
+                }
+            });
+            services.setMarkersOnMap(mMap , HealthUnitController.getClosestsUs() );
 
         } catch (NullPointerException nullPointer) {
             Toast.makeText(this, "Habilite o GPS", Toast.LENGTH_LONG).show();
@@ -112,7 +116,7 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
 
     private void checkPermissions() {
         List<String> permissions = new ArrayList<>();
-        String message = "osmdroid permissions:";
+        String message = "permissions:";
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
             message += "\nLocation to show user location.";
@@ -138,8 +142,18 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
                 for (int i = 0; i < permissions.length; i++)
                     perms.put(permissions[i], grantResults[i]);
                 // Check for ACCESS_FINE_LOCATION and WRITE_EXTERNAL_STORAGE
-                Boolean location = perms.get(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
-                Boolean storage = perms.get(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
+                Boolean location = false , storage = false;
+                    location = perms.get(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
+                try{
+                    storage = perms.get(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
+                }catch (RuntimeException ex){
+                    Toast.makeText(this , "É necessário ter a permissão" , Toast.LENGTH_LONG).show();
+                    Intent main = new Intent();
+                    main.setClass(this , MainScreenController.class);
+                    startActivity(main);
+                    finish();
+                }
+
                 if (location && storage) {
                     // All Permissions Granted
                     Toast.makeText(this, "All permissions granted", Toast.LENGTH_SHORT).show();
