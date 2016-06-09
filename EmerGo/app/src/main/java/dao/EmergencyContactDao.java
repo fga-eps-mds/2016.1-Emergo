@@ -8,17 +8,17 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class EmergencyContactDao extends SQLiteOpenHelper{
     private static final String DATABASE_NAME = "emerGo";
-    private static final int VERSION = 42;
+    private static final int VERSION = 43;
 
     private static final String EmergencyContact_TABLE = "EmergencyContact";
-    private static final String DROP_TABLE_EmergencyContact = "DROP TABLE IF EXISTS" + EmergencyContact_TABLE;
+    private static final String DROP_TABLE_EmergencyContact = "DROP TABLE IF EXISTS " + EmergencyContact_TABLE;
 
     //User data
     private static final String NAMECONTACT = "[nameContact]";
     private static final String PHONECONTACT = "[phoneContact]";
     private static final String CONTACT_ID = "[IDContact]";
 
-    private static final String CREATE_EMERGENCYCONTACT = "CREATE TABLE " + EmergencyContact_TABLE + " (" +
+    private static final String CREATE_EMERGENCYCONTACT = "CREATE TABLE IF NOT EXISTS " + EmergencyContact_TABLE + " (" +
             CONTACT_ID + "INTEGER PRIMARY KEY," +
             NAMECONTACT + " VARCHAR(42), "+
             PHONECONTACT + " VARCHAR(10)); ";
@@ -67,6 +67,7 @@ public class EmergencyContactDao extends SQLiteOpenHelper{
     public Cursor getEmergencyContact(){
         SQLiteDatabase database = this.getWritableDatabase();
         Cursor cursor = database.rawQuery("SELECT * FROM " + EmergencyContact_TABLE,null);
+        //Cursor cursor = database.rawQuery("SELECT * FROM " + EmergencyContact_TABLE + " WHERE " + "[IDContact] =  " + id,null);
         return cursor;
     }
     public Integer deleteEmergencyContact(Integer id){

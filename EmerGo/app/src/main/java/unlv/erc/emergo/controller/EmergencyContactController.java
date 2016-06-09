@@ -16,7 +16,7 @@ import unlv.erc.emergo.R;
 
 
 public class EmergencyContactController extends Activity {
-    private Button saveAndUpdateFirstContact;
+    private Button saveFirstContact;
     private Button saveSecondContact;
     private Button saveThirdContact;
     private EditText nameFirstContact;
@@ -28,7 +28,7 @@ public class EmergencyContactController extends Activity {
     private Button deleteFirstContact;
     private Button deleteSecondContact;
     private Button deleteThirdContact;
-    private Button addAnotherContact;
+    private Button updateFirstContact;
     private Button addAnotherContactLast;
     private String phoneContact;
     private String nameContact;
@@ -45,28 +45,65 @@ public class EmergencyContactController extends Activity {
 
         emergencyContactDao = new EmergencyContactDao(this);
 
-        saveAndUpdateFirstContact = (Button) findViewById(R.id.saveButtonFirstContact);
-        saveSecondContact = (Button) findViewById(R.id.saveButtonSecondContact);
-        saveThirdContact = (Button) findViewById(R.id.saveButtonLastContact);
-        nameFirstContact = (EditText) findViewById(R.id.nameContactEditText);
+        saveFirstContact = (Button) findViewById(R.id.saveButtonFirstContact);
+        saveSecondContact = (Button) findViewById(R.id.saveSecondContactButton);
+        saveThirdContact = (Button) findViewById(R.id.saveThirdContactButton);
+        updateFirstContact = (Button) findViewById(R.id.updateButtonFirstContact);
+        nameFirstContact = (EditText) findViewById(R.id.nameFirstContactEditText);
         nameSecondContact = (EditText) findViewById(R.id.nameSecondContactEditText);
-        nameThirdContact = (EditText) findViewById(R.id.nameLastContactEditText);
+        nameThirdContact = (EditText) findViewById(R.id.nameThirdContactEditText);
         phoneFirstContact = (EditText) findViewById(R.id.phoneEditText);
         phoneFirstContact.addTextChangedListener(MaskHelper.insert("(##)#####-####", phoneFirstContact));
         phoneSecondContact = (EditText) findViewById(R.id.phoneSecondContactEditText);
         phoneSecondContact.addTextChangedListener(MaskHelper.insert("(##)#####-####", phoneSecondContact));
-        phoneThirdContact = (EditText) findViewById(R.id.phoneLastContactEditText);
+        phoneThirdContact = (EditText) findViewById(R.id.phoneThirdContactEditText);
         phoneThirdContact.addTextChangedListener(MaskHelper.insert("(##)#####-####", phoneThirdContact));
-        deleteFirstContact = (Button) findViewById(R.id.deleteButtonFirstContact);
-        deleteSecondContact = (Button) findViewById(R.id.deleteButtonSecondContact);
-        deleteThirdContact = (Button) findViewById(R.id.deleteButtonLastContact);
-        addAnotherContact = (Button) findViewById(R.id.addNewContact);
-        addAnotherContactLast = (Button) findViewById(R.id.addSecondContact);
+        deleteFirstContact = (Button) findViewById(R.id.deleteFirstContactButton);
+        deleteSecondContact = (Button) findViewById(R.id.deleteSecondContactButton);
+        deleteThirdContact = (Button) findViewById(R.id.deleteThirdContactButton);
 
-        invisibleOptions(saveAndUpdateFirstContact,deleteFirstContact,addAnotherContact);
-        saveAndUpdateFirstContact.setOnClickListener(new View.OnClickListener() {
+        Cursor result = emergencyContactDao.getEmergencyContact();
+        if(result.getCount() == 0) {
+            showMessage("NÃO TEM NADA");
+            updateFirstContact.setEnabled(false);
+            deleteFirstContact.setEnabled(false);
+        }else{
+            result.moveToFirst();
+            saveFirstContact.setEnabled(false);
+            nameFirstContact.setText(result.getString(1));
+            nameFirstContact.setEnabled(false);
+        }
+        saveFirstContact.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 firstContact();
+                saveFirstContact.setEnabled(false);
+                updateFirstContact.setEnabled(true);
+                deleteFirstContact.setEnabled(true);
+            }
+        });
+        updateFirstContact.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                updateContact(saveFirstContact, nameFirstContact, idFirstContact,updateFirstContact);
+                saveFirstContact.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        updateFirstContact(idFirstContact);
+                    }
+                });
+            }
+        });
+
+        deleteFirstContact.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                deleteContact(nameFirstContact,phoneFirstContact,saveFirstContact,
+                        idFirstContact);
+                saveFirstContact.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        firstContact();
+                        saveFirstContact.setEnabled(false);
+                        updateFirstContact.setEnabled(true);
+                        deleteFirstContact.setEnabled(true);
+                    }
+                });
             }
         });
     }
@@ -83,35 +120,22 @@ public class EmergencyContactController extends Activity {
                 sucess = emergencyContactDao.insertEmergencyContact(idFirstContact, nameContact, phoneContact);
                 if (sucess == true) {
                     showMessage("Contato de Emergência Cadastrado Com Sucesso!");
-                    visibleOptionsContact(nameFirstContact, nameContact, saveAndUpdateFirstContact,
-                            deleteFirstContact, addAnotherContact);
                 } else {
                     showMessage("Contato de Emergência Não Cadastrado! Tente Novamente");
                 }
             }
         }
-
-        saveAndUpdateFirstContact.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                updateContact(saveAndUpdateFirstContact, nameFirstContact, idFirstContact);
-            }
-        });
-
-
-        deleteFirstContact.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                deleteContact(nameFirstContact,phoneFirstContact,saveAndUpdateFirstContact,
-                                idFirstContact);
-            }
-        });
     }
 
 
-    public void updateContact(Button save,EditText nameEdit,Integer id){
-        save.setText("Salvar");
+    public void updateContact(Button save,EditText nameEdit,Integer id,Button update){
         nameEdit.setEnabled(true);
-        boolean sucess = true;
+        update.setEnabled(false);
+        save.setEnabled(true);
+    }
 
+    public void updateFirstContact(Integer id){
+        boolean sucess = true;
         if(checksName(nameFirstContact.getText().toString()) == false){
             nameContact = nameFirstContact.getText().toString();
             phoneContact = phoneFirstContact.getText().toString();
@@ -123,21 +147,6 @@ public class EmergencyContactController extends Activity {
                 showMessage("Contato de Emergência Não Alterado! Tente Novamente");
             }
         }
-    }
-    public void invisibleOptions(Button save, Button delete, Button addAnotherContact){
-        save.setVisibility(View.VISIBLE);
-        delete.setVisibility(View.INVISIBLE);
-        addAnotherContact.setVisibility(View.INVISIBLE);
-    }
-
-
-    public void visibleOptionsContact(EditText nameEdit,String nameContact,Button save,
-                                           Button delete,Button addAnotherContact){
-        nameEdit.setText(""+nameContact);
-        nameEdit.setEnabled(false);
-        save.setText("Editar");
-        delete.setVisibility(View.VISIBLE);
-        addAnotherContact.setVisibility(View.VISIBLE);
     }
 
     public void deleteContact(final EditText nameContact, final EditText phoneContact,
@@ -151,11 +160,10 @@ public class EmergencyContactController extends Activity {
             public void onClick(DialogInterface dialog, int which) {
                 emergencyContactDao.deleteEmergencyContact(id);
                 showMessage("Contato de Emergência Excluido Com Sucesso");
-                nameContact.setEnabled(true);
-                nameContact.setText("");
-                phoneContact.setEnabled(true);
-                phoneContact.setText("");
-                save.setText("Salvar");
+                saveFirstContact.setEnabled(true);
+                nameFirstContact.setEnabled(true);
+                updateFirstContact.setEnabled(false);
+                deleteFirstContact.setEnabled(false);
             }
         });
         builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {

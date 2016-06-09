@@ -1,19 +1,10 @@
 package unlv.erc.emergo.controller;
 
 import android.content.Context;
-import android.location.Location;
-import android.util.Log;
-
-import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
 
-import helper.GPSTracker;
 import unlv.erc.emergo.model.HealthUnit;
-
-import static java.util.Collections.sort;
 
 public class HealthUnitController {
     private static HealthUnitController instance = null;
@@ -38,7 +29,4 @@ public class HealthUnitController {
     public static void setClosestsUs(HealthUnit healthUnit) {
         closestsUs.add(healthUnit);
     }
-
 }
-
-

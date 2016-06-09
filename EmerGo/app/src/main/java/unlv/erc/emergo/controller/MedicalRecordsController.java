@@ -114,7 +114,6 @@ public class MedicalRecordsController extends Activity {
                     showMessage("Usuário Não Cadastrado! Tente Novamente.");
                 }
             }
-
         }else {
             showMessageDialog("Erro!","Não É Possível Cadastrar Mais De Uma Ficha Médica.");
         }
