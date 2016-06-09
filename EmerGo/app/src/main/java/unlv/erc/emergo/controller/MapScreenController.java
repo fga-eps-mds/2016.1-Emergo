@@ -76,9 +76,11 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
 
         try{
             checkPermissions();
+            GPSTracker gps = new GPSTracker(this);
+            Location location = gps.getLocation();
             LatLng userLatLng = new LatLng(-15.689874 , -47.829876);
-            mMap = googleMap;
 
+            mMap = googleMap;
             mMap.addMarker(new MarkerOptions().position(userLatLng).title("Sua posição")
                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom
