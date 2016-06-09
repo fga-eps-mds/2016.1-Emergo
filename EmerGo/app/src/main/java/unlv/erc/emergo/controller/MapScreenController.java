@@ -5,9 +5,11 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.GooglePlayServicesAvailabilityException;
@@ -20,6 +22,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import helper.CallingMethods;
 import helper.Services;
 import unlv.erc.emergo.R;
 
@@ -39,13 +42,24 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-    }
+        Button Go = (Button) this.findViewById(R.id.buttonGo);
 
+        Go.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse("tel:91907175"));
+                startActivity(callIntent);
+            }
+        });
+
+    }
+/*
     public void goClicked(View map_screen){
         CallingMethods callMethods = new CallingMethods();
-        callingMethods.call(map_screen);
+        CallingMethods.call(map_screen);
     }
-
+*/
     public void listMapsImageClicked(View map_screen){
         Intent listOfHealth = new Intent();
         listOfHealth.setClass(this , ListOfHealthUnitsController.class);

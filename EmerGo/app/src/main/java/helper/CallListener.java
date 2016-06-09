@@ -3,9 +3,12 @@ package helper;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.telephony.PhoneStateListener;
+import android.telephony.TelephonyManager;
+import android.util.Log;
 
-private class CallListener extends PhoneStateListener {
-
+ class CallListener extends PhoneStateListener {
+/*
     private boolean isPhoneCalling = false;
 
     String LOG_TAG = "LOGGING 123";
@@ -44,4 +47,5 @@ private class CallListener extends PhoneStateListener {
             }
         }
     }
+    */
 }
