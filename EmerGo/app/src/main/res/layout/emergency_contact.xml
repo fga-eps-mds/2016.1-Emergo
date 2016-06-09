@@ -207,7 +207,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="phone"
+        android:inputType="textPersonName"
         android:ems="10"
         android:layout_below="@+id/nameThirdContactTextView"
         android:layout_alignParentStart="true"

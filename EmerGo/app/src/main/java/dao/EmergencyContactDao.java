@@ -67,7 +67,7 @@ public class EmergencyContactDao extends SQLiteOpenHelper{
     public Cursor getEmergencyContact(){
         SQLiteDatabase database = this.getWritableDatabase();
         Cursor cursor = database.rawQuery("SELECT * FROM " + EmergencyContact_TABLE,null);
-        //Cursor cursor = database.rawQuery("SELECT * FROM " + EmergencyContact_TABLE + " WHERE " + "[IDContact] =  " + id,null);
+
         return cursor;
     }
     public Integer deleteEmergencyContact(Integer id){
