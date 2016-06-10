@@ -49,6 +49,7 @@ import unlv.erc.emergo.R;
 
 public class MapScreenController extends FragmentActivity implements OnMapReadyCallback {
 
+    final int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124;
     private GoogleMap mMap;
     private Services services = new Services();
 
@@ -125,15 +126,13 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
 
     }
 
-    final int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124;
-
     private void checkPermissions() {
 
         List<String> permissions = new ArrayList<>();
-        String message = "permissions:";
+        String message = "Permissão";
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
-            message += "\nLocation to show user location.";
+            message += "\nTer acesso a localização no mapa";
         }
         if (!permissions.isEmpty()) {
             Toast.makeText(this, message, Toast.LENGTH_LONG).show();
@@ -156,7 +155,7 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
                     perms.put(permissions[i], grantResults[i]);
 
                 Boolean location = false , storage = false;
-                    location = perms.get(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
+                location = perms.get(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
                 try{
                     storage = perms.get(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
                 }catch (RuntimeException ex){
@@ -168,15 +167,9 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
                 }
 
                 if (location && storage) {
-                    Toast.makeText(this, "All permissions granted", Toast.LENGTH_SHORT).show();
-                } else if (location) {
-                    Toast.makeText(this, "Storage permission is required to store map tiles to reduce data usage and for offline usage.", Toast.LENGTH_LONG).show();
-                } else if (storage) {
-                    Toast.makeText(this, "Location permission is required to show the user's location on map.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Permissão aprovada", Toast.LENGTH_SHORT).show();
                 } else{
-                    Toast.makeText(this, "Storage permission is required to store map tiles " +
-                            "to reduce data usage and for offline usage." +
-                            "\nLocation permission is required to show the user's location on map.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this,"Permita ter o acesso para te localizar", Toast.LENGTH_SHORT).show();
                 }
             }
             break;
@@ -185,4 +178,5 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
         }
 
     }
+
 }

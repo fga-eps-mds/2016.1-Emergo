@@ -30,7 +30,7 @@ import unlv.erc.emergo.R;
 
 public class MainScreenController extends Activity {
 
-    private Button goButton , fineButton;
+    private Button goButton, fineButton;
     private Services services = new Services();
     private DataAccessObject dataAccessObject = new DataAccessObject(this);
 
@@ -43,32 +43,35 @@ public class MainScreenController extends Activity {
 
         dataAccessObject.setDataOnSugar();
 
-        OnClickListener goListener = new OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            OnClickListener goListener = new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    final String ROUTETRACED = "Rota mais próxima traçada";
+                    Toast.makeText(MainScreenController.this, ROUTETRACED , Toast.LENGTH_SHORT).show();
+                    Intent routeActivity = new Intent();
+                    routeActivity.setClass(MainScreenController.this , RouteActivity.class);
+                    startActivity(routeActivity);
+                    finish();
+                }
+            };
 
+            OnClickListener okayListener = new OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
-            }
-        };
+                    Intent mapScreen = new Intent();
+                    mapScreen.setClass(getBaseContext(), MapScreenController.class);
+                    startActivity(mapScreen);
 
-        OnClickListener okayListener = new OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                }
+            };
 
-                Intent mapScreen = new Intent();
-                mapScreen.setClass(getBaseContext(), MapScreenController.class);
-                startActivity(mapScreen);
-
-            }
-        };
-
-        setContentView(R.layout.main_screen);
-        goButton = (Button) findViewById(R.id.buttonGo);
-        goButton.setOnClickListener(goListener);
-        fineButton = (Button) findViewById(R.id.buttonOkay);
-        fineButton.setOnClickListener(okayListener);
+            setContentView(R.layout.main_screen);
+            goButton = (Button) findViewById(R.id.buttonGo);
+            goButton.setOnClickListener(goListener);
+            fineButton = (Button) findViewById(R.id.buttonOkay);
+            fineButton.setOnClickListener(okayListener);
 
     }
-
 
 }

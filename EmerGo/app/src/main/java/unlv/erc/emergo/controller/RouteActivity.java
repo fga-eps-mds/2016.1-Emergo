@@ -1,13 +1,19 @@
 package unlv.erc.emergo.controller;
 
+import android.Manifest;
 import android.app.Activity;
 
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -29,52 +35,72 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import helper.GPSTracker;
+import helper.Services;
 import unlv.erc.emergo.R;
+import unlv.erc.emergo.model.HealthUnit;
 
 
 public class RouteActivity  extends FragmentActivity {
 
+    final int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124;
     private GoogleMap mMap;
     GPSTracker gps = new GPSTracker(RouteActivity.this);
     ArrayList<LatLng> pointsOfRoute = new ArrayList<>();
     LatLng myLocation;
+    final int CLOSESTUS = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.map_screen);
-        getYourLocation();
+        setContentView(R.layout.route_activity);
 
+        checkPermissions();
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mMap = mapFragment.getMap();
         
 
-        //myLocation = new LatLng(-15.6898743 , -47.8299874); // my location (leo's house)
+        myLocation = new LatLng(-15.6898743 , -47.8299874); // my location (leo's house)
         setYourPosition();
         focusOnYourPosition();
 
         pointsOfRoute.add (myLocation);
         String urlInitial =  getDirectionsUrl(myLocation ,
-                new LatLng(HealthUnitController.getClosestsUs().get(30).getLatitude(),
-                        HealthUnitController.getClosestsUs().get(30).getLongitude()));
+                new LatLng(HealthUnitController.getClosestsUs().get(CLOSESTUS).getLatitude(),
+                        HealthUnitController.getClosestsUs().get(CLOSESTUS).getLongitude()));
         DownloadTask downloadTask = new DownloadTask();
         downloadTask.execute(urlInitial);
 
+        setMarkerOfClosestUsOnMap();
+
+
     }
 
-    private void getYourLocation() {
-        try{
-            myLocation = new LatLng(gps.getLocation().getLatitude() , gps.getLocation().getLongitude());
-        }catch (NullPointerException ex){
-            final String  TURNGPSON = "O GPS precisa está habilitado";
-            Toast.makeText(RouteActivity.this , TURNGPSON , Toast.LENGTH_SHORT).show();
-        }
+    public void cancelClicked(View view ){
+        Intent mapScreen = new Intent();
+        mapScreen.setClass(RouteActivity.this , MapScreenController.class);
+        startActivity(mapScreen);
+        finish();
     }
+
+    private void setMarkerOfClosestUsOnMap() {
+        mMap.addMarker(new MarkerOptions()
+                .position(new LatLng(HealthUnitController.getClosestsUs().get(CLOSESTUS).getLatitude()
+                        ,HealthUnitController.getClosestsUs().get(CLOSESTUS).getLongitude()))
+                .title(HealthUnitController.getClosestsUs().get(CLOSESTUS).getNameHospital() + "")
+                .snippet(HealthUnitController.getClosestsUs().get(CLOSESTUS).getUnitType()));
+    }
+
 
     private void focusOnYourPosition() {
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom
+                (new LatLng(myLocation.latitude, myLocation.longitude), 13.0f));
+    }
+
+    public void focusOnYourPosition(View view) {
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom
                 (new LatLng(myLocation.latitude, myLocation.longitude), 13.0f));
     }
@@ -84,6 +110,7 @@ public class RouteActivity  extends FragmentActivity {
         mMap.addMarker(new MarkerOptions().position(myLocation).title(yourPosition)
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
     }
+
 
     private String getDirectionsUrl(LatLng origin,LatLng dest){
 
@@ -201,6 +228,59 @@ public class RouteActivity  extends FragmentActivity {
             }
             mMap.addPolyline(lineOptions);
         }
+    }
+
+    private void checkPermissions() {
+
+        List<String> permissions = new ArrayList<>();
+        String message = "Permissão";
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
+            message += "\nTer acesso a localização no mapa";
+        }
+        if (!permissions.isEmpty()) {
+            Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+            String[] params = permissions.toArray(new String[permissions.size()]);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestPermissions(params, REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS);
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS: {
+                Map<String, Integer> perms = new HashMap<>();
+
+                perms.put(Manifest.permission.ACCESS_FINE_LOCATION, PackageManager.PERMISSION_GRANTED);
+
+                for (int i = 0; i < permissions.length; i++)
+                    perms.put(permissions[i], grantResults[i]);
+
+                Boolean location = false , storage = false;
+                location = perms.get(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
+                try{
+                    storage = perms.get(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
+                }catch (RuntimeException ex){
+                    Toast.makeText(this , "É necessário ter a permissão" , Toast.LENGTH_LONG).show();
+                    Intent main = new Intent();
+                    main.setClass(this , MainScreenController.class);
+                    startActivity(main);
+                    finish();
+                }
+
+                if (location && storage) {
+                    Toast.makeText(this, "Permissão aprovada", Toast.LENGTH_SHORT).show();
+                } else{
+                    Toast.makeText(this, "Permita o acesso para te localizar", Toast.LENGTH_SHORT).show();
+                }
+            }
+            break;
+            default:
+                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
     }
 
 

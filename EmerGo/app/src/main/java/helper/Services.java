@@ -108,8 +108,6 @@ public class Services extends AppCompatActivity{
 
 
     public void setMarkersOnMap(GoogleMap map,ArrayList<HealthUnit> uSs){
-        //WE should define how many markers we shall show to the user
-        //This method should be used to add many Markers on map
         int markersQuantity;
         for(markersQuantity = 0; markersQuantity < uSs.size(); markersQuantity++){
             map.addMarker(new MarkerOptions()
