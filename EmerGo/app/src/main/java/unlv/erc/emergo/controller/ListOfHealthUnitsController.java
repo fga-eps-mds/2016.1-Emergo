@@ -54,10 +54,10 @@ public class ListOfHealthUnitsController extends Activity {
 
 
     public List<String> get50closestUs(ArrayList<HealthUnit> closest){
-        final int MAXNUMBERUS = 50;
+        final int MAXNUMBERUS = 2731; // USs em Brasilia
         List<String> closestsUs = new ArrayList<String>();
         int numberOfUs;
-        for(numberOfUs = 1 ; numberOfUs < MAXNUMBERUS ; numberOfUs++){
+        for(numberOfUs = 0 ; numberOfUs < MAXNUMBERUS ; numberOfUs++){
             closestsUs.add(closest.get(numberOfUs).getNameHospital());
         }
         return closestsUs;

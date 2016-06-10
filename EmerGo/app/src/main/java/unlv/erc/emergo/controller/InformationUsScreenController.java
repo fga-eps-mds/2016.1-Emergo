@@ -19,7 +19,6 @@ public class InformationUsScreenController extends Activity {
     private List <String> listOfInformations = new ArrayList<String>();
     private ListView hospInfo;
     private Intent receive;
-    private final Integer CORRECTINDEX = 1; // acces the correct index
     private int numberUsSelected;
     private String padding ,titulo, nome ,gestao , uf ,municipio ,
                     bairro ,cep ;
@@ -31,8 +30,7 @@ public class InformationUsScreenController extends Activity {
         setContentView(R.layout.information_us_screen);
 
         setReceive(getIntent());
-        setNumberUsSelected(receive.getIntExtra("position" , 0)
-                + CORRECTINDEX);
+        setNumberUsSelected(receive.getIntExtra("position" , 0));
 
         setHospInfo((ListView) findViewById(R.id.hospInformation));
         setInformation(HealthUnitController.getClosestsUs().get(numberUsSelected));

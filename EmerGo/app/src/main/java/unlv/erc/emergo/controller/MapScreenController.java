@@ -1,23 +1,25 @@
 package unlv.erc.emergo.controller;
 
-import android.app.Activity;
+
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
+
+import android.graphics.Color;
+
 import android.location.Location;
-import android.location.LocationManager;
-import android.net.Uri;
+
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
+
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
+
+
 import android.view.View;
+
 import android.widget.Toast;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -27,23 +29,28 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+
+import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import helper.GPSTracker;
 import helper.Services;
 
 import android.Manifest;
 
+
+import org.json.JSONException;
+
 import unlv.erc.emergo.R;
+
 
 public class MapScreenController extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private Services services = new Services();
-    Location userLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,12 +60,19 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
+        mMap = mapFragment.getMap();
     }
 
-    public void goClicked(View map_screen) {
-        Toast.makeText(this, "Função não habilitada!", Toast.LENGTH_SHORT).show();
+
+    public void goClicked(View map_screen) throws IOException, JSONException {
+        final String ROUTETRACED = "Rota mais próxima traçada";
+        Toast.makeText(this, ROUTETRACED , Toast.LENGTH_SHORT).show();
+        Intent routeActivity = new Intent();
+        routeActivity.setClass(MapScreenController.this , RouteActivity.class);
+        startActivity(routeActivity);
+        finish();
     }
+
 
     public void listMapsImageClicked(View map_screen) {
         Intent listOfHealth = new Intent();
@@ -73,17 +87,16 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
         finish();
     }
 
-
     @Override
-    public void onMapReady(GoogleMap googleMap) {
+    public void onMapReady(final GoogleMap googleMap) {
 
         try {
             checkPermissions();
-
-            LatLng userLatLng = new LatLng(-15.689874 , -47.829876);
+            LatLng userLatLng = new LatLng(-15.6898743 , -47.8299874);
 
             mMap = googleMap;
-            mMap.addMarker(new MarkerOptions().position(userLatLng).title("Sua posição")
+            final String yourPosition = "Sua posição";
+            mMap.addMarker(new MarkerOptions().position(userLatLng).title(yourPosition)
                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom
                     (new LatLng(userLatLng.latitude, userLatLng.longitude), 13.0f));
@@ -91,8 +104,8 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
                 @Override
                 public void onInfoWindowClick(Marker marker) {
                     try{
-                        if (!marker.getSnippet().contentEquals("Sua posição")){
-                            Toast.makeText(MapScreenController.this , "tracar rota" , Toast.LENGTH_LONG).show();
+                        if (!marker.getTitle().contentEquals(yourPosition)){
+                            Toast.makeText(MapScreenController.this, "CLicked" , Toast.LENGTH_SHORT).show();
                         }
                     }catch (NullPointerException ex){
                         Toast.makeText(MapScreenController.this , "Não pode traçar rota para a sua posição" , Toast.LENGTH_LONG).show();
@@ -112,9 +125,10 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
 
     }
 
-    final private int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124;
+    final int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124;
 
     private void checkPermissions() {
+
         List<String> permissions = new ArrayList<>();
         String message = "permissions:";
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -135,13 +149,12 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
         switch (requestCode) {
             case REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS: {
                 Map<String, Integer> perms = new HashMap<>();
-                // Initial
+
                 perms.put(Manifest.permission.ACCESS_FINE_LOCATION, PackageManager.PERMISSION_GRANTED);
 
-                // Fill with results
                 for (int i = 0; i < permissions.length; i++)
                     perms.put(permissions[i], grantResults[i]);
-                // Check for ACCESS_FINE_LOCATION and WRITE_EXTERNAL_STORAGE
+
                 Boolean location = false , storage = false;
                     location = perms.get(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
                 try{
@@ -155,14 +168,12 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
                 }
 
                 if (location && storage) {
-                    // All Permissions Granted
                     Toast.makeText(this, "All permissions granted", Toast.LENGTH_SHORT).show();
                 } else if (location) {
                     Toast.makeText(this, "Storage permission is required to store map tiles to reduce data usage and for offline usage.", Toast.LENGTH_LONG).show();
                 } else if (storage) {
                     Toast.makeText(this, "Location permission is required to show the user's location on map.", Toast.LENGTH_LONG).show();
-                } else { // !location && !storage case
-                    // Permission Denied
+                } else{
                     Toast.makeText(this, "Storage permission is required to store map tiles " +
                             "to reduce data usage and for offline usage." +
                             "\nLocation permission is required to show the user's location on map.", Toast.LENGTH_SHORT).show();
@@ -172,6 +183,6 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
             default:
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-    }
 
+    }
 }
