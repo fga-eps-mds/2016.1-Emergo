@@ -30,7 +30,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0ecb3dae-cbb6-46d4-b6db-2680c9a56d6b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/unlv/erc/emergo/controller/EmergencyContactController.java" afterPath="$PROJECT_DIR$/app/src/main/java/unlv/erc/emergo/controller/EmergencyContactController.java" />
     </list>
     <ignored path="EmerGo.iws" />
@@ -67,28 +66,28 @@
       <file leaf-file-name="EmergencyContactController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/unlv/erc/emergo/controller/EmergencyContactController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="334">
-              <caret line="414" column="5" selection-start-line="414" selection-start-column="5" selection-end-line="414" selection-end-column="5" />
+            <state relative-caret-position="-2456">
+              <caret line="239" column="30" selection-start-line="239" selection-start-column="30" selection-end-line="239" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3770#3944#0" expanded="true" />
-                <element signature="e#3943#3944#0" expanded="true" />
-                <element signature="e#4416#4797#0" expanded="true" />
-                <element signature="e#4796#4797#0" expanded="true" />
-                <element signature="e#4874#5786#0" expanded="true" />
-                <element signature="e#5785#5786#0" expanded="true" />
-                <element signature="e#6425#6600#0" expanded="true" />
-                <element signature="e#6599#6600#0" expanded="true" />
-                <element signature="e#7081#7470#0" expanded="true" />
-                <element signature="e#7469#7470#0" expanded="true" />
-                <element signature="e#7547#8472#0" expanded="true" />
-                <element signature="e#8471#8472#0" expanded="true" />
-                <element signature="e#9100#9274#0" expanded="true" />
-                <element signature="e#9273#9274#0" expanded="true" />
-                <element signature="e#9744#10125#0" expanded="true" />
-                <element signature="e#10124#10125#0" expanded="true" />
-                <element signature="e#10201#11113#0" expanded="true" />
-                <element signature="e#11112#11113#0" expanded="true" />
+                <element signature="e#3770#4022#0" expanded="true" />
+                <element signature="e#4021#4022#0" expanded="true" />
+                <element signature="e#4494#4875#0" expanded="true" />
+                <element signature="e#4874#4875#0" expanded="true" />
+                <element signature="e#4952#5950#0" expanded="true" />
+                <element signature="e#5949#5950#0" expanded="true" />
+                <element signature="e#6589#6844#0" expanded="true" />
+                <element signature="e#6843#6844#0" expanded="true" />
+                <element signature="e#7325#7714#0" expanded="true" />
+                <element signature="e#7713#7714#0" expanded="true" />
+                <element signature="e#7791#8804#0" expanded="true" />
+                <element signature="e#8803#8804#0" expanded="true" />
+                <element signature="e#9432#9684#0" expanded="true" />
+                <element signature="e#9683#9684#0" expanded="true" />
+                <element signature="e#10154#10535#0" expanded="true" />
+                <element signature="e#10534#10535#0" expanded="true" />
+                <element signature="e#10611#11609#0" expanded="true" />
+                <element signature="e#11608#11609#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -3130,7 +3129,7 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30756304" sideWeight="0.41136363" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21344538" sideWeight="0.58863634" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21344538" sideWeight="0.58863634" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.95462185" sideWeight="0.48257574" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -3556,28 +3555,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/unlv/erc/emergo/controller/EmergencyContactController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="414" column="5" selection-start-line="414" selection-start-column="5" selection-end-line="414" selection-end-column="5" />
+        <state relative-caret-position="-2456">
+          <caret line="239" column="30" selection-start-line="239" selection-start-column="30" selection-end-line="239" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3770#3944#0" expanded="true" />
-            <element signature="e#3943#3944#0" expanded="true" />
-            <element signature="e#4416#4797#0" expanded="true" />
-            <element signature="e#4796#4797#0" expanded="true" />
-            <element signature="e#4874#5786#0" expanded="true" />
-            <element signature="e#5785#5786#0" expanded="true" />
-            <element signature="e#6425#6600#0" expanded="true" />
-            <element signature="e#6599#6600#0" expanded="true" />
-            <element signature="e#7081#7470#0" expanded="true" />
-            <element signature="e#7469#7470#0" expanded="true" />
-            <element signature="e#7547#8472#0" expanded="true" />
-            <element signature="e#8471#8472#0" expanded="true" />
-            <element signature="e#9100#9274#0" expanded="true" />
-            <element signature="e#9273#9274#0" expanded="true" />
-            <element signature="e#9744#10125#0" expanded="true" />
-            <element signature="e#10124#10125#0" expanded="true" />
-            <element signature="e#10201#11113#0" expanded="true" />
-            <element signature="e#11112#11113#0" expanded="true" />
+            <element signature="e#3770#4022#0" expanded="true" />
+            <element signature="e#4021#4022#0" expanded="true" />
+            <element signature="e#4494#4875#0" expanded="true" />
+            <element signature="e#4874#4875#0" expanded="true" />
+            <element signature="e#4952#5950#0" expanded="true" />
+            <element signature="e#5949#5950#0" expanded="true" />
+            <element signature="e#6589#6844#0" expanded="true" />
+            <element signature="e#6843#6844#0" expanded="true" />
+            <element signature="e#7325#7714#0" expanded="true" />
+            <element signature="e#7713#7714#0" expanded="true" />
+            <element signature="e#7791#8804#0" expanded="true" />
+            <element signature="e#8803#8804#0" expanded="true" />
+            <element signature="e#9432#9684#0" expanded="true" />
+            <element signature="e#9683#9684#0" expanded="true" />
+            <element signature="e#10154#10535#0" expanded="true" />
+            <element signature="e#10534#10535#0" expanded="true" />
+            <element signature="e#10611#11609#0" expanded="true" />
+            <element signature="e#11608#11609#0" expanded="true" />
           </folding>
         </state>
       </provider>

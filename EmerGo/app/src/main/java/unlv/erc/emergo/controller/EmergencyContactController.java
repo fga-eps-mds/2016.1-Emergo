@@ -82,6 +82,7 @@ public class EmergencyContactController extends Activity {
                     saveFirstContact.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
                             firstContact();
+                            disableField(nameFirstContact,phoneFirstContact);
                         }
                     });
                 }else{
@@ -115,6 +116,7 @@ public class EmergencyContactController extends Activity {
                             saveFirstContact.setOnClickListener(new View.OnClickListener() {
                                 public void onClick(View v) {
                                     firstContact();
+                                    disableField(nameFirstContact,phoneFirstContact);
                                 }
                             });
                         }else{
@@ -140,6 +142,7 @@ public class EmergencyContactController extends Activity {
                     saveSecondContact.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
                             secondContact();
+                            disableField(nameSecondContact,phoneSecondContact);
                         }
                     });
                 }else{
@@ -172,6 +175,7 @@ public class EmergencyContactController extends Activity {
                             saveSecondContact.setOnClickListener(new View.OnClickListener() {
                                 public void onClick(View v) {
                                     secondContact();
+                                    disableField(nameSecondContact,phoneSecondContact);
                                 }
                             });
                         }else{
@@ -197,6 +201,7 @@ public class EmergencyContactController extends Activity {
                     saveThirdContact.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
                             thirdContact();
+                            disableField(nameThirdContact,phoneThirdContact);
                         }
                     });
                 }else{
@@ -229,6 +234,7 @@ public class EmergencyContactController extends Activity {
                             saveThirdContact.setOnClickListener(new View.OnClickListener() {
                                 public void onClick(View v) {
                                     thirdContact();
+                                    disableField(nameThirdContact,phoneThirdContact);
                                 }
                             });
                         }else{
@@ -363,8 +369,12 @@ public class EmergencyContactController extends Activity {
         if(nameUser.isEmpty()){
             showMessage("Nome Vazio! Informe Seu Nome.");
             return true;
-        }if(nameUser.trim().length()<MINIMUM){
+        }else if(nameUser.trim().length()<MINIMUM){
             showMessage("Informe um nome com no mínimo 3 caracteres.");
+            return true;
+        }
+        else if(nameUser.matches(".*\\d.*")){
+            showMessage("Um nome não pode ter um número!");
             return true;
         }
         return false;
@@ -412,5 +422,10 @@ public class EmergencyContactController extends Activity {
     private void visibleOptions(Button save,Button update){
         update.setVisibility(View.VISIBLE);
         save.setVisibility(View.INVISIBLE);
+    }
+
+    private void disableField(EditText name,EditText phone){
+        name.setEnabled(false);
+        phone.setEnabled(false);
     }
 }
