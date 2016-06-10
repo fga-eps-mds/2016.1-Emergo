@@ -96,7 +96,9 @@ public class EmergencyContactController extends Activity {
                         saveFirstContact);
                 saveFirstContact.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
-                        updateContact(idFirstContact,nameFirstContact,phoneFirstContact);
+                        updateContact(idFirstContact,nameFirstContact,phoneFirstContact,
+                                        saveFirstContact,updateFirstContact,deleteFirstContact);
+                        visibleOptions(saveFirstContact,updateFirstContact);
                     }
                 });
             }
@@ -109,9 +111,15 @@ public class EmergencyContactController extends Activity {
                         idFirstContact,updateFirstContact,deleteFirstContact);
                 saveFirstContact.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
-                        firstContact();
-                        updateFirstContact.setEnabled(true);
-                        deleteFirstContact.setEnabled(true);
+                        if(firstContact() == false){
+                            saveFirstContact.setOnClickListener(new View.OnClickListener() {
+                                public void onClick(View v) {
+                                    firstContact();
+                                }
+                            });
+                        }else{
+                            disableButtons(saveFirstContact,updateFirstContact,deleteFirstContact);
+                        }
                     }
                 });
             }
@@ -146,12 +154,13 @@ public class EmergencyContactController extends Activity {
                         saveSecondContact);
                 saveSecondContact.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
-                        updateContact(idSecondContact,nameSecondContact,phoneSecondContact);
+                        updateContact(idSecondContact,nameSecondContact,phoneSecondContact,
+                                        saveSecondContact,updateSecondContact,deleteSecondContact);
+                        visibleOptions(saveSecondContact,updateSecondContact);
                     }
                 });
             }
         });
-
 
         deleteSecondContact.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -159,9 +168,15 @@ public class EmergencyContactController extends Activity {
                         idSecondContact,updateSecondContact,deleteSecondContact);
                 saveSecondContact.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
-                        secondContact();
-                        updateSecondContact.setEnabled(true);
-                        deleteSecondContact.setEnabled(true);
+                        if(secondContact() == false){
+                            saveSecondContact.setOnClickListener(new View.OnClickListener() {
+                                public void onClick(View v) {
+                                    secondContact();
+                                }
+                            });
+                        }else{
+                            disableButtons(saveSecondContact,updateSecondContact,deleteSecondContact);
+                        }
                     }
                 });
             }
@@ -192,16 +207,17 @@ public class EmergencyContactController extends Activity {
 
         updateThirdContact.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                disableJustUpdateButton(nameThirdContact, phoneThirdContact, updateThirdContact,
+                disableJustUpdateButton(nameThirdContact,phoneThirdContact,updateThirdContact,
                         saveThirdContact);
                 saveThirdContact.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
-                        updateContact(idThirdContact,nameThirdContact,phoneThirdContact);
+                        updateContact(idThirdContact,nameThirdContact,phoneThirdContact,
+                                        saveThirdContact,updateThirdContact,deleteThirdContact);
+                        visibleOptions(saveThirdContact,updateFirstContact);
                     }
                 });
             }
         });
-
 
         deleteThirdContact.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -209,16 +225,22 @@ public class EmergencyContactController extends Activity {
                         idThirdContact,updateThirdContact,deleteThirdContact);
                 saveThirdContact.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
-                        thirdContact();
-                        updateThirdContact.setEnabled(true);
-                        deleteThirdContact.setEnabled(true);
+                        if(thirdContact() == false){
+                            saveThirdContact.setOnClickListener(new View.OnClickListener() {
+                                public void onClick(View v) {
+                                    thirdContact();
+                                }
+                            });
+                        }else{
+                            disableButtons(saveThirdContact,updateThirdContact,deleteThirdContact);
+                        }
                     }
                 });
             }
         });
     }
 
-    public boolean firstContact(){
+    private boolean firstContact(){
         boolean sucess = true;
         boolean valid = false;
         if (checksName(nameFirstContact.getText().toString()) == false) {
@@ -229,7 +251,7 @@ public class EmergencyContactController extends Activity {
             if (sucess == true) {
                 showMessage("Contato de Emergência Cadastrado Com Sucesso!");
                 valid = true;
-                saveFirstContact.setEnabled(false);
+                disableOptionsUpdate(saveFirstContact,updateFirstContact,deleteFirstContact);
             } else {
                 showMessage("Contato de Emergência Não Cadastrado! Tente Novamente");
                 valid = false;
@@ -239,7 +261,7 @@ public class EmergencyContactController extends Activity {
     }
 
 
-    public boolean secondContact(){
+    private boolean secondContact(){
         boolean sucess = true;
         boolean valid = false;
 
@@ -252,6 +274,7 @@ public class EmergencyContactController extends Activity {
                 if (sucess == true) {
                     showMessage("Contato de Emergência Cadastrado Com Sucesso!");
                     valid = true;
+                    disableOptionsUpdate(saveSecondContact,updateSecondContact,deleteSecondContact);
                 } else {
                     showMessage("Contato de Emergência Não Cadastrado! Tente Novamente");
                     valid = true;
@@ -261,7 +284,7 @@ public class EmergencyContactController extends Activity {
         return valid;
     }
 
-    public boolean thirdContact(){
+    private boolean thirdContact(){
         boolean sucess = true;
         boolean valid = false;
 
@@ -274,6 +297,7 @@ public class EmergencyContactController extends Activity {
                 if (sucess == true) {
                     showMessage("Contato de Emergência Cadastrado Com Sucesso!");
                     valid = true;
+                    disableOptionsUpdate(saveThirdContact,updateThirdContact,deleteThirdContact);
                 } else {
                     showMessage("Contato de Emergência Não Cadastrado! Tente Novamente");
                     valid = true;
@@ -283,7 +307,8 @@ public class EmergencyContactController extends Activity {
         return valid;
     }
 
-    public void updateContact(Integer id,EditText name,EditText phone){
+    private void updateContact(Integer id,EditText name,EditText phone,Button save,Button update,
+                              Button delete){
         boolean sucess = true;
         if(checksName(name.getText().toString()) == false){
             nameContact = name.getText().toString();
@@ -292,13 +317,17 @@ public class EmergencyContactController extends Activity {
             sucess = emergencyContactDao.updateEmergencyContact(id,nameContact,phoneContact);
             if(sucess == true){
                 showMessage("Contato de Emergência Alterado Com Sucesso!");
+                save.setVisibility(View.VISIBLE);
+                save.setEnabled(false);
+                update.setEnabled(true);
+                delete.setEnabled(true);
             }else{
                 showMessage("Contato de Emergência Não Alterado! Tente Novamente");
             }
         }
     }
 
-    public void deleteContact(final EditText nameContact, final EditText phoneContact,
+    private void deleteContact(final EditText nameContact, final EditText phoneContact,
                               final Button save, final Integer id, final Button update,
                               final Button delete){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -316,8 +345,8 @@ public class EmergencyContactController extends Activity {
                 phoneContact.setText("");
                 nameContact.setEnabled(true);
                 phoneContact.setEnabled(true);
-                update.setEnabled(false);
-                delete.setEnabled(false);
+                update.setVisibility(View.INVISIBLE);
+                delete.setVisibility(View.INVISIBLE);
             }
         });
         builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
@@ -345,27 +374,43 @@ public class EmergencyContactController extends Activity {
         Toast.makeText(this,""+message,Toast.LENGTH_SHORT).show();
     }
 
-    public void disableOptions(Button save, Button update,Button delete){
+    private void disableOptions(Button save, Button update,Button delete){
         save.setVisibility(View.VISIBLE);
         update.setVisibility(View.INVISIBLE);
         delete.setVisibility(View.INVISIBLE);
     }
 
-    public void disableField(Button save,EditText name, EditText phone){
+    private void disableField(Button save,EditText name, EditText phone){
         save.setVisibility(View.INVISIBLE);
         name.setEnabled(false);
         phone.setEnabled(false);
     }
-    public void disableButtons(Button save,Button update,Button delete){
+    private void disableButtons(Button save,Button update,Button delete){
         save.setVisibility(View.INVISIBLE);
         update.setVisibility(View.VISIBLE);
+        update.setEnabled(true);
         delete.setVisibility(View.VISIBLE);
+        delete.setEnabled(true);
     }
 
-    public void disableJustUpdateButton(EditText name, EditText phone, Button update, Button save) {
+    private void disableJustUpdateButton(EditText name, EditText phone, Button update, Button save) {
         name.setEnabled(true);
         phone.setEnabled(true);
         update.setVisibility(View.INVISIBLE);
         save.setVisibility(View.VISIBLE);
+        save.setEnabled(true);
+    }
+
+    private void disableOptionsUpdate(Button save,Button update,Button delete){
+        save.setEnabled(false);
+        update.setVisibility(View.VISIBLE);
+        update.setEnabled(true);
+        delete.setVisibility(View.VISIBLE);
+        delete.setEnabled(true);
+    }
+
+    private void visibleOptions(Button save,Button update){
+        update.setVisibility(View.VISIBLE);
+        save.setVisibility(View.INVISIBLE);
     }
 }
