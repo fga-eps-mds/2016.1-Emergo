@@ -17,11 +17,11 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 
-public class RegisterUserControllerTest extends ActivityInstrumentationTestCase2<MedicalRecordsController>{
+public class MedicalRecordsControllerTest extends ActivityInstrumentationTestCase2<MedicalRecordsController>{
     private UiDevice device;
     private MedicalRecordsController register;
 
-    public RegisterUserControllerTest() {
+    public MedicalRecordsControllerTest() {
         super(MedicalRecordsController.class);
     }
 
@@ -31,7 +31,6 @@ public class RegisterUserControllerTest extends ActivityInstrumentationTestCase2
         getActivity();
         device = UiDevice.getInstance(getInstrumentation());
     }
-
 
     public void testSaveOption(){
         onView(withId(R.id.saveButton)).check(matches(isDisplayed()));

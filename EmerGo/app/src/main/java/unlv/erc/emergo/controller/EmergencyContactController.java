@@ -39,6 +39,10 @@ public class EmergencyContactController extends Activity {
 
     EmergencyContactDao emergencyContactDao;
 
+    public EmergencyContactController(){
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
