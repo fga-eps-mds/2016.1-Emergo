@@ -20,7 +20,7 @@ import helper.MaskHelper;
 import unlv.erc.emergo.R;
 
 
-public class RegisterUserController extends Activity {
+public class MedicalRecordsController extends Activity {
     private EditText fullName;
     private EditText birthday;
     private EditText observations;
@@ -40,18 +40,18 @@ public class RegisterUserController extends Activity {
     private String diabeticUser;
     private String hypertensionUser;
     private String seropositiveUser;
-    private String id = "1";
+    private Integer id = 1;
 
     UserDao myDatabase;
 
-    public RegisterUserController() {
+    public MedicalRecordsController() {
 
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.register_user);
+        setContentView(R.layout.medical_records);
 
         myDatabase = new UserDao(this);
 
@@ -114,7 +114,6 @@ public class RegisterUserController extends Activity {
                     showMessage("Usuário Não Cadastrado! Tente Novamente.");
                 }
             }
-
         }else {
             showMessageDialog("Erro!","Não É Possível Cadastrar Mais De Uma Ficha Médica.");
         }
@@ -229,7 +228,7 @@ public class RegisterUserController extends Activity {
 
     public void openConfig(View map_screen){
         Intent config = new Intent();
-        config.setClass(this , RegisterUserController.class);
+        config.setClass(this , ConfigController.class);
         startActivity(config);
         finish();
     }

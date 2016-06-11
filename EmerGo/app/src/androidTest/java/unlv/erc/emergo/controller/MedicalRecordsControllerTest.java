@@ -17,12 +17,12 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 
-public class RegisterUserControllerTest extends ActivityInstrumentationTestCase2<RegisterUserController>{
+public class MedicalRecordsControllerTest extends ActivityInstrumentationTestCase2<MedicalRecordsController>{
     private UiDevice device;
-    private RegisterUserController register;
+    private MedicalRecordsController register;
 
-    public RegisterUserControllerTest() {
-        super(RegisterUserController.class);
+    public MedicalRecordsControllerTest() {
+        super(MedicalRecordsController.class);
     }
 
     @Before
@@ -31,7 +31,6 @@ public class RegisterUserControllerTest extends ActivityInstrumentationTestCase2
         getActivity();
         device = UiDevice.getInstance(getInstrumentation());
     }
-
 
     public void testSaveOption(){
         onView(withId(R.id.saveButton)).check(matches(isDisplayed()));
@@ -530,7 +529,5 @@ public class RegisterUserControllerTest extends ActivityInstrumentationTestCase2
         onView(withId(R.id.observations)).check(matches(isDisplayed()));
         onView(withId(R.id.observationsEditText)).perform(typeText("42 = sentido da vida, o universo e tudo mais"));
         Espresso.closeSoftKeyboard();
-        onView(withText("Alterar")).perform(click());
-        onView(withText("Excluir")).perform(click());
     }
 }

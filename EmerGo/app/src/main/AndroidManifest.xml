@@ -49,7 +49,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".controller.RegisterUserController">
+        <activity android:name=".controller.MedicalRecordsController">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -62,12 +62,18 @@
 
         </activity>
 
-        <activity
-            android:name=".controller.RouteActivity"
-            android:label="@string/title_activity_route">
+        <activity android:name=".controller.ConfigController">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
+
+        </activity>
+
+        <activity android:name=".controller.EmergencyContactController">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+
         </activity>
 
         <meta-data
