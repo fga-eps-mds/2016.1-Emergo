@@ -26,8 +26,12 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
     private GoogleMap mMap;
     private Services services = new Services();
     public String SAMUNumber = "tel:33713601";
+    public Button Go;
 
 
+    public MapScreenController(){
+
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,18 +41,6 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
-        Button Go = (Button) this.findViewById(R.id.buttonGo);
-
-        Go.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse(SAMUNumber));
-                startActivity(callIntent);
-
-            }
-        });
 
     }
 
@@ -63,6 +55,22 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
         mapActivity.setClass(this, MapScreenController.class);
         startActivity(mapActivity);
         finish();
+    }
+
+    public void goClicked(View mapScreen){
+
+        Go = (Button) this.findViewById(R.id.buttonGo);
+
+        Go.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse(SAMUNumber));
+                startActivity(callIntent);
+
+            }
+        });
+
     }
 
 
