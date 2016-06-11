@@ -2,6 +2,7 @@ package unlv.erc.emergo.controller;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -437,5 +438,34 @@ public class EmergencyContactController extends Activity {
     private void disableField(EditText name,EditText phone){
         name.setEnabled(false);
         phone.setEnabled(false);
+    }
+
+    public void goClicked(View map_screen){
+        Toast.makeText(this , "Função não habilitada!" , Toast.LENGTH_SHORT).show();
+        Intent routeActivity = new Intent();
+        routeActivity.setClass(this, RouteActivity.class);
+        startActivity(routeActivity);
+        finish();
+    }
+
+    public void listMapsImageClicked(View map_screen){
+        Intent listOfHealth = new Intent();
+        listOfHealth.setClass(this , ListOfHealthUnitsController.class);
+        startActivity(listOfHealth);
+        finish();
+    }
+
+    public void openConfig(View map_screen){
+        Intent config = new Intent();
+        config.setClass(this , ConfigController.class);
+        startActivity(config);
+        finish();
+    }
+
+    public void openMap(View mapScreen){
+        Intent mapActivity = new Intent();
+        mapActivity.setClass(this, MapScreenController.class);
+        startActivity(mapActivity);
+        finish();
     }
 }
