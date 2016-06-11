@@ -45,4 +45,9 @@ public class MainScreenControllerTest extends ActivityInstrumentationTestCase2<M
         onView(withText("Estou Bem")).perform(click());
         onView(withId(R.id.buttonOkay)).check(matches(withText("Estou Bem")));
     }
+
+    public void testLogoEmerGoView(){
+
+        onView(withId(R.id.logoEmerGo)).check(matches(isDisplayed()));
+    }
 }

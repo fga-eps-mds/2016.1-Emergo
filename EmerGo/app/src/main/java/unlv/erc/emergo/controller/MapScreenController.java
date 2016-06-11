@@ -1,9 +1,12 @@
 package unlv.erc.emergo.controller;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.CallLog;
 import android.support.v4.app.FragmentActivity;
+import android.telecom.Call;
 import android.view.View;
 import android.widget.Button;
 
@@ -22,6 +25,7 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
 
     private GoogleMap mMap;
     private Services services = new Services();
+    public String SAMUNumber = "tel:33713601";
 
 
     @Override
@@ -40,8 +44,9 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
             @Override
             public void onClick(View v) {
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse("tel:337136015"));
+                callIntent.setData(Uri.parse(SAMUNumber));
                 startActivity(callIntent);
+
             }
         });
 

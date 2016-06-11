@@ -22,7 +22,7 @@ public class MapScreenControllerTest extends ActivityInstrumentationTestCase2<Ma
     @Before
     public void setUp() throws Exception{
         super.setUp();
-        getActivity().getCallingActivity();
+        getActivity();
     }
 
     public void testButtonGoClick(){
@@ -31,4 +31,17 @@ public class MapScreenControllerTest extends ActivityInstrumentationTestCase2<Ma
         onView(withText("GO!")).perform(click());
         onView(withId(R.id.buttonGo)).check(matches(withText("GO!")));
     }
+/*
+    public void testButtonListUsClick(){
+
+        onView(withId(R.id.iconList)).check(matches(isDisplayed()));
+        onView(withId(R.id.iconList)).perform(click());
+    }
+
+    public void testButtonMapClick(){
+
+        onView(withId(R.id.iconMap)).check(matches(isDisplayed()));
+        onView(withId(R.id.iconMap)).perform(click());
+    }
+*/
 }
