@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class EmergencyContactDao extends SQLiteOpenHelper{
     private static final String DATABASE_NAME = "emerGo";
-    private static final int VERSION = 43;
+    private static final int VERSION = 42;
 
     private static final String EmergencyContact_TABLE = "EmergencyContact";
     private static final String DROP_TABLE_EmergencyContact = "DROP TABLE IF EXISTS " + EmergencyContact_TABLE;
@@ -59,8 +59,7 @@ public class EmergencyContactDao extends SQLiteOpenHelper{
         contentValues.put(NAMECONTACT, nameContact);
         contentValues.put(PHONECONTACT,phone);
 
-        database.update(EmergencyContact_TABLE, contentValues, "[IDContact] = ? ",new String[]
-                                                                            {String.valueOf(id)});
+        database.update(EmergencyContact_TABLE, contentValues, "[IDContact] = "+id,null);
         database.close();
         return true;
     }
@@ -72,7 +71,6 @@ public class EmergencyContactDao extends SQLiteOpenHelper{
     }
     public Integer deleteEmergencyContact(Integer id){
         SQLiteDatabase database = this.getWritableDatabase();
-        return database.delete(EmergencyContact_TABLE, "[IDContact] = ? ",new String[]
-                                                                            {String.valueOf(id)});
+        return database.delete(EmergencyContact_TABLE, "[IDContact] = "+id,null);
     }
 }
