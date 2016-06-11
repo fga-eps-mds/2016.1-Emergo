@@ -28,6 +28,18 @@ public class SearchUsController extends AppCompatActivity implements SearchView.
     ArrayList<String> closestsUs;
     ArrayList<HealthUnit> abc;
 
+    public ListView getuSsList() {
+        return uSsList;
+    }
+
+    public SearchView getmSearchView() {
+        return mSearchView;
+    }
+
+    public void setmSearchView(SearchView mSearchView) {
+        this.mSearchView = mSearchView;
+    }
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_screen);
