@@ -13,7 +13,7 @@ public class EmergencyContactDao extends SQLiteOpenHelper{
     private static final String EmergencyContact_TABLE = "EmergencyContact";
     private static final String DROP_TABLE_EmergencyContact = "DROP TABLE IF EXISTS " + EmergencyContact_TABLE;
 
-    //User data
+    //EmergencyContact data
     private static final String NAMECONTACT = "[nameContact]";
     private static final String PHONECONTACT = "[phoneContact]";
     private static final String CONTACT_ID = "[IDContact]";

@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class UserDao extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "emerGo";
+    private static final String DATABASE_NAME = "MedicalRecords";
     private static final int VERSION = 42;
 
     private static final String USER_TABLE = "User";
@@ -25,7 +25,7 @@ public class UserDao extends SQLiteOpenHelper {
     private static final String OBSERVATIONS = "[observationsUser]";
     private static final String USER_ID = "[IDUser]";
 
-    private static final String CREATE_USER = "CREATE TABLE " + USER_TABLE + " (" +
+    private static final String CREATE_USER = "CREATE TABLE IF NOT EXISTS " + USER_TABLE + " (" +
             USER_ID + "INTEGER PRIMARY KEY," +
             NAMEUSER + " VARCHAR(42), "+
             BIRTHDAYUSER + " VARCHAR(10), "+
