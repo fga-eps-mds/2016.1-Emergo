@@ -40,18 +40,13 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
             @Override
             public void onClick(View v) {
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse("tel:91907175"));
+                callIntent.setData(Uri.parse("tel:337136015"));
                 startActivity(callIntent);
             }
         });
 
     }
-/*
-    public void goClicked(View map_screen){
-        CallingMethods callMethods = new CallingMethods();
-        CallingMethods.call(map_screen);
-    }
-*/
+
     public void listMapsImageClicked(View map_screen){
         Intent listOfHealth = new Intent();
         listOfHealth.setClass(this , ListOfHealthUnitsController.class);
