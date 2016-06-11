@@ -13,7 +13,7 @@ public class HealthUnit extends SugarRecord{
     private String district;
     private String state;
     private String city;
-    private static Float distance;
+    private Float distance;
     private Integer id;
 
     public HealthUnit(){

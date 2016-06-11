@@ -72,7 +72,12 @@ public class InformationUsScreenController extends Activity {
     }
 
     public void goClicked(View map_screen) {
-
+        final String ROUTETRACED = "Rota mais próxima traçada";
+        Toast.makeText(InformationUsScreenController.this, ROUTETRACED , Toast.LENGTH_SHORT).show();
+        Intent routeActivity = new Intent();
+        routeActivity.setClass(InformationUsScreenController.this , RouteActivity.class);
+        startActivity(routeActivity);
+        finish();
     }
 
     public void listMapsImageClicked(View map_screen){

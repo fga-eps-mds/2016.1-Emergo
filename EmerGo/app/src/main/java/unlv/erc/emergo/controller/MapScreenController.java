@@ -16,6 +16,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 
 
+import android.util.Log;
 import android.view.View;
 
 import android.widget.Toast;
@@ -52,6 +53,7 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
     final int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124;
     private GoogleMap mMap;
     private Services services = new Services();
+    LatLng userLatLng = new LatLng(-15.6898743 , -47.8299874);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,13 +69,13 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
 
     public void goClicked(View map_screen) throws IOException, JSONException {
         final String ROUTETRACED = "Rota mais próxima traçada";
+
         Toast.makeText(this, ROUTETRACED , Toast.LENGTH_SHORT).show();
         Intent routeActivity = new Intent();
         routeActivity.setClass(MapScreenController.this , RouteActivity.class);
         startActivity(routeActivity);
         finish();
     }
-
 
     public void listMapsImageClicked(View map_screen) {
         Intent listOfHealth = new Intent();
@@ -93,7 +95,6 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
 
         try {
             checkPermissions();
-            LatLng userLatLng = new LatLng(-15.6898743 , -47.8299874);
 
             mMap = googleMap;
             final String yourPosition = "Sua posição";

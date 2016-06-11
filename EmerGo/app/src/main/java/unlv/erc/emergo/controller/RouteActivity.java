@@ -1,12 +1,10 @@
 package unlv.erc.emergo.controller;
 
 import android.Manifest;
-import android.app.Activity;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -37,10 +35,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import helper.DirectionsJSONParser;
 import helper.GPSTracker;
-import helper.Services;
 import unlv.erc.emergo.R;
-import unlv.erc.emergo.model.HealthUnit;
 
 
 public class RouteActivity  extends FragmentActivity {
@@ -49,8 +46,9 @@ public class RouteActivity  extends FragmentActivity {
     private GoogleMap mMap;
     GPSTracker gps = new GPSTracker(RouteActivity.this);
     ArrayList<LatLng> pointsOfRoute = new ArrayList<>();
-    LatLng myLocation;
-    final int CLOSESTUS = 0;
+    LatLng myLocation = new LatLng(-15.6898743 , -47.8299874); // my location (leo's house)
+    int indexOfClosestUs;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,16 +59,14 @@ public class RouteActivity  extends FragmentActivity {
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mMap = mapFragment.getMap();
-        
 
-        myLocation = new LatLng(-15.6898743 , -47.8299874); // my location (leo's house)
-        setYourPosition();
+        setYourPositionOnMap();
         focusOnYourPosition();
 
         pointsOfRoute.add (myLocation);
         String urlInitial =  getDirectionsUrl(myLocation ,
-                new LatLng(HealthUnitController.getClosestsUs().get(CLOSESTUS).getLatitude(),
-                        HealthUnitController.getClosestsUs().get(CLOSESTUS).getLongitude()));
+                new LatLng(HealthUnitController.getClosestsUs().get(indexOfClosestUs).getLatitude(),
+                        HealthUnitController.getClosestsUs().get(indexOfClosestUs).getLongitude()));
         DownloadTask downloadTask = new DownloadTask();
         downloadTask.execute(urlInitial);
 
@@ -88,10 +84,10 @@ public class RouteActivity  extends FragmentActivity {
 
     private void setMarkerOfClosestUsOnMap() {
         mMap.addMarker(new MarkerOptions()
-                .position(new LatLng(HealthUnitController.getClosestsUs().get(CLOSESTUS).getLatitude()
-                        ,HealthUnitController.getClosestsUs().get(CLOSESTUS).getLongitude()))
-                .title(HealthUnitController.getClosestsUs().get(CLOSESTUS).getNameHospital() + "")
-                .snippet(HealthUnitController.getClosestsUs().get(CLOSESTUS).getUnitType()));
+                .position(new LatLng(HealthUnitController.getClosestsUs().get(indexOfClosestUs).getLatitude()
+                        ,HealthUnitController.getClosestsUs().get(indexOfClosestUs).getLongitude()))
+                .title(HealthUnitController.getClosestsUs().get(indexOfClosestUs).getNameHospital() + "")
+                .snippet(HealthUnitController.getClosestsUs().get(indexOfClosestUs).getUnitType()));
     }
 
 
@@ -105,7 +101,7 @@ public class RouteActivity  extends FragmentActivity {
                 (new LatLng(myLocation.latitude, myLocation.longitude), 13.0f));
     }
 
-    private void setYourPosition() {
+    private void setYourPositionOnMap() {
         final String yourPosition = "Sua posição";
         mMap.addMarker(new MarkerOptions().position(myLocation).title(yourPosition)
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
