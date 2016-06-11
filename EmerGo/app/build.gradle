@@ -11,11 +11,16 @@ android {
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            debuggable true
+            testCoverageEnabled true
         }
     }
     packagingOptions {
@@ -23,12 +28,19 @@ android {
         exclude 'META-INF/LICENSE-FIREBASE.txt'
         exclude 'META-INF/NOTICE'
     }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:24.0.0-alpha2'
+    compile 'com.android.support:appcompat-v7:22.2.0'
+    //androidTestCompile 'com.android.support.test:runner:0.5'
+    //androidTestCompile 'com.android.support.test:rules:0.5'
+    //androidTestCompile 'org.hamcrest:hamcrest-library:1.1'
     compile 'com.google.android.gms:play-services:8.4.0'
     compile 'com.google.android.gms:play-services-ads:8.4.0'
     compile 'com.google.android.gms:play-services-identity:8.4.0'
@@ -37,4 +49,7 @@ dependencies {
     compile 'com.google.android.gms:play-services-maps:8.4.0'
     compile 'com.firebase:firebase-client-android:2.5.2+'
     compile 'com.google.android.gms:play-services:8.4.0'
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.0'
+    androidTestCompile 'com.android.support.test:testing-support-lib:0.1'
+    //androidTestCompile 'org.hamcrest:hamcrest-core:1.3'
 }
