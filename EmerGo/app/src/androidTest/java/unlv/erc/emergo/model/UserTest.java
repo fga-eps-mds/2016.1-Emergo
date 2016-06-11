@@ -5,8 +5,10 @@ import junit.framework.TestCase;
 public class UserTest extends TestCase {
 
     private User user;
-    final int MAXIMUM_LENGHT_NAME = 42;
-    final int MAXIMUM_TYPEBLOOD = 3;
+
+    private final int MINIMUM_LENGTH_NAME = 3;
+    private final int MAXIMUM_LENGHT_NAME = 42;
+    private final int MAXIMUM_TYPEBLOOD = 3;
 
     // tests for name
 
@@ -32,9 +34,8 @@ public class UserTest extends TestCase {
     public void testSetNameLowerThree(){
         user = new User();
         user.setName("Ana");
-        final int MINIMUM = 3;
         boolean result = true;
-        if(user.getName().trim().length()<MINIMUM){
+        if(user.getName().trim().length()<MINIMUM_LENGTH_NAME){
             assertFalse(result);
         }else{
             assertTrue(result);
