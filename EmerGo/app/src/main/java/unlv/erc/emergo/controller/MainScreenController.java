@@ -20,7 +20,8 @@ import unlv.erc.emergo.model.HealthUnit;
 
 public class MainScreenController extends Activity {
 
-    private Button goButton , fineButton;
+    public Button goButton;
+    public Button fineButton;
     private Services services = new Services();
     //CallingMethods callingMethods = new CallingMethods();
 
@@ -39,10 +40,11 @@ public class MainScreenController extends Activity {
             @Override
             public void onClick(View v) {
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse("tel:91907175"));
+                callIntent.setData(Uri.parse("tel:33713601"));
                 startActivity(callIntent);
             }
         });
+
     }
 
     public void goClicked(View main_Screen){
