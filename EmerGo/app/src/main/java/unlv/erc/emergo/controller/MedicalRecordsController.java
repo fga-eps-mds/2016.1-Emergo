@@ -150,13 +150,13 @@ public class MedicalRecordsController extends Activity {
                                             diabeticUser,hypertensionUser, seropositiveUser,
                                             observationsUser);
             if (sucess == true) {
-                showMessage("Usuário Cadastrado Com Sucesso!");
+                showMessage("Ficha Médica Cadastrada Com Sucesso!");
                 valid = true;
                 disableOptionsCreateUser(fullName,birthday,observations,typeBlood,cardiac,diabect,
                                         hypertension,seropositive);
                 disableOptionsUpdate(saveButton,updateButton,deleteButton);
             } else {
-                showMessage("Usuário Não Cadastrado! Tente Novamente.");
+                showMessage("Ficha Médica Não Cadastrada! Tente Novamente.");
                 valid = false;
             }
         }
