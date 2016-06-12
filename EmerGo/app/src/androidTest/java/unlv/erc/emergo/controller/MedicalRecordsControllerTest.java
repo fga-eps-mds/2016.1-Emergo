@@ -529,7 +529,5 @@ public class MedicalRecordsControllerTest extends ActivityInstrumentationTestCas
         onView(withId(R.id.observations)).check(matches(isDisplayed()));
         onView(withId(R.id.observationsEditText)).perform(typeText("42 = sentido da vida, o universo e tudo mais"));
         Espresso.closeSoftKeyboard();
-        onView(withText("Alterar")).perform(click());
-        onView(withText("Excluir")).perform(click());
     }
 }

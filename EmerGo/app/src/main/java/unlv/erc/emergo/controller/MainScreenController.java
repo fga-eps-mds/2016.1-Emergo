@@ -3,10 +3,10 @@ package unlv.erc.emergo.controller;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.firebase.client.Firebase;
 import com.orm.SugarContext;
@@ -27,16 +27,9 @@ public class MainScreenController extends Activity {
         super.onCreate(savedInstanceState);
 
         Firebase.setAndroidContext(this);
-
         SugarContext.init(this);
 
-        Log.i("log", "testeeeeeeeeeeeeeeeeeeee");
-        GPSTracker gps = new GPSTracker(this);
-
-        dataAccessObject.setDataOnSugar(); //New DB Handler!
-
-        Log.i("log", "FIIM ALELUIA ALELIA KAKAKAK");
-
+        dataAccessObject.setDataOnSugar();
 
         OnClickListener goListener = new OnClickListener() {
             @Override
@@ -51,13 +44,10 @@ public class MainScreenController extends Activity {
             @Override
             public void onClick(View v) {
 
-
-                dataAccessObject.setDataOnSugar();
-
                 Intent mapScreen = new Intent();
                 mapScreen.setClass(getBaseContext(), MapScreenController.class);
                 startActivity(mapScreen);
-
+                Toast.makeText(MainScreenController.this ,"Carregando USs no mapa" , Toast.LENGTH_SHORT).show();
             }
         };
 
