@@ -1,6 +1,7 @@
 package unlv.erc.emergo.controller;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -41,7 +42,6 @@ public class MedicalRecordsController extends Activity {
     private String hypertensionUser;
     private String seropositiveUser;
     private Integer id = 1;
-
     UserDao myDatabase;
 
     public MedicalRecordsController() {
@@ -49,7 +49,7 @@ public class MedicalRecordsController extends Activity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.medical_records);
 
@@ -68,66 +68,110 @@ public class MedicalRecordsController extends Activity {
         updateButton = (Button) findViewById(R.id.updateButton);
         deleteButton = (Button) findViewById(R.id.deleteButton);
 
+        Cursor result = myDatabase.getUser();
 
+        if(result.getCount() == 0) {
+            disableOptions(saveButton,updateButton,deleteButton);
+        }else{
+            if(result.moveToFirst()) {
+                fullName.setText(result.getString(1));
+                birthday.setText(result.getString(2));
+                observations.setText(result.getString(8));
+                disableField(saveButton,fullName,birthday,observations,cardiac,diabect,hypertension,
+                            seropositive,typeBlood);
+            }
+        }
         saveButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                createUser();
+                if(createUser() == false){
+                    saveButton.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
+                            createUser();
+                        }
+                    });
+                }else{
+                    disableButtons(saveButton,updateButton,deleteButton);
+                }
             }
         });
 
         updateButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                updateUser();
+                disableJustUpdateButton(fullName, birthday,updateButton,saveButton,observations,
+                                        typeBlood,cardiac,diabect,hypertension,seropositive);
+                saveButton.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        updateUser(id,saveButton,updateButton,deleteButton);
+                        visibleOptions(saveButton,updateButton);
+                    }
+                });
             }
         });
+
         deleteButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                deleteUser();
+                deleteUser(fullName,birthday,observations,saveButton,id,updateButton,deleteButton,
+                            typeBlood,cardiac,diabect,hypertension,seropositive);
+                saveButton.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        if(createUser() == false){
+                            saveButton.setOnClickListener(new View.OnClickListener() {
+                                public void onClick(View v) {
+                                    createUser();
+                                }
+                            });
+                        }else{
+                            disableButtons(saveButton,updateButton,deleteButton);
+                        }
+                    }
+                });
             }
         });
     }
 
 
-    private void createUser(){
-
-        Cursor result = myDatabase.getUser();
+    private boolean createUser(){
         boolean sucess = true;
-        if(result.getCount() == 0){
+        boolean valid = false;
 
-            if(checksName(fullName.getText().toString()) == false
-                    && checkBirthday(birthday.getText().toString()) == false){
-
-                birthdayUser = birthday.getText().toString();
-                observationsUser = observations.getText().toString();
-                nameUser = fullName.getText().toString();
-                typeBloodUser = typeBlood.getSelectedItem().toString();
-                cardiacUser = cardiac.getSelectedItem().toString();
-                diabeticUser = diabect.getSelectedItem().toString();
-                hypertensionUser = diabect.getSelectedItem().toString();
-                seropositiveUser = seropositive.getSelectedItem().toString();
-
-                sucess = myDatabase.insertUser(id, nameUser, birthdayUser, typeBloodUser, cardiacUser, diabeticUser,
-                        hypertensionUser, seropositiveUser,observationsUser);
-                if (sucess == true) {
-                    showMessage("Usuário Cadastrado Com Sucesso!");
-                } else {
-                    showMessage("Usuário Não Cadastrado! Tente Novamente.");
-                }
-            }
-        }else {
-            showMessageDialog("Erro!","Não É Possível Cadastrar Mais De Uma Ficha Médica.");
-        }
-    }
-
-    private void updateUser(){
-        Cursor result = myDatabase.getUser();
-        boolean sucess = true;
-        if(result.getCount() == 0){
-            showMessageDialog("Ficha Médica Vazia!","Cadastre Uma Ficha Médica Antes.");
-            return;
-        }else if(checksName(fullName.getText().toString()) == false
+        if(checksName(fullName.getText().toString()) == false
                 && checkBirthday(birthday.getText().toString()) == false){
 
+            birthdayUser = birthday.getText().toString();
+            observationsUser = observations.getText().toString();
+            nameUser = fullName.getText().toString();
+            typeBloodUser = typeBlood.getSelectedItem().toString();
+            cardiacUser = cardiac.getSelectedItem().toString();
+            diabeticUser = diabect.getSelectedItem().toString();
+            hypertensionUser = diabect.getSelectedItem().toString();
+            seropositiveUser = seropositive.getSelectedItem().toString();
+
+            sucess = myDatabase.insertUser(id, nameUser, birthdayUser, typeBloodUser, cardiacUser,
+                                            diabeticUser,hypertensionUser, seropositiveUser,
+                                            observationsUser);
+            if (sucess == true) {
+                showMessage("Usuário Cadastrado Com Sucesso!");
+                valid = true;
+                disableOptionsCreateUser(fullName,birthday,observations,typeBlood,cardiac,diabect,
+                                        hypertension,seropositive);
+                disableOptionsUpdate(saveButton,updateButton,deleteButton);
+            } else {
+                showMessage("Usuário Não Cadastrado! Tente Novamente.");
+                valid = false;
+            }
+        }
+        return valid;
+    }
+
+    private void updateUser(Integer id,Button save,Button update,
+                            Button delete){
+
+        boolean sucess = true;
+
+        if(checksName(fullName.getText().toString()) == false
+                && checkBirthday(birthday.getText().toString()) == false){
+
+            nameUser = fullName.getText().toString();
             birthdayUser = birthday.getText().toString();
             observationsUser = observations.getText().toString();
             nameUser = fullName.getText().toString();
@@ -141,31 +185,46 @@ public class MedicalRecordsController extends Activity {
                     hypertensionUser, seropositiveUser,observationsUser);
             if (sucess == true) {
                 showMessage("Alteração Realizada Com Sucesso!");
+                save.setVisibility(View.VISIBLE);
+                disableOptionsCreateUser(fullName,birthday,observations,typeBlood,cardiac,diabect,
+                        hypertension,seropositive);
+                save.setEnabled(false);
+                update.setEnabled(true);
+                delete.setEnabled(true);
             } else {
                 showMessage("Não Foi Possível Fazer A Alteração, Tente Novamente.");
             }
         }
     }
-    private void deleteUser(){
-        Cursor res = myDatabase.getUser();
-        if(res.getCount() == 0){
-            showMessageDialog("Ficha Médica Vazia!","Cadastre Uma Ficha Médica Antes.");
-            return;
-        }else {
-            myDatabase.deleteUser(id);
-            showMessage("Usuario Excluido Com Sucesso.");
-        }
-    }
-    private void showMessage(String message){
-        Toast.makeText(this,""+message,Toast.LENGTH_SHORT).show();
-    }
-    private void showMessageDialog(String title,String message){
+    private void deleteUser(final EditText name, final EditText birthday,final EditText observations,
+                            final Button save, final Integer id, final Button update,
+                            final Button delete,final Spinner typeBlood,final Spinner cardiac,
+                            final Spinner diabect,final Spinner hypertension,final Spinner seropositive){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setCancelable(true);
-        builder.setTitle(title);
-        builder.setMessage(message);
+
+        builder.setTitle("Excluir Ficha Médica?");
+        builder.setMessage("Deseja Mesmo Excluir Esta Ficha Médica?");
+        builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                myDatabase.deleteUser(id);
+                showMessage("Ficha Médica Excluida Com Sucesso");
+                visibleOptionsUser(save,name,birthday,observations,update,delete,typeBlood,cardiac,
+                                    hypertension,seropositive,diabect);
+            }
+        });
+        builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
         builder.show();
     }
+    private void showMessage(String message){
+        Toast.makeText(this,""+message,Toast.LENGTH_LONG).show();
+    }
+
     private boolean checksName(String nameUser){
         final int MINIMUM = 3;
         if(nameUser.isEmpty()){
@@ -180,6 +239,7 @@ public class MedicalRecordsController extends Activity {
     }
     private boolean checkBirthday(String birthdayUser){
         final int MINIMUMYEAR = 42;
+
         if(!birthdayUser.isEmpty() && birthdayUser!=null){
             try {
                 SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
@@ -201,7 +261,9 @@ public class MedicalRecordsController extends Activity {
                 }
             }
             catch (ParseException excecao){
-                showMessage("Ano Bissexto! Tente colocar 01/03/ e o ano que você nasceu.");
+                showMessage("Data Inválida! Informe uma data inválida,com o dia entre 1 e 31.\n" +
+                            "Informe um mês válido entre 1 e 12.\n" +
+                            "Informe um ano entre 1942 e o ano atual");
                 return true;
             }
         }
@@ -211,6 +273,95 @@ public class MedicalRecordsController extends Activity {
         }
     }
 
+    private void visibleOptionsUser(Button save,EditText name,EditText birthday,EditText observations,
+                                    Button update,Button delete,Spinner typeBlood,Spinner cardiac,
+                                    Spinner hypertension,Spinner seropositive,Spinner diabect){
+        save.setVisibility(View.VISIBLE);
+        save.setEnabled(true);
+        name.setText("");
+        birthday.setText("");
+        observations.setText("");
+        diabect.setEnabled(true);
+        name.setEnabled(true);
+        birthday.setEnabled(true);
+        observations.setEnabled(true);
+        typeBlood.setEnabled(true);
+        cardiac.setEnabled(true);
+        hypertension.setEnabled(true);
+        seropositive.setEnabled(true);
+        update.setVisibility(View.INVISIBLE);
+        delete.setVisibility(View.INVISIBLE);
+    }
+
+    private void disableOptions(Button save, Button update,Button delete){
+        save.setVisibility(View.VISIBLE);
+        update.setVisibility(View.INVISIBLE);
+        delete.setVisibility(View.INVISIBLE);
+    }
+
+    private void disableField(Button save,EditText name, EditText birthday,EditText observations,
+                              Spinner cardiac,Spinner diabect,Spinner hypertension,Spinner seropositive,
+                              Spinner typeBlood){
+        save.setVisibility(View.INVISIBLE);
+        name.setEnabled(false);
+        birthday.setEnabled(false);
+        observations.setEnabled(false);
+        cardiac.setEnabled(false);
+        typeBlood.setEnabled(false);
+        diabect.setEnabled(false);
+        hypertension.setEnabled(false);
+        seropositive.setEnabled(false);
+    }
+
+    private void disableOptionsUpdate(Button save,Button update,Button delete){
+        save.setEnabled(false);
+        update.setVisibility(View.VISIBLE);
+        update.setEnabled(true);
+        delete.setVisibility(View.VISIBLE);
+        delete.setEnabled(true);
+    }
+
+    private void disableButtons(Button save,Button update,Button delete){
+        save.setVisibility(View.INVISIBLE);
+        update.setVisibility(View.VISIBLE);
+        update.setEnabled(true);
+        delete.setVisibility(View.VISIBLE);
+        delete.setEnabled(true);
+    }
+
+    private void disableJustUpdateButton(EditText name, EditText birthday, Button update, Button save,
+                                         EditText observations,Spinner typeBlood,Spinner cardiac,
+                                         Spinner diabect,Spinner hypertension,Spinner seropositive) {
+        name.setEnabled(true);
+        birthday.setEnabled(true);
+        observations.setEnabled(true);
+        update.setVisibility(View.INVISIBLE);
+        save.setVisibility(View.VISIBLE);
+        save.setEnabled(true);
+        typeBlood.setEnabled(true);
+        cardiac.setEnabled(true);
+        diabect.setEnabled(true);
+        hypertension.setEnabled(true);
+        seropositive.setEnabled(true);
+    }
+
+    private void visibleOptions(Button save,Button update){
+        update.setVisibility(View.VISIBLE);
+        save.setVisibility(View.INVISIBLE);
+    }
+
+    private void disableOptionsCreateUser(EditText name,EditText birthday,EditText observations,
+                                          Spinner typeBlood,Spinner cardiac,Spinner diabect,
+                                          Spinner hypertension,Spinner seropositive){
+        name.setEnabled(false);
+        birthday.setEnabled(false);
+        observations.setEnabled(false);
+        typeBlood.setEnabled(false);
+        cardiac.setEnabled(false);
+        diabect.setEnabled(false);
+        hypertension.setEnabled(false);
+        seropositive.setEnabled(false);
+    }
     public void goClicked(View map_screen){
         Toast.makeText(this , "Função não habilitada!" , Toast.LENGTH_SHORT).show();
         Intent routeActivity = new Intent();

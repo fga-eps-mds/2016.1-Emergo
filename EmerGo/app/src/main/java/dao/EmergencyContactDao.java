@@ -21,7 +21,7 @@ public class EmergencyContactDao extends SQLiteOpenHelper{
     private static final String CREATE_EMERGENCYCONTACT = "CREATE TABLE IF NOT EXISTS " + EmergencyContact_TABLE + " (" +
             CONTACT_ID + "INTEGER PRIMARY KEY," +
             NAMECONTACT + " VARCHAR(42), "+
-            PHONECONTACT + " VARCHAR(10)); ";
+            PHONECONTACT + " VARCHAR(13)); ";
 
     public EmergencyContactDao(Context context) {
         super(context, DATABASE_NAME, null, VERSION);

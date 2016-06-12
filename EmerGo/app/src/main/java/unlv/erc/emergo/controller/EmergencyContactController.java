@@ -61,11 +61,11 @@ public class EmergencyContactController extends Activity {
         nameSecondContact = (EditText) findViewById(R.id.nameSecondContactEditText);
         nameThirdContact = (EditText) findViewById(R.id.nameThirdContactEditText);
         phoneFirstContact = (EditText) findViewById(R.id.phoneEditText);
-        phoneFirstContact.addTextChangedListener(MaskHelper.insert("(##)#####-####", phoneFirstContact));
+        phoneFirstContact.addTextChangedListener(MaskHelper.insert("(###)#####-####", phoneFirstContact));
         phoneSecondContact = (EditText) findViewById(R.id.phoneSecondContactEditText);
-        phoneSecondContact.addTextChangedListener(MaskHelper.insert("(##)#####-####", phoneSecondContact));
+        phoneSecondContact.addTextChangedListener(MaskHelper.insert("(###)#####-####", phoneSecondContact));
         phoneThirdContact = (EditText) findViewById(R.id.phoneThirdContactEditText);
-        phoneThirdContact.addTextChangedListener(MaskHelper.insert("(##)#####-####", phoneThirdContact));
+        phoneThirdContact.addTextChangedListener(MaskHelper.insert("(###)#####-####", phoneThirdContact));
         deleteFirstContact = (Button) findViewById(R.id.deleteFirstContactButton);
         deleteSecondContact = (Button) findViewById(R.id.deleteSecondContactButton);
         deleteThirdContact = (Button) findViewById(R.id.deleteThirdContactButton);
@@ -83,10 +83,10 @@ public class EmergencyContactController extends Activity {
         }
         saveFirstContact.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(firstContact(nameFirstContact,phoneFirstContact) == false){
+                if(firstContact() == false){
                     saveFirstContact.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
-                            firstContact(nameFirstContact,phoneFirstContact);
+                            firstContact();
                             disableField(nameFirstContact,phoneFirstContact);
                         }
                     });
@@ -117,10 +117,10 @@ public class EmergencyContactController extends Activity {
                         idFirstContact,updateFirstContact,deleteFirstContact);
                 saveFirstContact.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
-                        if(firstContact(nameFirstContact,phoneFirstContact) == false){
+                        if(firstContact() == false){
                             saveFirstContact.setOnClickListener(new View.OnClickListener() {
                                 public void onClick(View v) {
-                                    firstContact(nameFirstContact,phoneFirstContact);
+                                    firstContact();
                                     disableField(nameFirstContact,phoneFirstContact);
                                 }
                             });
@@ -143,10 +143,10 @@ public class EmergencyContactController extends Activity {
         }
         saveSecondContact.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(secondContact(nameSecondContact,phoneSecondContact) == false){
+                if(secondContact() == false){
                     saveSecondContact.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
-                            secondContact(nameSecondContact,phoneSecondContact);
+                            secondContact();
                             disableField(nameSecondContact,phoneSecondContact);
                         }
                     });
@@ -176,10 +176,10 @@ public class EmergencyContactController extends Activity {
                         idSecondContact,updateSecondContact,deleteSecondContact);
                 saveSecondContact.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
-                        if(secondContact(nameSecondContact,phoneSecondContact) == false){
+                        if(secondContact() == false){
                             saveSecondContact.setOnClickListener(new View.OnClickListener() {
                                 public void onClick(View v) {
-                                    secondContact(nameSecondContact,phoneSecondContact);
+                                    secondContact();
                                     disableField(nameSecondContact,phoneSecondContact);
                                 }
                             });
@@ -202,10 +202,10 @@ public class EmergencyContactController extends Activity {
         }
         saveThirdContact.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(thirdContact(nameThirdContact,phoneThirdContact) == false){
+                if(thirdContact() == false){
                     saveThirdContact.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
-                            thirdContact(nameThirdContact,phoneThirdContact);
+                            thirdContact();
                             disableField(nameThirdContact,phoneThirdContact);
                         }
                     });
@@ -235,10 +235,10 @@ public class EmergencyContactController extends Activity {
                         idThirdContact,updateThirdContact,deleteThirdContact);
                 saveThirdContact.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
-                        if(thirdContact(nameThirdContact,phoneThirdContact) == false){
+                        if(thirdContact() == false){
                             saveThirdContact.setOnClickListener(new View.OnClickListener() {
                                 public void onClick(View v) {
-                                    thirdContact(nameThirdContact,phoneThirdContact);
+                                    thirdContact();
                                     disableField(nameThirdContact,phoneThirdContact);
                                 }
                             });
@@ -251,7 +251,7 @@ public class EmergencyContactController extends Activity {
         });
     }
 
-    private boolean firstContact(EditText name,EditText phone){
+    private boolean firstContact(){
         boolean sucess = true;
         boolean valid = false;
         if (checksName(nameFirstContact.getText().toString()) == false) {
@@ -274,7 +274,7 @@ public class EmergencyContactController extends Activity {
     }
 
 
-    private boolean secondContact(EditText name,EditText phone){
+    private boolean secondContact(){
         boolean sucess = true;
         boolean valid = false;
 
@@ -299,7 +299,7 @@ public class EmergencyContactController extends Activity {
         return valid;
     }
 
-    private boolean thirdContact(EditText name,EditText phone){
+    private boolean thirdContact(){
         boolean sucess = true;
         boolean valid = false;
 
