@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+
 public class EmergencyContactDao extends SQLiteOpenHelper{
     private static final String DATABASE_NAME = "emerGo";
     private static final int VERSION = 42;
@@ -53,6 +55,7 @@ public class EmergencyContactDao extends SQLiteOpenHelper{
             return true;
         }
     }
+
     public boolean updateEmergencyContact(Integer id,String nameContact,String phone) {
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -63,14 +66,31 @@ public class EmergencyContactDao extends SQLiteOpenHelper{
         database.close();
         return true;
     }
+
     public Cursor getEmergencyContact(){
         SQLiteDatabase database = this.getWritableDatabase();
         Cursor cursor = database.rawQuery("SELECT * FROM " + EmergencyContact_TABLE,null);
 
         return cursor;
     }
+
     public Integer deleteEmergencyContact(Integer id){
         SQLiteDatabase database = this.getWritableDatabase();
         return database.delete(EmergencyContact_TABLE, "[IDContact] = "+id,null);
+    }
+
+    public ArrayList<String> getAllCotacts(){
+        ArrayList<String> array_list = new ArrayList<String>();
+
+        //hp = new HashMap();
+        SQLiteDatabase database = this.getReadableDatabase();
+        Cursor cursor =  database.rawQuery( "SELECT * FROM "+ EmergencyContact_TABLE, null );
+        cursor.moveToFirst();
+
+        while(cursor.isAfterLast() == false){
+            array_list.add(cursor.getString(cursor.getColumnIndex(NAMECONTACT)));
+            cursor.moveToNext();
+        }
+        return array_list;
     }
 }

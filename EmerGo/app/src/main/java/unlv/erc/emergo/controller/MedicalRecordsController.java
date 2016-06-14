@@ -1,28 +1,51 @@
 package unlv.erc.emergo.controller;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.Toast;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.ArrayList;
 
-import dao.UserDao;
-import helper.MaskHelper;
+import dao.EmergencyContactDao;
 import unlv.erc.emergo.R;
 
 
 public class MedicalRecordsController extends Activity {
-    private EditText fullName;
+
+    private ListView listView;
+    EmergencyContactDao emergencyContactDao;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.emergency_contact);
+
+        emergencyContactDao = new EmergencyContactDao(this);
+        ArrayList array_list = emergencyContactDao.getAllCotacts();
+        ArrayAdapter arrayAdapter=new ArrayAdapter(this,android.R.layout.simple_list_item_1, array_list);
+
+        listView = (ListView)findViewById(R.id.listView1);
+        listView.setAdapter(arrayAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+                int id_To_Search = arg2 + 1;
+
+                Bundle dataBundle = new Bundle();
+                dataBundle.putInt("id", id_To_Search);
+
+                Intent intent = new Intent(getApplicationContext(),DisplayContact.class);
+
+                intent.putExtras(dataBundle);
+                startActivity(intent);
+            }
+        });
+    }
+    /*private EditText fullName;
     private EditText birthday;
     private EditText observations;
     private Spinner typeBlood;
@@ -46,9 +69,9 @@ public class MedicalRecordsController extends Activity {
 
     public MedicalRecordsController() {
 
-    }
+    }*/
 
-    @Override
+    /*@Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.medical_records);
@@ -389,5 +412,5 @@ public class MedicalRecordsController extends Activity {
         mapActivity.setClass(this, MapScreenController.class);
         startActivity(mapActivity);
         finish();
-    }
+    }*/
 }

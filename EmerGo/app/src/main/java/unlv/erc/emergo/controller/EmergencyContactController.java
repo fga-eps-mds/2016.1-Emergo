@@ -1,23 +1,10 @@
 package unlv.erc.emergo.controller;
 
 import android.app.Activity;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.database.Cursor;
-import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
-
-import dao.EmergencyContactDao;
-import helper.MaskHelper;
-import unlv.erc.emergo.R;
 
 
 public class EmergencyContactController extends Activity {
-    private Button saveFirstContact;
+    /*private Button saveFirstContact;
     private Button saveSecondContact;
     private Button saveThirdContact;
     private EditText nameFirstContact;
@@ -467,5 +454,5 @@ public class EmergencyContactController extends Activity {
         mapActivity.setClass(this, MapScreenController.class);
         startActivity(mapActivity);
         finish();
-    }
+    }*/
 }
