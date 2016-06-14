@@ -5,6 +5,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -46,9 +47,8 @@ public class RouteActivity  extends FragmentActivity {
     private GoogleMap mMap;
     GPSTracker gps = new GPSTracker(RouteActivity.this);
     ArrayList<LatLng> pointsOfRoute = new ArrayList<>();
-    LatLng myLocation = new LatLng(-15.6898743 , -47.8299874); // my location (leo's house)
+    LatLng myLocation ;//= new LatLng(-15.6898743 , -47.8299874); // my location (leo's house)
     int indexOfClosestUs;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +59,9 @@ public class RouteActivity  extends FragmentActivity {
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mMap = mapFragment.getMap();
+
+        Location location = gps.getLocation();
+        myLocation = new LatLng(location.getLatitude() , location.getLongitude());
 
         setYourPositionOnMap();
         focusOnYourPosition();
@@ -71,7 +74,6 @@ public class RouteActivity  extends FragmentActivity {
         downloadTask.execute(urlInitial);
 
         setMarkerOfClosestUsOnMap();
-
 
     }
 

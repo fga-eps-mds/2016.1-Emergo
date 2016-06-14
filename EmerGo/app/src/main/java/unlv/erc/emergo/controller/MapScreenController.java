@@ -38,6 +38,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import helper.GPSTracker;
 import helper.Services;
 
 import android.Manifest;
@@ -51,9 +52,11 @@ import unlv.erc.emergo.R;
 public class MapScreenController extends FragmentActivity implements OnMapReadyCallback {
 
     final int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124;
+    final String yourPosition = "Sua posição";
     private GoogleMap mMap;
     private Services services = new Services();
-    LatLng userLatLng = new LatLng(-15.6898743 , -47.8299874);
+    Location location;
+    GPSTracker gps = new GPSTracker(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +67,34 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         mMap = mapFragment.getMap();
+
     }
+
+    @Override
+    public void onMapReady(final GoogleMap googleMap) {
+        mMap = googleMap;
+        try {
+            //checkPermissions();
+            location = gps.getLocation();
+
+            LatLng userLatLng = new LatLng(location.getLatitude() , location.getLongitude());
+            mMap.addMarker(new MarkerOptions().position(userLatLng).title(yourPosition)
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom
+                    (new LatLng(userLatLng.latitude, userLatLng.longitude), 13.0f));
+            services.setMarkersOnMap(mMap , HealthUnitController.getClosestsUs() );
+
+        } catch (NullPointerException nullPointer) {
+            Toast.makeText(this , location.getLatitude() + "" , Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Habilite o GPS", Toast.LENGTH_SHORT).show();
+            Intent mainScreen = new Intent();
+            mainScreen.setClass(this, MainScreenController.class);
+            startActivity(mainScreen);
+            finish();
+        }
+
+    }
+
 
 
     public void goClicked(View map_screen) throws IOException, JSONException {
@@ -90,42 +120,6 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
         finish();
     }
 
-    @Override
-    public void onMapReady(final GoogleMap googleMap) {
-
-        try {
-            checkPermissions();
-
-            mMap = googleMap;
-            final String yourPosition = "Sua posição";
-            mMap.addMarker(new MarkerOptions().position(userLatLng).title(yourPosition)
-                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom
-                    (new LatLng(userLatLng.latitude, userLatLng.longitude), 13.0f));
-            mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-                @Override
-                public void onInfoWindowClick(Marker marker) {
-                    try{
-                        if (!marker.getTitle().contentEquals(yourPosition)){
-                            Toast.makeText(MapScreenController.this, "CLicked" , Toast.LENGTH_SHORT).show();
-                        }
-                    }catch (NullPointerException ex){
-                        Toast.makeText(MapScreenController.this , "Não pode traçar rota para a sua posição" , Toast.LENGTH_LONG).show();
-                    }
-
-                }
-            });
-            services.setMarkersOnMap(mMap , HealthUnitController.getClosestsUs() );
-
-        } catch (NullPointerException nullPointer) {
-            Toast.makeText(this, "Habilite o GPS", Toast.LENGTH_LONG).show();
-            Intent mainScreen = new Intent();
-            mainScreen.setClass(this, MainScreenController.class);
-            startActivity(mainScreen);
-            finish();
-        }
-
-    }
 
     private void checkPermissions() {
 
