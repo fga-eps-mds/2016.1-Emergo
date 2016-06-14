@@ -2,6 +2,7 @@ package unlv.erc.emergo.controller;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -34,8 +35,14 @@ public class MainScreenController extends Activity {
         OnClickListener goListener = new OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                //TO-DO!
+                try {
+                    Intent smsIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms: 55061996941411"));
+                    smsIntent.putExtra("sms_body", "ihuul, emergo decolando!");
+                    startActivity(smsIntent);
+                    Toast.makeText(getApplicationContext(),"Deu bom o SMS", Toast.LENGTH_LONG).show();
+                }catch(Exception exception){
+                    Toast.makeText(getApplicationContext(),"Nao rolou de mandar o SMS", Toast.LENGTH_LONG).show();
+                }
 
             }
         };
