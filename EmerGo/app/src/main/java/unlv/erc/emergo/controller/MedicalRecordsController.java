@@ -155,6 +155,7 @@ public class MedicalRecordsController extends Activity {
                 disableOptionsCreateUser(fullName,birthday,observations,typeBlood,cardiac,diabect,
                         hypertension,seropositive);
                 disableOptionsUpdate(saveButton,updateButton,deleteButton);
+
             } else {
                 showMessage("Ficha Médica Não Cadastrada! Tente Novamente.");
                 valid = false;
