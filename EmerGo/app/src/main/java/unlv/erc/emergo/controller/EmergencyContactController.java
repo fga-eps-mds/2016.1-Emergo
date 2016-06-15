@@ -1,10 +1,23 @@
 package unlv.erc.emergo.controller;
 
 import android.app.Activity;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.database.Cursor;
+import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import dao.EmergencyContactDao;
+import helper.MaskHelper;
+import unlv.erc.emergo.R;
 
 
 public class EmergencyContactController extends Activity {
-    /*private Button saveFirstContact;
+    private Button saveFirstContact;
     private Button saveSecondContact;
     private Button saveThirdContact;
     private EditText nameFirstContact;
@@ -90,7 +103,7 @@ public class EmergencyContactController extends Activity {
                 saveFirstContact.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
                         updateContact(idFirstContact,nameFirstContact,phoneFirstContact,
-                                        saveFirstContact,updateFirstContact,deleteFirstContact);
+                                saveFirstContact,updateFirstContact,deleteFirstContact);
                         visibleOptions(saveFirstContact,updateFirstContact);
                     }
                 });
@@ -150,7 +163,7 @@ public class EmergencyContactController extends Activity {
                 saveSecondContact.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
                         updateContact(idSecondContact,nameSecondContact,phoneSecondContact,
-                                        saveSecondContact,updateSecondContact,deleteSecondContact);
+                                saveSecondContact,updateSecondContact,deleteSecondContact);
                         visibleOptions(saveSecondContact,updateSecondContact);
                     }
                 });
@@ -209,7 +222,7 @@ public class EmergencyContactController extends Activity {
                 saveThirdContact.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
                         updateContact(idThirdContact,nameThirdContact,phoneThirdContact,
-                                        saveThirdContact,updateThirdContact,deleteThirdContact);
+                                saveThirdContact,updateThirdContact,deleteThirdContact);
                         visibleOptions(saveThirdContact,updateFirstContact);
                     }
                 });
@@ -312,7 +325,7 @@ public class EmergencyContactController extends Activity {
     }
 
     private void updateContact(Integer id,EditText name,EditText phone,Button save,Button update,
-                              Button delete){
+                               Button delete){
         boolean sucess = true;
         if(checksName(name.getText().toString()) == false){
             nameContact = name.getText().toString();
@@ -332,8 +345,8 @@ public class EmergencyContactController extends Activity {
     }
 
     private void deleteContact(final EditText nameContact, final EditText phoneContact,
-                              final Button save, final Integer id, final Button update,
-                              final Button delete){
+                               final Button save, final Integer id, final Button update,
+                               final Button delete){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         builder.setTitle("Excluir Contato");
@@ -454,5 +467,5 @@ public class EmergencyContactController extends Activity {
         mapActivity.setClass(this, MapScreenController.class);
         startActivity(mapActivity);
         finish();
-    }*/
+    }
 }

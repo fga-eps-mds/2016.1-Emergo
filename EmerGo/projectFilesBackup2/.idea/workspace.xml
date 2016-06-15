@@ -23,17 +23,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0ecb3dae-cbb6-46d4-b6db-2680c9a56d6b" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_emergency_contact.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_23_0_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_23_0_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_23_0_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_23_0_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/adapter/EmergencyContactAdapter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/dao/EmergencyContactDao.java" afterPath="$PROJECT_DIR$/app/src/main/java/dao/EmergencyContactDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/unlv/erc/emergo/controller/ConfigController.java" afterPath="$PROJECT_DIR$/app/src/main/java/unlv/erc/emergo/controller/ConfigController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/unlv/erc/emergo/controller/EmergencyContactController.java" afterPath="$PROJECT_DIR$/app/src/main/java/unlv/erc/emergo/controller/EmergencyContactController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/unlv/erc/emergo/controller/MedicalRecordsController.java" afterPath="$PROJECT_DIR$/app/src/main/java/unlv/erc/emergo/controller/MedicalRecordsController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/unlv/erc/emergo/model/EmergencyContact.java" afterPath="$PROJECT_DIR$/app/src/main/java/unlv/erc/emergo/model/EmergencyContact.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_emergency_contact.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_emergency_contact.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/emergency_contact.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/emergency_contact.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
     </list>
@@ -83,26 +80,26 @@
       <file leaf-file-name="MedicalRecordsController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/unlv/erc/emergo/controller/MedicalRecordsController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="536">
-              <caret line="392" column="1" selection-start-line="392" selection-start-column="1" selection-end-line="392" selection-end-column="1" />
+            <state relative-caret-position="390">
+              <caret line="37" column="49" selection-start-line="37" selection-start-column="49" selection-end-line="37" selection-end-column="49" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2957#3434#0" expanded="true" />
-                <element signature="e#3121#3293#0" expanded="true" />
-                <element signature="e#3292#3293#0" expanded="true" />
-                <element signature="e#3433#3434#0" expanded="true" />
-                <element signature="e#3478#4056#0" expanded="true" />
-                <element signature="e#3770#4030#0" expanded="true" />
-                <element signature="e#4029#4030#0" expanded="true" />
-                <element signature="e#4055#4056#0" expanded="true" />
-                <element signature="e#4100#4993#0" expanded="true" />
-                <element signature="e#4394#4967#0" expanded="true" />
-                <element signature="e#4582#4786#0" expanded="true" />
-                <element signature="e#4785#4786#0" expanded="true" />
-                <element signature="e#4966#4967#0" expanded="true" />
-                <element signature="e#4992#4993#0" expanded="true" />
-                <element signature="e#8729#9152#0" expanded="true" />
-                <element signature="e#9151#9152#0" expanded="true" />
+                <marker date="1465902023967" expanded="false" signature="3892:3962" ph="(v) → {" />
+                <marker date="1465902023967" expanded="false" signature="4056:4138" ph="(v) → {" />
+                <marker date="1465902023967" expanded="false" signature="4201:4228" ph="}" />
+                <marker date="1465902023967" expanded="false" signature="4354:4369" ph="}" />
+                <marker date="1465902023967" expanded="false" signature="4413:4483" ph="(v) → {" />
+                <marker date="1465902023967" expanded="false" signature="4721:4799" ph="(v) → {" />
+                <marker date="1465902023967" expanded="false" signature="4958:4981" ph="}" />
+                <marker date="1465902023967" expanded="false" signature="4992:5007" ph="}" />
+                <marker date="1465902023967" expanded="false" signature="5051:5121" ph="(v) → {" />
+                <marker date="1465902023967" expanded="false" signature="5349:5427" ph="(v) → {" />
+                <marker date="1465902023967" expanded="false" signature="5537:5627" ph="(v) → {" />
+                <marker date="1465902023967" expanded="false" signature="5706:5741" ph="}" />
+                <marker date="1465902023967" expanded="false" signature="5899:5922" ph="}" />
+                <marker date="1465902023967" expanded="false" signature="5933:5948" ph="}" />
+                <marker date="1465902023967" expanded="false" signature="9748:9878" ph="(dialog, which) → {" />
+                <marker date="1465902023967" expanded="false" signature="10168:10183" ph="}" />
               </folding>
             </state>
           </provider>
@@ -118,49 +115,37 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="activity_emergency_contact.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_emergency_contact.xml">
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="303">
+              <caret line="123" column="53" selection-start-line="123" selection-start-column="53" selection-end-line="123" selection-end-column="53" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="medical_records.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/medical_records.xml">
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1080">
               <caret line="72" column="31" selection-start-line="71" selection-start-column="8" selection-end-line="72" selection-end-column="31" />
               <folding />
             </state>
           </provider>
-          <provider editor-type-id="android-designer2">
-            <state />
-          </provider>
         </entry>
       </file>
       <file leaf-file-name="EmergencyContactDao.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/dao/EmergencyContactDao.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="75" column="1" selection-start-line="75" selection-start-column="1" selection-end-line="75" selection-end-column="1" />
-              <folding>
-                <element signature="e#1092#1093#0" expanded="true" />
-                <element signature="e#1152#1153#0" expanded="true" />
-                <element signature="e#1219#1220#0" expanded="true" />
-                <element signature="e#1276#1277#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EmergencyContact.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/unlv/erc/emergo/model/EmergencyContact.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="34" column="5" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ConfigController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/unlv/erc/emergo/controller/ConfigController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="75" column="1" selection-start-line="75" selection-start-column="1" selection-end-line="75" selection-end-column="1" />
+            <state relative-caret-position="1215">
+              <caret line="91" column="18" selection-start-line="91" selection-start-column="18" selection-end-line="91" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -168,80 +153,77 @@
       </file>
       <file leaf-file-name="emergency_contact.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/emergency_contact.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="482">
-              <caret line="263" column="17" selection-start-line="263" selection-start-column="17" selection-end-line="263" selection-end-column="17" />
-              <folding>
-                <element signature="e#471#518#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
           <provider editor-type-id="android-designer2">
             <state />
           </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="41" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
         </entry>
       </file>
-      <file leaf-file-name="EmergencyContactController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="EmergencyContactController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/unlv/erc/emergo/controller/EmergencyContactController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="252" column="0" selection-start-line="252" selection-start-column="0" selection-end-line="252" selection-end-column="0" />
+            <state relative-caret-position="6165">
+              <caret line="456" column="7" selection-start-line="456" selection-start-column="7" selection-end-line="456" selection-end-column="7" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3681#4264#0" expanded="true" />
-                <element signature="e#3853#4105#0" expanded="true" />
-                <element signature="e#4104#4105#0" expanded="true" />
-                <element signature="e#4263#4264#0" expanded="true" />
-                <element signature="e#4314#4976#0" expanded="true" />
-                <element signature="e#4577#4950#0" expanded="true" />
-                <element signature="e#4949#4950#0" expanded="true" />
-                <element signature="e#4975#4976#0" expanded="true" />
-                <element signature="e#5027#6025#0" expanded="true" />
-                <element signature="e#5312#5999#0" expanded="true" />
-                <element signature="e#5508#5800#0" expanded="true" />
-                <element signature="e#5799#5800#0" expanded="true" />
-                <element signature="e#5998#5999#0" expanded="true" />
-                <element signature="e#6024#6025#0" expanded="true" />
-                <element signature="e#6490#7081#0" expanded="true" />
-                <element signature="e#6664#6919#0" expanded="true" />
-                <element signature="e#6918#6919#0" expanded="true" />
-                <element signature="e#7080#7081#0" expanded="true" />
-                <element signature="e#7132#7807#0" expanded="true" />
-                <element signature="e#7400#7781#0" expanded="true" />
-                <element signature="e#7780#7781#0" expanded="true" />
-                <element signature="e#7806#7807#0" expanded="true" />
-                <element signature="e#7858#8871#0" expanded="true" />
-                <element signature="e#8150#8845#0" expanded="true" />
-                <element signature="e#8348#8643#0" expanded="true" />
-                <element signature="e#8642#8643#0" expanded="true" />
-                <element signature="e#8844#8845#0" expanded="true" />
-                <element signature="e#8870#8871#0" expanded="true" />
-                <element signature="e#9327#9910#0" expanded="true" />
-                <element signature="e#9499#9751#0" expanded="true" />
-                <element signature="e#9750#9751#0" expanded="true" />
-                <element signature="e#9909#9910#0" expanded="true" />
-                <element signature="e#9960#10620#0" expanded="true" />
-                <element signature="e#10221#10594#0" expanded="true" />
-                <element signature="e#10593#10594#0" expanded="true" />
-                <element signature="e#10619#10620#0" expanded="true" />
-                <element signature="e#10670#11668#0" expanded="true" />
-                <element signature="e#10955#11642#0" expanded="true" />
-                <element signature="e#11151#11443#0" expanded="true" />
-                <element signature="e#11442#11443#0" expanded="true" />
-                <element signature="e#11641#11642#0" expanded="true" />
-                <element signature="e#11667#11668#0" expanded="true" />
-                <element signature="e#16116#16782#0" expanded="true" />
-                <element signature="e#16781#16782#0" expanded="true" />
+                <marker date="1465901194751" expanded="false" signature="3309:3379" ph="(v) → {" />
+                <marker date="1465901194751" expanded="false" signature="3481:3563" ph="(v) → {" />
+                <marker date="1465901194751" expanded="false" signature="3706:3733" ph="}" />
+                <marker date="1465901194751" expanded="false" signature="3877:3892" ph="}" />
+                <marker date="1465901194751" expanded="false" signature="3942:4012" ph="(v) → {" />
+                <marker date="1465901194751" expanded="false" signature="4205:4283" ph="(v) → {" />
+                <marker date="1465901194751" expanded="false" signature="4563:4586" ph="}" />
+                <marker date="1465901194751" expanded="false" signature="4597:4612" ph="}" />
+                <marker date="1465901194751" expanded="false" signature="4663:4733" ph="(v) → {" />
+                <marker date="1465901194751" expanded="false" signature="4948:5026" ph="(v) → {" />
+                <marker date="1465901194751" expanded="false" signature="5144:5234" ph="(v) → {" />
+                <marker date="1465901194751" expanded="false" signature="5401:5436" ph="}" />
+                <marker date="1465901194751" expanded="false" signature="5612:5635" ph="}" />
+                <marker date="1465901194751" expanded="false" signature="5646:5661" ph="}" />
+                <marker date="1465901194751" expanded="false" signature="6126:6196" ph="(v) → {" />
+                <marker date="1465901194751" expanded="false" signature="6300:6382" ph="(v) → {" />
+                <marker date="1465901194751" expanded="false" signature="6528:6555" ph="}" />
+                <marker date="1465901194751" expanded="false" signature="6702:6717" ph="}" />
+                <marker date="1465901194751" expanded="false" signature="6768:6838" ph="(v) → {" />
+                <marker date="1465901194751" expanded="false" signature="7036:7114" ph="(v) → {" />
+                <marker date="1465901194751" expanded="false" signature="7402:7425" ph="}" />
+                <marker date="1465901194751" expanded="false" signature="7436:7451" ph="}" />
+                <marker date="1465901194751" expanded="false" signature="7502:7572" ph="(v) → {" />
+                <marker date="1465901194751" expanded="false" signature="7794:7872" ph="(v) → {" />
+                <marker date="1465901194751" expanded="false" signature="7992:8082" ph="(v) → {" />
+                <marker date="1465901194751" expanded="false" signature="8252:8287" ph="}" />
+                <marker date="1465901194751" expanded="false" signature="8466:8489" ph="}" />
+                <marker date="1465901194751" expanded="false" signature="8500:8515" ph="}" />
+                <marker date="1465901194751" expanded="false" signature="8971:9041" ph="(v) → {" />
+                <marker date="1465901194751" expanded="false" signature="9143:9225" ph="(v) → {" />
+                <marker date="1465901194751" expanded="false" signature="9368:9395" ph="}" />
+                <marker date="1465901194751" expanded="false" signature="9539:9554" ph="}" />
+                <marker date="1465901194751" expanded="false" signature="9604:9674" ph="(v) → {" />
+                <marker date="1465901194751" expanded="false" signature="9865:9943" ph="(v) → {" />
+                <marker date="1465901194751" expanded="false" signature="10223:10246" ph="}" />
+                <marker date="1465901194751" expanded="false" signature="10257:10272" ph="}" />
+                <marker date="1465901194751" expanded="false" signature="10322:10392" ph="(v) → {" />
+                <marker date="1465901194751" expanded="false" signature="10607:10685" ph="(v) → {" />
+                <marker date="1465901194751" expanded="false" signature="10803:10893" ph="(v) → {" />
+                <marker date="1465901194751" expanded="false" signature="11060:11095" ph="}" />
+                <marker date="1465901194751" expanded="false" signature="11271:11294" ph="}" />
+                <marker date="1465901194751" expanded="false" signature="11305:11320" ph="}" />
+                <marker date="1465901194751" expanded="false" signature="15765:15895" ph="(dialog, which) → {" />
+                <marker date="1465901194751" expanded="false" signature="16416:16431" ph="}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="strings.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <file leaf-file-name="EmergencyContactControllerTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/androidTest/java/unlv/erc/emergo/controller/EmergencyContactControllerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="81" selection-start-line="5" selection-start-column="81" selection-end-line="5" selection-end-column="81" />
+            <state relative-caret-position="960">
+              <caret line="83" column="35" selection-start-line="83" selection-start-column="35" selection-end-line="83" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -1804,7 +1786,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="4397849285279" />
+        <entry key="$PROJECT_DIR$" value="4397225068909" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -2244,19 +2226,19 @@
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/androidTest/java/unlv/erc/emergo/controller/EmergencyContactControllerTest.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/dao/UserDao.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/unlv/erc/emergo/model/EmergencyContact.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/unlv/erc/emergo/controller/ConfigController.java" />
         <option value="$PROJECT_DIR$/app/src/androidTest/java/unlv/erc/emergo/model/EmergencyContactTest.java" />
         <option value="$PROJECT_DIR$/app/src/androidTest/java/unlv/erc/emergo/model/HealthUnitTest.java" />
         <option value="$PROJECT_DIR$/app/src/androidTest/java/unlv/erc/emergo/model/UserTest.java" />
         <option value="$PROJECT_DIR$/app/src/androidTest/java/unlv/erc/emergo/controller/MedicalRecordsControllerTest.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/adapter/EmergencyContactAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_emergency_contact.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/dao/EmergencyContactDao.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/unlv/erc/emergo/model/EmergencyContact.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/unlv/erc/emergo/controller/ConfigController.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/unlv/erc/emergo/controller/EmergencyContactController.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/unlv/erc/emergo/controller/MedicalRecordsController.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/emergency_contact.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/dao/EmergencyContactDao.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/unlv/erc/emergo/controller/MedicalRecordsController.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/adapter/EmergencyContactAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_emergency_contact.xml" />
       </list>
     </option>
   </component>
@@ -2290,7 +2272,18 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="AndroidView">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EmerGo" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -2707,17 +2700,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="AndroidView">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="EmerGo" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -2734,7 +2716,95 @@
     <property name="UI_DESIGNER_EDITOR_MODE.NlPaletteManager-NlPreviewForm.SHOW" value="false" />
     <property name="UI_DESIGNER_EDITOR_MODE.NlPaletteManager-NlEditorPanel.WIDTH" value="253" />
   </component>
-  <component name="RunManager" selected="Android Tests.MedicalRecordsContro...">
+  <component name="RunManager" selected="Android Application.app">
+    <configuration default="false" name="testTypeBloodField...()" type="AndroidTestRunConfigurationType" factoryName="Android Tests" temporary="true" nameIsGenerated="true">
+      <module name="app" />
+      <option name="TESTING_TYPE" value="3" />
+      <option name="INSTRUMENTATION_RUNNER_CLASS" value="android.support.test.runner.AndroidJUnitRunner" />
+      <option name="METHOD_NAME" value="testTypeBloodField" />
+      <option name="CLASS_NAME" value="unlv.erc.emergo.controller.MedicalRecordsControllerTest" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="EXTRA_OPTIONS" value="" />
+      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="DEBUGGER_TYPE" value="Java" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+      </Auto>
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+      </Native>
+      <Java />
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+      </Hybrid>
+      <Profilers>
+        <option name="ENABLE_ADVANCED_PROFILING" value="true" />
+        <option name="GAPID_ENABLED" value="false" />
+        <option name="GAPID_DISABLE_PCS" value="false" />
+        <option name="SUPPORT_LIB_ENABLED" value="true" />
+        <option name="INSTRUMENTATION_ENABLED" value="true" />
+      </Profilers>
+      <method />
+    </configuration>
+    <configuration default="false" name="testIfCardiacLabel...()" type="AndroidTestRunConfigurationType" factoryName="Android Tests" temporary="true" nameIsGenerated="true">
+      <module name="app" />
+      <option name="TESTING_TYPE" value="3" />
+      <option name="INSTRUMENTATION_RUNNER_CLASS" value="android.support.test.runner.AndroidJUnitRunner" />
+      <option name="METHOD_NAME" value="testIfCardiacLabelIsCorrect" />
+      <option name="CLASS_NAME" value="unlv.erc.emergo.controller.MedicalRecordsControllerTest" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="EXTRA_OPTIONS" value="" />
+      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="DEBUGGER_TYPE" value="Java" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+      </Auto>
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+      </Native>
+      <Java />
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+      </Hybrid>
+      <Profilers>
+        <option name="ENABLE_ADVANCED_PROFILING" value="true" />
+        <option name="GAPID_ENABLED" value="false" />
+        <option name="GAPID_DISABLE_PCS" value="false" />
+        <option name="SUPPORT_LIB_ENABLED" value="true" />
+        <option name="INSTRUMENTATION_ENABLED" value="true" />
+      </Profilers>
+      <method />
+    </configuration>
     <configuration default="false" name="testCardiacFieldOp...()" type="AndroidTestRunConfigurationType" factoryName="Android Tests" temporary="true" nameIsGenerated="true">
       <module name="app" />
       <option name="TESTING_TYPE" value="3" />
@@ -2867,94 +2937,6 @@
       </Profilers>
       <method />
     </configuration>
-    <configuration default="false" name="EmergencyContactCont..." type="AndroidTestRunConfigurationType" factoryName="Android Tests" temporary="true" nameIsGenerated="true">
-      <module name="app" />
-      <option name="TESTING_TYPE" value="2" />
-      <option name="INSTRUMENTATION_RUNNER_CLASS" value="android.support.test.runner.AndroidJUnitRunner" />
-      <option name="METHOD_NAME" value="" />
-      <option name="CLASS_NAME" value="unlv.erc.emergo.controller.EmergencyContactControllerTest" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="EXTRA_OPTIONS" value="" />
-      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
-      <option name="PREFERRED_AVD" value="" />
-      <option name="CLEAR_LOGCAT" value="false" />
-      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
-      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
-      <option name="FORCE_STOP_RUNNING_APP" value="true" />
-      <option name="DEBUGGER_TYPE" value="Auto" />
-      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
-      <option name="PREFERRED_AVD" value="" />
-      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
-      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
-      <Auto>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-      </Auto>
-      <Native>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-      </Native>
-      <Java />
-      <Hybrid>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-      </Hybrid>
-      <Profilers>
-        <option name="ENABLE_ADVANCED_PROFILING" value="true" />
-        <option name="GAPID_ENABLED" value="false" />
-        <option name="GAPID_DISABLE_PCS" value="false" />
-        <option name="SUPPORT_LIB_ENABLED" value="true" />
-        <option name="INSTRUMENTATION_ENABLED" value="true" />
-      </Profilers>
-      <method />
-    </configuration>
-    <configuration default="false" name="InformationUsScreenC..." type="AndroidTestRunConfigurationType" factoryName="Android Tests" temporary="true" nameIsGenerated="true">
-      <module name="app" />
-      <option name="TESTING_TYPE" value="2" />
-      <option name="INSTRUMENTATION_RUNNER_CLASS" value="android.support.test.runner.AndroidJUnitRunner" />
-      <option name="METHOD_NAME" value="" />
-      <option name="CLASS_NAME" value="unlv.erc.emergo.controller.InformationUsScreenControllerTest" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="EXTRA_OPTIONS" value="" />
-      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
-      <option name="PREFERRED_AVD" value="" />
-      <option name="CLEAR_LOGCAT" value="false" />
-      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
-      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
-      <option name="FORCE_STOP_RUNNING_APP" value="true" />
-      <option name="DEBUGGER_TYPE" value="Auto" />
-      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
-      <option name="PREFERRED_AVD" value="" />
-      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
-      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
-      <Auto>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-      </Auto>
-      <Native>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-      </Native>
-      <Java />
-      <Hybrid>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-      </Hybrid>
-      <Profilers>
-        <option name="ENABLE_ADVANCED_PROFILING" value="true" />
-        <option name="GAPID_ENABLED" value="false" />
-        <option name="GAPID_DISABLE_PCS" value="false" />
-        <option name="SUPPORT_LIB_ENABLED" value="true" />
-        <option name="INSTRUMENTATION_ENABLED" value="true" />
-      </Profilers>
-      <method />
-    </configuration>
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="" />
       <option name="DEPLOY" value="true" />
@@ -2968,7 +2950,7 @@
       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
       <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
       <option name="FORCE_STOP_RUNNING_APP" value="true" />
-      <option name="DEBUGGER_TYPE" value="Auto" />
+      <option name="DEBUGGER_TYPE" value="Java" />
       <option name="USE_LAST_SELECTED_DEVICE" value="false" />
       <option name="PREFERRED_AVD" value="" />
       <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
@@ -3014,7 +2996,7 @@
       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
       <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
       <option name="FORCE_STOP_RUNNING_APP" value="true" />
-      <option name="DEBUGGER_TYPE" value="Auto" />
+      <option name="DEBUGGER_TYPE" value="Java" />
       <option name="USE_LAST_SELECTED_DEVICE" value="false" />
       <option name="PREFERRED_AVD" value="" />
       <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
@@ -3297,19 +3279,19 @@
     <list size="7">
       <item index="0" class="java.lang.String" itemvalue="Android Application.app" />
       <item index="1" class="java.lang.String" itemvalue="Android Tests.Unnamed" />
-      <item index="2" class="java.lang.String" itemvalue="Android Tests.testCardiacFieldOp...()" />
-      <item index="3" class="java.lang.String" itemvalue="Android Tests.testUpdateUser()" />
-      <item index="4" class="java.lang.String" itemvalue="Android Tests.MedicalRecordsContro..." />
-      <item index="5" class="java.lang.String" itemvalue="Android Tests.EmergencyContactCont..." />
-      <item index="6" class="java.lang.String" itemvalue="Android Tests.InformationUsScreenC..." />
+      <item index="2" class="java.lang.String" itemvalue="Android Tests.testTypeBloodField...()" />
+      <item index="3" class="java.lang.String" itemvalue="Android Tests.testIfCardiacLabel...()" />
+      <item index="4" class="java.lang.String" itemvalue="Android Tests.testCardiacFieldOp...()" />
+      <item index="5" class="java.lang.String" itemvalue="Android Tests.testUpdateUser()" />
+      <item index="6" class="java.lang.String" itemvalue="Android Tests.MedicalRecordsContro..." />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Android Tests.MedicalRecordsContro..." />
-        <item index="1" class="java.lang.String" itemvalue="Android Tests.InformationUsScreenC..." />
-        <item index="2" class="java.lang.String" itemvalue="Android Tests.EmergencyContactCont..." />
-        <item index="3" class="java.lang.String" itemvalue="Android Tests.testUpdateUser()" />
-        <item index="4" class="java.lang.String" itemvalue="Android Tests.testCardiacFieldOp...()" />
+        <item index="1" class="java.lang.String" itemvalue="Android Tests.testUpdateUser()" />
+        <item index="2" class="java.lang.String" itemvalue="Android Tests.testCardiacFieldOp...()" />
+        <item index="3" class="java.lang.String" itemvalue="Android Tests.testIfCardiacLabel...()" />
+        <item index="4" class="java.lang.String" itemvalue="Android Tests.testTypeBloodField...()" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="Applet" default="true" selected="false">
@@ -3342,14 +3324,14 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="EmergencyContactCont___ - 2016.06.14 at 21h 36m 43s.xml">
-      <configuration name="EmergencyContactCont..." configurationId="AndroidTestRunConfigurationType" />
-    </history-entry>
-    <history-entry file="InformationUsScreenC___ - 2016.06.14 at 21h 37m 06s.xml">
-      <configuration name="InformationUsScreenC..." configurationId="AndroidTestRunConfigurationType" />
-    </history-entry>
-    <history-entry file="MedicalRecordsContro___ - 2016.06.14 at 21h 39m 25s.xml">
+    <history-entry file="MedicalRecordsContro___ - 2016.06.12 at 17h 37m 08s.xml">
       <configuration name="MedicalRecordsContro..." configurationId="AndroidTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="testIfCardiacLabel___() - 2016.06.12 at 17h 11m 56s.xml">
+      <configuration name="testIfCardiacLabel...()" configurationId="AndroidTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="testIfTypeBloodLab___() - 2016.06.12 at 17h 10m 06s.xml">
+      <configuration name="testIfTypeBloodLab...()" configurationId="AndroidTestRunConfigurationType" />
     </history-entry>
     <history-entry file="testTypeBloodField___() - 2016.06.12 at 17h 11m 18s.xml">
       <configuration name="testTypeBloodField...()" configurationId="AndroidTestRunConfigurationType" />
@@ -3402,12 +3384,12 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3242424" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38487396" sideWeight="0.48257574" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38487396" sideWeight="0.48257574" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="1.0" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33781514" sideWeight="0.5030303" order="11" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24090908" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24090908" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32954547" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
@@ -3611,6 +3593,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/dao/HealthUnitDao.java" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/unlv/erc/emergo/controller/ConfigController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="74" column="5" selection-start-line="74" selection-start-column="5" selection-end-line="74" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -3634,6 +3623,13 @@
       </provider>
       <provider editor-type-id="android-manifest">
         <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/unlv/erc/emergo/model/EmergencyContact.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="20" column="27" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/androidTest/java/unlv/erc/emergo/model/EmergencyContactTest.java">
@@ -3708,6 +3704,104 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/unlv/erc/emergo/controller/EmergencyContactController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6165">
+          <caret line="456" column="7" selection-start-line="456" selection-start-column="7" selection-end-line="456" selection-end-column="7" />
+          <folding>
+            <marker date="1465901194751" expanded="false" signature="3309:3379" ph="(v) → {" />
+            <marker date="1465901194751" expanded="false" signature="3481:3563" ph="(v) → {" />
+            <marker date="1465901194751" expanded="false" signature="3706:3733" ph="}" />
+            <marker date="1465901194751" expanded="false" signature="3877:3892" ph="}" />
+            <marker date="1465901194751" expanded="false" signature="3942:4012" ph="(v) → {" />
+            <marker date="1465901194751" expanded="false" signature="4205:4283" ph="(v) → {" />
+            <marker date="1465901194751" expanded="false" signature="4563:4586" ph="}" />
+            <marker date="1465901194751" expanded="false" signature="4597:4612" ph="}" />
+            <marker date="1465901194751" expanded="false" signature="4663:4733" ph="(v) → {" />
+            <marker date="1465901194751" expanded="false" signature="4948:5026" ph="(v) → {" />
+            <marker date="1465901194751" expanded="false" signature="5144:5234" ph="(v) → {" />
+            <marker date="1465901194751" expanded="false" signature="5401:5436" ph="}" />
+            <marker date="1465901194751" expanded="false" signature="5612:5635" ph="}" />
+            <marker date="1465901194751" expanded="false" signature="5646:5661" ph="}" />
+            <marker date="1465901194751" expanded="false" signature="6126:6196" ph="(v) → {" />
+            <marker date="1465901194751" expanded="false" signature="6300:6382" ph="(v) → {" />
+            <marker date="1465901194751" expanded="false" signature="6528:6555" ph="}" />
+            <marker date="1465901194751" expanded="false" signature="6702:6717" ph="}" />
+            <marker date="1465901194751" expanded="false" signature="6768:6838" ph="(v) → {" />
+            <marker date="1465901194751" expanded="false" signature="7036:7114" ph="(v) → {" />
+            <marker date="1465901194751" expanded="false" signature="7402:7425" ph="}" />
+            <marker date="1465901194751" expanded="false" signature="7436:7451" ph="}" />
+            <marker date="1465901194751" expanded="false" signature="7502:7572" ph="(v) → {" />
+            <marker date="1465901194751" expanded="false" signature="7794:7872" ph="(v) → {" />
+            <marker date="1465901194751" expanded="false" signature="7992:8082" ph="(v) → {" />
+            <marker date="1465901194751" expanded="false" signature="8252:8287" ph="}" />
+            <marker date="1465901194751" expanded="false" signature="8466:8489" ph="}" />
+            <marker date="1465901194751" expanded="false" signature="8500:8515" ph="}" />
+            <marker date="1465901194751" expanded="false" signature="8971:9041" ph="(v) → {" />
+            <marker date="1465901194751" expanded="false" signature="9143:9225" ph="(v) → {" />
+            <marker date="1465901194751" expanded="false" signature="9368:9395" ph="}" />
+            <marker date="1465901194751" expanded="false" signature="9539:9554" ph="}" />
+            <marker date="1465901194751" expanded="false" signature="9604:9674" ph="(v) → {" />
+            <marker date="1465901194751" expanded="false" signature="9865:9943" ph="(v) → {" />
+            <marker date="1465901194751" expanded="false" signature="10223:10246" ph="}" />
+            <marker date="1465901194751" expanded="false" signature="10257:10272" ph="}" />
+            <marker date="1465901194751" expanded="false" signature="10322:10392" ph="(v) → {" />
+            <marker date="1465901194751" expanded="false" signature="10607:10685" ph="(v) → {" />
+            <marker date="1465901194751" expanded="false" signature="10803:10893" ph="(v) → {" />
+            <marker date="1465901194751" expanded="false" signature="11060:11095" ph="}" />
+            <marker date="1465901194751" expanded="false" signature="11271:11294" ph="}" />
+            <marker date="1465901194751" expanded="false" signature="11305:11320" ph="}" />
+            <marker date="1465901194751" expanded="false" signature="15765:15895" ph="(dialog, which) → {" />
+            <marker date="1465901194751" expanded="false" signature="16416:16431" ph="}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/emergency_contact.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="41" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/dao/EmergencyContactDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1215">
+          <caret line="91" column="18" selection-start-line="91" selection-start-column="18" selection-end-line="91" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/unlv/erc/emergo/controller/MedicalRecordsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="37" column="49" selection-start-line="37" selection-start-column="49" selection-end-line="37" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1465902023967" expanded="false" signature="3892:3962" ph="(v) → {" />
+            <marker date="1465902023967" expanded="false" signature="4056:4138" ph="(v) → {" />
+            <marker date="1465902023967" expanded="false" signature="4201:4228" ph="}" />
+            <marker date="1465902023967" expanded="false" signature="4354:4369" ph="}" />
+            <marker date="1465902023967" expanded="false" signature="4413:4483" ph="(v) → {" />
+            <marker date="1465902023967" expanded="false" signature="4721:4799" ph="(v) → {" />
+            <marker date="1465902023967" expanded="false" signature="4958:4981" ph="}" />
+            <marker date="1465902023967" expanded="false" signature="4992:5007" ph="}" />
+            <marker date="1465902023967" expanded="false" signature="5051:5121" ph="(v) → {" />
+            <marker date="1465902023967" expanded="false" signature="5349:5427" ph="(v) → {" />
+            <marker date="1465902023967" expanded="false" signature="5537:5627" ph="(v) → {" />
+            <marker date="1465902023967" expanded="false" signature="5706:5741" ph="}" />
+            <marker date="1465902023967" expanded="false" signature="5899:5922" ph="}" />
+            <marker date="1465902023967" expanded="false" signature="5933:5948" ph="}" />
+            <marker date="1465902023967" expanded="false" signature="9748:9878" ph="(dialog, which) → {" />
+            <marker date="1465902023967" expanded="false" signature="10168:10183" ph="}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/adapter/EmergencyContactAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -3716,155 +3810,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="45" selection-start-line="12" selection-start-column="45" selection-end-line="12" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/medical_records.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1080">
           <caret line="72" column="31" selection-start-line="71" selection-start-column="8" selection-end-line="72" selection-end-column="31" />
           <folding />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_emergency_contact.xml">
       <provider editor-type-id="android-designer2">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/dao/EmergencyContactDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="75" column="1" selection-start-line="75" selection-start-column="1" selection-end-line="75" selection-end-column="1" />
-          <folding>
-            <element signature="e#1092#1093#0" expanded="true" />
-            <element signature="e#1152#1153#0" expanded="true" />
-            <element signature="e#1219#1220#0" expanded="true" />
-            <element signature="e#1276#1277#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/unlv/erc/emergo/model/EmergencyContact.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="34" column="5" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/unlv/erc/emergo/controller/ConfigController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="75" column="1" selection-start-line="75" selection-start-column="1" selection-end-line="75" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/unlv/erc/emergo/controller/MedicalRecordsController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="536">
-          <caret line="392" column="1" selection-start-line="392" selection-start-column="1" selection-end-line="392" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2957#3434#0" expanded="true" />
-            <element signature="e#3121#3293#0" expanded="true" />
-            <element signature="e#3292#3293#0" expanded="true" />
-            <element signature="e#3433#3434#0" expanded="true" />
-            <element signature="e#3478#4056#0" expanded="true" />
-            <element signature="e#3770#4030#0" expanded="true" />
-            <element signature="e#4029#4030#0" expanded="true" />
-            <element signature="e#4055#4056#0" expanded="true" />
-            <element signature="e#4100#4993#0" expanded="true" />
-            <element signature="e#4394#4967#0" expanded="true" />
-            <element signature="e#4582#4786#0" expanded="true" />
-            <element signature="e#4785#4786#0" expanded="true" />
-            <element signature="e#4966#4967#0" expanded="true" />
-            <element signature="e#4992#4993#0" expanded="true" />
-            <element signature="e#8729#9152#0" expanded="true" />
-            <element signature="e#9151#9152#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_emergency_contact.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="303">
           <caret line="123" column="53" selection-start-line="123" selection-start-column="53" selection-end-line="123" selection-end-column="53" />
           <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/emergency_contact.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="482">
-          <caret line="263" column="17" selection-start-line="263" selection-start-column="17" selection-end-line="263" selection-end-column="17" />
-          <folding>
-            <element signature="e#471#518#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="81" selection-start-line="5" selection-start-column="81" selection-end-line="5" selection-end-column="81" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/unlv/erc/emergo/controller/EmergencyContactController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="252" column="0" selection-start-line="252" selection-start-column="0" selection-end-line="252" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3681#4264#0" expanded="true" />
-            <element signature="e#3853#4105#0" expanded="true" />
-            <element signature="e#4104#4105#0" expanded="true" />
-            <element signature="e#4263#4264#0" expanded="true" />
-            <element signature="e#4314#4976#0" expanded="true" />
-            <element signature="e#4577#4950#0" expanded="true" />
-            <element signature="e#4949#4950#0" expanded="true" />
-            <element signature="e#4975#4976#0" expanded="true" />
-            <element signature="e#5027#6025#0" expanded="true" />
-            <element signature="e#5312#5999#0" expanded="true" />
-            <element signature="e#5508#5800#0" expanded="true" />
-            <element signature="e#5799#5800#0" expanded="true" />
-            <element signature="e#5998#5999#0" expanded="true" />
-            <element signature="e#6024#6025#0" expanded="true" />
-            <element signature="e#6490#7081#0" expanded="true" />
-            <element signature="e#6664#6919#0" expanded="true" />
-            <element signature="e#6918#6919#0" expanded="true" />
-            <element signature="e#7080#7081#0" expanded="true" />
-            <element signature="e#7132#7807#0" expanded="true" />
-            <element signature="e#7400#7781#0" expanded="true" />
-            <element signature="e#7780#7781#0" expanded="true" />
-            <element signature="e#7806#7807#0" expanded="true" />
-            <element signature="e#7858#8871#0" expanded="true" />
-            <element signature="e#8150#8845#0" expanded="true" />
-            <element signature="e#8348#8643#0" expanded="true" />
-            <element signature="e#8642#8643#0" expanded="true" />
-            <element signature="e#8844#8845#0" expanded="true" />
-            <element signature="e#8870#8871#0" expanded="true" />
-            <element signature="e#9327#9910#0" expanded="true" />
-            <element signature="e#9499#9751#0" expanded="true" />
-            <element signature="e#9750#9751#0" expanded="true" />
-            <element signature="e#9909#9910#0" expanded="true" />
-            <element signature="e#9960#10620#0" expanded="true" />
-            <element signature="e#10221#10594#0" expanded="true" />
-            <element signature="e#10593#10594#0" expanded="true" />
-            <element signature="e#10619#10620#0" expanded="true" />
-            <element signature="e#10670#11668#0" expanded="true" />
-            <element signature="e#10955#11642#0" expanded="true" />
-            <element signature="e#11151#11443#0" expanded="true" />
-            <element signature="e#11442#11443#0" expanded="true" />
-            <element signature="e#11641#11642#0" expanded="true" />
-            <element signature="e#11667#11668#0" expanded="true" />
-            <element signature="e#16116#16782#0" expanded="true" />
-            <element signature="e#16781#16782#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>

@@ -4,13 +4,6 @@
     <string name="title_activity_route">Route</string>
     <string name="go">GO!</string>
     <string name="google_app_id">AIzaSyAjQACxkB2XL85lcOPRKMJNRSiUd4sn8ho</string>
-    <string name="Add_New">Add New</string>
-    <string name="name">Name</string>
-    <string name="phone">Phone</string>
-    <string name="email">Email</string>
-    <string name="street">Street</string>
-    <string name="country">City/State/Zip</string>
-    <string name="save">Save Contact</string>
 
     <string name="typeBlood_prompt">Tipos Sanguíneos</string>
     <string-array name="typeBlood">

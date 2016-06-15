@@ -1,51 +1,28 @@
 package unlv.erc.emergo.controller;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
 
-import java.util.ArrayList;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-import dao.EmergencyContactDao;
+import dao.UserDao;
+import helper.MaskHelper;
 import unlv.erc.emergo.R;
 
 
 public class MedicalRecordsController extends Activity {
-
-    private ListView listView;
-    EmergencyContactDao emergencyContactDao;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.emergency_contact);
-
-        emergencyContactDao = new EmergencyContactDao(this);
-        ArrayList array_list = emergencyContactDao.getAllCotacts();
-        ArrayAdapter arrayAdapter=new ArrayAdapter(this,android.R.layout.simple_list_item_1, array_list);
-
-        listView = (ListView)findViewById(R.id.listView1);
-        listView.setAdapter(arrayAdapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            @Override
-            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-                int id_To_Search = arg2 + 1;
-
-                Bundle dataBundle = new Bundle();
-                dataBundle.putInt("id", id_To_Search);
-
-                Intent intent = new Intent(getApplicationContext(),DisplayContact.class);
-
-                intent.putExtras(dataBundle);
-                startActivity(intent);
-            }
-        });
-    }
-    /*private EditText fullName;
+    private EditText fullName;
     private EditText birthday;
     private EditText observations;
     private Spinner typeBlood;
@@ -69,9 +46,9 @@ public class MedicalRecordsController extends Activity {
 
     public MedicalRecordsController() {
 
-    }*/
+    }
 
-    /*@Override
+    @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.medical_records);
@@ -101,7 +78,7 @@ public class MedicalRecordsController extends Activity {
                 birthday.setText(result.getString(2));
                 observations.setText(result.getString(8));
                 disableField(saveButton,fullName,birthday,observations,cardiac,diabect,hypertension,
-                            seropositive,typeBlood);
+                        seropositive,typeBlood);
             }
         }
         saveButton.setOnClickListener(new View.OnClickListener() {
@@ -121,7 +98,7 @@ public class MedicalRecordsController extends Activity {
         updateButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 disableJustUpdateButton(fullName, birthday,updateButton,saveButton,observations,
-                                        typeBlood,cardiac,diabect,hypertension,seropositive);
+                        typeBlood,cardiac,diabect,hypertension,seropositive);
                 saveButton.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
                         updateUser(id,saveButton,updateButton,deleteButton);
@@ -134,7 +111,7 @@ public class MedicalRecordsController extends Activity {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 deleteUser(fullName,birthday,observations,saveButton,id,updateButton,deleteButton,
-                            typeBlood,cardiac,diabect,hypertension,seropositive);
+                        typeBlood,cardiac,diabect,hypertension,seropositive);
                 saveButton.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
                         if(createUser() == false){
@@ -170,13 +147,13 @@ public class MedicalRecordsController extends Activity {
             seropositiveUser = seropositive.getSelectedItem().toString();
 
             sucess = myDatabase.insertUser(id, nameUser, birthdayUser, typeBloodUser, cardiacUser,
-                                            diabeticUser,hypertensionUser, seropositiveUser,
-                                            observationsUser);
+                    diabeticUser,hypertensionUser, seropositiveUser,
+                    observationsUser);
             if (sucess == true) {
                 showMessage("Ficha Médica Cadastrada Com Sucesso!");
                 valid = true;
                 disableOptionsCreateUser(fullName,birthday,observations,typeBlood,cardiac,diabect,
-                                        hypertension,seropositive);
+                        hypertension,seropositive);
                 disableOptionsUpdate(saveButton,updateButton,deleteButton);
             } else {
                 showMessage("Ficha Médica Não Cadastrada! Tente Novamente.");
@@ -233,7 +210,7 @@ public class MedicalRecordsController extends Activity {
                 myDatabase.deleteUser(id);
                 showMessage("Ficha Médica Excluida Com Sucesso");
                 visibleOptionsUser(save,name,birthday,observations,update,delete,typeBlood,cardiac,
-                                    hypertension,seropositive,diabect);
+                        hypertension,seropositive,diabect);
             }
         });
         builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
@@ -285,8 +262,8 @@ public class MedicalRecordsController extends Activity {
             }
             catch (ParseException excecao){
                 showMessage("Data Inválida! Informe uma data inválida,com o dia entre 1 e 31.\n" +
-                            "Informe um mês válido entre 1 e 12.\n" +
-                            "Informe um ano entre 1942 e o ano atual");
+                        "Informe um mês válido entre 1 e 12.\n" +
+                        "Informe um ano entre 1942 e o ano atual");
                 return true;
             }
         }
@@ -412,5 +389,5 @@ public class MedicalRecordsController extends Activity {
         mapActivity.setClass(this, MapScreenController.class);
         startActivity(mapActivity);
         finish();
-    }*/
+    }
 }
