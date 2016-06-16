@@ -72,7 +72,7 @@ public class MainScreenController extends Activity {
 
     private void medicalRecordsNotification(){
         result.moveToFirst();
-
+        int notifyID = 1;
         NotificationCompat.Builder notification = new NotificationCompat.Builder(this);
 
         notification.setContentTitle("Ficha Médica");
@@ -102,15 +102,15 @@ public class MainScreenController extends Activity {
         }
         notification.setStyle(inboxStyle);
 
-        Intent resultIntent = new Intent(this,MainScreenController.class);
+        Intent resultIntent = new Intent(this,MedicalRecordsController.class);
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
-        stackBuilder.addParentStack(MainScreenController.class);
+        stackBuilder.addParentStack(MedicalRecordsController.class);
         stackBuilder.addNextIntent(resultIntent);
         PendingIntent resultPedindIntent = stackBuilder.getPendingIntent(0,PendingIntent.FLAG_UPDATE_CURRENT);
         notification.setContentIntent(resultPedindIntent);
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
-        notificationManager.notify(0,notification.build());
+        notificationManager.notify(notifyID,notification.build());
     }
 }

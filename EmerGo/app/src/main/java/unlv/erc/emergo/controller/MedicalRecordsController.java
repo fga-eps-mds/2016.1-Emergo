@@ -1,11 +1,16 @@
 package unlv.erc.emergo.controller;
 
 import android.app.Activity;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.NotificationCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -43,6 +48,8 @@ public class MedicalRecordsController extends Activity {
     private String seropositiveUser;
     private Integer id = 1;
     UserDao myDatabase;
+    private Cursor result;
+    private final int MAXIMUMARRAY = 7;
 
     public MedicalRecordsController() {
 
@@ -97,6 +104,7 @@ public class MedicalRecordsController extends Activity {
 
         updateButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                cancelNotification();
                 disableJustUpdateButton(fullName, birthday,updateButton,saveButton,observations,
                         typeBlood,cardiac,diabect,hypertension,seropositive);
                 saveButton.setOnClickListener(new View.OnClickListener() {
@@ -151,11 +159,13 @@ public class MedicalRecordsController extends Activity {
                     observationsUser);
             if (sucess == true) {
                 showMessage("Ficha Médica Cadastrada Com Sucesso!");
-                valid = true;
                 disableOptionsCreateUser(fullName,birthday,observations,typeBlood,cardiac,diabect,
                         hypertension,seropositive);
                 disableOptionsUpdate(saveButton,updateButton,deleteButton);
-
+                medicalRecordsNotification(nameUser,birthdayUser,typeBloodUser,cardiacUser,
+                                            diabeticUser,hypertensionUser,seropositiveUser,
+                                            observationsUser);
+                valid = true;
             } else {
                 showMessage("Ficha Médica Não Cadastrada! Tente Novamente.");
                 valid = false;
@@ -192,6 +202,9 @@ public class MedicalRecordsController extends Activity {
                 save.setEnabled(false);
                 update.setEnabled(true);
                 delete.setEnabled(true);
+                medicalRecordsNotification(nameUser,birthdayUser,typeBloodUser,cardiacUser,
+                                            diabeticUser,hypertensionUser,seropositiveUser,
+                                            observationsUser);
             } else {
                 showMessage("Não Foi Possível Fazer A Alteração, Tente Novamente.");
             }
@@ -212,6 +225,7 @@ public class MedicalRecordsController extends Activity {
                 showMessage("Ficha Médica Excluida Com Sucesso");
                 visibleOptionsUser(save,name,birthday,observations,update,delete,typeBlood,cardiac,
                         hypertension,seropositive,diabect);
+                cancelNotification();
             }
         });
         builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
@@ -300,6 +314,11 @@ public class MedicalRecordsController extends Activity {
         delete.setVisibility(View.INVISIBLE);
     }
 
+    private void cancelNotification(){
+        NotificationManager notifManager= (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+        notifManager.cancel(1);
+    }
+
     private void disableField(Button save,EditText name, EditText birthday,EditText observations,
                               Spinner cardiac,Spinner diabect,Spinner hypertension,Spinner seropositive,
                               Spinner typeBlood){
@@ -363,6 +382,50 @@ public class MedicalRecordsController extends Activity {
         hypertension.setEnabled(false);
         seropositive.setEnabled(false);
     }
+
+    public void medicalRecordsNotification(String nameUser,String birthdayUser,String typeBloodUser,
+                                           String cardiacUser,String diabeticUser,String hypertensionUser,
+                                           String seropositiveUser,String observationsUser){
+        int notifyID = 1;
+        NotificationCompat.Builder notification = new NotificationCompat.Builder(this);
+
+        notification.setContentTitle("Ficha Médica");
+        notification.setContentText("Você tem uma ficha médica!");
+        notification.setTicker("Alerta de Mensagem");
+        notification.setSmallIcon(R.drawable.icon_emergo);
+
+        NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
+
+        String events[] = new String[7];
+
+        events[0] = new String("Nome: "+nameUser);
+        events[1] = new String("Data de Nascimento: "+birthdayUser);
+        events[2] = new String("Tipo Sanguineo: "+typeBloodUser);
+        events[3] = new String("Cardiaco: "+cardiacUser);
+        events[4] = new String("Diabetico: "+diabeticUser);
+        events[5] = new String("Hipertenso: "+hypertensionUser);
+        events[6] = new String("Soropositivo: "+seropositiveUser);
+        events[6] = new String("Observações Especiais: "+observationsUser);
+
+        inboxStyle.setBigContentTitle("Ficha Médica");
+
+        for(int aux=0;aux<MAXIMUMARRAY;aux++){
+            inboxStyle.addLine(events[aux]);
+        }
+        notification.setStyle(inboxStyle);
+
+        Intent resultIntent = new Intent(this,MedicalRecordsController.class);
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+        stackBuilder.addParentStack(MedicalRecordsController.class);
+        stackBuilder.addNextIntent(resultIntent);
+        PendingIntent resultPedindIntent = stackBuilder.getPendingIntent(0,PendingIntent.FLAG_UPDATE_CURRENT);
+        notification.setContentIntent(resultPedindIntent);
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
+        notificationManager.notify(notifyID,notification.build());
+    }
+
     public void goClicked(View map_screen){
         Toast.makeText(this , "Função não habilitada!" , Toast.LENGTH_SHORT).show();
         Intent routeActivity = new Intent();
