@@ -33,6 +33,4 @@ public class EmergencyContact {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-
-
 }
