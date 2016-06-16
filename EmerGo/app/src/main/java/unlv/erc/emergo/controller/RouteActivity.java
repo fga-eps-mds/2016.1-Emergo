@@ -1,51 +1,62 @@
 package unlv.erc.emergo.controller;
 
-import helper.GPSTracker;
-import unlv.erc.emergo.R;
-import unlv.erc.emergo.model.HealthUnit;
-
-import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.net.Uri;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentActivity;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Layout;
 import android.view.View;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.LatLngBounds;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.plus.model.people.Person;
 
-import java.util.ArrayList;
+import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.MapView;
+import org.osmdroid.views.overlay.PathOverlay;
+
+
+import unlv.erc.emergo.R;
 
 public class RouteActivity extends AppCompatActivity {
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_route);
+        setContentView(R.layout.map_screen);
+
+//        setRoute(map, geoLocation, new GeoPoint(HealthUnitController.getClosestsUs().get(0).getLatitude(),
+//                                  HealthUnitController.getClosestsUs().get(0).getLongitude()));
 
     }
+
+    public void setRoute(MapView mMapView, GeoPoint userPosition, GeoPoint unitPosition){
+        mMapView.getController().setCenter(userPosition);
+        PathOverlay myPath = new PathOverlay(Color.RED, this);
+        myPath.addPoint(userPosition);
+        myPath.addPoint(unitPosition);
+        mMapView.getOverlays().add(myPath);
+    }
+
+    public void goClicked(View map_screen) {
+        Intent mapRoute = new Intent();
+        mapRoute.setClass(this, RouteActivity.class);
+        startActivity(mapRoute);
+        finish();
+    }
+
+    public void listMapsImageClicked(View map_screen){
+        Intent listOfHealth = new Intent();
+        listOfHealth.setClass(this, ListOfHealthUnitsController.class);
+        startActivity(listOfHealth);
+        finish();
+    }
+
+    public void openMap(View mapScreen){
+        Intent mapActivity = new Intent();
+        mapActivity.setClass(this, MapScreenController.class);
+        startActivity(mapActivity);
+        finish();
+    }
+
+
 
 }
 

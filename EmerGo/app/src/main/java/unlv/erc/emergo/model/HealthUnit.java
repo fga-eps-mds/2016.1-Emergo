@@ -18,8 +18,10 @@ public class HealthUnit {
 
     }
 
-    public HealthUnit(Double latitude, Double longitude, String nameHospital, String unitType,
-                      String addressNumber, String district, String state, String city) {
+    public HealthUnit(Integer id,Double latitude, Double longitude, String nameHospital,
+                      String unitType,String addressNumber, String district, String state,
+                      String city) {
+        setId(id);
         setLatitude(latitude);
         setLongitude(longitude);
         setNameHospital(nameHospital);
@@ -28,6 +30,26 @@ public class HealthUnit {
         setDistrict(district);
         setState(state);
         setCity(city);
+    }
+
+    public HealthUnit (Double latitude, Double longitude, String nameHospital, String unitType,
+                       String addressNumber, String district, String state, String city) {
+        setLatitude(latitude);
+        setLongitude(longitude);
+        setNameHospital(nameHospital);
+        setUnitType(unitType);
+        setAddressNumber(addressNumber);
+        setDistrict(district);
+        setState(state);
+        setCity(city);
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Double getLatitude() {
@@ -101,14 +123,4 @@ public class HealthUnit {
     public void setDistance(Float distance) {
         this.distance = distance;
     }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
 }
-

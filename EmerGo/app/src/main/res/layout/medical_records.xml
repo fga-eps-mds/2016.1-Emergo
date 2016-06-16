@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="false"
+    tools:context=".controller.MedicalRecordsController"
+    android:background="@drawable/background">
+
+    <Button
+        android:layout_width="153dp"
+        android:layout_height="87dp"
+        android:text="GO!"
+        android:id="@+id/buttonGo"
+        android:layout_gravity="center_horizontal"
+        android:textSize="@dimen/abc_action_bar_default_height_material"
+        android:background="@drawable/gradientevermelho"
+        android:textColor="#ffffff"
+        android:textStyle="bold|italic"
+        android:clickable="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="goClicked" />
+
+    <ImageView
+        android:layout_width="56dp"
+        android:layout_height="48dp"
+        android:id="@+id/iconMap"
+        android:layout_alignBottom="@+id/buttonGo"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="33dp"
+        android:background="@drawable/icon_map"
+        android:clickable="true"
+        android:onClick="openMap" />
+
+    <ImageView
+        android:layout_width="56dp"
+        android:layout_height="48dp"
+        android:id="@+id/iconList"
+        android:layout_alignBottom="@+id/buttonGo"
+        android:layout_toEndOf="@+id/buttonGo"
+        android:layout_marginStart="30dp"
+        android:clickable="true"
+        android:background="@drawable/icon_list"
+        android:longClickable="false"
+        android:onClick="listMapsImageClicked" />
+
+    <ImageView
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:id="@+id/iconMenu"
+        android:clickable="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignEnd="@+id/iconList"
+        android:background="@drawable/icon_menu"
+        android:onClick="openConfig" />
+
+    <ImageView
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:id="@+id/iconSearch"
+        android:background="@drawable/icon_search"
+        android:layout_alignTop="@+id/iconMenu"
+        android:layout_alignStart="@+id/iconList"
+        android:clickable="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nome"
+        android:id="@+id/fullNameTextView"
+        android:autoText="false"
+        android:textSize="18sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="36dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/fullNameEditText"
+        android:layout_below="@+id/fullNameTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:hint="Insira seu nome"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Data De Nascimento"
+        android:id="@+id/birthdayTextView"
+        android:layout_below="@+id/fullNameEditText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:autoText="false"
+        android:textSize="18sp"/>
+
+    <EditText
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="10"
+        android:id="@+id/birthdayEditText"
+        android:layout_below="@+id/birthdayTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:hint="dd/MM/yyyy"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tipo Sanguíneo"
+        android:id="@+id/typeBloodTextView"
+        android:layout_marginLeft="46dp"
+        android:layout_marginStart="46dp"
+        android:autoText="false"
+        android:textSize="18sp"
+        android:layout_alignTop="@+id/birthdayTextView"
+        android:layout_toRightOf="@+id/birthdayTextView"
+        android:layout_toEndOf="@+id/birthdayTextView" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:id="@+id/typeBloodSpinner"
+        android:entries="@array/typeBlood"
+        android:prompt="@string/typeBlood_prompt"
+        android:layout_below="@+id/typeBloodTextView"
+        android:layout_alignLeft="@+id/typeBloodTextView"
+        android:layout_alignStart="@+id/typeBloodTextView"
+        android:layout_alignRight="@+id/typeBloodTextView"
+        android:layout_alignEnd="@+id/typeBloodTextView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cardiaco"
+        android:id="@+id/cardiacTextView"
+        android:autoText="false"
+        android:textSize="18sp"
+        android:layout_below="@+id/birthdayEditText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cardiacSpinner"
+        android:layout_below="@+id/cardiacTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/birthdayEditText"
+        android:layout_alignEnd="@+id/birthdayEditText"
+        android:entries="@array/cardiac"
+        android:prompt="@string/cardiac_prompt"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Diabetico"
+        android:id="@+id/diabeticTextView"
+        android:autoText="false"
+        android:textSize="18sp"
+        android:layout_below="@+id/birthdayEditText"
+        android:layout_alignLeft="@+id/typeBloodSpinner"
+        android:layout_alignStart="@+id/typeBloodSpinner" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/diabeticSpinner"
+        android:entries="@array/diabetic"
+        android:prompt="@string/diabetic_prompt"
+        android:layout_below="@+id/typeBloodSpinner"
+        android:layout_alignRight="@+id/diabeticTextView"
+        android:layout_alignEnd="@+id/diabeticTextView"
+        android:layout_alignLeft="@+id/typeBloodSpinner"
+        android:layout_alignStart="@+id/typeBloodSpinner"
+        android:layout_alignBottom="@+id/cardiacSpinner" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hipertenso"
+        android:id="@+id/hipertensionTextView"
+        android:layout_below="@+id/cardiacSpinner"
+        android:autoText="false"
+        android:textSize="18sp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Soropositivo"
+        android:id="@+id/seropositiveTextView"
+        android:autoText="false"
+        android:textSize="18sp"
+        android:layout_below="@+id/diabeticSpinner"
+        android:layout_alignLeft="@+id/diabeticSpinner"
+        android:layout_alignStart="@+id/diabeticSpinner" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/hipertensionSpinner"
+        android:layout_below="@+id/hipertensionTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:entries="@array/hypertension"
+        android:prompt="@string/hypertension_prompt"
+        android:layout_alignRight="@+id/cardiacSpinner"
+        android:layout_alignEnd="@+id/cardiacSpinner" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/soropositiveSpinner"
+        android:layout_alignBottom="@+id/hipertensionSpinner"
+        android:layout_alignLeft="@+id/seropositiveTextView"
+        android:layout_alignStart="@+id/seropositiveTextView"
+        android:layout_alignRight="@+id/seropositiveTextView"
+        android:layout_alignEnd="@+id/seropositiveTextView"
+        android:entries="@array/seropositive"
+        android:prompt="@string/seropositive_prompt"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Salvar"
+        android:id="@+id/saveButton"
+        android:textSize="13dp"
+        android:clickable="true"
+        android:layout_above="@+id/buttonGo"
+        android:layout_alignRight="@+id/iconMap"
+        android:layout_alignEnd="@+id/iconMap"
+        android:layout_marginBottom="29dp" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Alterar"
+        android:id="@+id/updateButton"
+        android:textSize="13dp"
+        android:clickable="true"
+        android:layout_alignTop="@+id/saveButton"
+        android:layout_toLeftOf="@+id/soropositiveSpinner"
+        android:layout_toStartOf="@+id/soropositiveSpinner" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Excluir"
+        android:textSize="13dp"
+        android:id="@+id/deleteButton"
+        android:clickable="true"
+
+        android:layout_alignTop="@+id/updateButton"
+        android:layout_alignRight="@+id/iconList"
+        android:layout_alignEnd="@+id/iconList" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Observações Especiais"
+        android:id="@+id/observations"
+        android:layout_below="@+id/hipertensionSpinner"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:autoText="false"
+        android:textSize="18sp"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/observationsEditText"
+        android:layout_below="@+id/observations"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_above="@+id/saveButton"
+        android:hint="Ex: alergias, doenças, plano de saúde e afins"/>
+
+
+</RelativeLayout>

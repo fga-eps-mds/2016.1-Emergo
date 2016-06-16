@@ -50,7 +50,8 @@
         android:clickable="true"
         android:layout_alignParentTop="true"
         android:layout_alignEnd="@+id/iconList"
-        android:background="@drawable/icon_menu" />
+        android:background="@drawable/icon_menu"
+        android:onClick="openConfig" />
 
     <ImageView
         android:layout_width="28dp"

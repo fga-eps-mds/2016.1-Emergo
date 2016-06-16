@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
-    android:clickable="false">
+    android:background="@drawable/background">
+
 
     <Button
         android:layout_width="153dp"
@@ -24,7 +25,6 @@
         android:layout_width="56dp"
         android:layout_height="48dp"
         android:id="@+id/iconMap"
-
         android:layout_alignBottom="@+id/buttonGo"
         android:layout_alignParentStart="true"
         android:layout_marginStart="33dp"
@@ -51,7 +51,8 @@
         android:clickable="true"
         android:layout_alignParentTop="true"
         android:layout_alignEnd="@+id/iconList"
-        android:background="@drawable/icon_menu" />
+        android:background="@drawable/icon_menu"
+        android:onClick="openConfig" />
 
     <ImageView
         android:layout_width="28dp"
@@ -62,17 +63,30 @@
         android:layout_alignStart="@+id/iconList"
         android:clickable="true" />
 
+    <Button
+        android:text="Sobre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/buttonGo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"
+        android:id="@+id/app" />
 
-    <ListView android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:id="@+id/list_of_hospitalUnit"
-        android:layout_below="@+id/iconMenu"
-        android:layout_alignLeft="@drawable/fundo"
-        android:layout_alignRight="@drawable/fundo"
-        android:layout_above="@+id/iconMap"
-        android:layout_alignParentLeft="true"
+    <Button
+        android:text="Ficha Médica"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/medicalRecords"
+        android:layout_marginBottom="13dp"
+        android:layout_above="@+id/emergencyContact"
         android:layout_alignParentStart="true" />
 
-
+    <Button
+        android:text="Contatos de Emergência"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/emergencyContact"
+        android:layout_above="@+id/app"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="14dp" />
 </RelativeLayout>
-

@@ -3,12 +3,9 @@ package unlv.erc.emergo.controller;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -76,9 +73,25 @@ public class InformationUsScreenController extends Activity {
         hospInfo.setAdapter(adapter);
     }
 
+    public void goClicked(View map_screen) {
+        Intent mapRoute = new Intent();
+        mapRoute.setClass(this, RouteActivity.class);
+        startActivity(mapRoute);
+        finish();
+    }
 
-    public void goClicked(View v) {
-        Toast.makeText(this , "Go clicked" , Toast.LENGTH_SHORT).show();
+    public void listMapsImageClicked(View map_screen){
+        Intent listOfHealth = new Intent();
+        listOfHealth.setClass(this, ListOfHealthUnitsController.class);
+        startActivity(listOfHealth);
+        finish();
+    }
+
+    public void openMap(View mapScreen){
+        Intent mapActivity = new Intent();
+        mapActivity.setClass(this, MapScreenController.class);
+        startActivity(mapActivity);
+        finish();
     }
 
     public void setHospInfo(ListView hospInfo) {
@@ -126,3 +139,5 @@ public class InformationUsScreenController extends Activity {
         this.cep = cep;
     }
 }
+
+
