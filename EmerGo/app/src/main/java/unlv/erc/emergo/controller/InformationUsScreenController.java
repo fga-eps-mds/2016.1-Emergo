@@ -3,8 +3,10 @@ package unlv.erc.emergo.controller;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -14,10 +16,11 @@ import java.util.List;
 import unlv.erc.emergo.R;
 import unlv.erc.emergo.model.HealthUnit;
 
-public class InformationUsScreenController extends Activity {
+public class InformationUsScreenController extends Activity implements View.OnClickListener {
 
     private List <String> listOfInformations = new ArrayList<String>();
     private ListView hospInfo;
+    private Button route;
     private Intent receive;
     private int numberUsSelected;
     private String padding ,titulo, nome ,gestao , uf ,municipio ,
@@ -31,11 +34,24 @@ public class InformationUsScreenController extends Activity {
 
         setReceive(getIntent());
         setNumberUsSelected(receive.getIntExtra("position" , 0));
+        route = (Button) findViewById(R.id.botaoRota);
+        route.setOnClickListener(this);
 
         setHospInfo((ListView) findViewById(R.id.hospInformation));
         setInformation(HealthUnitController.getClosestsUs().get(numberUsSelected));
         addInformationToList();
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v.getId() == R.id.botaoRota){
+            Intent route = new Intent();
+            route.setClass(InformationUsScreenController.this , RouteActivity.class);
+            route.putExtra("numeroUs" , receive.getIntExtra("position" , 0));
+            startActivity(route);
+            finish();
+        }
     }
 
     public void setInformation(HealthUnit hospital){
@@ -73,9 +89,11 @@ public class InformationUsScreenController extends Activity {
 
     public void goClicked(View map_screen) {
         final String ROUTETRACED = "Rota mais próxima traçada";
-        Toast.makeText(InformationUsScreenController.this, ROUTETRACED , Toast.LENGTH_SHORT).show();
+
+        Toast.makeText(this, ROUTETRACED , Toast.LENGTH_SHORT).show();
         Intent routeActivity = new Intent();
         routeActivity.setClass(InformationUsScreenController.this , RouteActivity.class);
+        routeActivity.putExtra("numeroUs" , -1);
         startActivity(routeActivity);
         finish();
     }

@@ -71,6 +71,20 @@
         android:layout_below="@+id/iconMenu"
         android:layout_above="@+id/iconMap"/>
 
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="140dp"
+        android:layout_height="100dp"
+        android:text="Traçar Rota"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:textColor="#ffffff"
+        android:textSize="30dp"
+        android:id="@+id/botaoRota"
+
+        android:layout_above="@+id/buttonGo"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
 
 </RelativeLayout>
 

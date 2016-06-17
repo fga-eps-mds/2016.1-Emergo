@@ -50,6 +50,7 @@ public class ListOfHealthUnitsController extends Activity {
         informationScreen.putExtra("position", numberOfUsClicked);
         informationScreen.setClass(ListOfHealthUnitsController.this, InformationUsScreenController.class);
         startActivity(informationScreen);
+        finish();
     }
 
 
@@ -68,12 +69,15 @@ public class ListOfHealthUnitsController extends Activity {
     }
 
     public void goClicked(View map_screen) {
-        final String ROUTETRACED = "Rota mais próxima traçada";
-        Toast.makeText(ListOfHealthUnitsController.this, ROUTETRACED , Toast.LENGTH_SHORT).show();
-        Intent routeActivity = new Intent();
-        routeActivity.setClass(ListOfHealthUnitsController.this , RouteActivity.class);
-        startActivity(routeActivity);
-        finish();
+            final String ROUTETRACED = "Rota mais próxima traçada";
+
+            Toast.makeText(this, ROUTETRACED , Toast.LENGTH_SHORT).show();
+            Intent routeActivity = new Intent();
+            routeActivity.setClass(ListOfHealthUnitsController.this , RouteActivity.class);
+            routeActivity.putExtra("numeroUs" , -1);
+            startActivity(routeActivity);
+            finish();
+
     }
 
     public void listMapsImageClicked(View map_screen){
