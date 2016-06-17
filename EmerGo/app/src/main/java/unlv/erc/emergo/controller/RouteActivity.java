@@ -39,6 +39,7 @@ import java.util.Map;
 import helper.DirectionsJSONParser;
 import helper.GPSTracker;
 import unlv.erc.emergo.R;
+import unlv.erc.emergo.model.HealthUnit;
 
 
 public class RouteActivity  extends FragmentActivity {
@@ -49,18 +50,26 @@ public class RouteActivity  extends FragmentActivity {
     ArrayList<LatLng> pointsOfRoute = new ArrayList<>();
     LatLng myLocation ;//= new LatLng(-15.6898743 , -47.8299874); // my location (leo's house)
     int indexOfClosestUs;
+    Intent i;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.route_activity);
-
         checkPermissions();
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mMap = mapFragment.getMap();
+        i= getIntent();
+        indexOfClosestUs =  i.getIntExtra("numeroUs" , 0);
 
-        Location location = gps.getLocation();
+        Location location = new Location("");//gps.getLocation();
+        location.setLatitude(-15.6895873);
+        location.setLongitude(-47.829876);
+        HealthUnitController.setDistanceBetweenUserAndUs(HealthUnitController.getClosestsUs() , location);
+        if(indexOfClosestUs == -1){
+            indexOfClosestUs = HealthUnitController.selectClosestUs(HealthUnitController.getClosestsUs() , location);
+        }
         myLocation = new LatLng(location.getLatitude() , location.getLongitude());
 
         setYourPositionOnMap();

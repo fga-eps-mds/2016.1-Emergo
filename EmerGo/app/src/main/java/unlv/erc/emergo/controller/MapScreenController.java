@@ -74,9 +74,10 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
     public void onMapReady(final GoogleMap googleMap) {
         mMap = googleMap;
         try {
-            //checkPermissions();
-            location = gps.getLocation();
-
+            checkPermissions();
+            location = new Location(""); //gps.getLocation();
+            location.setLatitude(-15.6895873);
+            location.setLongitude(-47.829876);
             LatLng userLatLng = new LatLng(location.getLatitude() , location.getLongitude());
             mMap.addMarker(new MarkerOptions().position(userLatLng).title(yourPosition)
                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
@@ -85,8 +86,7 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
             services.setMarkersOnMap(mMap , HealthUnitController.getClosestsUs() );
 
         } catch (NullPointerException nullPointer) {
-            Toast.makeText(this , location.getLatitude() + "" , Toast.LENGTH_SHORT).show();
-            //Toast.makeText(this, "Habilite o GPS", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Habilite o GPS", Toast.LENGTH_SHORT).show();
             Intent mainScreen = new Intent();
             mainScreen.setClass(this, MainScreenController.class);
             startActivity(mainScreen);
@@ -103,6 +103,7 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
         Toast.makeText(this, ROUTETRACED , Toast.LENGTH_SHORT).show();
         Intent routeActivity = new Intent();
         routeActivity.setClass(MapScreenController.this , RouteActivity.class);
+        routeActivity.putExtra("numeroUs" , -1);
         startActivity(routeActivity);
         finish();
     }
@@ -111,6 +112,7 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
         Intent listOfHealth = new Intent();
         listOfHealth.setClass(this, ListOfHealthUnitsController.class);
         startActivity(listOfHealth);
+        finish();
     }
 
     public void openMap(View mapScreen) {
