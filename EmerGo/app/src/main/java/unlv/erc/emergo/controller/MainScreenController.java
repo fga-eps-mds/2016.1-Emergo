@@ -50,6 +50,7 @@ public class MainScreenController extends Activity {
                     Toast.makeText(MainScreenController.this, ROUTETRACED , Toast.LENGTH_SHORT).show();
                     Intent routeActivity = new Intent();
                     routeActivity.setClass(MainScreenController.this , RouteActivity.class);
+                    routeActivity.putExtra("numeroUs" , -1);
                     startActivity(routeActivity);
                     finish();
                 }
