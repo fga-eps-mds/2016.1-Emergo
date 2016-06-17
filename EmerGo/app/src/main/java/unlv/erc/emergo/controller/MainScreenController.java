@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -36,9 +37,7 @@ public class MainScreenController extends Activity {
             @Override
             public void onClick(View v) {
                 try {
-                    Intent smsIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms: 55061996941411"));
-                    smsIntent.putExtra("sms_body", "ihuul, emergo decolando!");
-                    startActivity(smsIntent);
+                    SmsManager.getDefault().sendTextMessage("556192147194",null,"emergooooo",null,null);
                     Toast.makeText(getApplicationContext(),"Deu bom o SMS", Toast.LENGTH_LONG).show();
                 }catch(Exception exception){
                     Toast.makeText(getApplicationContext(),"Nao rolou de mandar o SMS", Toast.LENGTH_LONG).show();
