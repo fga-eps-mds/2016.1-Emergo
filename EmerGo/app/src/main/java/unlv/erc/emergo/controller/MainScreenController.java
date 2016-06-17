@@ -52,7 +52,6 @@ public class MainScreenController extends Activity {
                     routeActivity.setClass(MainScreenController.this , RouteActivity.class);
                     routeActivity.putExtra("numeroUs" , -1);
                     startActivity(routeActivity);
-                    finish();
                 }
             };
 

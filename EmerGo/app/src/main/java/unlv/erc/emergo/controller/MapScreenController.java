@@ -93,6 +93,22 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
             finish();
         }
 
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                for(int aux = 0 ; aux < HealthUnitController.getClosestsUs().size() ; aux++){
+                    if(marker.getTitle().toString().compareTo(HealthUnitController.getClosestsUs().get(aux).getNameHospital()) == 0){
+                        Intent information = new Intent();
+                        information.setClass(MapScreenController.this , InformationUsScreenController.class);
+                        information.putExtra("position" , aux);
+                        startActivity(information);
+                        finish();
+                    }
+                }
+                return false;
+            }
+        });
+
     }
 
 
