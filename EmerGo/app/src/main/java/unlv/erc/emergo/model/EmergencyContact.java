@@ -33,7 +33,7 @@ public class EmergencyContact {
 
     public String[] getPhone() {
         return phone;
-    }
+    } //TODO never used.
 
     public void setPhone(String phone) {
         this.phone[phone.length()] = phone;

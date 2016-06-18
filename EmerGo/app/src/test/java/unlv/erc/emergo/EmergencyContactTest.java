@@ -39,4 +39,16 @@ public class EmergencyContactTest {
         assertEquals("Jovaildo",contact.getName());
 
     }
+
+    @Test
+    public void  testContactPhone() {
+        String phone = "01234567890";
+        contact.setPhone(phone);
+
+        String testP = contact.getPhone()[phone.length()];
+
+        assertEquals(testP, phone);
+
+
+    }
 }
