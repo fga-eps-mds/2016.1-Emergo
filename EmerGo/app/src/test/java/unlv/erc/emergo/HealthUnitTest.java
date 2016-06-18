@@ -23,4 +23,16 @@ public class HealthUnitTest {
         assertNotNull(healthUnit);
     }
 
+    @Test
+    public void testConstructionWithParameters() {
+
+        String stringTest = "asd";
+        healthUnit = new HealthUnit(0.0, 0.0, stringTest, stringTest, stringTest, stringTest, stringTest, stringTest);
+
+        assertNotNull(healthUnit);
+
+    }
+
+
+
 }
