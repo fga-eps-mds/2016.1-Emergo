@@ -2,9 +2,11 @@ package unlv.erc.emergo.controller;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -14,6 +16,7 @@ import com.firebase.client.Firebase;
 import com.orm.SugarContext;
 
 import dao.DataAccessObject;
+import dao.EmergencyContactDao;
 import helper.GPSTracker;
 import helper.Services;
 import unlv.erc.emergo.R;
@@ -23,6 +26,7 @@ public class MainScreenController extends Activity {
     private Button goButton , fineButton;
     private Services services = new Services();
     private DataAccessObject dataAccessObject = new DataAccessObject(this);
+    EmergencyContactDao  emergencyContactDao = new EmergencyContactDao(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,13 +40,22 @@ public class MainScreenController extends Activity {
         OnClickListener goListener = new OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    SmsManager.getDefault().sendTextMessage("556192147194",null,"emergooooo",null,null);
-                    Toast.makeText(getApplicationContext(),"Deu bom o SMS", Toast.LENGTH_LONG).show();
-                }catch(Exception exception){
-                    Toast.makeText(getApplicationContext(),"Nao rolou de mandar o SMS", Toast.LENGTH_LONG).show();
-                }
+                Cursor result = emergencyContactDao.getEmergencyContact();
+                Log.i("NUM CONTATOS: ",result.getCount()+" ");
 
+                if(result.getCount() != 0) {
+                    try {
+                       while(result.moveToNext()){
+                            SmsManager.getDefault().sendTextMessage(result.getString(2), null, result.getString(1) + ", Estou precisando de ajuda urgente! teste EmerGO", null, null);
+                       }
+                        Toast.makeText(getApplicationContext(),"Ajuda a caminho", Toast.LENGTH_LONG).show();
+                    }catch(Exception exception){
+                        Toast.makeText(getApplicationContext(),"Impossível encaminhar o SMS", Toast.LENGTH_LONG).show();
+                    }
+                }else{
+                    Toast.makeText(getApplicationContext(),"Nenhum contato adicionado", Toast.LENGTH_LONG).show();
+
+                }
             }
         };
 
