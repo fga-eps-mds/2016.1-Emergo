@@ -1,4 +1,4 @@
-package unlv.erc.emergo;
+package unlv.erc.emergo.model;
 
 import org.junit.Test;
 
