@@ -56,28 +56,28 @@ public class HealthUnitAdapter extends ArrayAdapter<HealthUnit> {
         return distance/1000;
     }
 
-    public void setDistance(View convertView, int position) {
-
-        if (this.hospitalList.get(position).getDistance() < 1f) {
-            // Setting distance of drugstore on list item
-            TextView textViewDistance = (TextView) convertView.findViewById(R.id.distanceText);
-            textViewDistance.setText(this.hospitalList.get(position).getDistance() + " m");
-        } else {
-            // Setting distance of drugstore on list item
-            TextView textViewDistance = (TextView) convertView.findViewById(R.id.distanceText);
-            textViewDistance.setText(convertToKM(this.hospitalList.get(position).getDistance()).toString() + " Km");
-        }
-    }
+//    public void setDistance(View convertView, int position) {
+//
+//        if (this.hospitalList.get(position).getDistance() < 1f) {
+//            // Setting distance of drugstore on list item
+//            TextView textViewDistance = (TextView) convertView.findViewById(R.id.distanceText);
+//            textViewDistance.setText(this.hospitalList.get(position).getDistance() + " m");
+//        } else {
+//            // Setting distance of drugstore on list item
+//            TextView textViewDistance = (TextView) convertView.findViewById(R.id.distanceText);
+//            textViewDistance.setText(convertToKM(this.hospitalList.get(position).getDistance()).toString() + " Km");
+//        }
+//    }
 
     public View populateAdapter(View convertView, int position){
 
         HealthUnit hospitalPosition = this.hospitalList.get(position);
         convertView = LayoutInflater.from(this.context).inflate(R.layout.item, null);
 
-        TextView textView = (TextView) convertView.findViewById(R.id.distanceText);
+        //TextView textView = (TextView) convertView.findViewById(R.id.distanceText);
        //nai textView.setText((CharSequence) hospitalPosition.getNameHospital());
 
-        setDistance(convertView, position);
+//        setDistance(convertView, position);
 
         return convertView;
     }

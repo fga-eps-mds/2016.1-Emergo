@@ -4,6 +4,7 @@ import android.Manifest;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.location.Criteria;
 import android.location.Location;
@@ -14,8 +15,10 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -39,6 +42,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import dao.UserDao;
 import helper.DirectionsJSONParser;
 import helper.GPSTracker;
 import unlv.erc.emergo.R;
@@ -52,6 +56,9 @@ public class RouteActivity  extends FragmentActivity {
     GPSTracker gps = new GPSTracker(RouteActivity.this);
     ArrayList<LatLng> pointsOfRoute = new ArrayList<>();
     LatLng myLocation ;
+    ImageView user;
+    private Cursor result;
+    UserDao myDatabase;
     int indexOfClosestUs;
     Intent i;
 
@@ -66,11 +73,9 @@ public class RouteActivity  extends FragmentActivity {
         i= getIntent();
         indexOfClosestUs =  i.getIntExtra("numeroUs" , 0);
 
-        Location location = new Location(""); //gps.getLocation();
-        location.setLatitude(-15.879405);
-        location.setLongitude(-47.8077307);
-
-
+        Location location = /*new Location(""); */gps.getLocation();
+//        location.setLatitude(-15.879405);
+//        location.setLongitude(-47.8077307);
         HealthUnitController.setDistanceBetweenUserAndUs(HealthUnitController.getClosestsUs() , location);
         if(indexOfClosestUs == -1){
             indexOfClosestUs = HealthUnitController.selectClosestUs(HealthUnitController.getClosestsUs() , location);
@@ -88,7 +93,15 @@ public class RouteActivity  extends FragmentActivity {
         downloadTask.execute(urlInitial);
 
         setMarkerOfClosestUsOnMap();
-
+        user = (ImageView) findViewById(R.id.userInformation);
+        //user.setOnClickListener(this);
+        user.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                showInformationUser();
+            }
+        });
+        myDatabase = new UserDao(this);
+        result = myDatabase.getUser();
     }
 
     public void cancelClicked(View view ){
@@ -154,6 +167,23 @@ public class RouteActivity  extends FragmentActivity {
 
             ParserTask parserTask = new ParserTask();
             parserTask.execute(result);
+        }
+    }
+
+    public void showInformationUser(){
+        result.moveToFirst();
+
+        if(result.getCount() == 0){
+            Toast.makeText(this,"NÃO TEM NADA",Toast.LENGTH_LONG).show();
+        }else{
+            showMessageDialog("Notificações do Usuário","Nome: "+result.getString(1)+
+                    "Data de Aniversário: "+result.getString(2)+
+                    "Tipo Sanguíneo: "+result.getString(3)+
+                    "Cardiaco: "+result.getString(4)+
+                    "Diabetico: "+result.getString(5)+
+                    "Hipertenso: "+result.getString(6)+
+                    "Soropositivo: "+result.getString(7)+
+                    "Observações Especiais: "+result.getString(8));
         }
     }
 
@@ -290,6 +320,15 @@ public class RouteActivity  extends FragmentActivity {
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
+
+    }
+
+    public void showMessageDialog(String title,String message){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(message);
+        builder.show();
     }
 
 

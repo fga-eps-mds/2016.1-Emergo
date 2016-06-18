@@ -32,8 +32,10 @@ public class ListOfHealthUnitsController extends Activity {
         fifthClosestsUs = get50closestUs(HealthUnitController.getClosestsUs());
 
         setuSsList((ListView) findViewById(R.id.list_of_hospitalUnit));
+
         uSsList.setAdapter(new ArrayAdapter<String>(this, R.layout.item, R.id.hospitalUnitText,
                             fifthClosestsUs));
+
         uSsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -41,7 +43,6 @@ public class ListOfHealthUnitsController extends Activity {
                 openInformationUsScreen();
             }
         });
-
     }
 
     public void openInformationUsScreen(){
@@ -55,10 +56,10 @@ public class ListOfHealthUnitsController extends Activity {
 
 
     public List<String> get50closestUs(ArrayList<HealthUnit> closest){
-        final int MAXNUMBERUS = 2731; // USs em Brasilia
+
         List<String> closestsUs = new ArrayList<String>();
         int numberOfUs;
-        for(numberOfUs = 0 ; numberOfUs < MAXNUMBERUS ; numberOfUs++){
+        for(numberOfUs = 0 ; numberOfUs < HealthUnitController.getClosestsUs().size() ; numberOfUs++){
             closestsUs.add(closest.get(numberOfUs).getNameHospital());
         }
         return closestsUs;

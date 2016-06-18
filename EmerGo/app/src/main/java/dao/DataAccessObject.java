@@ -10,6 +10,7 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
+import com.google.common.collect.UnmodifiableIterator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,10 +55,16 @@ public class DataAccessObject {
                         String state = child.child("uf").getValue().toString();
                         String city = child.child("municipio").getValue().toString();
 
-                        model = new HealthUnit(latitude,longitude,nameHospital,unitType,
-                                                        addressNumber,district,state,city);
-                        model.save();
-                        HealthUnitController.setClosestsUs(model);
+                        if((unitType.contains("HOSPITAL GERAL") || unitType.contains("CENTRO DE SAUDE/UNIDADE BASICA")
+                                || unitType.contains("UNIDADE MOVEL DE NIVEL PRE-HOSPITALAR NA AREA DE URGENCIA") ||
+                                unitType.contains("UNIDADE MOVEL TERRESTRE") )  ){
+
+                            model = new HealthUnit(latitude,longitude,nameHospital,unitType,
+                                    addressNumber,district,state,city);
+                            model.save();
+                            HealthUnitController.setClosestsUs(model);
+                        }
+
 
                     }
                     Toast.makeText(context, "Atualize o mapa para carregar mais USs" ,
@@ -78,7 +85,7 @@ public class DataAccessObject {
                 HealthUnitController.setClosestsUs(list.get(aux));
             }
             Log.d("log123", "preenchida offline");
-            Log.i("Database has finished", HealthUnitController.getClosestsUs().size() + "Us");
+            Log.i("Database has finished", HealthUnitController.getClosestsUs().size() + " Us");
         }
 
     }

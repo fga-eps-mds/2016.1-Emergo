@@ -45,10 +45,8 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
     private GoogleMap mMap;
     private Services services = new Services();
     Location location;
-    ImageView user;
     GPSTracker gps = new GPSTracker(this);
-    private Cursor result;
-    UserDao myDatabase;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,15 +56,7 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         mMap = mapFragment.getMap();
-        myDatabase = new UserDao(this);
-        result = myDatabase.getUser();
-        user = (ImageView) findViewById(R.id.userInformation);
-        //user.setOnClickListener(this);
-        user.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                showInformationUser();
-            }
-        });
+
     }
 
 
@@ -76,9 +66,9 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
         mMap = googleMap;
         try {
             checkPermissions();
-            location = new Location(""); //gps.getLocation();
-            location.setLatitude(-15.879405);
-            location.setLongitude(-47.8077307);
+            location =/* new Location("");*/ gps.getLocation();
+//            location.setLatitude(-15.879405);
+//            location.setLongitude(-47.8077307);
             LatLng userLatLng = new LatLng(location.getLatitude() , location.getLongitude());
             mMap.addMarker(new MarkerOptions().position(userLatLng).title(yourPosition)
                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
@@ -112,30 +102,6 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
 
     }
 
-    public void showInformationUser(){
-        result.moveToFirst();
-
-        if(result.getCount() == 0){
-            Toast.makeText(this,"NÃO TEM NADA",Toast.LENGTH_LONG).show();
-        }else{
-            showMessageDialog("Notificações do Usuário","Nome: "+result.getString(1)+
-                                                        "Data de Aniversário: "+result.getString(2)+
-                                                        "Tipo Sanguíneo: "+result.getString(3)+
-                                                        "Cardiaco: "+result.getString(4)+
-                                                        "Diabetico: "+result.getString(5)+
-                                                        "Hipertenso: "+result.getString(6)+
-                                                        "Soropositivo: "+result.getString(7)+
-                                                        "Observações Especiais: "+result.getString(8));
-        }
-    }
-
-    public void showMessageDialog(String title,String message){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setCancelable(true);
-        builder.setTitle(title);
-        builder.setMessage(message);
-        builder.show();
-    }
 
     public void goClicked(View map_screen) throws IOException, JSONException {
         final String ROUTETRACED = "Rota mais próxima traçada";
