@@ -35,11 +35,22 @@ public class HealthUnitTest {
     }
 
     @Test
-    public void testGetters() {
+    public void testConstructionWithParametersAndId() {
 
         String stringTest = "asd";
-        healthUnit = new HealthUnit(0.0, 0.0, stringTest, stringTest, stringTest, stringTest, stringTest, stringTest);
+        healthUnit = new HealthUnit(20.0, 0.0, 0.0, stringTest, stringTest, stringTest, stringTest, stringTest, stringTest);
 
+        assertNotNull(healthUnit);
+
+    }
+
+    @Test
+    public void testGettersAndSetters() {
+
+        String stringTest = "asd";
+        healthUnit = new HealthUnit(0, 0.0, 0.0, stringTest, stringTest, stringTest, stringTest, stringTest, stringTest);
+
+        assertEquals(healthUnit.getId(), (Integer) 0);
         assertEquals(healthUnit.getLatitude(), (Double) 0.0);
         assertEquals(healthUnit.getLongitude(), (Double) 0.0);
         assertEquals(healthUnit.getAddressNumber(), stringTest);
