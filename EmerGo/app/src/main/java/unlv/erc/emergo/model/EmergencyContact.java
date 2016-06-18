@@ -14,6 +14,10 @@ public class EmergencyContact {
     private String name;
     private String phone[];
 
+    public EmergencyContact() {
+        super();
+    }
+
     public EmergencyContact(String name, String phone) {
         setName(name);
         setPhone(phone);
