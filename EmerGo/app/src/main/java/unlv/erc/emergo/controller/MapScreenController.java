@@ -1,6 +1,5 @@
 package unlv.erc.emergo.controller;
 
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -12,7 +11,9 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -32,10 +33,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import dao.UserDao;
 import helper.GPSTracker;
 import helper.Services;
 import unlv.erc.emergo.R;
+
 
 
 public class MapScreenController extends FragmentActivity implements OnMapReadyCallback  {
@@ -66,9 +67,9 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
         mMap = googleMap;
         try {
             checkPermissions();
-            location =/* new Location("");*/ gps.getLocation();
-//            location.setLatitude(-15.879405);
-//            location.setLongitude(-47.8077307);
+            location = new Location("");// gps.getLocation();
+            location.setLatitude(-15.879405);
+            location.setLongitude(-47.8077307);
             LatLng userLatLng = new LatLng(location.getLatitude() , location.getLongitude());
             mMap.addMarker(new MarkerOptions().position(userLatLng).title(yourPosition)
                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));

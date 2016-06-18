@@ -9,9 +9,12 @@ import android.graphics.Color;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.Handler;
 import android.os.SystemClock;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
@@ -19,6 +22,8 @@ import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -52,6 +57,8 @@ import unlv.erc.emergo.R;
 public class RouteActivity  extends FragmentActivity {
 
     final int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124;
+    private static int SPLASH_TIME_OUT = 5000;
+    public String SAMUNumber = "tel:33713601";
     private GoogleMap mMap;
     GPSTracker gps = new GPSTracker(RouteActivity.this);
     ArrayList<LatLng> pointsOfRoute = new ArrayList<>();
@@ -59,7 +66,9 @@ public class RouteActivity  extends FragmentActivity {
     ImageView user;
     private Cursor result;
     UserDao myDatabase;
+    ProgressBar progress;
     int indexOfClosestUs;
+    TextView contador;
     Intent i;
 
     @Override
@@ -67,15 +76,40 @@ public class RouteActivity  extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.route_activity);
         checkPermissions();
+        progress = (ProgressBar) findViewById(R.id.progressBar);
+        progress.setVisibility(View.VISIBLE);
+        contador = (TextView) findViewById(R.id.contador);
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                new CountDownTimer(3000 , 1000){
+                    public void onTick(long millisnUntilFinished){
+                        contador.setText("Ligando em: " + millisnUntilFinished/1000);
+                    }
+
+                    public void onFinish(){
+                    }
+                };
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse(SAMUNumber));
+                startActivity(callIntent);
+
+                finish();
+            }
+        }, SPLASH_TIME_OUT);
+
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mMap = mapFragment.getMap();
         i= getIntent();
         indexOfClosestUs =  i.getIntExtra("numeroUs" , 0);
 
-        Location location = /*new Location(""); */gps.getLocation();
-//        location.setLatitude(-15.879405);
-//        location.setLongitude(-47.8077307);
+        Location location = new Location(""); //gps.getLocation();
+        location.setLatitude(-15.879405);
+        location.setLongitude(-47.8077307);
         HealthUnitController.setDistanceBetweenUserAndUs(HealthUnitController.getClosestsUs() , location);
         if(indexOfClosestUs == -1){
             indexOfClosestUs = HealthUnitController.selectClosestUs(HealthUnitController.getClosestsUs() , location);
@@ -104,7 +138,9 @@ public class RouteActivity  extends FragmentActivity {
         result = myDatabase.getUser();
     }
 
+
     public void cancelClicked(View view ){
+        
         Intent mapScreen = new Intent();
         mapScreen.setClass(RouteActivity.this , MapScreenController.class);
         startActivity(mapScreen);
