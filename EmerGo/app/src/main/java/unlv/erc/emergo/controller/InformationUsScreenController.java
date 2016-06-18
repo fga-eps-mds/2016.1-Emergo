@@ -2,7 +2,10 @@ package unlv.erc.emergo.controller;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -11,6 +14,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import dao.EmergencyContactDao;
 import unlv.erc.emergo.R;
 import unlv.erc.emergo.model.HealthUnit;
 
@@ -23,6 +27,8 @@ public class InformationUsScreenController extends Activity {
     private int numberUsSelected;
     private String padding ,titulo, nome ,gestao , uf ,municipio ,
                     bairro ,cep ;
+
+    EmergencyContactDao emergencyContactDao = new EmergencyContactDao(this);
 
 
     @Override
@@ -74,10 +80,27 @@ public class InformationUsScreenController extends Activity {
     }
 
     public void goClicked(View map_screen) {
+        Cursor result = emergencyContactDao.getEmergencyContact();
+        Log.i("NUM CONTATOS: ",result.getCount()+" ");
+
+        if(result.getCount() != 0) {
+            try {
+                while(result.moveToNext()){
+                    SmsManager.getDefault().sendTextMessage(result.getString(2), null, result.getString(1) + ", Estou precisando de ajuda urgente! teste EmerGO", null, null);
+                }
+                Toast.makeText(getApplicationContext(),"Ajuda a caminho", Toast.LENGTH_LONG).show();
+            }catch(Exception exception){
+                Toast.makeText(getApplicationContext(),"Impossível encaminhar o SMS", Toast.LENGTH_LONG).show();
+            }
+        }else{
+            Toast.makeText(getApplicationContext(),"Nenhum contato adicionado", Toast.LENGTH_LONG).show();
+        }
+
+        /*
         Intent mapRoute = new Intent();
         mapRoute.setClass(this, RouteActivity.class);
         startActivity(mapRoute);
-        finish();
+        finish();*/
     }
 
     public void listMapsImageClicked(View map_screen){
