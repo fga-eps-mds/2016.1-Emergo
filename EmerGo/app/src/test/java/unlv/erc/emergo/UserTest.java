@@ -2,37 +2,51 @@ package unlv.erc.emergo;
 
 import junit.framework.TestCase;
 
+import org.junit.Before;
+import org.junit.Test;
+
 import unlv.erc.emergo.model.User;
 
-public class UserTest extends TestCase {
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+public class UserTest {
+
+
 
     private User user;
     final int MAXIMUM_LENGHT_NAME = 42;
     final int MAXIMUM_TYPEBLOOD = 3;
 
+
+    @Before
+    public void setUp() {
+        user = new User();
+    }
     // tests for name
 
+    @Test
     public void testGetName(){
-        user = new User();
         String name = "Peter";
         user.setName("Peter");
         assertEquals(name,user.getName());
     }
 
+    @Test
     public void testSetName(){
-        user = new User();
         user.setName("Maria Joaquina");
         assertEquals("Maria Joaquina", user.getName());
     }
 
+    @Test
     public void testSetNameEmpty(){
-        user = new User();
         user.setName("");
         assertEquals("", user.getName());
     }
 
+    @Test
     public void testSetNameLowerThree(){
-        user = new User();
         user.setName("Ana");
         final int MINIMUM = 3;
         boolean result = true;
@@ -43,8 +57,8 @@ public class UserTest extends TestCase {
         }
     }
 
+    @Test
     public void testSetNameMaximumSize(){
-        user = new User();
 
         user.setName("Pedro Alvares Cabral de Valentina");
         boolean result = true;
@@ -57,16 +71,16 @@ public class UserTest extends TestCase {
 
     // tests birthday
 
+    @Test
     public void testSetBirthday(){
-        user = new User();
         user.setBirthday("12/03/1990");
         assertEquals("12/03/1990", user.getBirthday());
     }
 
     // tests for typeBlood
 
+    @Test
     public void testSetTypeBloodBiggerThree(){
-        user = new User();
         user.setTypeBlood("AB-");
         boolean result = true;
         if(user.getTypeBlood().length()>MAXIMUM_TYPEBLOOD){
@@ -76,8 +90,8 @@ public class UserTest extends TestCase {
         }
     }
 
+    @Test
     public void testSetTypeBloodNull() {
-        user = new User();
         user.setTypeBlood("AB+");
         boolean result = true;
         if(user.getTypeBlood()==null){
@@ -88,8 +102,8 @@ public class UserTest extends TestCase {
         }
     }
 
+    @Test
     public void testSetTypeBloodLowerOrEqualsTwo(){
-        User user = new User();
         user.setTypeBlood("A-");
         boolean result = true;
         if(user.getTypeBlood().length()<=MAXIMUM_TYPEBLOOD-1){
