@@ -46,7 +46,7 @@ public class MainScreenController extends Activity {
                 if(result.getCount() != 0) {
                     try {
                        while(result.moveToNext()){
-                            SmsManager.getDefault().sendTextMessage(result.getString(2), null, result.getString(1) + ", Estou precisando de ajuda urgente! teste EmerGO", null, null);
+                            SmsManager.getDefault().sendTextMessage(result.getString(2), null, result.getString(1) + ", estou precisando de ajuda urgente!", null, null);
                        }
                         Toast.makeText(getApplicationContext(),"Ajuda a caminho", Toast.LENGTH_LONG).show();
                     }catch(Exception exception){

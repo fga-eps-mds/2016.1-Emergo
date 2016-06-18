@@ -35,9 +35,13 @@ public class MainScreenControllerTest extends ActivityInstrumentationTestCase2<M
         onView(withId(R.id.buttonGo)).check(matches(isDisplayed()));
         onView(withText("GO!")).perform(click());
         onView(withId(R.id.buttonGo)).check(matches(withText("GO!")));
-
     }
 
+    public void testButtonOkay(){
+        onView(withId(R.id.buttonOkay)).check(matches(isDisplayed()));
+        onView(withText("Estou Bem")).perform(click());
+        onView(withId(R.id.buttonOkay));
+    }
 
 
 }
