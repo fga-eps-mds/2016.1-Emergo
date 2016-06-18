@@ -1,22 +1,17 @@
 package unlv.erc.emergo.controller;
 
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-
-import android.graphics.Color;
-
+import android.database.Cursor;
 import android.location.Location;
-
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
-
+import android.support.v7.app.AlertDialog;
 import android.view.View;
-
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -29,22 +24,17 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import org.json.JSONException;
 
 import java.io.IOException;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import dao.UserDao;
 import helper.GPSTracker;
 import helper.Services;
-
-import android.Manifest;
-
-
-import org.json.JSONException;
-
 import unlv.erc.emergo.R;
 
 
@@ -57,6 +47,8 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
     Location location;
     ImageView user;
     GPSTracker gps = new GPSTracker(this);
+    private Cursor result;
+    UserDao myDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,9 +58,15 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         mMap = mapFragment.getMap();
+        myDatabase = new UserDao(this);
+        result = myDatabase.getUser();
         user = (ImageView) findViewById(R.id.userInformation);
         //user.setOnClickListener(this);
-
+        user.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                showInformationUser();
+            }
+        });
     }
 
 
@@ -114,7 +112,30 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
 
     }
 
+    public void showInformationUser(){
+        result.moveToFirst();
 
+        if(result.getCount() == 0){
+            Toast.makeText(this,"NÃO TEM NADA",Toast.LENGTH_LONG).show();
+        }else{
+            showMessageDialog("Notificações do Usuário","Nome: "+result.getString(1)+
+                                                        "Data de Aniversário: "+result.getString(2)+
+                                                        "Tipo Sanguíneo: "+result.getString(3)+
+                                                        "Cardiaco: "+result.getString(4)+
+                                                        "Diabetico: "+result.getString(5)+
+                                                        "Hipertenso: "+result.getString(6)+
+                                                        "Soropositivo: "+result.getString(7)+
+                                                        "Observações Especiais: "+result.getString(8));
+        }
+    }
+
+    public void showMessageDialog(String title,String message){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(message);
+        builder.show();
+    }
 
     public void goClicked(View map_screen) throws IOException, JSONException {
         final String ROUTETRACED = "Rota mais próxima traçada";
