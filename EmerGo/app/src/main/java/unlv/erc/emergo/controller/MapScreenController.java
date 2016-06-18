@@ -15,10 +15,9 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 
-
-import android.util.Log;
 import android.view.View;
 
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -49,26 +48,30 @@ import org.json.JSONException;
 import unlv.erc.emergo.R;
 
 
-public class MapScreenController extends FragmentActivity implements OnMapReadyCallback {
+public class MapScreenController extends FragmentActivity implements OnMapReadyCallback  {
 
     final int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124;
     final String yourPosition = "Sua posição";
     private GoogleMap mMap;
     private Services services = new Services();
     Location location;
+    ImageView user;
     GPSTracker gps = new GPSTracker(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map_screen);
-
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         mMap = mapFragment.getMap();
+        user = (ImageView) findViewById(R.id.userInformation);
+        //user.setOnClickListener(this);
 
     }
+
+
 
     @Override
     public void onMapReady(final GoogleMap googleMap) {
@@ -76,8 +79,8 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
         try {
             checkPermissions();
             location = new Location(""); //gps.getLocation();
-            location.setLatitude(-15.6895873);
-            location.setLongitude(-47.829876);
+            location.setLatitude(-15.879405);
+            location.setLongitude(-47.8077307);
             LatLng userLatLng = new LatLng(location.getLatitude() , location.getLongitude());
             mMap.addMarker(new MarkerOptions().position(userLatLng).title(yourPosition)
                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
@@ -132,10 +135,7 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
     }
 
     public void openMap(View mapScreen) {
-        Intent mapActivity = new Intent();
-        mapActivity.setClass(this, MapScreenController.class);
-        startActivity(mapActivity);
-        finish();
+
     }
 
 

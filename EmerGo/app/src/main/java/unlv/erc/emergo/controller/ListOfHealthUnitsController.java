@@ -81,10 +81,7 @@ public class ListOfHealthUnitsController extends Activity {
     }
 
     public void listMapsImageClicked(View map_screen){
-        Intent listOfHealth = new Intent();
-        listOfHealth.setClass(this , ListOfHealthUnitsController.class);
-        startActivity(listOfHealth);
-        finish();
+
     }
 
     public void openMap(View mapScreen){

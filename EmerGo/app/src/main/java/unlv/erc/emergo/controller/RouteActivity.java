@@ -5,10 +5,13 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.location.Criteria;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
@@ -39,7 +42,7 @@ import java.util.Map;
 import helper.DirectionsJSONParser;
 import helper.GPSTracker;
 import unlv.erc.emergo.R;
-import unlv.erc.emergo.model.HealthUnit;
+
 
 
 public class RouteActivity  extends FragmentActivity {
@@ -48,7 +51,7 @@ public class RouteActivity  extends FragmentActivity {
     private GoogleMap mMap;
     GPSTracker gps = new GPSTracker(RouteActivity.this);
     ArrayList<LatLng> pointsOfRoute = new ArrayList<>();
-    LatLng myLocation ;//= new LatLng(-15.6898743 , -47.8299874); // my location (leo's house)
+    LatLng myLocation ;
     int indexOfClosestUs;
     Intent i;
 
@@ -63,9 +66,11 @@ public class RouteActivity  extends FragmentActivity {
         i= getIntent();
         indexOfClosestUs =  i.getIntExtra("numeroUs" , 0);
 
-        Location location = new Location("");//gps.getLocation();
-        location.setLatitude(-15.6895873);
-        location.setLongitude(-47.829876);
+        Location location = new Location(""); //gps.getLocation();
+        location.setLatitude(-15.879405);
+        location.setLongitude(-47.8077307);
+
+
         HealthUnitController.setDistanceBetweenUserAndUs(HealthUnitController.getClosestsUs() , location);
         if(indexOfClosestUs == -1){
             indexOfClosestUs = HealthUnitController.selectClosestUs(HealthUnitController.getClosestsUs() , location);
@@ -132,12 +137,9 @@ public class RouteActivity  extends FragmentActivity {
     }
 
     private class DownloadTask extends AsyncTask<String, Void, String> {
-
         @Override
         protected String doInBackground(String... url) {
-
             String data = "";
-
             try{
                 data = downloadUrl(url[0]);
             }catch(Exception e){
