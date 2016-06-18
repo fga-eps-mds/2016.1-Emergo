@@ -1,5 +1,6 @@
 package dao;
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -39,6 +40,14 @@ public class UserDao extends SQLiteOpenHelper {
     public UserDao(Context context) {
         super(context, DATABASE_NAME, null, VERSION);
     }
+
+   /*public UserDao() {}
+
+    public UserDao (Activity currentActivity){
+        super(currentActivity);
+    }*/
+
+
 
     @Override
     public void onCreate(SQLiteDatabase database) {
