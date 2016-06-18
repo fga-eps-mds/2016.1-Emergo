@@ -38,7 +38,7 @@ public class HealthUnitTest {
     public void testConstructionWithParametersAndId() {
 
         String stringTest = "asd";
-        healthUnit = new HealthUnit(20.0, 0.0, 0.0, stringTest, stringTest, stringTest, stringTest, stringTest, stringTest);
+        healthUnit = new HealthUnit(20, 0.0, 0.0, stringTest, stringTest, stringTest, stringTest, stringTest, stringTest);
 
         assertNotNull(healthUnit);
 
@@ -62,6 +62,16 @@ public class HealthUnitTest {
 
     }
 
+    @Test
+    public void testDistance(){
+
+        float distance = (float)20;
+
+        healthUnit.setDistance(distance);
+
+        assertEquals(healthUnit.getDistance(), (Float) distance);
+
+    }
 
 
 
