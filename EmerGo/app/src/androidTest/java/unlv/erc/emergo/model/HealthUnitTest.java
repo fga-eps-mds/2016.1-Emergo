@@ -38,7 +38,8 @@ public class HealthUnitTest {
     public void testConstructionWithParametersAndId() {
 
         String stringTest = "asd";
-        healthUnit = new HealthUnit(20, 0.0, 0.0, stringTest, stringTest, stringTest, stringTest, stringTest, stringTest);
+        healthUnit = new HealthUnit(0.0, 0.0, stringTest, stringTest, stringTest, stringTest, stringTest, stringTest);
+        healthUnit.setId((long) 20);
 
         assertNotNull(healthUnit);
 
@@ -48,7 +49,7 @@ public class HealthUnitTest {
     public void testGettersAndSetters() {
 
         String stringTest = "asd";
-        healthUnit = new HealthUnit(0, 0.0, 0.0, stringTest, stringTest, stringTest, stringTest, stringTest, stringTest);
+        healthUnit = new HealthUnit(0.0, 0.0, stringTest, stringTest, stringTest, stringTest, stringTest, stringTest);
 
         assertEquals(healthUnit.getId(), (Integer) 0);
         assertEquals(healthUnit.getLatitude(), (Double) 0.0);
@@ -73,16 +74,14 @@ public class HealthUnitTest {
 
     }
 
-
-    private HealthUnit healthUnit = new HealthUnit();
-
-
     // test for name Health Unit
+    @Test
     public void testSetNameHealthUnit(){
         healthUnit.setNameHospital("Hospital Regional do Gama");
         assertEquals("Hospital Regional do Gama", healthUnit.getNameHospital());
     }
 
+    @Test
     public void testGetNameHealthUnit(){
         String name = "Hospital Regional da Asa Norte";
         healthUnit.setNameHospital("Hospital Regional da Asa Norte");
@@ -90,12 +89,13 @@ public class HealthUnitTest {
     }
 
     // tests for Unit Type
-
+    @Test
     public void testSetUnitTypeHealthUnit(){
         healthUnit.setUnitType("Posto de Saude");
         assertEquals("Posto de Saude", healthUnit.getUnitType());
     }
 
+    @Test
     public void testGetUnitTypeHealthUnit(){
         String unitType = "Posto de Saude";
         healthUnit.setUnitType("Posto de Saude");
@@ -104,11 +104,13 @@ public class HealthUnitTest {
 
     // test for Address Number
 
+    @Test
     public void testSetAddressNumberHealthUnit(){
         healthUnit.setAddressNumber("9999");
         assertEquals("9999", healthUnit.getAddressNumber());
     }
 
+    @Test
     public void testGetAddressNumberHealthUnit(){
         String addressNumber = "9999";
         healthUnit.setAddressNumber("9999");
@@ -117,11 +119,13 @@ public class HealthUnitTest {
 
     // tests for District
 
+    @Test
     public void testSetDistrictHealthUnit(){
         healthUnit.setDistrict("Asa Sul");
         assertEquals("Asa Sul", healthUnit.getDistrict());
     }
 
+    @Test
     public void testGetDistrictHealthUnit(){
         String district = "Asa Sul";
         healthUnit.setDistrict("Asa Sul");
@@ -130,11 +134,13 @@ public class HealthUnitTest {
 
     // tests for State
 
+    @Test
     public void testSetStateHealthUnit(){
         healthUnit.setState("DF");
         assertEquals("DF", healthUnit.getState());
     }
 
+    @Test
     public void testGetStateHealthUnit(){
         String state = "DF";
         healthUnit.setState("DF");
@@ -143,11 +149,13 @@ public class HealthUnitTest {
 
     // tests for city
 
+    @Test
     public void testSetCityHealthUnit(){
         healthUnit.setCity("Brasília");
         assertEquals("Brasília", healthUnit.getCity());
     }
 
+    @Test
     public void testGetCityHealthUnit(){
         String city = "Brasília";
         healthUnit.setCity("Brasília");
@@ -156,11 +164,14 @@ public class HealthUnitTest {
 
     // tests for Latitude
 
+    @Test
     public void testSetLatitudeHealthUnit(){
-        healthUnit.setLatitude(45.678964);
-        assertEquals(45.678964, healthUnit.getLatitude());
+        Double latitude = 45.678964;
+        healthUnit.setLatitude(latitude);
+        assertEquals(latitude, healthUnit.getLatitude());
     }
 
+    @Test
     public void testGetLatitudeHealthUnit(){
         Double latitude = 45.678964;
         healthUnit.setLatitude(45.678964);
@@ -169,11 +180,14 @@ public class HealthUnitTest {
 
     // tests for Longitude
 
+    @Test
     public void testSetLongitudeHealthUnit(){
-        healthUnit.setLongitude(-56.195678);
-        assertEquals(-56.195678, healthUnit.getLongitude());
+        Double longitude = -56.195678;
+        healthUnit.setLongitude(longitude);
+        assertEquals(longitude, healthUnit.getLongitude());
     }
 
+    @Test
     public void testGetLongitudeHealthUnit(){
         Double longitude = -56.195678;
         healthUnit.setLongitude(-56.195678);
@@ -182,24 +196,29 @@ public class HealthUnitTest {
 
     // tests for Distance
 
+    @Test
     public void testSetDistanceHealthUnit(){
         healthUnit.setLongitude(25.34);
-        assertEquals(25.34, healthUnit.getLongitude());
+        assertEquals((Double) 25.34, healthUnit.getLongitude());
     }
 
+    @Test
     public void testGetDistanceHealthUnit(){
-        float distance = 1815;
+        Float distance = Float.valueOf(1815);
         healthUnit.setDistance(distance);
         assertEquals(distance, healthUnit.getDistance());
     }
 
     // tests
 
+    @Test
     public void testGetInformationsWithoutIDHealthUnit(){
-        healthUnit = new HealthUnit(15.4567,-16.999,"Hospital Regional do Gama",
+        Double longitude = -16.999;
+        Double latitude = 15.4567;
+        healthUnit = new HealthUnit(latitude, longitude,"Hospital Regional do Gama",
                 "Posto de Saude", "9999", "Asa Norte", "DF", "Brasília");
-        assertEquals(15.4567, healthUnit.getLatitude());
-        assertEquals(-16.999, healthUnit.getLongitude());
+        assertEquals((Double) latitude, healthUnit.getLatitude());
+        assertEquals( healthUnit.getLongitude(), longitude );
         assertEquals("Hospital Regional do Gama", healthUnit.getNameHospital());
         assertEquals("Posto de Saude", healthUnit.getUnitType());
         assertEquals("9999", healthUnit.getAddressNumber());
@@ -208,12 +227,15 @@ public class HealthUnitTest {
         assertEquals("Brasília", healthUnit.getCity());
     }
 
+    @Test
     public void testGetInformationsWithIDHealthUnit(){
-        healthUnit = new HealthUnit(15.4567,-16.999,"Hospital Regional do Gama",
+        Double longitude = -16.999;
+        Double latitude = 15.4567;
+        healthUnit = new HealthUnit(latitude, longitude,"Hospital Regional do Gama",
                 "Posto de Saude", "9999", "Asa Norte", "DF", "Brasília");
         healthUnit.setId((long) 1);
-        assertEquals(15.4567, healthUnit.getLatitude());
-        assertEquals(-16.999, healthUnit.getLongitude());
+        assertEquals(latitude, healthUnit.getLatitude());
+        assertEquals(longitude, healthUnit.getLongitude());
         assertEquals("Hospital Regional do Gama", healthUnit.getNameHospital());
         assertEquals("Posto de Saude", healthUnit.getUnitType());
         assertEquals("9999", healthUnit.getAddressNumber());
@@ -222,10 +244,12 @@ public class HealthUnitTest {
         assertEquals("Brasília", healthUnit.getCity());
     }
 
+    @Test
     public void testSetInformationsWithoutIDHealthUnit(){
         healthUnit = new HealthUnit(166.66,190.00,"","","", "", "", "");
         healthUnit.setLatitude(17.8906);
-        healthUnit.setLongitude(-18.7878);
+        Double longitude = -18.7878;
+        healthUnit.setLongitude(longitude);
         healthUnit.setNameHospital("Hospital da Lulu");
         healthUnit.setUnitType("Hospital Isolado");
         healthUnit.setAddressNumber("6969");
@@ -233,8 +257,9 @@ public class HealthUnitTest {
         healthUnit.setState("DF");
         healthUnit.setCity("Brasólia");
 
-        assertEquals(17.8906, healthUnit.getLatitude());
-        assertEquals(-18.7878, healthUnit.getLongitude());
+        Double latitude = (Double) 17.8906;
+        assertEquals(latitude, healthUnit.getLatitude());
+        assertEquals(longitude, healthUnit.getLongitude());
         assertEquals("Hospital da Lulu", healthUnit.getNameHospital());
         assertEquals("6969", healthUnit.getAddressNumber());
         assertEquals("Asa Sul", healthUnit.getDistrict());

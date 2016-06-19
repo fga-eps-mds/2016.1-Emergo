@@ -18,9 +18,6 @@ public class EmergencyContact {
         setPhone(phone);
     }
 
-    public EmergencyContact(){
-
-    }
 
     public String getName() {
         return name;
