@@ -11,10 +11,7 @@ import org.junit.Before;
 import java.util.ArrayList;
 import java.util.List;
 
-<<<<<<< HEAD
-public class InformationUsScreenControllerTest extends TestCase{
 
-=======
 import unlv.erc.emergo.R;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -28,7 +25,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
  * Created by leonardo on 04/05/16.
  */
 public class InformationUsScreenControllerTest  extends ActivityInstrumentationTestCase2<InformationUsScreenController> {
->>>>>>> estoriaTracarRota
+
     List<String> listOfInformations = new ArrayList<String>();
     InformationUsScreenController information = new InformationUsScreenController();
 

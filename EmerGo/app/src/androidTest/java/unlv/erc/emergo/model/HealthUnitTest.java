@@ -140,8 +140,9 @@ public class HealthUnitTest extends TestCase{
     }
 
     public void testGetInformationsWithIDHealthUnit(){
-        healthUnit = new HealthUnit(1,15.4567,-16.999,"Hospital Regional do Gama",
+        healthUnit = new HealthUnit(15.4567,-16.999,"Hospital Regional do Gama",
                 "Posto de Saude", "9999", "Asa Norte", "DF", "Brasília");
+        healthUnit.setId((long) 1);
         assertEquals(15.4567, healthUnit.getLatitude());
         assertEquals(-16.999, healthUnit.getLongitude());
         assertEquals("Hospital Regional do Gama", healthUnit.getNameHospital());
