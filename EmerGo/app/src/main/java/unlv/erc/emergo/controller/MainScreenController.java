@@ -48,8 +48,6 @@ public class MainScreenController extends Activity {
         }else{
             medicalRecordsNotification();
         }
-
-
     }
 
     public void goClicked(View main_Screen) {

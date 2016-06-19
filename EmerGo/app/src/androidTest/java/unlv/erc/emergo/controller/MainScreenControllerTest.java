@@ -1,26 +1,24 @@
 package unlv.erc.emergo.controller;
 
-import android.support.test.espresso.matcher.ViewMatchers;
+import android.support.test.uiautomator.UiDevice;
+import android.support.test.uiautomator.UiObject;
+import android.support.test.uiautomator.UiObjectNotFoundException;
+import android.support.test.uiautomator.UiSelector;
 import android.test.ActivityInstrumentationTestCase2;
-import android.test.UiThreadTest;
-import android.widget.Button;
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.assertion.ViewAssertions.doesNotExist;
-import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.isEnabled;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.action.ViewActions.typeText;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 import org.junit.Before;
 
 import unlv.erc.emergo.R;
 
-public class MainScreenControllerTest extends ActivityInstrumentationTestCase2<MainScreenController> {
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
+public class MainScreenControllerTest extends ActivityInstrumentationTestCase2<MainScreenController> {
+    private UiDevice device;
     public MainScreenControllerTest(){
         super(MainScreenController.class);
     }
@@ -29,13 +27,15 @@ public class MainScreenControllerTest extends ActivityInstrumentationTestCase2<M
     public void setUp() throws Exception{
         super.setUp();
         getActivity().getCallingActivity();
+        device = UiDevice.getInstance(getInstrumentation());
     }
 
-    public void testButtonGoClick(){
+    public void testButtonGoClick() throws UiObjectNotFoundException {
 
-        onView(ViewMatchers.withId(R.id.buttonGo)).check(matches(isDisplayed()));
+        onView(withId(R.id.buttonGo)).check(matches(isDisplayed()));
         onView(withText("GO!")).perform(click());
-        onView(withId(R.id.buttonGo)).check(matches(withText("GO!")));
+        UiObject button = device.findObject(new UiSelector().text("Cancelar"));
+        button.click();
     }
 
 
@@ -43,11 +43,5 @@ public class MainScreenControllerTest extends ActivityInstrumentationTestCase2<M
 
         onView(withId(R.id.buttonOkay)).check(matches(isDisplayed()));
         onView(withText("Estou Bem")).perform(click());
-        onView(withId(R.id.buttonOkay)).check(matches(withText("Estou Bem")));
-    }
-
-    public void testLogoEmerGoView(){
-
-        onView(withId(R.id.logoEmerGo)).check(matches(isDisplayed()));
     }
 }

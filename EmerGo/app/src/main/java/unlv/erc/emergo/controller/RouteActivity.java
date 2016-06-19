@@ -1,21 +1,17 @@
 package unlv.erc.emergo.controller;
 
 import android.Manifest;
-
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Color;
-import android.location.Criteria;
 import android.location.Location;
-import android.location.LocationManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
-import android.os.SystemClock;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -128,7 +124,6 @@ public class RouteActivity  extends FragmentActivity {
 
         setMarkerOfClosestUsOnMap();
         user = (ImageView) findViewById(R.id.userInformation);
-        //user.setOnClickListener(this);
         user.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 showInformationUser();
@@ -210,15 +205,15 @@ public class RouteActivity  extends FragmentActivity {
         result.moveToFirst();
 
         if(result.getCount() == 0){
-            Toast.makeText(this,"NÃO TEM NADA",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Não existe nenhum cadastro no momento.",Toast.LENGTH_LONG).show();
         }else{
-            showMessageDialog("Notificações do Usuário","Nome: "+result.getString(1)+
-                    "Data de Aniversário: "+result.getString(2)+
-                    "Tipo Sanguíneo: "+result.getString(3)+
-                    "Cardiaco: "+result.getString(4)+
-                    "Diabetico: "+result.getString(5)+
-                    "Hipertenso: "+result.getString(6)+
-                    "Soropositivo: "+result.getString(7)+
+            showMessageDialog("Notificações do Usuário","Nome: "+result.getString(1)+ "\n" +
+                    "Data de Aniversário: "+result.getString(2)+ "\n" +
+                    "Tipo Sanguíneo: "+result.getString(3)+ "\n" +
+                    "Cardiaco: "+result.getString(4)+ "\n" +
+                    "Diabetico: "+result.getString(5)+ "\n" +
+                    "Hipertenso: "+result.getString(6)+ "\n" +
+                    "Soropositivo: "+result.getString(7)+ "\n" +
                     "Observações Especiais: "+result.getString(8));
         }
     }
@@ -355,8 +350,6 @@ public class RouteActivity  extends FragmentActivity {
             default:
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-
-
     }
 
     public void showMessageDialog(String title,String message){
@@ -366,11 +359,5 @@ public class RouteActivity  extends FragmentActivity {
         builder.setMessage(message);
         builder.show();
     }
-
-
-
-
-
-
 }
 
