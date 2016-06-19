@@ -7,7 +7,6 @@ public class HealthUnitTest extends TestCase {
 
     private HealthUnit healthUnit = new HealthUnit();
 
-
     // test for name Health Unit
     public void testSetNameHealthUnit() {
         healthUnit.setNameHospital("Hospital Regional do Gama");
@@ -139,4 +138,37 @@ public class HealthUnitTest extends TestCase {
         assertEquals("Brasília", healthUnit.getCity());
     }
 
+    public void testGetInformationsWithIDHealthUnit(){
+        healthUnit = new HealthUnit(15.4567,-16.999,"Hospital Regional do Gama",
+                "Posto de Saude", "9999", "Asa Norte", "DF", "Brasília");
+        healthUnit.setId((long) 1);
+        assertEquals(15.4567, healthUnit.getLatitude());
+        assertEquals(-16.999, healthUnit.getLongitude());
+        assertEquals("Hospital Regional do Gama", healthUnit.getNameHospital());
+        assertEquals("Posto de Saude", healthUnit.getUnitType());
+        assertEquals("9999", healthUnit.getAddressNumber());
+        assertEquals("Asa Norte", healthUnit.getDistrict());
+        assertEquals("DF", healthUnit.getState());
+        assertEquals("Brasília", healthUnit.getCity());
+    }
+
+    public void testSetInformationsWithoutIDHealthUnit(){
+        healthUnit = new HealthUnit(166.66,190.00,"","","", "", "", "");
+        healthUnit.setLatitude(17.8906);
+        healthUnit.setLongitude(-18.7878);
+        healthUnit.setNameHospital("Hospital da Lulu");
+        healthUnit.setUnitType("Hospital Isolado");
+        healthUnit.setAddressNumber("6969");
+        healthUnit.setDistrict("Asa Sul");
+        healthUnit.setState("DF");
+        healthUnit.setCity("Brasólia");
+
+        assertEquals(17.8906, healthUnit.getLatitude());
+        assertEquals(-18.7878, healthUnit.getLongitude());
+        assertEquals("Hospital da Lulu", healthUnit.getNameHospital());
+        assertEquals("6969", healthUnit.getAddressNumber());
+        assertEquals("Asa Sul", healthUnit.getDistrict());
+        assertEquals("DF", healthUnit.getState());
+        assertEquals("Brasólia", healthUnit.getCity());
+    }
 }
