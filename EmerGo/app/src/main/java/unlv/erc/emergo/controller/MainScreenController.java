@@ -8,22 +8,22 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.NotificationCompat;
+
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
-
 import com.firebase.client.Firebase;
 import com.orm.SugarContext;
 
 import dao.DataAccessObject;
 import dao.UserDao;
 import helper.Services;
+
 import unlv.erc.emergo.R;
 
 public class MainScreenController extends Activity {
 
-    private Button goButton , fineButton;
+    private Button goButton, fineButton;
     private Services services = new Services();
     private DataAccessObject dataAccessObject = new DataAccessObject(this);
     private Cursor result;
@@ -33,6 +33,9 @@ public class MainScreenController extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.main_screen);
+        goButton = (Button) findViewById(R.id.buttonGo);
+        fineButton = (Button) findViewById(R.id.buttonOkay);
 
         Firebase.setAndroidContext(this);
         SugarContext.init(this);
@@ -45,30 +48,25 @@ public class MainScreenController extends Activity {
         }else{
             medicalRecordsNotification();
         }
-        OnClickListener goListener = new OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        };
 
-        OnClickListener okayListener = new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent mapScreen = new Intent();
-                mapScreen.setClass(getBaseContext(), MapScreenController.class);
-                startActivity(mapScreen);
-                Toast.makeText(MainScreenController.this ,"Carregando USs no mapa" , Toast.LENGTH_SHORT).show();
-            }
-        };
-
-        setContentView(R.layout.main_screen);
-        goButton = (Button) findViewById(R.id.buttonGo);
-        goButton.setOnClickListener(goListener);
-        fineButton = (Button) findViewById(R.id.buttonOkay);
-        fineButton.setOnClickListener(okayListener);
     }
+
+    public void goClicked(View main_Screen) {
+        final String ROUTETRACED = "Rota mais próxima traçada";
+        Toast.makeText(MainScreenController.this, ROUTETRACED, Toast.LENGTH_SHORT).show();
+        Intent routeActivity = new Intent();
+        routeActivity.setClass(MainScreenController.this, RouteActivity.class);
+        routeActivity.putExtra("numeroUs", -1);
+        startActivity(routeActivity);
+    }
+
+    public void okayClicked(View view){
+        Intent mapScreen = new Intent();
+        mapScreen.setClass(getBaseContext(), MapScreenController.class);
+        startActivity(mapScreen);
+    }
+
 
     private void medicalRecordsNotification(){
         result.moveToFirst();
@@ -83,6 +81,7 @@ public class MainScreenController extends Activity {
         notification.setNumber(++number);
 
         NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
+
 
         String events[] = new String[7];
 
@@ -113,4 +112,12 @@ public class MainScreenController extends Activity {
 
         notificationManager.notify(notifyID,notification.build());
     }
+
+    public void openConfig(View map_screen){
+        Intent config = new Intent();
+        config.setClass(this , ConfigController.class);
+        startActivity(config);
+        finish();
+    }
 }
+

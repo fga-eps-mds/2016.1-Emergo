@@ -100,4 +100,5 @@ public class UserDao extends SQLiteOpenHelper {
         SQLiteDatabase database = this.getWritableDatabase();
         return database.delete(USER_TABLE, "[IDUser] = ? ",new String[]{String.valueOf(id)});
     }
+
 }
