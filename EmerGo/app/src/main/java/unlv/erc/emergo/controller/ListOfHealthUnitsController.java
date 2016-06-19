@@ -15,6 +15,7 @@ import java.util.List;
 
 import helper.Services;
 import unlv.erc.emergo.R;
+import android.widget.Toast;
 import unlv.erc.emergo.model.HealthUnit;
 
 public class ListOfHealthUnitsController extends Activity {
@@ -32,8 +33,10 @@ public class ListOfHealthUnitsController extends Activity {
         fifthClosestsUs = get50closestUs(HealthUnitController.getClosestsUs());
 
         setuSsList((ListView) findViewById(R.id.list_of_hospitalUnit));
+
         uSsList.setAdapter(new ArrayAdapter<String>(this, R.layout.item, R.id.hospitalUnitText,
                             fifthClosestsUs));
+
         uSsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -41,7 +44,6 @@ public class ListOfHealthUnitsController extends Activity {
                 openInformationUsScreen();
             }
         });
-
     }
 
     public void openInformationUsScreen(){
@@ -50,14 +52,15 @@ public class ListOfHealthUnitsController extends Activity {
         informationScreen.putExtra("position", numberOfUsClicked);
         informationScreen.setClass(ListOfHealthUnitsController.this, InformationUsScreenController.class);
         startActivity(informationScreen);
+        finish();
     }
 
 
     public List<String> get50closestUs(ArrayList<HealthUnit> closest){
-        final int MAXNUMBERUS = 50;
+
         List<String> closestsUs = new ArrayList<String>();
         int numberOfUs;
-        for(numberOfUs = 1 ; numberOfUs < MAXNUMBERUS ; numberOfUs++){
+        for(numberOfUs = 0 ; numberOfUs < HealthUnitController.getClosestsUs().size() ; numberOfUs++){
             closestsUs.add(closest.get(numberOfUs).getNameHospital());
         }
         Log.i("distancia + proxima: ", closest.get(0).getDistance() + "");
@@ -67,4 +70,35 @@ public class ListOfHealthUnitsController extends Activity {
     public void setuSsList(ListView uSsList) {
         this.uSsList = uSsList;
     }
+
+
+    public void goClicked(View map_screen) {
+            final String ROUTETRACED = "Rota mais próxima traçada";
+
+            Toast.makeText(this, ROUTETRACED , Toast.LENGTH_SHORT).show();
+            Intent routeActivity = new Intent();
+            routeActivity.setClass(ListOfHealthUnitsController.this , RouteActivity.class);
+            routeActivity.putExtra("numeroUs" , -1);
+            startActivity(routeActivity);
+            finish();
+
+    }
+
+    public void listMapsImageClicked(View map_screen){
+
+    }
+
+    public void openMap(View mapScreen){
+        Intent mapActivity = new Intent();
+        mapActivity.setClass(this, MapScreenController.class);
+        startActivity(mapActivity);
+        finish();
+    }
+
+    public void openConfig(View map_screen){
+        Intent config = new Intent();
+        config.setClass(ListOfHealthUnitsController.this , ConfigController.class);
+        startActivity(config);
+    }
+
 }

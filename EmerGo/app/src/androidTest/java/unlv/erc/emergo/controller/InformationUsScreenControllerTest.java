@@ -1,13 +1,43 @@
 package unlv.erc.emergo.controller;
 
+import android.test.ActivityInstrumentationTestCase2;
+import android.test.ActivityUnitTestCase;
+import android.widget.Button;
+
 import junit.framework.TestCase;
+
+import org.junit.Before;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class InformationUsScreenControllerTest extends TestCase{
+
+import unlv.erc.emergo.R;
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.typeText;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
+
+/**
+ * Created by leonardo on 04/05/16.
+ */
+public class InformationUsScreenControllerTest  extends ActivityInstrumentationTestCase2<InformationUsScreenController> {
 
     List<String> listOfInformations = new ArrayList<String>();
+    InformationUsScreenController information = new InformationUsScreenController();
+
+    public InformationUsScreenControllerTest(){
+        super(InformationUsScreenController.class);
+    }
+
+    @Before
+    public void setUp() throws  Exception{
+        super.setUp();
+        getActivity();
+    }
 
     public void testIfListAddTitle (){
         boolean result = true;
@@ -104,4 +134,26 @@ public class InformationUsScreenControllerTest extends TestCase{
             assertFalse(result);
         }
     }
+
+    public void testButtonTracarRotaIsClickable(){
+        Button tracar = (Button) information.findViewById(R.id.botaoRota);
+        boolean valido = true;
+        if (tracar.isClickable()){
+            assertTrue(valido);
+        }else{
+            assertFalse(valido);
+        }
+    }
+
+    public void testButtonIsVisible(){
+        onView(withId(R.id.botaoRota)).check(matches(isDisplayed()));
+        onView(withText("Traçar Rota")).perform(click());
+        onView(withId(R.id.botaoRota)).check(matches(withText("Traçar Rota")));
+    }
+
+    public void testIfLabelIsCorrect(){
+        onView(withId(R.id.botaoRota)).check(matches(isDisplayed()));
+        onView(withText("Traçar Rota")).perform(click());
+    }
+
 }

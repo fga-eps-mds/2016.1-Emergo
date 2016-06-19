@@ -16,8 +16,10 @@ public class UserTest {
 
 
     private User user;
-    final int MAXIMUM_LENGHT_NAME = 42;
-    final int MAXIMUM_TYPEBLOOD = 3;
+
+    private final int MINIMUM_LENGTH_NAME = 3;
+    private final int MAXIMUM_LENGHT_NAME = 42;
+    private final int MAXIMUM_TYPEBLOOD = 3;
 
 
     @Before
@@ -48,9 +50,8 @@ public class UserTest {
     @Test
     public void testSetNameLowerThree(){
         user.setName("Ana");
-        final int MINIMUM = 3;
         boolean result = true;
-        if(user.getName().trim().length()<MINIMUM){
+        if(user.getName().trim().length()<MINIMUM_LENGTH_NAME){
             assertFalse(result);
         }else{
             assertTrue(result);
@@ -111,5 +112,40 @@ public class UserTest {
         }else{
             assertFalse(result);
         }
+    }
+
+    public void testGetInformationsAboutUser(){
+        user = new User("Leoncio", "24/03/1994", "AB", "yes", "no", "no", "no",
+                "o que se leva da vida é a vida que se leva",1);
+        assertEquals("Leoncio", user.getName());
+        assertEquals("24/03/1994", user.getBirthday());
+        assertEquals("AB", user.getTypeBlood());
+        assertEquals("yes", user.getCardiac());
+        assertEquals("no", user.getDiabetic());
+        assertEquals("no", user.getHypertension());
+        assertEquals("no", user.getSeropositive());
+        assertEquals("o que se leva da vida é a vida que se leva", user.getObservations());
+    }
+
+    public void testSetInformationsAboutUser(){
+        user = new User("", "", "", "", "", "", "",
+                "",1);
+        user.setName("Gabriela");
+        user.setBirthday("01/01/1990");
+        user.setTypeBlood("A+");
+        user.setCardiac("no");
+        user.setDiabetic("yes");
+        user.setHypertension("no");
+        user.setSeropositive("no");
+        user.setObservations("alergias a lactose e glutem");
+
+        assertEquals("Gabriela", user.getName());
+        assertEquals("01/01/1990", user.getBirthday());
+        assertEquals("A+", user.getTypeBlood());
+        assertEquals("no", user.getCardiac());
+        assertEquals("yes", user.getDiabetic());
+        assertEquals("no", user.getHypertension());
+        assertEquals("no", user.getSeropositive());
+        assertEquals("alergias a lactose e glutem", user.getObservations());
     }
 }

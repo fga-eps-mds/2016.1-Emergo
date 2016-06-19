@@ -7,7 +7,7 @@ android {
     defaultConfig {
         applicationId "unlv.erc.emergo"
         minSdkVersion 18
-        targetSdkVersion 23
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -19,7 +19,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
-            testCoverageEnabled = true
+            debuggable true
+            testCoverageEnabled true
         }
     }
     packagingOptions {
@@ -27,17 +28,26 @@ android {
         exclude 'META-INF/LICENSE-FIREBASE.txt'
         exclude 'META-INF/NOTICE'
     }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
+
     compile 'com.android.support:appcompat-v7:23.0.1'
     compile 'com.google.android.gms:play-services-maps:8.4.0'
     compile 'com.firebase:firebase-client-android:2.5.2'
     compile 'com.github.satyan:sugar:1.4'
-    compile 'org.osmdroid:osmdroid-android:5.1@aar'
     compile 'org.slf4j:slf4j-simple:1.6.1'
+    compile 'com.google.android.gms:play-services-identity:8.4.0'
+    compile 'com.google.android.gms:play-services-gcm:8.4.0'
+    compile 'com.google.android.gms:play-services-maps:8.4.0'
+    compile 'com.google.android.gms:play-services:8.4.0'
+
 
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.1'
     androidTestCompile 'com.android.support.test:runner:0.2'
@@ -50,6 +60,7 @@ apply plugin: "jacoco"
 
 jacoco {
     toolVersion = "0.7.1.201405082137"
+
 }
 task jacocoTestReportAndroidTest(type: JacocoReport, dependsOn: "connectedAndroidTest") {
     def coverageSourceDirs = [

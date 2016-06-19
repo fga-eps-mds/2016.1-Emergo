@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class UserDao extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "emerGo";
+    private static final String DATABASE_NAME = "MedicalRecords";
     private static final int VERSION = 42;
 
     private static final String USER_TABLE = "User";
@@ -25,7 +25,7 @@ public class UserDao extends SQLiteOpenHelper {
     private static final String OBSERVATIONS = "[observationsUser]";
     private static final String USER_ID = "[IDUser]";
 
-    private static final String CREATE_USER = "CREATE TABLE " + USER_TABLE + " (" +
+    private static final String CREATE_USER = "CREATE TABLE IF NOT EXISTS " + USER_TABLE + " (" +
             USER_ID + "INTEGER PRIMARY KEY," +
             NAMEUSER + " VARCHAR(42), "+
             BIRTHDAYUSER + " VARCHAR(10), "+
@@ -51,7 +51,7 @@ public class UserDao extends SQLiteOpenHelper {
         onCreate(database);
     }
 
-    public boolean insertUser(String id,String name,String birthday,String typeBlood,String cardiac,
+    public boolean insertUser(Integer id,String name,String birthday,String typeBlood,String cardiac,
                               String diabetic,String hypertension,String seropositive,
                               String observations){
         SQLiteDatabase database = this.getWritableDatabase();
@@ -74,7 +74,7 @@ public class UserDao extends SQLiteOpenHelper {
             return true;
         }
     }
-    public boolean updateUser(String id,String nameUser,String birthday,String typeBlood,String cardiac,
+    public boolean updateUser(Integer id,String nameUser,String birthday,String typeBlood,String cardiac,
                               String diabetic,String hypertension,String seropositive,String observation) {
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -87,7 +87,7 @@ public class UserDao extends SQLiteOpenHelper {
         contentValues.put(SEROPOSITIVEUSER,seropositive);
         contentValues.put(OBSERVATIONS,observation);
 
-        database.update(USER_TABLE, contentValues, "[IDUser] = ? ",new String[]{id});
+        database.update(USER_TABLE, contentValues, "[IDUser] = ? ",new String[]{String.valueOf(id)});
         database.close();
         return true;
     }
@@ -96,8 +96,9 @@ public class UserDao extends SQLiteOpenHelper {
         Cursor cursor = database.rawQuery("SELECT * FROM " + USER_TABLE,null);
         return cursor;
     }
-    public Integer deleteUser(String id){
+    public Integer deleteUser(Integer id){
         SQLiteDatabase database = this.getWritableDatabase();
-        return database.delete(USER_TABLE, "[IDUser] = ? ",new String[]{id});
+        return database.delete(USER_TABLE, "[IDUser] = ? ",new String[]{String.valueOf(id)});
     }
+
 }
