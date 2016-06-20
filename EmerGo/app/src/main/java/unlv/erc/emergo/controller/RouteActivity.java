@@ -17,11 +17,13 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.images.ImageManager;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -50,7 +52,7 @@ import unlv.erc.emergo.R;
 
 
 
-public class RouteActivity  extends FragmentActivity {
+public class RouteActivity  extends FragmentActivity implements View.OnClickListener {
 
     final int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124;
     private static int SPLASH_TIME_OUT = 5000;
@@ -59,38 +61,29 @@ public class RouteActivity  extends FragmentActivity {
     GPSTracker gps = new GPSTracker(RouteActivity.this);
     ArrayList<LatLng> pointsOfRoute = new ArrayList<>();
     LatLng myLocation ;
-    ImageView user;
+    ImageView user , cancelCall , phone , userInformation;
+    Button buttonGo , selfLocation;
     private Cursor result;
     UserDao myDatabase;
     int indexOfClosestUs;
     Intent i;
+    Boolean canceled = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.route_activity);
         checkPermissions();
-
-        new Handler().postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
-                new CountDownTimer(3000 , 1000){
-                    public void onTick(long millisnUntilFinished){
-
-                    }
-
-                    public void onFinish(){
-                    }
-                };
-                Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse(SAMUNumber));
-                startActivity(callIntent);
-
-                finish();
-            }
-        }, SPLASH_TIME_OUT);
-
+        buttonGo = (Button) findViewById(R.id.buttonGo);
+        buttonGo.setOnClickListener(this);
+        userInformation = (ImageView) findViewById(R.id.userInformation);
+        userInformation.setOnClickListener(this);
+        selfLocation = (Button) findViewById(R.id.selfLocation);
+        selfLocation.setOnClickListener(this);
+        phone = (ImageView) findViewById(R.id.phone);
+        phone.setOnClickListener(this);
+        cancelCall = (ImageView) findViewById(R.id.cancelarLigacao);
+        cancelCall.setOnClickListener(this);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -104,6 +97,11 @@ public class RouteActivity  extends FragmentActivity {
         HealthUnitController.setDistanceBetweenUserAndUs(HealthUnitController.getClosestsUs() , location);
         if(indexOfClosestUs == -1){
             indexOfClosestUs = HealthUnitController.selectClosestUs(HealthUnitController.getClosestsUs() , location);
+            startCountDown();
+            cancelCall.setVisibility(View.VISIBLE);
+        }else{
+            phone.setVisibility(View.VISIBLE);
+            cancelCall.setVisibility(View.INVISIBLE);
         }
         myLocation = new LatLng(location.getLatitude() , location.getLongitude());
 
@@ -128,13 +126,61 @@ public class RouteActivity  extends FragmentActivity {
         result = myDatabase.getUser();
     }
 
+    private void startCountDown() {
+        new Handler().postDelayed(new Runnable() {
 
-    public void cancelClicked(View view ){
-        
-        Intent mapScreen = new Intent();
-        mapScreen.setClass(RouteActivity.this , MapScreenController.class);
-        startActivity(mapScreen);
-        finish();
+            @Override
+            public void run() {
+                new CountDownTimer(3000 , 1000){
+                    public void onTick(long millisnUntilFinished){
+
+                    }
+
+                    public void onFinish(){
+                    }
+                };
+                if(!canceled) {
+                    cancelCall.setVisibility(View.INVISIBLE);
+                    phone.setVisibility(View.VISIBLE);
+                    callSamu();
+                }
+
+            }
+        }, SPLASH_TIME_OUT);
+    }
+
+    private void callSamu() {
+        Intent callIntent = new Intent(Intent.ACTION_CALL);
+        callIntent.setData(Uri.parse(SAMUNumber));
+        startActivity(callIntent);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v.getId() == R.id.buttonGo){
+            canceled = true;
+            Intent mapScreen = new Intent();
+            mapScreen.setClass(RouteActivity.this , MapScreenController.class);
+            startActivity(mapScreen);
+            finish();
+        }
+        if(v.getId() == R.id.selfLocation){
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom
+                    (new LatLng(myLocation.latitude, myLocation.longitude), 13.0f));
+        }
+        if(v.getId() == R.id.userInformation){
+            Intent config = new Intent();
+            config.setClass(RouteActivity.this , ConfigController.class);
+            startActivity(config);
+        }
+        if(v.getId() == R.id.cancelarLigacao){
+            canceled = true;
+            cancelCall.setVisibility(View.INVISIBLE);
+            phone.setVisibility(View.VISIBLE);
+        }
+        if(v.getId() == R.id.phone){
+            callSamu();
+        }
     }
 
     private void setMarkerOfClosestUsOnMap() {
@@ -147,11 +193,6 @@ public class RouteActivity  extends FragmentActivity {
 
 
     private void focusOnYourPosition() {
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom
-                (new LatLng(myLocation.latitude, myLocation.longitude), 13.0f));
-    }
-
-    public void focusOnYourPosition(View view) {
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom
                 (new LatLng(myLocation.latitude, myLocation.longitude), 13.0f));
     }
