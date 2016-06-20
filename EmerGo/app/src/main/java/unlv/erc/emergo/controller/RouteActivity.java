@@ -62,9 +62,7 @@ public class RouteActivity  extends FragmentActivity {
     ImageView user;
     private Cursor result;
     UserDao myDatabase;
-    ProgressBar progress;
     int indexOfClosestUs;
-    TextView contador;
     Intent i;
 
     @Override
@@ -72,9 +70,6 @@ public class RouteActivity  extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.route_activity);
         checkPermissions();
-        progress = (ProgressBar) findViewById(R.id.progressBar);
-        progress.setVisibility(View.VISIBLE);
-        contador = (TextView) findViewById(R.id.contador);
 
         new Handler().postDelayed(new Runnable() {
 
@@ -82,7 +77,7 @@ public class RouteActivity  extends FragmentActivity {
             public void run() {
                 new CountDownTimer(3000 , 1000){
                     public void onTick(long millisnUntilFinished){
-                        contador.setText("Ligando em: " + millisnUntilFinished/1000);
+
                     }
 
                     public void onFinish(){

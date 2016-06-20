@@ -6,19 +6,19 @@
     android:clickable="false">
 
     <Button
-        android:layout_width="480dp"
-        android:layout_height="87dp"
-        android:text="CANCELAR"
+        android:layout_width="45dp"
+        android:layout_height="37dp"
         android:id="@+id/buttonGo"
         android:layout_gravity="center_horizontal"
         android:textSize="@dimen/abc_action_bar_default_height_material"
-        android:background="@drawable/gradientevermelho"
+        android:background="@drawable/x"
         android:textColor="#ffffff"
         android:textStyle="bold|italic"
         android:clickable="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:onClick="cancelClicked" />
+        android:onClick="cancelClicked"
+        android:layout_alignParentStart="true"
+        android:layout_alignBottom="@+id/imageView"
+        android:layout_alignTop="@+id/imageView" />
 
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
@@ -35,49 +35,51 @@
         android:layout_above="@+id/iconMap" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Você"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:id="@+id/button"
-        android:background="#f11313"
+        android:background="@drawable/local_self"
         android:contextClickable="false"
         android:textColor="#fbf6f6"
         android:textSize="30dp"
         android:textStyle="bold"
         android:onClick="focusOnYourPosition"
-        android:layout_marginBottom="68dp"
-        android:layout_above="@+id/buttonGo"
-        android:layout_alignRight="@+id/userInformation"
-        android:layout_alignEnd="@+id/userInformation" />
+        android:layout_marginBottom="69dp"
+        android:layout_above="@+id/imageView"
+        android:layout_alignParentEnd="true" />
+
 
     <ImageView
-        android:layout_width="58dp"
-        android:layout_height="50dp"
-        android:id="@+id/userInformation"
-        android:background="@drawable/user"
-        android:layout_below="@+id/iconMenu"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="45dp" />
+        android:layout_width="480dp"
+        android:layout_height="67dp"
+        android:background="@drawable/gradientevermelho"
+        android:id="@+id/imageView"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
 
-    <ProgressBar
-        style="?android:attr/progressBarStyleLarge"
+    <ImageView
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:background="@drawable/user"
+        android:layout_alignBottom="@+id/imageView"
+        android:layout_alignStart="@+id/button"
+        android:id="@+id/userInformation" />
+
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/progressBar"
-        android:progressDrawable="@drawable/circular_progress_bar"
-        android:layout_alignBottom="@+id/button"
+        android:background="@drawable/cancelar_ligacao"
+        android:id="@+id/cancelarLigacao"
+        android:layout_alignTop="@+id/button"
         android:layout_centerHorizontal="true" />
-    <TextView
+
+    <ImageView
         android:layout_width="60dp"
-        android:layout_height="70dp"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textSize="30dp"
-        android:id="@+id/contador"
-        android:text="Ligando em : "
-        android:layout_below="@+id/progressBar"
-        android:layout_toLeftOf="@+id/button"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_height="60dp"
+        android:background="@drawable/phone"
+        android:id="@+id/phone"
+        android:layout_alignBottom="@+id/imageView"
+        android:layout_alignEnd="@+id/cancelarLigacao"
+        android:visibility="invisible" />
 
 </RelativeLayout>
