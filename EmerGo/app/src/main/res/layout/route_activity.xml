@@ -81,4 +81,14 @@
         android:layout_alignBottom="@+id/imageView"
         android:layout_alignEnd="@+id/cancelarLigacao" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="3"
+        android:textSize="50dp"
+        android:id="@+id/timer"
+        android:layout_below="@+id/cancelarLigacao"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>

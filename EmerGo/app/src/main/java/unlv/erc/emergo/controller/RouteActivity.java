@@ -55,12 +55,13 @@ import unlv.erc.emergo.R;
 public class RouteActivity  extends FragmentActivity implements View.OnClickListener {
 
     final int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124;
-    private static int SPLASH_TIME_OUT = 5000;
+    private static int SPLASH_TIME_OUT = 4240;
     public String SAMUNumber = "tel:996941411";
     private GoogleMap mMap;
     GPSTracker gps = new GPSTracker(RouteActivity.this);
     ArrayList<LatLng> pointsOfRoute = new ArrayList<>();
     LatLng myLocation ;
+    TextView timer;
     ImageView user , cancelCall , phone , userInformation;
     Button buttonGo , selfLocation;
     private Cursor result;
@@ -84,6 +85,7 @@ public class RouteActivity  extends FragmentActivity implements View.OnClickList
         phone.setOnClickListener(this);
         cancelCall = (ImageView) findViewById(R.id.cancelarLigacao);
         cancelCall.setOnClickListener(this);
+        timer = (TextView) findViewById(R.id.timer);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -100,6 +102,7 @@ public class RouteActivity  extends FragmentActivity implements View.OnClickList
             startCountDown();
             cancelCall.setVisibility(View.VISIBLE);
         }else{
+            timer.setText("");
             phone.setVisibility(View.VISIBLE);
             cancelCall.setVisibility(View.INVISIBLE);
         }
@@ -131,17 +134,21 @@ public class RouteActivity  extends FragmentActivity implements View.OnClickList
 
             @Override
             public void run() {
-                new CountDownTimer(3000 , 1000){
-                    public void onTick(long millisnUntilFinished){
-
+                new CountDownTimer(3000 , 1000) {
+                    public void onTick(long millisUntilFinished) {
+                        long milis = millisUntilFinished / 1000;
+                        String time =  String.valueOf(milis) ;
+                        timer.setText(time);
                     }
 
-                    public void onFinish(){
+                    public void onFinish() {
+                        timer.setText("");
                     }
-                };
+                }.start();
                 if(!canceled) {
                     cancelCall.setVisibility(View.INVISIBLE);
                     phone.setVisibility(View.VISIBLE);
+                    timer.setText("");
                     callSamu();
                 }
 
