@@ -25,7 +25,7 @@ public class EmerGoWidgetProvider extends AppWidgetProvider{
         int[] allWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget);
         for (int widgetId : allWidgetIds) {
 
-            Intent intent = new Intent(context, MapScreenController.class);
+            Intent intent = new Intent(context, RouteActivity.class);
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
 
             RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
