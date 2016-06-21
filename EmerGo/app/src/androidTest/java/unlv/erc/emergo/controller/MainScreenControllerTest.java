@@ -1,9 +1,6 @@
 package unlv.erc.emergo.controller;
 
 import android.support.test.uiautomator.UiDevice;
-import android.support.test.uiautomator.UiObject;
-import android.support.test.uiautomator.UiObjectNotFoundException;
-import android.support.test.uiautomator.UiSelector;
 import android.test.ActivityInstrumentationTestCase2;
 
 import org.junit.Before;
@@ -30,13 +27,12 @@ public class MainScreenControllerTest extends ActivityInstrumentationTestCase2<M
         device = UiDevice.getInstance(getInstrumentation());
     }
 
-    public void testButtonGoClick() throws UiObjectNotFoundException {
-
+    /*public void testButtonGoClick() throws UiObjectNotFoundException {
         onView(withId(R.id.buttonGo)).check(matches(isDisplayed()));
         onView(withText("GO!")).perform(click());
         UiObject button = device.findObject(new UiSelector().text("Cancelar"));
         button.click();
-    }
+    }*/
 
 
     public void testButtonOkayClick(){

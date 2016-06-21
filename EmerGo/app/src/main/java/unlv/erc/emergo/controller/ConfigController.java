@@ -7,6 +7,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import org.json.JSONException;
+
+import java.io.IOException;
+
 import unlv.erc.emergo.R;
 
 public class ConfigController extends Activity{
@@ -45,10 +49,13 @@ public class ConfigController extends Activity{
         startActivity(emergencyContact);
     }
 
-    public void goClicked(View map_screen){
-        Toast.makeText(this , "Função não habilitada!" , Toast.LENGTH_SHORT).show();
+    public void goClicked(View map_screen) throws IOException, JSONException {
+        final String ROUTETRACED = "Rota mais próxima traçada";
+
+        Toast.makeText(this, ROUTETRACED , Toast.LENGTH_SHORT).show();
         Intent routeActivity = new Intent();
-        routeActivity.setClass(this, RouteActivity.class);
+        routeActivity.setClass(ConfigController.this , RouteActivity.class);
+        routeActivity.putExtra("numeroUs" , -1);
         startActivity(routeActivity);
         finish();
     }
