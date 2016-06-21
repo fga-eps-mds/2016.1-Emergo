@@ -33,6 +33,5 @@ public class EmerGoWidgetProvider extends AppWidgetProvider{
 
             appWidgetManager.updateAppWidget(widgetId, views);
         }
-
     }
 }
