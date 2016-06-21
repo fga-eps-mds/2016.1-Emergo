@@ -15,6 +15,7 @@ import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -29,6 +30,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.android.gms.vision.barcode.Barcode;
 
 import org.json.JSONObject;
 
@@ -44,6 +46,7 @@ import java.util.List;
 import java.util.Map;
 
 import dao.UserDao;
+import dao.EmergencyContactDao;
 import helper.DirectionsJSONParser;
 import helper.GPSTracker;
 import unlv.erc.emergo.R;
@@ -58,6 +61,7 @@ public class RouteActivity  extends FragmentActivity {
     private GoogleMap mMap;
     GPSTracker gps = new GPSTracker(RouteActivity.this);
     ArrayList<LatLng> pointsOfRoute = new ArrayList<>();
+    EmergencyContactDao emergencyContactDao = new EmergencyContactDao(this);
     LatLng myLocation ;
     ImageView user;
     private Cursor result;
@@ -88,6 +92,23 @@ public class RouteActivity  extends FragmentActivity {
                     public void onFinish(){
                     }
                 };
+
+                Cursor result = emergencyContactDao.getEmergencyContact();
+
+                if(result.getCount()!=0){
+                    try{
+                        while (result.moveToNext()){
+                            SmsManager.getDefault().sendTextMessage(result.getString(2),null,
+                                    result.getString(1)+", Estou precisando de ajuda urgente!",null,null);
+                        }
+                        Toast.makeText(getApplicationContext(),"Ajuda a caminho!", Toast.LENGTH_LONG).show();
+                    }catch (Exception exception){
+                        Toast.makeText(getApplicationContext(),"Impossivel encaminhar o SMS", Toast.LENGTH_LONG).show();
+                    }
+                }else{
+                    Toast.makeText(getApplicationContext(),"Nenhum contato adicionado", Toast.LENGTH_LONG).show();
+                }
+
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
                 callIntent.setData(Uri.parse(SAMUNumber));
                 startActivity(callIntent);
