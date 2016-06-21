@@ -22,7 +22,6 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 public class EmergencyContactControllerTest extends ActivityInstrumentationTestCase2<EmergencyContactController>{
     private UiDevice device;
-    private MedicalRecordsController register;
 
     public EmergencyContactControllerTest() {
         super(EmergencyContactController.class);
@@ -52,7 +51,7 @@ public class EmergencyContactControllerTest extends ActivityInstrumentationTestC
         onView(withId(R.id.saveButtonFirstContact)).perform(click());
     }
 
-    public void testUpdateFirstContactOption(){
+    public void testUpdateFirstContactOption() throws UiObjectNotFoundException {
         onView(withId(R.id.saveButtonFirstContact)).check(matches(isDisplayed()));
         onView(withId(R.id.nameFirstContactEditText)).perform(typeText("MrVictor"));
         Espresso.closeSoftKeyboard();
@@ -66,6 +65,10 @@ public class EmergencyContactControllerTest extends ActivityInstrumentationTestC
         onView(withId(R.id.phoneEditText)).perform(typeText("(42)14031912"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.saveButtonFirstContact)).perform(click());
+        onView(withId(R.id.deleteFirstContactButton)).check(matches(isDisplayed()));
+        onView(withId(R.id.deleteFirstContactButton)).perform(click());
+        UiObject button = device.findObject(new UiSelector().text("Sim"));
+        button.click();
     }
 
     public void testDeleteFirstContactOption() throws UiObjectNotFoundException {
