@@ -19,7 +19,17 @@ public class LoadingScreenController extends Activity {
         spinner=(ProgressBar)findViewById(R.id.progressBar);
         spinner.setVisibility(View.VISIBLE);
 
+        new Handler().postDelayed(new Runnable() {
 
+            @Override
+            public void run() {
+
+                Intent contador = new Intent(LoadingScreenController.this, MainScreenController.class);
+                startActivity(contador);
+
+                finish();
+            }
+        }, SPLASH_TIME_OUT);
 
     }
 }
