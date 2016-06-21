@@ -203,6 +203,7 @@ public class EmergencyContactControllerTest extends ActivityInstrumentationTestC
         onView(withId(R.id.iconMenu)).perform(click());
     }
 
+
     public void testButtonMap(){
         onView(withId(R.id.iconMap)).check(matches(isDisplayed()));
         onView(withId(R.id.iconMap)).perform(click());
