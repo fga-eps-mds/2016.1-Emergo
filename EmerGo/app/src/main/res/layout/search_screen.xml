@@ -47,7 +47,7 @@
         android:layout_height="500dp"
         android:id="@+id/list_of_search_us"
         android:layout_below="@+id/iconMenu"
-        android:layout_above="@+id/iconMap"
+        android:layout_above="@+id/buttonGo"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 

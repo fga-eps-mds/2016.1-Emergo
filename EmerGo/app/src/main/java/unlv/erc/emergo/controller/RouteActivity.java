@@ -97,7 +97,7 @@ public class RouteActivity  extends FragmentActivity implements View.OnClickList
         mMap = mapFragment.getMap();
         i= getIntent();
         indexOfClosestUs =  i.getIntExtra("numeroUs" , 0);
-
+        Log.i("numeroUs" , indexOfClosestUs + "");
         Location location = new Location(""); //gps.getLocation();
         location.setLatitude(-15.879405);
         location.setLongitude(-47.8077307);
@@ -160,6 +160,7 @@ public class RouteActivity  extends FragmentActivity implements View.OnClickList
                     sendMessage();
                     callSamu();
                 }
+
             }
         }, SPLASH_TIME_OUT);
 
@@ -206,7 +207,6 @@ public class RouteActivity  extends FragmentActivity implements View.OnClickList
                 .title(HealthUnitController.getClosestsUs().get(indexOfClosestUs).getNameHospital() + "")
                 .snippet(HealthUnitController.getClosestsUs().get(indexOfClosestUs).getUnitType()));
     }
-
 
     private void focusOnYourPosition() {
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom

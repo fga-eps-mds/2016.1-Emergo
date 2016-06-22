@@ -36,6 +36,7 @@
         android:theme="@style/AppTheme"
         android:installLocation="auto">
 
+
         <activity android:name=".controller.LoadingScreenController">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -45,11 +46,9 @@
 
         <activity android:name=".controller.MapScreenController">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
 
         <activity android:name=".controller.MainScreenController">
             <intent-filter>
@@ -110,6 +109,18 @@
             </intent-filter>
         </activity>
 
+        <receiver
+            android:icon="@drawable/new_button_go"
+            android:label="Example Widget"
+            android:name=".controller.EmerGoWidgetProvider">
+            <intent-filter >
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@layout/widget_info" />
+        </receiver>
 
 
         <meta-data
