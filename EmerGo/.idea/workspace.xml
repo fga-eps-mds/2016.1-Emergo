@@ -19,8 +19,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64069cbd-b974-4eac-939d-aca67d878b9d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/list_of_health_unit.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/list_of_health_unit.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/search_screen.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/search_screen.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/medical_records.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/medical_records.xml" />
     </list>
     <ignored path="EmerGo.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -76,13 +75,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="search_screen.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="search_screen.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/search_screen.xml">
           <provider editor-type-id="text-editor">
             <state relative-caret-position="39">
               <caret line="4" column="46" selection-start-line="4" selection-start-column="46" selection-end-line="4" selection-end-column="46" />
               <folding>
                 <element signature="e#445#492#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="android-designer2">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="medical_records.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/medical_records.xml">
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="37">
+              <caret line="7" column="45" selection-start-line="7" selection-start-column="45" selection-end-line="7" selection-end-column="45" />
+              <folding>
+                <element signature="e#582#629#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -2247,6 +2261,7 @@
         <option value="$PROJECT_DIR$/app/src/main/java/unlv/erc/emergo/controller/EmerGoWidgetProvider.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/list_of_health_unit.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/search_screen.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/medical_records.xml" />
       </list>
     </option>
   </component>
@@ -3072,6 +3087,19 @@
           <caret line="4" column="46" selection-start-line="4" selection-start-column="46" selection-end-line="4" selection-end-column="46" />
           <folding>
             <element signature="e#445#492#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/medical_records.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="37">
+          <caret line="7" column="45" selection-start-line="7" selection-start-column="45" selection-end-line="7" selection-end-column="45" />
+          <folding>
+            <element signature="e#582#629#0" expanded="true" />
           </folding>
         </state>
       </provider>
