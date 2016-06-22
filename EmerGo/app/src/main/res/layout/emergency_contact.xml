@@ -3,22 +3,20 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background">
+    android:background="@drawable/base_screen">
 
-    <Button
+    <ImageView
         android:layout_width="153dp"
         android:layout_height="87dp"
-        android:text="GO!"
         android:id="@+id/buttonGo"
         android:layout_gravity="center_horizontal"
         android:textSize="@dimen/abc_action_bar_default_height_material"
-        android:background="@drawable/gradientevermelho"
-        android:textColor="#ffffff"
         android:textStyle="bold|italic"
         android:clickable="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:onClick="goClicked" />
+        android:onClick="goClicked"
+        android:background="@drawable/go_base"/>
 
     <ImageView
         android:layout_width="56dp"
