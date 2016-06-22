@@ -11,7 +11,7 @@
         android:id="@+id/buttonGo"
         android:layout_gravity="center_horizontal"
         android:textSize="@dimen/abc_action_bar_default_height_material"
-        android:background="@drawable/x"
+        android:background="@drawable/xx"
         android:textColor="#ffffff"
         android:textStyle="bold|italic"
         android:clickable="true"

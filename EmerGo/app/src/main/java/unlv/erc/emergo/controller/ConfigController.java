@@ -19,6 +19,7 @@ public class ConfigController extends Activity{
     private Button emergencyContact;
     private ImageView iconList, buttonGo;
     private Button medicalRecord;
+    private Button aboutApp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +28,7 @@ public class ConfigController extends Activity{
         buttonGo = (ImageView) findViewById(R.id.buttonGo);
         emergencyContact = (Button) findViewById(R.id.emergencyContact);
         medicalRecord = (Button) findViewById(R.id.medicalRecords);
+
 
         buttonGo.setOnClickListener(new View.OnClickListener() {
             @Override
