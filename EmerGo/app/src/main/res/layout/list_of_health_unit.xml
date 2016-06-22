@@ -2,9 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/base_screen"
     android:clickable="false">
 
+<!--
     <Button
         android:layout_width="153dp"
         android:layout_height="87dp"
@@ -19,12 +20,24 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:onClick="goClicked" />
+-->
+    <ImageView
+        android:layout_width="153dp"
+        android:layout_height="87dp"
+        android:id="@+id/buttonGo"
+        android:layout_gravity="center_horizontal"
+        android:textSize="@dimen/abc_action_bar_default_height_material"
+        android:textStyle="bold|italic"
+        android:clickable="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="goClicked"
+        android:background="@drawable/go_base"/>
 
     <ImageView
         android:layout_width="56dp"
         android:layout_height="48dp"
         android:id="@+id/iconMap"
-
         android:layout_alignBottom="@+id/buttonGo"
         android:layout_alignParentStart="true"
         android:layout_marginStart="33dp"
@@ -70,8 +83,8 @@
         android:layout_height="500dp"
         android:id="@+id/list_of_hospitalUnit"
         android:layout_below="@+id/iconMenu"
-        android:layout_alignLeft="@drawable/fundo"
-        android:layout_alignRight="@drawable/fundo"
+        android:layout_alignLeft="@drawable/base_screen"
+        android:layout_alignRight="@drawable/base_screen"
         android:layout_above="@+id/buttonGo"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
