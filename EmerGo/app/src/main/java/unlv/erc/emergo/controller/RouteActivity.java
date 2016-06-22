@@ -55,7 +55,7 @@ import unlv.erc.emergo.R;
 public class RouteActivity  extends FragmentActivity implements View.OnClickListener {
 
     final int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124;
-    private static int SPLASH_TIME_OUT = 4240;
+    private static int SPLASH_TIME_OUT = 3400;
     public String SAMUNumber = "tel:996941411";
     private GoogleMap mMap;
     GPSTracker gps = new GPSTracker(RouteActivity.this);
@@ -69,6 +69,7 @@ public class RouteActivity  extends FragmentActivity implements View.OnClickList
     int indexOfClosestUs;
     Intent i;
     Boolean canceled = false;
+    SupportMapFragment mapFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +88,7 @@ public class RouteActivity  extends FragmentActivity implements View.OnClickList
         cancelCall.setOnClickListener(this);
         timer = (TextView) findViewById(R.id.timer);
 
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+        mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mMap = mapFragment.getMap();
         i= getIntent();
@@ -99,8 +100,9 @@ public class RouteActivity  extends FragmentActivity implements View.OnClickList
         HealthUnitController.setDistanceBetweenUserAndUs(HealthUnitController.getClosestsUs() , location);
         if(indexOfClosestUs == -1){
             indexOfClosestUs = HealthUnitController.selectClosestUs(HealthUnitController.getClosestsUs() , location);
-            startCountDown();
             cancelCall.setVisibility(View.VISIBLE);
+            phone.setVisibility(View.INVISIBLE);
+            startCountDown();
         }else{
             timer.setText("");
             phone.setVisibility(View.VISIBLE);
@@ -136,24 +138,26 @@ public class RouteActivity  extends FragmentActivity implements View.OnClickList
             public void run() {
                 new CountDownTimer(3000 , 1000) {
                     public void onTick(long millisUntilFinished) {
-                        long milis = millisUntilFinished / 1000;
-                        String time =  String.valueOf(milis) ;
-                        timer.setText(time);
+                        if(canceled){
+                            timer.setText("");
+                        }else{
+                            long milis = millisUntilFinished / 1000;
+                            String time =  String.valueOf(milis) ;
+                            timer.setText(time);
+                        }
                     }
-
                     public void onFinish() {
                         timer.setText("");
+                        cancelCall.setVisibility(View.INVISIBLE);
+                        phone.setVisibility(View.VISIBLE);
                     }
                 }.start();
-                if(!canceled) {
-                    cancelCall.setVisibility(View.INVISIBLE);
-                    phone.setVisibility(View.VISIBLE);
-                    timer.setText("");
+                if(!canceled){
                     callSamu();
                 }
-
             }
         }, SPLASH_TIME_OUT);
+
     }
 
     private void callSamu() {
