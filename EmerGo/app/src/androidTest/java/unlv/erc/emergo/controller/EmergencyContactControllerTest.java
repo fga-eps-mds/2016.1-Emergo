@@ -16,7 +16,6 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
@@ -35,7 +34,6 @@ public class EmergencyContactControllerTest extends ActivityInstrumentationTestC
     }
 
     public void testSaveFirstContact(){
-        onView(withId(R.id.saveButtonFirstContact)).check(matches(isDisplayed()));
         onView(withId(R.id.saveButtonFirstContact)).perform(click());
         onView(withId(R.id.saveButtonFirstContact)).check(matches(withText("Salvar")));
     }
@@ -52,47 +50,40 @@ public class EmergencyContactControllerTest extends ActivityInstrumentationTestC
     }
 
     public void testUpdateFirstContactOption() throws UiObjectNotFoundException {
-        onView(withId(R.id.saveButtonFirstContact)).check(matches(isDisplayed()));
         onView(withId(R.id.nameFirstContactEditText)).perform(typeText("MrVictor"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.phoneEditText)).perform(typeText("(61)83104981"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.saveButtonFirstContact)).perform(click());
-        onView(withId(R.id.updateButtonFirstContact)).check(matches(isDisplayed()));
         onView(withId(R.id.updateButtonFirstContact)).perform(click());
         onView(withId(R.id.nameFirstContactEditText)).perform(typeText("Naiara Gatinha"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.phoneEditText)).perform(typeText("(42)14031912"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.saveButtonFirstContact)).perform(click());
-        onView(withId(R.id.deleteFirstContactButton)).check(matches(isDisplayed()));
         onView(withId(R.id.deleteFirstContactButton)).perform(click());
         UiObject button = device.findObject(new UiSelector().text("Sim"));
         button.click();
     }
 
     public void testDeleteFirstContactOption() throws UiObjectNotFoundException {
-        onView(withId(R.id.saveButtonFirstContact)).check(matches(isDisplayed()));
         onView(withId(R.id.nameFirstContactEditText)).perform(typeText("MrVictor"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.phoneEditText)).perform(typeText("(61)83104981"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.saveButtonFirstContact)).perform(click());
-        onView(withId(R.id.updateButtonFirstContact)).check(matches(isDisplayed()));
         onView(withId(R.id.updateButtonFirstContact)).perform(click());
         onView(withId(R.id.nameFirstContactEditText)).perform(typeText("Naiara Gatinha"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.phoneEditText)).perform(typeText("(42)14031912"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.saveButtonFirstContact)).perform(click());
-        onView(withId(R.id.deleteFirstContactButton)).check(matches(isDisplayed()));
         onView(withId(R.id.deleteFirstContactButton)).perform(click());
         UiObject button = device.findObject(new UiSelector().text("Sim"));
         button.click();
     }
 
     public void testSaveSecondContactOption(){
-        onView(withId(R.id.saveSecondContactButton)).check(matches(isDisplayed()));
         onView(withId(R.id.saveSecondContactButton)).perform(click());
         onView(withId(R.id.saveSecondContactButton)).check(matches(withText("Salvar")));
     }
@@ -111,13 +102,11 @@ public class EmergencyContactControllerTest extends ActivityInstrumentationTestC
     }
 
     public void testUpdateSecondContactOption(){
-        onView(withId(R.id.saveSecondContactButton)).check(matches(isDisplayed()));
         onView(withId(R.id.nameSecondContactEditText)).perform(typeText("MrVictor"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.phoneSecondContactEditText)).perform(typeText("(61)83104981"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.saveSecondContactButton)).perform(click());
-        onView(withId(R.id.updateSecondContactButton)).check(matches(isDisplayed()));
         onView(withId(R.id.updateSecondContactButton)).perform(click());
         onView(withId(R.id.nameSecondContactEditText)).perform(typeText("Naiara Gatinha"));
         Espresso.closeSoftKeyboard();
@@ -127,27 +116,23 @@ public class EmergencyContactControllerTest extends ActivityInstrumentationTestC
     }
 
     public void testDeleteSecondContactOption() throws UiObjectNotFoundException {
-        onView(withId(R.id.saveSecondContactButton)).check(matches(isDisplayed()));
         onView(withId(R.id.nameSecondContactEditText)).perform(typeText("MrVictor"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.phoneSecondContactEditText)).perform(typeText("(61)83104981"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.saveSecondContactButton)).perform(click());
-        onView(withId(R.id.updateSecondContactButton)).check(matches(isDisplayed()));
         onView(withId(R.id.updateSecondContactButton)).perform(click());
         onView(withId(R.id.nameSecondContactEditText)).perform(typeText("Naiara Gatinha"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.phoneSecondContactEditText)).perform(typeText("(42)14031912"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.saveSecondContactButton)).perform(click());
-        onView(withId(R.id.deleteSecondContactButton)).check(matches(isDisplayed()));
         onView(withId(R.id.deleteSecondContactButton)).perform(click());
         UiObject button = device.findObject(new UiSelector().text("Sim"));
         button.click();
     }
 
     public void testSaveThirdContactOption(){
-        onView(withId(R.id.saveThirdContactButton)).check(matches(isDisplayed()));
         onView(withId(R.id.saveThirdContactButton)).perform(click());
         onView(withId(R.id.saveThirdContactButton)).check(matches(withText("Salvar")));
     }
@@ -166,13 +151,11 @@ public class EmergencyContactControllerTest extends ActivityInstrumentationTestC
     }
 
     public void testUpdateThirdContactOption(){
-        onView(withId(R.id.saveThirdContactButton)).check(matches(isDisplayed()));
         onView(withId(R.id.nameThirdContactEditText)).perform(typeText("MrVictor"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.phoneThirdContactEditText)).perform(typeText("(61)83104981"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.saveThirdContactButton)).perform(click());
-        onView(withId(R.id.updateThirdContactButton)).check(matches(isDisplayed()));
         onView(withId(R.id.updateThirdContactButton)).perform(click());
         onView(withId(R.id.nameThirdContactEditText)).perform(typeText("Naiara Gatinha"));
         Espresso.closeSoftKeyboard();
@@ -182,33 +165,28 @@ public class EmergencyContactControllerTest extends ActivityInstrumentationTestC
     }
 
     public void testDeleteThirdContactOption() throws UiObjectNotFoundException {
-        onView(withId(R.id.saveThirdContactButton)).check(matches(isDisplayed()));
         onView(withId(R.id.nameThirdContactEditText)).perform(typeText("MrVictor"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.phoneThirdContactEditText)).perform(typeText("(61)83104981"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.saveThirdContactButton)).perform(click());
-        onView(withId(R.id.updateThirdContactButton)).check(matches(isDisplayed()));
         onView(withId(R.id.updateThirdContactButton)).perform(click());
         onView(withId(R.id.nameThirdContactEditText)).perform(typeText("Naiara Gatinha"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.phoneThirdContactEditText)).perform(typeText("(42)14031912"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.saveThirdContactButton)).perform(click());
-        onView(withId(R.id.deleteThirdContactButton)).check(matches(isDisplayed()));
         onView(withId(R.id.deleteThirdContactButton)).perform(click());
         UiObject button = device.findObject(new UiSelector().text("Sim"));
         button.click();
     }
 
     public void testButtonConfig(){
-        onView(withId(R.id.iconMenu)).check(matches(isDisplayed()));
         onView(withId(R.id.iconMenu)).perform(click());
     }
 
 
     public void testButtonMap(){
-        onView(withId(R.id.iconMap)).check(matches(isDisplayed()));
         onView(withId(R.id.iconMap)).perform(click());
     }
 }

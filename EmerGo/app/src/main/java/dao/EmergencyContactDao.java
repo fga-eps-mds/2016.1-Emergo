@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class EmergencyContactDao extends SQLiteOpenHelper{
     private static final String DATABASE_NAME = "emerGo";
     private static final int VERSION = 42;
-
+    private static EmergencyContactDao instance = null;
     private static final String EmergencyContact_TABLE = "EmergencyContact";
     private static final String DROP_TABLE_EmergencyContact = "DROP TABLE IF EXISTS " + EmergencyContact_TABLE;
 
@@ -27,6 +27,14 @@ public class EmergencyContactDao extends SQLiteOpenHelper{
         super(context, DATABASE_NAME, null, VERSION);
     }
 
+    public static EmergencyContactDao getInstance(Context context){
+        if(EmergencyContactDao.instance != null){
+
+        }else{
+            EmergencyContactDao.instance = new EmergencyContactDao(context);
+        }
+        return EmergencyContactDao.instance;
+    }
     @Override
     public void onCreate(SQLiteDatabase database) {
         database.execSQL(CREATE_EMERGENCYCONTACT);

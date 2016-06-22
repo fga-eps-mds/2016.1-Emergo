@@ -5,13 +5,8 @@ import android.test.ActivityInstrumentationTestCase2;
 
 import org.junit.Before;
 
-import unlv.erc.emergo.R;
-
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 public class MainScreenControllerTest extends ActivityInstrumentationTestCase2<MainScreenController> {
@@ -36,8 +31,6 @@ public class MainScreenControllerTest extends ActivityInstrumentationTestCase2<M
 
 
     public void testButtonOkayClick(){
-
-        onView(withId(R.id.buttonOkay)).check(matches(isDisplayed()));
         onView(withText("Estou Bem")).perform(click());
     }
 }

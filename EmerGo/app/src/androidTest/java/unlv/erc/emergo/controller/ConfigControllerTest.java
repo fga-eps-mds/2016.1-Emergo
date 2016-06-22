@@ -9,8 +9,6 @@ import unlv.erc.emergo.R;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
 public class ConfigControllerTest extends ActivityInstrumentationTestCase2<ConfigController> {
@@ -29,22 +27,18 @@ public class ConfigControllerTest extends ActivityInstrumentationTestCase2<Confi
     }
 
     public void testButtonMedical(){
-        onView(withId(R.id.emergencyContact)).check(matches(isDisplayed()));
         onView(withId(R.id.emergencyContact)).perform(click());
     }
 
     public void testButtonContact(){
-        onView(withId(R.id.medicalRecords)).check(matches(isDisplayed()));
         onView(withId(R.id.medicalRecords)).perform(click());
     }
 
     public void testButtonConfig(){
-        onView(withId(R.id.iconMenu)).check(matches(isDisplayed()));
         onView(withId(R.id.iconMenu)).perform(click());
     }
 
     public void testButtonMap(){
-        onView(withId(R.id.iconMap)).check(matches(isDisplayed()));
         onView(withId(R.id.iconMap)).perform(click());
     }
 }
