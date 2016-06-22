@@ -25,7 +25,7 @@ public class SearchUsController extends AppCompatActivity implements SearchView.
 
     private SearchView mSearchView;
     private ImageView map , usList;
-    private Button goButton;
+    private ImageView goButton;
     private List<String> searchUss = new ArrayList<>();
     private int numberOfUsClicked;
     private ListView uSsList;
@@ -63,7 +63,7 @@ public class SearchUsController extends AppCompatActivity implements SearchView.
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        goButton = (Button) findViewById(R.id.buttonGo);
+        goButton = (ImageView) findViewById(R.id.buttonGo);
         goButton.setOnClickListener(this);
         usList = (ImageView) findViewById(R.id.iconList);
         usList.setOnClickListener(this);

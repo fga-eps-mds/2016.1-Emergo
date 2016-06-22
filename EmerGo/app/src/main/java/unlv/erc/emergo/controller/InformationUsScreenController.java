@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -20,7 +21,8 @@ public class InformationUsScreenController extends Activity implements View.OnCl
 
     private List <String> listOfInformations = new ArrayList<String>();
     private ListView hospInfo;
-    private Button route , buttonGo;
+    private Button route;
+    private ImageView buttonGo;
     private Intent receive;
     private int numberUsSelected;
     private String padding ,titulo, nome ,gestao , uf ,municipio ,
@@ -36,7 +38,7 @@ public class InformationUsScreenController extends Activity implements View.OnCl
         setNumberUsSelected(receive.getIntExtra("position" , 0));
         route = (Button) findViewById(R.id.botaoRota);
         route.setOnClickListener(this);
-        buttonGo = (Button) findViewById(R.id.buttonGo);
+        buttonGo = (ImageView) findViewById(R.id.buttonGo);
         buttonGo.setOnClickListener(this);
 
         setHospInfo((ListView) findViewById(R.id.hospInformation));

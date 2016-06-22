@@ -6,7 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,12 +17,14 @@ import java.util.List;
 import unlv.erc.emergo.R;
 import unlv.erc.emergo.model.HealthUnit;
 
-public class InformationSearchScreenController extends Activity{
+public class InformationSearchScreenController extends Activity implements View.OnClickListener{
 
 
     private List<String> listOfInformations = new ArrayList<String>();
     private ListView hospInfo;
     private Intent receive;
+    private Button route;
+    private ImageView buttonGo;
     //private final Integer CORRECTINDEX = 1; // acces the correct index
     private int numberUsSelected;
     private String padding ,titulo, nome ,gestao , uf ,municipio ,
@@ -33,6 +38,10 @@ public class InformationSearchScreenController extends Activity{
 
         setReceive(getIntent());
         setNumberUsSelected(receive.getIntExtra("position" , 0));
+        route = (Button) findViewById(R.id.botaoRota);
+        route.setOnClickListener(this);
+        buttonGo = (ImageView) findViewById(R.id.buttonGo);
+        buttonGo.setOnClickListener(this);
 
         setHospInfo((ListView) findViewById(R.id.hospInformation));
         setInformation(HealthUnitController.getClosestsUs().get(numberUsSelected));
@@ -73,17 +82,35 @@ public class InformationSearchScreenController extends Activity{
         hospInfo.setAdapter(adapter);
     }
 
-    public void goClicked(View map_screen) {
-        Intent mapRoute = new Intent();
-        mapRoute.setClass(this, RouteActivity.class);
-        startActivity(mapRoute);
-        finish();
+    public void onClick(View v) {
+        if(v.getId() == R.id.botaoRota){
+            Intent route = new Intent();
+            route.setClass(this , RouteActivity.class);
+            route.putExtra("numeroUs" , receive.getIntExtra("position" , 0));
+            startActivity(route);
+            finish();
+        }
+        if(v.getId() == R.id.buttonGo){
+            final String ROUTETRACED = "Rota mais próxima traçada";
+            Toast.makeText(this, ROUTETRACED , Toast.LENGTH_SHORT).show();
+            Intent routeActivity = new Intent();
+            routeActivity.setClass(this , RouteActivity.class);
+            routeActivity.putExtra("numeroUs" , -1);
+            startActivity(routeActivity);
+            finish();
+        }
     }
 
     public void open_search(View mapScreen){
         Intent openSearch = new Intent();
         openSearch.setClass(this , SearchUsController.class);
         startActivity(openSearch);
+    }
+
+    public void openConfig(View map_screen){
+        Intent config = new Intent();
+        config.setClass(this , ConfigController.class);
+        startActivity(config);
     }
 
     public void listMapsImageClicked(View map_screen){

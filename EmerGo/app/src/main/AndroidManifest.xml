@@ -37,7 +37,7 @@
         android:installLocation="auto">
 
 
-        <activity android:name=".controller.LoadingScreenController">
+        <activity android:name=".controller.MainScreenController">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -47,12 +47,6 @@
         <activity android:name=".controller.MapScreenController">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
-
-        <activity android:name=".controller.MainScreenController">
-            <intent-filter>
-                <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
 

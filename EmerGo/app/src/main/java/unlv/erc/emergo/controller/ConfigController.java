@@ -16,15 +16,15 @@ import java.io.IOException;
 import unlv.erc.emergo.R;
 
 public class ConfigController extends Activity{
-    private Button emergencyContact , buttonGo;
-    private ImageView iconList;
+    private Button emergencyContact;
+    private ImageView iconList, buttonGo;
     private Button medicalRecord;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.config);
         iconList = (ImageView) findViewById(R.id.iconList);
-        buttonGo = (Button) findViewById(R.id.buttonGo);
+        buttonGo = (ImageView) findViewById(R.id.buttonGo);
         emergencyContact = (Button) findViewById(R.id.emergencyContact);
         medicalRecord = (Button) findViewById(R.id.medicalRecords);
 
