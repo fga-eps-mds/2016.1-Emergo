@@ -50,17 +50,7 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         checkPermissions();
-        tryToGetSelfPosition();
-        setContentView(R.layout.map_screen);
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
-        mMap = mapFragment.getMap();
-        mMap.setOnMarkerClickListener(this);
 
-    }
-
-    private void tryToGetSelfPosition() {
         try{
             location = new Location("");// gps.getLocation();
             location.setLatitude(-15.879405);
@@ -72,8 +62,13 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
             startActivity(mainScreen);
             finish();
         }
+        setContentView(R.layout.map_screen);
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+        mMap = mapFragment.getMap();
+        mMap.setOnMarkerClickListener(this);
     }
-
 
     @Override
     public void onMapReady(final GoogleMap googleMap) {
