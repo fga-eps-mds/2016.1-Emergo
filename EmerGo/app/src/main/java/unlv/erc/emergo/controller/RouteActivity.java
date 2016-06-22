@@ -435,15 +435,7 @@ public class RouteActivity  extends FragmentActivity implements View.OnClickList
                     perms.put(permissions[i], grantResults[i]);
                 Boolean location = false , storage = false;
                 location = perms.get(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
-                try{
-                    storage = perms.get(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
-                }catch (RuntimeException ex){
-                    Toast.makeText(this , "É necessário ter a permissão" , Toast.LENGTH_LONG).show();
-                    Intent main = new Intent();
-                    main.setClass(this , MainScreenController.class);
-                    startActivity(main);
-                    finish();
-                }
+                storage = getaBooleanPermission(perms, storage);
                 messageAboutPermission(location, storage);
             }
             break;
@@ -451,6 +443,19 @@ public class RouteActivity  extends FragmentActivity implements View.OnClickList
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
+    }
+
+    private Boolean getaBooleanPermission(Map<String, Integer> perms, Boolean storage) {
+        try{
+            storage = perms.get(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
+        }catch (RuntimeException ex){
+            Toast.makeText(this , "É necessário ter a permissão" , Toast.LENGTH_LONG).show();
+            Intent main = new Intent();
+            main.setClass(this , MainScreenController.class);
+            startActivity(main);
+            finish();
+        }
+        return storage;
     }
 
     private void messageAboutPermission(Boolean location, Boolean storage) {
