@@ -59,6 +59,7 @@
         android:id="@+id/iconSearch"
         android:background="@drawable/icon_search"
         android:layout_alignTop="@+id/iconMenu"
+        android:onClick="open_search"
         android:layout_alignStart="@+id/iconList"
         android:clickable="true" />
 

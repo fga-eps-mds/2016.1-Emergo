@@ -36,6 +36,7 @@ public class HealthUnitController {
         return closestsUs;
     }
 
+
     public static void setClosestsUs(HealthUnit healthUnit) {
         closestsUs.add(healthUnit);
     }

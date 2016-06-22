@@ -1,6 +1,3 @@
-
-
-
 package unlv.erc.emergo.controller;
 
 import android.Manifest;
@@ -31,9 +28,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import unlv.erc.emergo.R;
 import helper.GPSTracker;
 import helper.Services;
-import unlv.erc.emergo.R;
 
 
 
@@ -46,18 +43,16 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
     Location location;
     GPSTracker gps = new GPSTracker(this);
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map_screen);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         mMap = mapFragment.getMap();
-
     }
-
 
 
     @Override
@@ -117,7 +112,12 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
         Intent listOfHealth = new Intent();
         listOfHealth.setClass(this, ListOfHealthUnitsController.class);
         startActivity(listOfHealth);
-        finish();
+    }
+
+    public void open_search(View mapScreen){
+        Intent openSearch = new Intent();
+        openSearch.setClass(this , SearchUsController.class);
+        startActivity(openSearch);
     }
 
     public void openMap(View mapScreen) {
@@ -128,7 +128,6 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
         config.setClass(MapScreenController.this , ConfigController.class);
         startActivity(config);
     }
-
 
     private void checkPermissions() {
 

@@ -1,6 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:background="@drawable/background">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background2">
+
+    <Button
+        android:layout_width="153dp"
+        android:layout_height="87dp"
+        android:text="GO!"
+        android:id="@+id/buttonGo"
+        android:layout_gravity="center_horizontal"
+        android:textSize="@dimen/abc_action_bar_default_height_material"
+        android:background="@drawable/gradientevermelho"
+        android:textColor="#ffffff"
+        android:textStyle="bold|italic"
+        android:clickable="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="goClicked" />
+
+    <ImageView
+        android:layout_width="56dp"
+        android:layout_height="48dp"
+        android:id="@+id/iconMap"
+
+        android:layout_alignBottom="@+id/buttonGo"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="33dp"
+        android:background="@drawable/icon_map"
+        android:clickable="true"
+        android:onClick="openMap" />
+
+    <ImageView
+        android:layout_width="56dp"
+        android:layout_height="48dp"
+        android:id="@+id/iconList"
+        android:layout_alignBottom="@+id/buttonGo"
+        android:layout_toEndOf="@+id/buttonGo"
+        android:layout_marginStart="30dp"
+        android:clickable="true"
+        android:background="@drawable/icon_list"
+        android:longClickable="false"
+        android:onClick="listMapsImageClicked" />
+
+    <ListView android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:id="@+id/list_of_search_us"
+        android:layout_below="@+id/iconMenu"
+        android:layout_above="@+id/iconMap"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
 
 </RelativeLayout>
