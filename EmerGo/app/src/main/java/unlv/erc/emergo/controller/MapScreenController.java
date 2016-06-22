@@ -8,9 +8,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -34,7 +37,7 @@ import helper.Services;
 
 
 
-public class MapScreenController extends FragmentActivity implements OnMapReadyCallback  {
+public class MapScreenController extends FragmentActivity implements OnMapReadyCallback , GoogleMap.OnMarkerClickListener {
 
     final int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124;
     final String yourPosition = "Sua posição";
@@ -45,57 +48,58 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
+        checkPermissions();
+        try{
+            location = new Location("");// gps.getLocation();
+            location.setLatitude(-15.879405);
+            location.setLongitude(-47.8077307);
+        }catch (NullPointerException ex){
+            Toast.makeText(this, "Não foi possível localizar sua posição", Toast.LENGTH_SHORT).show();
+            Intent mainScreen = new Intent();
+            mainScreen.setClass(this, MainScreenController.class);
+            startActivity(mainScreen);
+            finish();
+        }
         setContentView(R.layout.map_screen);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         mMap = mapFragment.getMap();
+        mMap.setOnMarkerClickListener(this);
+
     }
 
 
     @Override
     public void onMapReady(final GoogleMap googleMap) {
         mMap = googleMap;
-        try {
-            checkPermissions();
-            location = new Location("");// gps.getLocation();
-            location.setLatitude(-15.879405);
-            location.setLongitude(-47.8077307);
-            LatLng userLatLng = new LatLng(location.getLatitude() , location.getLongitude());
-            mMap.addMarker(new MarkerOptions().position(userLatLng).title(yourPosition)
-                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom
-                    (new LatLng(userLatLng.latitude, userLatLng.longitude), 13.0f));
-            services.setMarkersOnMap(mMap , HealthUnitController.getClosestsUs() );
-
-        } catch (NullPointerException nullPointer) {
-            Toast.makeText(this, "Habilite o GPS", Toast.LENGTH_SHORT).show();
-            Intent mainScreen = new Intent();
-            mainScreen.setClass(this, MainScreenController.class);
-            startActivity(mainScreen);
-            finish();
-        }
-
-        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-            @Override
-            public boolean onMarkerClick(Marker marker) {
-                for(int aux = 0 ; aux < HealthUnitController.getClosestsUs().size() ; aux++){
-                    if(marker.getTitle().toString().compareTo(HealthUnitController.getClosestsUs().get(aux).getNameHospital()) == 0){
-                        Intent information = new Intent();
-                        information.setClass(MapScreenController.this , InformationUsScreenController.class);
-                        information.putExtra("position" , aux);
-                        startActivity(information);
-                        finish();
-                    }
-                }
-                return false;
-            }
-        });
+        LatLng userLatLng = new LatLng(location.getLatitude() , location.getLongitude());
+        focusOnSelfPosition(userLatLng);
+        services.setMarkersOnMap(mMap , HealthUnitController.getClosestsUs() );
 
     }
 
+    private void focusOnSelfPosition(LatLng userLatLng) {
+        mMap.addMarker(new MarkerOptions().position(userLatLng).title(yourPosition)
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom
+                (new LatLng(userLatLng.latitude, userLatLng.longitude), 13.0f));
+    }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        for(int aux = 0 ; aux < HealthUnitController.getClosestsUs().size() ; aux++){
+            if(marker.getTitle().toString().compareTo(HealthUnitController.getClosestsUs().get(aux).getNameHospital()) == 0){
+                Intent information = new Intent();
+                information.setClass(MapScreenController.this , InformationUsScreenController.class);
+                information.putExtra("position" , aux);
+                startActivity(information);
+                finish();
+            }
+        }
+        return false;
+    }
 
     public void goClicked(View map_screen) throws IOException, JSONException {
         final String ROUTETRACED = "Rota mais próxima traçada";
@@ -121,8 +125,8 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
     }
 
     public void openMap(View mapScreen) {
-
     }
+
     public void openConfig(View map_screen){
         Intent config = new Intent();
         config.setClass(MapScreenController.this , ConfigController.class);
@@ -151,12 +155,9 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
         switch (requestCode) {
             case REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS: {
                 Map<String, Integer> perms = new HashMap<>();
-
                 perms.put(Manifest.permission.ACCESS_FINE_LOCATION, PackageManager.PERMISSION_GRANTED);
-
                 for (int i = 0; i < permissions.length; i++)
                     perms.put(permissions[i], grantResults[i]);
-
                 Boolean location = false , storage = false;
                 location = perms.get(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
                 try{
@@ -168,18 +169,21 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
                     startActivity(main);
                     finish();
                 }
-
-                if (location && storage) {
-                    Toast.makeText(this, "Permissão aprovada", Toast.LENGTH_SHORT).show();
-                } else{
-                    Toast.makeText(this,"Permita ter o acesso para te localizar", Toast.LENGTH_SHORT).show();
-                }
+                messageAboutPermission(location, storage);
             }
             break;
             default:
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
+    }
+
+    private void messageAboutPermission(Boolean location, Boolean storage) {
+        if (location && storage) {
+            Toast.makeText(this, "Permissão aprovada", Toast.LENGTH_SHORT).show();
+        } else{
+            Toast.makeText(this,"Permita ter o acesso para te localizar", Toast.LENGTH_SHORT).show();
+        }
     }
 }
 

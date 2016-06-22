@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -142,13 +143,14 @@ public class RouteActivity  extends FragmentActivity implements View.OnClickList
             public void run() {
                 new CountDownTimer(3000 , 1000) {
                     public void onTick(long millisUntilFinished) {
-                        if(canceled){
-                            timer.setText("");
-                        }else{
+                        if(!canceled){
                             long milis = millisUntilFinished / 1000;
                             String time =  String.valueOf(milis) ;
                             timer.setText(time);
+                        }else{
+                            timer.setText("");
                         }
+
                     }
                     public void onFinish() {
                         timer.setText("");
@@ -275,33 +277,37 @@ public class RouteActivity  extends FragmentActivity implements View.OnClickList
         InputStream iStream = null;
         HttpURLConnection urlConnection = null;
         try{
-            URL url = new URL(strUrl);
-            urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.connect();
-
+            urlConnection = getHttpURLConnection(strUrl, urlConnection);
             iStream = urlConnection.getInputStream();
 
             BufferedReader br = new BufferedReader(new InputStreamReader(iStream));
-
             StringBuffer sb  = new StringBuffer();
-
-            String line = "";
-            while( ( line = br.readLine())  != null){
-                sb.append(line);
-            }
+            concatenateBufferRead(br, sb);
 
             data = sb.toString();
-
             br.close();
-
         }catch(Exception e){
             Log.d("Error downloading url", e.toString());
         }finally{
-
             iStream.close();
             urlConnection.disconnect();
         }
         return data;
+    }
+
+    private void concatenateBufferRead(BufferedReader br, StringBuffer sb) throws IOException {
+        String line = "";
+        while( ( line = br.readLine())  != null){
+            sb.append(line);
+        }
+    }
+
+    @NonNull
+    private HttpURLConnection getHttpURLConnection(String strUrl, HttpURLConnection urlConnection) throws IOException {
+        URL url = new URL(strUrl);
+        urlConnection = (HttpURLConnection) url.openConnection();
+        urlConnection.connect();
+        return urlConnection;
     }
 
     private class ParserTask extends AsyncTask<String, Integer, List<List<HashMap<String,String>>> >{
@@ -371,7 +377,6 @@ public class RouteActivity  extends FragmentActivity implements View.OnClickList
 
     public void sendMessage() {
         Cursor result = emergencyContactDao.getEmergencyContact();
-
         if(result.getCount()!=0){
             try{
                 while (result.moveToNext()){
@@ -392,12 +397,9 @@ public class RouteActivity  extends FragmentActivity implements View.OnClickList
         switch (requestCode) {
             case REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS: {
                 Map<String, Integer> perms = new HashMap<>();
-
                 perms.put(Manifest.permission.ACCESS_FINE_LOCATION, PackageManager.PERMISSION_GRANTED);
-
                 for (int i = 0; i < permissions.length; i++)
                     perms.put(permissions[i], grantResults[i]);
-
                 Boolean location = false , storage = false;
                 location = perms.get(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
                 try{
@@ -409,16 +411,20 @@ public class RouteActivity  extends FragmentActivity implements View.OnClickList
                     startActivity(main);
                     finish();
                 }
-
-                if (location && storage) {
-                    Toast.makeText(this, "Permissão aprovada", Toast.LENGTH_SHORT).show();
-                } else{
-                    Toast.makeText(this, "Permita o acesso para te localizar", Toast.LENGTH_SHORT).show();
-                }
+                messageAboutPermission(location, storage);
             }
             break;
             default:
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+    }
+
+    private void messageAboutPermission(Boolean location, Boolean storage) {
+        if (location && storage) {
+            Toast.makeText(this, "Permissão aprovada", Toast.LENGTH_SHORT).show();
+        } else{
+            Toast.makeText(this,"Permita ter o acesso para te localizar", Toast.LENGTH_SHORT).show();
         }
     }
 
