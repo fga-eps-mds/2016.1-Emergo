@@ -454,4 +454,10 @@ public class MedicalRecordsController extends Activity {
         startActivity(mapActivity);
         finish();
     }
+
+    public void open_search(View mapScreen){
+        Intent openSearch = new Intent();
+        openSearch.setClass(this , SearchUsController.class);
+        startActivity(openSearch);
+    }
 }

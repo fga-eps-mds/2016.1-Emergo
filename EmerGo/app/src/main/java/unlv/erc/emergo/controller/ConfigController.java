@@ -63,6 +63,13 @@ public class ConfigController extends Activity{
         finish();
     }
 
+    public void open_search(View mapScreen){
+        Intent openSearch = new Intent();
+        openSearch.setClass(this , SearchUsController.class);
+        startActivity(openSearch);
+        finish();
+    }
+
     public void listUs(){
         Intent listUs = new Intent();
         listUs.setClass(this , ListOfHealthUnitsController.class);
@@ -101,10 +108,8 @@ public class ConfigController extends Activity{
     }
 
     public void openConfig(View map_screen){
-        Intent config = new Intent();
-        config.setClass(this , ConfigController.class);
-        startActivity(config);
-        finish();
+        final String MESSAGE = "Está tentando abrir a página atual";
+       Toast.makeText(this , MESSAGE , Toast.LENGTH_SHORT ).show();
     }
 
     public void openMap(View mapScreen){

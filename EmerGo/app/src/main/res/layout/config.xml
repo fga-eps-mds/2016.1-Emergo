@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/base_screen">
+    android:background="@drawable/base_screen"
+    android:onClick="open_search">
 
 
     <ImageView
@@ -59,7 +60,8 @@
         android:background="@drawable/icon_search"
         android:layout_alignTop="@+id/iconMenu"
         android:layout_alignStart="@+id/iconList"
-        android:clickable="true" />
+        android:clickable="true"
+        android:onClick="open_search" />
 
     <Button
         android:text="Sobre"
