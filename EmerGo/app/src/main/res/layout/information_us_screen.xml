@@ -18,7 +18,7 @@
         android:clickable="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:onClick="goClicked" />
+         />
 
     <ImageView
         android:layout_width="56dp"

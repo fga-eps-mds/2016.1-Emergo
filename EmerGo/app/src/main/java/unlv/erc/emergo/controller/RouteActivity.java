@@ -18,11 +18,13 @@ import android.support.v7.app.AlertDialog;
 import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.images.ImageManager;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -53,72 +55,44 @@ import unlv.erc.emergo.R;
 
 
 
-public class RouteActivity  extends FragmentActivity {
+public class RouteActivity  extends FragmentActivity implements View.OnClickListener {
 
     final int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124;
-    private static int SPLASH_TIME_OUT = 5000;
+    private static int SPLASH_TIME_OUT = 3400;
     public String SAMUNumber = "tel:996941411";
     private GoogleMap mMap;
     GPSTracker gps = new GPSTracker(RouteActivity.this);
     ArrayList<LatLng> pointsOfRoute = new ArrayList<>();
     EmergencyContactDao emergencyContactDao = new EmergencyContactDao(this);
     LatLng myLocation ;
-    ImageView user;
+    TextView timer;
+    ImageView user , cancelCall , phone , userInformation;
+    Button buttonGo , selfLocation;
     private Cursor result;
     UserDao myDatabase;
-    ProgressBar progress;
     int indexOfClosestUs;
-    TextView contador;
     Intent i;
+    Boolean canceled = false;
+    SupportMapFragment mapFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.route_activity);
         checkPermissions();
-        progress = (ProgressBar) findViewById(R.id.progressBar);
-        progress.setVisibility(View.VISIBLE);
-        contador = (TextView) findViewById(R.id.contador);
+        buttonGo = (Button) findViewById(R.id.buttonGo);
+        buttonGo.setOnClickListener(this);
+        userInformation = (ImageView) findViewById(R.id.userInformation);
+        userInformation.setOnClickListener(this);
+        selfLocation = (Button) findViewById(R.id.selfLocation);
+        selfLocation.setOnClickListener(this);
+        phone = (ImageView) findViewById(R.id.phone);
+        phone.setOnClickListener(this);
+        cancelCall = (ImageView) findViewById(R.id.cancelarLigacao);
+        cancelCall.setOnClickListener(this);
+        timer = (TextView) findViewById(R.id.timer);
 
-        new Handler().postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
-                new CountDownTimer(3000 , 1000){
-                    public void onTick(long millisnUntilFinished){
-                        contador.setText("Ligando em: " + millisnUntilFinished/1000);
-                    }
-
-                    public void onFinish(){
-                    }
-                };
-
-                Cursor result = emergencyContactDao.getEmergencyContact();
-
-                if(result.getCount()!=0){
-                    try{
-                        while (result.moveToNext()){
-                            SmsManager.getDefault().sendTextMessage(result.getString(2),null,
-                                    result.getString(1)+", Estou precisando de ajuda urgente!",null,null);
-                        }
-                        Toast.makeText(getApplicationContext(),"Ajuda a caminho!", Toast.LENGTH_LONG).show();
-                    }catch (Exception exception){
-                        Toast.makeText(getApplicationContext(),"Impossivel encaminhar o SMS", Toast.LENGTH_LONG).show();
-                    }
-                }else{
-                    Toast.makeText(getApplicationContext(),"Nenhum contato adicionado", Toast.LENGTH_LONG).show();
-                }
-
-                Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse(SAMUNumber));
-                startActivity(callIntent);
-
-                finish();
-            }
-        }, SPLASH_TIME_OUT);
-
-
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+        mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mMap = mapFragment.getMap();
         i= getIntent();
@@ -130,6 +104,13 @@ public class RouteActivity  extends FragmentActivity {
         HealthUnitController.setDistanceBetweenUserAndUs(HealthUnitController.getClosestsUs() , location);
         if(indexOfClosestUs == -1){
             indexOfClosestUs = HealthUnitController.selectClosestUs(HealthUnitController.getClosestsUs() , location);
+            cancelCall.setVisibility(View.VISIBLE);
+            phone.setVisibility(View.INVISIBLE);
+            startCountDown();
+        }else{
+            timer.setText("");
+            phone.setVisibility(View.VISIBLE);
+            cancelCall.setVisibility(View.INVISIBLE);
         }
         myLocation = new LatLng(location.getLatitude() , location.getLongitude());
 
@@ -154,13 +135,68 @@ public class RouteActivity  extends FragmentActivity {
         result = myDatabase.getUser();
     }
 
+    private void startCountDown() {
+        new Handler().postDelayed(new Runnable() {
 
-    public void cancelClicked(View view ){
-        
-        Intent mapScreen = new Intent();
-        mapScreen.setClass(RouteActivity.this , MapScreenController.class);
-        startActivity(mapScreen);
-        finish();
+            @Override
+            public void run() {
+                new CountDownTimer(3000 , 1000) {
+                    public void onTick(long millisUntilFinished) {
+                        if(canceled){
+                            timer.setText("");
+                        }else{
+                            long milis = millisUntilFinished / 1000;
+                            String time =  String.valueOf(milis) ;
+                            timer.setText(time);
+                        }
+                    }
+                    public void onFinish() {
+                        timer.setText("");
+                        cancelCall.setVisibility(View.INVISIBLE);
+                        phone.setVisibility(View.VISIBLE);
+                    }
+                }.start();
+                if(!canceled){
+                    sendMessage();
+                    callSamu();
+                }
+            }
+        }, SPLASH_TIME_OUT);
+
+    }
+
+    private void callSamu() {
+        Intent callIntent = new Intent(Intent.ACTION_CALL);
+        callIntent.setData(Uri.parse(SAMUNumber));
+        startActivity(callIntent);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v.getId() == R.id.buttonGo){
+            canceled = true;
+            Intent mapScreen = new Intent();
+            mapScreen.setClass(RouteActivity.this , MapScreenController.class);
+            startActivity(mapScreen);
+            finish();
+        }
+        if(v.getId() == R.id.selfLocation){
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom
+                    (new LatLng(myLocation.latitude, myLocation.longitude), 13.0f));
+        }
+        if(v.getId() == R.id.userInformation){
+            Intent config = new Intent();
+            config.setClass(RouteActivity.this , ConfigController.class);
+            startActivity(config);
+        }
+        if(v.getId() == R.id.cancelarLigacao){
+            canceled = true;
+            cancelCall.setVisibility(View.INVISIBLE);
+            phone.setVisibility(View.VISIBLE);
+        }
+        if(v.getId() == R.id.phone){
+            callSamu();
+        }
     }
 
     private void setMarkerOfClosestUsOnMap() {
@@ -173,11 +209,6 @@ public class RouteActivity  extends FragmentActivity {
 
 
     private void focusOnYourPosition() {
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom
-                (new LatLng(myLocation.latitude, myLocation.longitude), 13.0f));
-    }
-
-    public void focusOnYourPosition(View view) {
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom
                 (new LatLng(myLocation.latitude, myLocation.longitude), 13.0f));
     }
@@ -335,6 +366,24 @@ public class RouteActivity  extends FragmentActivity {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 requestPermissions(params, REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS);
             }
+        }
+    }
+
+    public void sendMessage() {
+        Cursor result = emergencyContactDao.getEmergencyContact();
+
+        if(result.getCount()!=0){
+            try{
+                while (result.moveToNext()){
+                    SmsManager.getDefault().sendTextMessage(result.getString(2),null,
+                            result.getString(1)+", Estou precisando de ajuda urgente!",null,null);
+                }
+                Toast.makeText(getApplicationContext(),"Ajuda a caminho!", Toast.LENGTH_LONG).show();
+            }catch (Exception exception){
+                Toast.makeText(getApplicationContext(),"Impossivel encaminhar o SMS", Toast.LENGTH_LONG).show();
+            }
+        }else{
+            Toast.makeText(getApplicationContext(),"Nenhum contato adicionado", Toast.LENGTH_LONG).show();
         }
     }
 

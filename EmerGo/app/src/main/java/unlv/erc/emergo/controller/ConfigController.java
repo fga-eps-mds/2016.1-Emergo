@@ -2,9 +2,11 @@ package unlv.erc.emergo.controller;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -14,15 +16,31 @@ import java.io.IOException;
 import unlv.erc.emergo.R;
 
 public class ConfigController extends Activity{
-    private Button emergencyContact;
+    private Button emergencyContact , buttonGo;
+    private ImageView iconList;
     private Button medicalRecord;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.config);
-
+        iconList = (ImageView) findViewById(R.id.iconList);
+        buttonGo = (Button) findViewById(R.id.buttonGo);
         emergencyContact = (Button) findViewById(R.id.emergencyContact);
         medicalRecord = (Button) findViewById(R.id.medicalRecords);
+
+        buttonGo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                routeScreen();
+            }
+        });
+
+        iconList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listUs();
+            }
+        });
 
         medicalRecord.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -35,6 +53,21 @@ public class ConfigController extends Activity{
                 emergencyContact();
             }
         });
+    }
+
+    public void routeScreen(){
+        Intent map = new Intent();
+        map.setClass(this , RouteActivity.class);
+        map.putExtra("numeroUs" , -1);
+        startActivity(map);
+        finish();
+    }
+
+    public void listUs(){
+        Intent listUs = new Intent();
+        listUs.setClass(this , ListOfHealthUnitsController.class);
+        startActivity(listUs);
+        finish();
     }
 
     public void medicalRecord(){

@@ -20,7 +20,7 @@ public class InformationUsScreenController extends Activity implements View.OnCl
 
     private List <String> listOfInformations = new ArrayList<String>();
     private ListView hospInfo;
-    private Button route;
+    private Button route , buttonGo;
     private Intent receive;
     private int numberUsSelected;
     private String padding ,titulo, nome ,gestao , uf ,municipio ,
@@ -36,6 +36,8 @@ public class InformationUsScreenController extends Activity implements View.OnCl
         setNumberUsSelected(receive.getIntExtra("position" , 0));
         route = (Button) findViewById(R.id.botaoRota);
         route.setOnClickListener(this);
+        buttonGo = (Button) findViewById(R.id.buttonGo);
+        buttonGo.setOnClickListener(this);
 
         setHospInfo((ListView) findViewById(R.id.hospInformation));
         setInformation(HealthUnitController.getClosestsUs().get(numberUsSelected));
@@ -50,6 +52,15 @@ public class InformationUsScreenController extends Activity implements View.OnCl
             route.setClass(InformationUsScreenController.this , RouteActivity.class);
             route.putExtra("numeroUs" , receive.getIntExtra("position" , 0));
             startActivity(route);
+            finish();
+        }
+        if(v.getId() == R.id.buttonGo){
+            final String ROUTETRACED = "Rota mais próxima traçada";
+            Toast.makeText(this, ROUTETRACED , Toast.LENGTH_SHORT).show();
+            Intent routeActivity = new Intent();
+            routeActivity.setClass(InformationUsScreenController.this , RouteActivity.class);
+            routeActivity.putExtra("numeroUs" , -1);
+            startActivity(routeActivity);
             finish();
         }
     }
@@ -87,16 +98,6 @@ public class InformationUsScreenController extends Activity implements View.OnCl
         hospInfo.setAdapter(adapter);
     }
 
-    public void goClicked(View map_screen) {
-        final String ROUTETRACED = "Rota mais próxima traçada";
-
-        Toast.makeText(this, ROUTETRACED , Toast.LENGTH_SHORT).show();
-        Intent routeActivity = new Intent();
-        routeActivity.setClass(InformationUsScreenController.this , RouteActivity.class);
-        routeActivity.putExtra("numeroUs" , -1);
-        startActivity(routeActivity);
-        finish();
-    }
 
     public void listMapsImageClicked(View map_screen){
         Intent listOfHealth = new Intent();
