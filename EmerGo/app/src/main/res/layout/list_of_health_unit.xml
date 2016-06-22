@@ -5,22 +5,6 @@
     android:background="@drawable/base_screen"
     android:clickable="false">
 
-<!--
-    <Button
-        android:layout_width="153dp"
-        android:layout_height="87dp"
-        android:text="GO!"
-        android:id="@+id/buttonGo"
-        android:layout_gravity="center_horizontal"
-        android:textSize="@dimen/abc_action_bar_default_height_material"
-        android:background="@drawable/gradientevermelho"
-        android:textColor="#ffffff"
-        android:textStyle="bold|italic"
-        android:clickable="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:onClick="goClicked" />
--->
     <ImageView
         android:layout_width="153dp"
         android:layout_height="87dp"
