@@ -1,12 +1,25 @@
 package unlv.erc.emergo.controller;
 
+import android.support.test.uiautomator.UiDevice;
 import android.test.ActivityInstrumentationTestCase2;
 
 import org.junit.Before;
 
+import java.util.ArrayList;
+
+import dao.DataAccessObject;
+import helper.Services;
+import unlv.erc.emergo.R;
+import unlv.erc.emergo.model.HealthUnit;
+
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
+
 
 public class RouteActivityTest extends ActivityInstrumentationTestCase2<RouteActivity> {
 
+    private UiDevice device;
     public RouteActivityTest(){
         super(RouteActivity.class);
     }
@@ -15,9 +28,28 @@ public class RouteActivityTest extends ActivityInstrumentationTestCase2<RouteAct
     public void setUp() throws  Exception{
         super.setUp();
         getActivity();
+        device = UiDevice.getInstance(getInstrumentation());
     }
 
-    private RouteActivity routeActivity = new RouteActivity();
+
+
+    public void testIfCatchException(){
+        boolean passed = false;
+        try{
+            onView(withId(R.id.selfLocation)).perform(click());
+            assertTrue(passed);
+        }catch (RuntimeException ex){
+            assertFalse(passed);
+        }
+
+    }
+
+    public void testButtonMedical(){
+        onView(withId(R.id.buttonGo)).perform(click());
+    }
+
+
+
 
     /*public void testSetUserLocationButton(){
         onView(withId(R.id.button)).check(matches(isDisplayed()));
