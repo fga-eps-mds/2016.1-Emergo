@@ -13,7 +13,6 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
 
 public class RouteActivityTest extends ActivityInstrumentationTestCase2<RouteActivity> {
-
     private UiDevice device;
 
     public RouteActivityTest() {
@@ -33,20 +32,15 @@ public class RouteActivityTest extends ActivityInstrumentationTestCase2<RouteAct
 
     public void testIfButtonSelfLocationIsWorking() {
         onView(withId(R.id.buttonGo)).perform(click());
+        onView(withId(R.id.buttonGo)).perform(click());
         onView(withId(R.id.cancelarLigacao)).perform(click());
         onView(withId(R.id.selfLocation)).perform(click());
-        onView(withId(R.id.buttonGo)).perform(click());
     }
 
-    public void testIfUserInformationIsWorking() {
+    public void testGoIsWorking() {
         onView(withId(R.id.buttonGo)).perform(click());
-        onView(withId(R.id.userInformation)).perform(click());
-    }
-
-    public void testIfGoIsWorking() {
         onView(withId(R.id.buttonGo)).perform(click());
         onView(withId(R.id.cancelarLigacao)).perform(click());
-        onView(withId(R.id.buttonGo)).perform(click());
     }
 
     public void testConfigOption() {
@@ -57,6 +51,7 @@ public class RouteActivityTest extends ActivityInstrumentationTestCase2<RouteAct
     }
 
     public void testListsUs(){
+        onView(withId(R.id.buttonGo)).perform(click());
         onView(withId(R.id.buttonGo)).perform(click());
         onView(withId(R.id.cancelarLigacao)).perform(click());
         onView(withId(R.id.buttonGo)).perform(click());

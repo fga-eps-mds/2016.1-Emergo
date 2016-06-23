@@ -3,7 +3,6 @@ package dao;
 import android.test.ActivityInstrumentationTestCase2;
 
 import org.junit.Assert;
-import org.junit.Test;
 
 import unlv.erc.emergo.controller.EmergencyContactController;
 
@@ -19,12 +18,21 @@ public class EmergencyContactDaoTest extends ActivityInstrumentationTestCase2<Em
         super.setUp();
         this.activity = getActivity();
     }
-    @Test
+
     public void testSuccessInsertEmergencyContact(){
         boolean wasInserted = true;
         emergencyContactDao = EmergencyContactDao.getInstance(activity.getApplicationContext());
-        wasInserted = emergencyContactDao.insertEmergencyContact(2,"MrVictor","1234532");
+        wasInserted = emergencyContactDao.insertEmergencyContact(3,"MrVictor","1234532");
         Assert.assertTrue(wasInserted);
-        int num = emergencyContactDao.deleteEmergencyContact(2);
+        emergencyContactDao.deleteEmergencyContact(3);
+    }
+
+    public void testUpdateEmergencyContact(){
+        boolean wasUpdated = true;
+        emergencyContactDao = EmergencyContactDao.getInstance(activity.getApplicationContext());
+        emergencyContactDao.insertEmergencyContact(3,"MrVictor","1234532");
+        wasUpdated = emergencyContactDao.updateEmergencyContact(3,"Victor","42");
+        Assert.assertTrue(wasUpdated);
+        emergencyContactDao.deleteEmergencyContact(3);
     }
 }

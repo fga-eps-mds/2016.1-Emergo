@@ -10,6 +10,7 @@ public class UserDao extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "MedicalRecords";
     private static final int VERSION = 42;
+    private static UserDao instance = null;
 
     private static final String USER_TABLE = "User";
     private static final String DROP_TABLE_USER = "DROP TABLE IF EXISTS" + USER_TABLE;
@@ -38,6 +39,15 @@ public class UserDao extends SQLiteOpenHelper {
 
     public UserDao(Context context) {
         super(context, DATABASE_NAME, null, VERSION);
+    }
+
+    public static UserDao getInstance(Context context){
+        if(UserDao.instance != null){
+
+        }else{
+            UserDao.instance = new UserDao(context);
+        }
+        return UserDao.instance;
     }
 
     @Override
