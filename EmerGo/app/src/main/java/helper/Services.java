@@ -1,10 +1,6 @@
 package helper;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.provider.Settings;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
@@ -27,37 +23,4 @@ public class Services extends Activity {
 
         }
     }
-
-    public void showSettingsAlert(){
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this.getBaseContext());
-
-        // Setting Dialog Title
-        alertDialog.setTitle("GPS is settings");
-
-        // Setting Dialog Message
-        alertDialog.setMessage("GPS is not enabled. Do you want to go to settings menu?");
-
-        // Setting Icon to Dialog
-        //alertDialog.setIcon(R.drawable.delete);
-
-        // On pressing Settings button
-        alertDialog.setPositiveButton("Settings", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog,int which) {
-                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                startActivity(intent);
-            }
-        });
-
-        // on pressing cancel button
-        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-
-        // Showing Alert Message
-        alertDialog.show();
-    }
 }
-
-

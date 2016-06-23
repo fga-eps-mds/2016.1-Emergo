@@ -21,11 +21,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.common.images.ImageManager;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -33,7 +31,6 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
-import com.google.android.gms.vision.barcode.Barcode;
 
 import org.json.JSONObject;
 
@@ -48,10 +45,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import dao.UserDao;
 import dao.EmergencyContactDao;
+import dao.UserDao;
 import helper.DirectionsJSONParser;
-import helper.GPSTracker;
 import unlv.erc.emergo.R;
 
 
@@ -62,7 +58,6 @@ public class RouteActivity  extends FragmentActivity implements View.OnClickList
     private static int SPLASH_TIME_OUT = 3400;
     public String SAMUNumber = "tel:996941411";
     private GoogleMap mMap;
-    GPSTracker gps = new GPSTracker(RouteActivity.this);
     ArrayList<LatLng> pointsOfRoute = new ArrayList<>();
     EmergencyContactDao emergencyContactDao = new EmergencyContactDao(this);
     LatLng myLocation ;

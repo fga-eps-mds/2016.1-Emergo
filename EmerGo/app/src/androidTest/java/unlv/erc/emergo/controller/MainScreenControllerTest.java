@@ -5,9 +5,13 @@ import android.test.ActivityInstrumentationTestCase2;
 
 import org.junit.Before;
 
+import unlv.erc.emergo.R;
+
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
 public class MainScreenControllerTest extends ActivityInstrumentationTestCase2<MainScreenController> {
     private UiDevice device;
@@ -22,15 +26,21 @@ public class MainScreenControllerTest extends ActivityInstrumentationTestCase2<M
         device = UiDevice.getInstance(getInstrumentation());
     }
 
-    /*public void testButtonGoClick() throws UiObjectNotFoundException {
-        onView(withId(R.id.buttonGo)).check(matches(isDisplayed()));
-        onView(withText("GO!")).perform(click());
-        UiObject button = device.findObject(new UiSelector().text("Cancelar"));
-        button.click();
-    }*/
-
 
     public void testButtonOkayClick(){
-        onView(withText("Estou Bem")).perform(click());
+        onView(withId(R.id.buttonOkay)).check(matches(isDisplayed()));
+        onView(withId(R.id.buttonOkay)).perform(click());
+    }
+
+
+    public void testButtonGo(){
+        onView(withId(R.id.buttonGo)).check(matches(isDisplayed()));
+        onView(withId(R.id.buttonGo)).perform(click());
+         onView(withId(R.id.cancelarLigacao)).perform(click());
+        onView(withId(R.id.selfLocation)).perform(click());
+    }
+
+    public void testImageVisible(){
+        onView(withId(R.id.logoEmerGo)).check(matches(isDisplayed()));
     }
 }

@@ -8,12 +8,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -31,9 +28,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import unlv.erc.emergo.R;
-import helper.GPSTracker;
 import helper.Services;
+import unlv.erc.emergo.R;
 
 
 
@@ -44,7 +40,6 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
     private GoogleMap mMap;
     private Services services = new Services();
     Location location;
-    GPSTracker gps = new GPSTracker(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
