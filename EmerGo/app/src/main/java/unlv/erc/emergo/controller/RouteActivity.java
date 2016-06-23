@@ -56,7 +56,7 @@ public class RouteActivity  extends FragmentActivity implements View.OnClickList
 
     final int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124;
     private static int SPLASH_TIME_OUT = 3400;
-    public String SAMUNumber = "tel:996941411";
+    public String SAMUNumber = "tel:192";
     private GoogleMap mMap;
     ArrayList<LatLng> pointsOfRoute = new ArrayList<>();
     EmergencyContactDao emergencyContactDao = new EmergencyContactDao(this);
