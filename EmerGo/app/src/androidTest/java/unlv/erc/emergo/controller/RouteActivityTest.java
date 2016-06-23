@@ -39,7 +39,6 @@ public class RouteActivityTest extends ActivityInstrumentationTestCase2<RouteAct
 
     public void testGoIsWorking() {
         onView(withId(R.id.buttonGo)).perform(click());
-        onView(withId(R.id.buttonGo)).perform(click());
         onView(withId(R.id.cancelarLigacao)).perform(click());
     }
 
