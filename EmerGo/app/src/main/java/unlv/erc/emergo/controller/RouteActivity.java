@@ -173,12 +173,8 @@ public class RouteActivity  extends FragmentActivity implements View.OnClickList
             @Override
             public void run() {
                 openCountDown();
-                if(!canceled){
-                    sendMessage();
-                    callSamu();
-                }
-
             }
+
         }, SPLASH_TIME_OUT);
 
     }
@@ -201,6 +197,10 @@ public class RouteActivity  extends FragmentActivity implements View.OnClickList
                 phone.setVisibility(View.VISIBLE);
             }
         }.start();
+        if(!canceled){
+            sendMessage();
+            callSamu();
+        }
     }
 
     private void callSamu() {

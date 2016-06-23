@@ -31,20 +31,36 @@ public class RouteActivityTest extends ActivityInstrumentationTestCase2<RouteAct
         device = UiDevice.getInstance(getInstrumentation());
     }
 
-
-
-    public void testIfCatchException(){
-        boolean passed = false;
-        try{
-            onView(withId(R.id.selfLocation)).perform(click());
-            assertTrue(passed);
-        }catch (RuntimeException ex){
-            assertFalse(passed);
-        }
+    public void testIfButtonCancelCallIsWorking(){
+        onView(withId(R.id.buttonGo)).perform(click());
 
     }
+/////////////////////////////////////////////////////// até aqui funciona ///////////////////////////
+    public void testIfButtonSelfLocationIsWorking(){
 
-    public void testButtonMedical(){
+        onView(withId(R.id.buttonGo)).perform(click());
+        onView(withId(R.id.selfLocation)).perform(click());
+    }
+
+    public void testIfUserInformationIsWorking(){
+        onView(withId(R.id.buttonGo)).perform(click());
+        onView(withId(R.id.userInformation)).perform(click());
+    }
+
+    public void testIfGoIsWorking(){
+        onView(withId(R.id.cancelarLigacao)).perform(click());
+        onView(withId(R.id.buttonGo)).perform(click());
+    }
+
+
+
+    public void testIfPhoneIsClickable(){
+        onView(withId(R.id.cancelarLigacao)).perform(click());
+        onView(withId(R.id.phone)).perform(click());
+    }
+
+    public void testIfMapScreenOpens(){
+        onView(withId(R.id.cancelarLigacao)).perform(click());
         onView(withId(R.id.buttonGo)).perform(click());
     }
 
