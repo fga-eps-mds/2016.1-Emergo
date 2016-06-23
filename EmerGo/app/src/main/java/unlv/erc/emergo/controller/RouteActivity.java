@@ -101,7 +101,7 @@ public class RouteActivity  extends FragmentActivity implements View.OnClickList
             Toast.makeText(this , "Sem internet" , Toast.LENGTH_SHORT).show();
             Intent main = new Intent();
             main.setClass(this , MainScreenController.class);
-            startActivity();
+            startActivity(main);
             finish();
         }
 
