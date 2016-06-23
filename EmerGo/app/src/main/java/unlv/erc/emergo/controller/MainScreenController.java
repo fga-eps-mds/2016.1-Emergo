@@ -110,12 +110,5 @@ public class MainScreenController extends Activity {
 
         notificationManager.notify(notifyID,notification.build());
     }
-
-    public void openConfig(View map_screen){
-        Intent config = new Intent();
-        config.setClass(this , ConfigController.class);
-        startActivity(config);
-        finish();
-    }
 }
 
