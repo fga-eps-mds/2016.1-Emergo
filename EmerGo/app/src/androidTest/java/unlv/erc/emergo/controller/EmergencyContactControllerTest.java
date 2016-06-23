@@ -101,7 +101,7 @@ public class EmergencyContactControllerTest extends ActivityInstrumentationTestC
         onView(withId(R.id.saveSecondContactButton)).check(matches(withText("Salvar")));
     }
 
-    public void testUpdateSecondContactOption(){
+    public void testUpdateSecondContactOption() throws UiObjectNotFoundException {
         onView(withId(R.id.nameSecondContactEditText)).perform(typeText("MrVictor"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.phoneSecondContactEditText)).perform(typeText("(61)83104981"));
@@ -113,6 +113,9 @@ public class EmergencyContactControllerTest extends ActivityInstrumentationTestC
         onView(withId(R.id.phoneSecondContactEditText)).perform(typeText("(42)14031912"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.saveSecondContactButton)).perform(click());
+        onView(withId(R.id.deleteSecondContactButton)).perform(click());
+        UiObject button = device.findObject(new UiSelector().text("Sim"));
+        button.click();
     }
 
     public void testDeleteSecondContactOption() throws UiObjectNotFoundException {
@@ -150,7 +153,7 @@ public class EmergencyContactControllerTest extends ActivityInstrumentationTestC
         onView(withId(R.id.saveThirdContactButton)).check(matches(withText("Salvar")));
     }
 
-    public void testUpdateThirdContactOption(){
+    public void testUpdateThirdContactOption() throws UiObjectNotFoundException {
         onView(withId(R.id.nameThirdContactEditText)).perform(typeText("MrVictor"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.phoneThirdContactEditText)).perform(typeText("(61)83104981"));
@@ -162,6 +165,9 @@ public class EmergencyContactControllerTest extends ActivityInstrumentationTestC
         onView(withId(R.id.phoneThirdContactEditText)).perform(typeText("(42)14031912"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.saveThirdContactButton)).perform(click());
+        onView(withId(R.id.deleteThirdContactButton)).perform(click());
+        UiObject button = device.findObject(new UiSelector().text("Sim"));
+        button.click();
     }
 
     public void testDeleteThirdContactOption() throws UiObjectNotFoundException {

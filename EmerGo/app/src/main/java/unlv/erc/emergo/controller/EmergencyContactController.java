@@ -11,6 +11,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.json.JSONException;
+
+import java.io.IOException;
+
 import dao.EmergencyContactDao;
 import helper.MaskHelper;
 import unlv.erc.emergo.R;
@@ -132,7 +136,7 @@ public class EmergencyContactController extends Activity {
             }
         });
 
-        if(result.getCount() == 0) {
+        if(result.getCount() == 0){
             disableOptions(saveSecondContact, updateSecondContact,deleteSecondContact);
         }else{
             if(result.moveToNext()){
@@ -440,10 +444,20 @@ public class EmergencyContactController extends Activity {
         phone.setEnabled(false);
     }
 
-    public void goClicked(View map_screen){
-        Toast.makeText(this , "Função não habilitada!" , Toast.LENGTH_SHORT).show();
+    public void open_search(View mapScreen){
+        Intent openSearch = new Intent();
+        openSearch.setClass(this , SearchUsController.class);
+        startActivity(openSearch);
+        finish();
+    }
+
+    public void goClicked(View map_screen) throws IOException, JSONException {
+        final String ROUTETRACED = "Rota mais próxima traçada";
+
+        Toast.makeText(this, ROUTETRACED , Toast.LENGTH_SHORT).show();
         Intent routeActivity = new Intent();
-        routeActivity.setClass(this, RouteActivity.class);
+        routeActivity.setClass(this , RouteActivity.class);
+        routeActivity.putExtra("numeroUs" , -1);
         startActivity(routeActivity);
         finish();
     }
@@ -455,11 +469,10 @@ public class EmergencyContactController extends Activity {
         finish();
     }
 
-    public void openConfig(View map_screen){
+    public void openConfig(View map_screen) {
         Intent config = new Intent();
-        config.setClass(this , ConfigController.class);
+        config.setClass(this, ConfigController.class);
         startActivity(config);
-        finish();
     }
 
     public void openMap(View mapScreen){

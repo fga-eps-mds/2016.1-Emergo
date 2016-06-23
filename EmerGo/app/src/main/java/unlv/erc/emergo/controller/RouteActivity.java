@@ -94,8 +94,17 @@ public class RouteActivity  extends FragmentActivity implements View.OnClickList
         setYourPositionOnMap();
         focusOnYourPosition();
         pointsOfRoute.add (myLocation);
-        getMapData();
-        setMarkerOfClosestUsOnMap();
+        try{
+            getMapData();
+            setMarkerOfClosestUsOnMap();
+        }catch (RuntimeException c){
+            Toast.makeText(this , "Sem internet" , Toast.LENGTH_SHORT).show();
+            Intent main = new Intent();
+            main.setClass(this , MainScreenController.class);
+            startActivity(main);
+            finish();
+        }
+
     }
 
     @NonNull
@@ -164,12 +173,8 @@ public class RouteActivity  extends FragmentActivity implements View.OnClickList
             @Override
             public void run() {
                 openCountDown();
-                if(!canceled){
-                    sendMessage();
-                    callSamu();
-                }
-
             }
+
         }, SPLASH_TIME_OUT);
 
     }
@@ -192,6 +197,10 @@ public class RouteActivity  extends FragmentActivity implements View.OnClickList
                 phone.setVisibility(View.VISIBLE);
             }
         }.start();
+        if(!canceled){
+            sendMessage();
+            callSamu();
+        }
     }
 
     private void callSamu() {
