@@ -132,7 +132,7 @@ public class EmergencyContactController extends Activity {
             }
         });
 
-        if(result.getCount() == 0) {
+        if(result.getCount() == 0){
             disableOptions(saveSecondContact, updateSecondContact,deleteSecondContact);
         }else{
             if(result.moveToNext()){

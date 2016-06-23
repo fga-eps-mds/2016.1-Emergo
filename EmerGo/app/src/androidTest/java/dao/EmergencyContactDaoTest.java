@@ -22,17 +22,17 @@ public class EmergencyContactDaoTest extends ActivityInstrumentationTestCase2<Em
     public void testSuccessInsertEmergencyContact(){
         boolean wasInserted = true;
         emergencyContactDao = EmergencyContactDao.getInstance(activity.getApplicationContext());
-        wasInserted = emergencyContactDao.insertEmergencyContact(3,"MrVictor","1234532");
+        wasInserted = emergencyContactDao.insertEmergencyContact(4,"MrVictor","(061)98310-4981");
         Assert.assertTrue(wasInserted);
-        emergencyContactDao.deleteEmergencyContact(3);
+        emergencyContactDao.deleteEmergencyContact(4);
     }
 
     public void testUpdateEmergencyContact(){
         boolean wasUpdated = true;
         emergencyContactDao = EmergencyContactDao.getInstance(activity.getApplicationContext());
-        emergencyContactDao.insertEmergencyContact(3,"MrVictor","1234532");
-        wasUpdated = emergencyContactDao.updateEmergencyContact(3,"Victor","42");
+        emergencyContactDao.insertEmergencyContact(4,"MrVictor","(061)98310-4981");
+        wasUpdated = emergencyContactDao.updateEmergencyContact(4,"Victor","(061)98310-4981");
         Assert.assertTrue(wasUpdated);
-        emergencyContactDao.deleteEmergencyContact(3);
+        emergencyContactDao.deleteEmergencyContact(4);
     }
 }
