@@ -43,6 +43,7 @@ public class InformationUsScreenController extends Activity implements View.OnCl
 
         setHospInfo((ListView) findViewById(R.id.hospInformation));
         setInformation(HealthUnitController.getClosestsUs().get(numberUsSelected));
+
         addInformationToList();
 
     }
@@ -169,8 +170,16 @@ public class InformationUsScreenController extends Activity implements View.OnCl
         this.bairro = bairro;
     }
 
+    public String getBairro(){
+        return bairro;
+    }
+
     public void setCep(String cep) {
         this.cep = cep;
+    }
+
+    public String  getCep(){
+        return cep;
     }
 }
 

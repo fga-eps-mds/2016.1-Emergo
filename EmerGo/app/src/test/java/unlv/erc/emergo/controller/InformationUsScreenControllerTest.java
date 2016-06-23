@@ -5,10 +5,13 @@ import junit.framework.TestCase;
 import java.util.ArrayList;
 import java.util.List;
 
+import unlv.erc.emergo.controller.InformationUsScreenController;
+
 
 public class InformationUsScreenControllerTest extends TestCase{
 
     List<String> listOfInformations = new ArrayList<String>();
+    InformationUsScreenController info = new InformationUsScreenController();
 
     public void testIfListAddTitle (){
         boolean result = true;
@@ -102,4 +105,29 @@ public class InformationUsScreenControllerTest extends TestCase{
             assertFalse(result);
         }
     }
+
+    public void testIfSetCep(){
+        String cep = "123423";
+        boolean valido = true;
+        info.setCep(cep);
+        if(cep.compareTo(info.getCep()) == 0){
+            assertTrue(valido);
+        }else{
+            assertFalse(valido);
+        }
+    }
+
+    public void testIfSetBairro(){
+        String bairro = "Birro das flores";
+        boolean valido = true;
+        info.setCep(bairro);
+        if(bairro.equals(info.getBairro())){
+            assertTrue(valido);
+        }
+    }
+
+
+
+
+
 }

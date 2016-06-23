@@ -21,7 +21,7 @@ public class MaskHelperTest  extends TestCase{
         String name = "jujuba";
         String name1 = name;
         name1 = maskHelper.unmask(name);
-        assertNotSame(name , name1);
+        assertSame(name , name1);
 
     }
 
