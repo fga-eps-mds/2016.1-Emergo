@@ -41,4 +41,8 @@ public class ConfigControllerTest extends ActivityInstrumentationTestCase2<Confi
     public void testButtonMap(){
         onView(withId(R.id.iconMap)).perform(click());
     }
+
+    public void testButtonAboutApp(){
+        onView(withId(R.id.app)).perform(click());
+    }
 }

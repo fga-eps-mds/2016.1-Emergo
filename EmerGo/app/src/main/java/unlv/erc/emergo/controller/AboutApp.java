@@ -19,7 +19,7 @@ public class AboutApp extends Activity {
         String message= "\tEmerGo é um aplicativo que oferece a facilidade de " +
                 "encontrar Unidades de Saúde mais próximas. Possui MODO EMERGÊNCIA, " +
                 "que traça a rota para uma Unidade de Saúde mais próxima, " +
-                "ligar para o SAMU, e envia uma mensagem pré definida com pedido de ajuda para" +
+                "ligar para o SAMU, e envia uma mensagem pré definida com pedido de ajuda para " +
                 "os contatos de emergência salvos!" +
                 "\n\n\tTodas as funcionalidades em suas mãos, em apenas um aplicativo.";
 
