@@ -94,8 +94,17 @@ public class RouteActivity  extends FragmentActivity implements View.OnClickList
         setYourPositionOnMap();
         focusOnYourPosition();
         pointsOfRoute.add (myLocation);
-        getMapData();
-        setMarkerOfClosestUsOnMap();
+        try{
+            getMapData();
+            setMarkerOfClosestUsOnMap();
+        }catch (RuntimeException c){
+            Toast.makeText(this , "Sem internet" , Toast.LENGTH_SHORT).show();
+            Intent main = new Intent();
+            main.setClass(this , MainScreenController.class);
+            startActivity();
+            finish();
+        }
+
     }
 
     @NonNull
