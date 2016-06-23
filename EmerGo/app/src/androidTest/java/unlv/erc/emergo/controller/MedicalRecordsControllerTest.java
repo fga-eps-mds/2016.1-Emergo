@@ -474,4 +474,10 @@ public class MedicalRecordsControllerTest extends ActivityInstrumentationTestCas
     public void testButtonMap(){
         onView(withId(R.id.iconMap)).perform(click());
     }
+
+    public void testGoClicked(){
+        onView(withId(R.id.buttonGo)).perform(click());
+    }
+
+
 }
