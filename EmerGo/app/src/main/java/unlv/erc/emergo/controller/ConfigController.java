@@ -28,6 +28,7 @@ public class ConfigController extends Activity{
         buttonGo = (ImageView) findViewById(R.id.buttonGo);
         emergencyContact = (Button) findViewById(R.id.emergencyContact);
         medicalRecord = (Button) findViewById(R.id.medicalRecords);
+        aboutApp = (Button) findViewById(R.id.app);
 
 
         buttonGo.setOnClickListener(new View.OnClickListener() {
@@ -53,6 +54,12 @@ public class ConfigController extends Activity{
         emergencyContact.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 emergencyContact();
+            }
+        });
+
+        aboutApp.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                aboutApp();
             }
         });
     }
@@ -89,6 +96,12 @@ public class ConfigController extends Activity{
         Intent emergencyContact = new Intent();
         emergencyContact.setClass(this,EmergencyContactController.class);
         startActivity(emergencyContact);
+    }
+
+    public void aboutApp(){
+        Intent aboutApp = new Intent();
+        aboutApp.setClass(this,AboutApp.class);
+        startActivity(aboutApp);
     }
 
     public void goClicked(View map_screen) throws IOException, JSONException {
