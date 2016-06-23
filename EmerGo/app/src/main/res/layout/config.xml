@@ -89,4 +89,14 @@
         android:layout_above="@+id/app"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="14dp" />
+
+    <ImageView
+        android:src="@drawable/emergo"
+        android:layout_width="220dp"
+        android:layout_height="90dp"
+        android:id="@+id/logoEmerGo"
+        android:layout_below="@+id/iconSearch"
+        android:layout_toEndOf="@+id/iconMap"
+        android:layout_marginTop="41dp"
+        android:layout_centerHorizontal="true"/>
 </RelativeLayout>
