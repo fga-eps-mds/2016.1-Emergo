@@ -1,10 +1,18 @@
 package unlv.erc.emergo.controller;
 
+import android.support.test.uiautomator.UiDevice;
 import android.test.ActivityInstrumentationTestCase2;
 
 import org.junit.Before;
 
+import unlv.erc.emergo.R;
+
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
+
 public class MapScreenControllerTest extends ActivityInstrumentationTestCase2<MapScreenController> {
+    private UiDevice device;
 
     public MapScreenControllerTest(){
         super(MapScreenController.class);
@@ -14,25 +22,18 @@ public class MapScreenControllerTest extends ActivityInstrumentationTestCase2<Ma
     public void setUp() throws Exception{
         super.setUp();
         getActivity();
+        device = UiDevice.getInstance(getInstrumentation());
     }
 
-    /*public void testButtonGoClick(){
-
-        onView(withId(R.id.buttonGo)).check(matches(isDisplayed()));
-        onView(withText("GO!")).perform(click());
-        onView(withId(R.id.buttonGo)).check(matches(withText("GO!")));
-    }*/
-/*
-    public void testButtonListUsClick(){
-
-        onView(withId(R.id.iconList)).check(matches(isDisplayed()));
-        onView(withId(R.id.iconList)).perform(click());
+    public void testSearchClick(){
+        onView(withId(R.id.iconSearch)).perform(click());
     }
 
-    public void testButtonMapClick(){
-
-        onView(withId(R.id.iconMap)).check(matches(isDisplayed()));
+    public void testMapClick(){
         onView(withId(R.id.iconMap)).perform(click());
     }
-*/
+
+    public void testConfigClick(){
+        onView(withId(R.id.iconMenu)).perform(click());
+    }
 }

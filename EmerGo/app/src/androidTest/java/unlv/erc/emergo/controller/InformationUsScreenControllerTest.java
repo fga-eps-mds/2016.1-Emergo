@@ -8,7 +8,7 @@ import java.util.List;
 
 public class InformationUsScreenControllerTest extends TestCase{
 
-    List<String> listOfInformations = new ArrayList<String>();
+    List<String> listOfInformations = new ArrayList<>();
 
     public void testIfListAddTitle (){
         boolean result = true;
