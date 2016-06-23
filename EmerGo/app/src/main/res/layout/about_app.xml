@@ -22,6 +22,8 @@
         android:layout_below="@+id/logoEmerGo"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="87dp"
+        android:gravity="center"
+        style="@style/AboutApp"
         android:id="@+id/aboutApp" />
 
 </RelativeLayout>
