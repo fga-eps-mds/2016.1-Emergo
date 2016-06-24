@@ -5,13 +5,10 @@ import junit.framework.TestCase;
 import java.util.ArrayList;
 import java.util.List;
 
-import unlv.erc.emergo.controller.InformationUsScreenController;
 
-
-public class InformationUsScreenControllerTest extends TestCase{
-
+public class InformationSearchScreenControllerUnitTest extends TestCase {
     List<String> listOfInformations = new ArrayList<String>();
-    InformationUsScreenController info = new InformationUsScreenController();
+    InformationSearchScreenController info = new InformationSearchScreenController();
 
     public void testIfListAddTitle (){
         boolean result = true;
@@ -179,5 +176,7 @@ public class InformationUsScreenControllerTest extends TestCase{
             assertTrue(valido);
         }
     }
+
+
 
 }
