@@ -24,11 +24,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 
@@ -52,7 +57,8 @@ import unlv.erc.emergo.R;
 
 
 
-public class RouteActivity  extends FragmentActivity implements View.OnClickListener {
+public class RouteActivity  extends FragmentActivity implements View.OnClickListener, OnMapReadyCallback,
+        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     final int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124;
     private static int SPLASH_TIME_OUT = 3400;
@@ -70,19 +76,51 @@ public class RouteActivity  extends FragmentActivity implements View.OnClickList
     Intent i;
     Boolean canceled = false;
     SupportMapFragment mapFragment;
+    private Location mLastLocation;
+    private GoogleApiClient mGoogleApiClient = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.route_activity);
+
+        if (mGoogleApiClient == null) {
+            mGoogleApiClient = new GoogleApiClient.Builder(this)
+                    .addConnectionCallbacks(this)
+                    .addOnConnectionFailedListener(this)
+                    .addApi(LocationServices.API)
+                    .build();
+        }
+
         checkPermissions();
         linkButtonsAndXml();
+
+    }
+
+    protected void onStart() {
+        mGoogleApiClient.connect();
+        super.onStart();
+    }
+
+    protected void onStop() {
+        mGoogleApiClient.disconnect();
+        super.onStop();
+    }
+
+    @Override
+    public void onConnected(Bundle connectionHint) {
+        if (Build.VERSION.SDK_INT >= 23) {
+            checkPermissions();
+        }
+
+        this.mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
+                mGoogleApiClient);
 
         myDatabase = new UserDao(this);
         result = myDatabase.getUser();
         getMapFragment();
         getExtraIntent();
-        Location location = getUserPosition();
+        Location location = getUserPosition(mLastLocation);
         HealthUnitController.setDistanceBetweenUserAndUs(HealthUnitController.getClosestsUs() , location);
         selectIndexOfClosestUs(location);
         myLocation = new LatLng(location.getLatitude() , location.getLongitude());
@@ -99,14 +137,28 @@ public class RouteActivity  extends FragmentActivity implements View.OnClickList
             startActivity(main);
             finish();
         }
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
 
     }
 
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        if (Build.VERSION.SDK_INT >= 23) {
+            checkPermissions();
+        }
+
+        mMap = googleMap;
+    }
+
+
     @NonNull
-    private Location getUserPosition() {
-        Location location = new Location(""); //gps.getLocation();
-        location.setLatitude(-15.879405);
-        location.setLongitude(-47.8077307);
+    private Location getUserPosition(Location mLastLocation) {
+        Location location = new Location("");
+        location.setLatitude(mLastLocation.getLatitude());
+        location.setLongitude(mLastLocation.getLongitude());
         return location;
     }
 
@@ -271,6 +323,7 @@ public class RouteActivity  extends FragmentActivity implements View.OnClickList
 
         return url;
     }
+
 
     private class DownloadTask extends AsyncTask<String, Void, String> {
         @Override
@@ -446,6 +499,11 @@ public class RouteActivity  extends FragmentActivity implements View.OnClickList
             default:
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
+
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
 

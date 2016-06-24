@@ -44,7 +44,7 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
     final String yourPosition = "Sua posição";
     private GoogleMap mMap;
     private Services services = new Services();
-    Location location;
+    private Location location;
     private Location mLastLocation;
     private GoogleApiClient mGoogleApiClient = null;
 
