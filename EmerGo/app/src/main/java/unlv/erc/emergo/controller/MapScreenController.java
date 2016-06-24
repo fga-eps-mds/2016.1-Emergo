@@ -6,11 +6,16 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -33,46 +38,84 @@ import unlv.erc.emergo.R;
 
 
 
-public class MapScreenController extends FragmentActivity implements OnMapReadyCallback , GoogleMap.OnMarkerClickListener {
-
+public class MapScreenController extends FragmentActivity implements OnMapReadyCallback ,
+        GoogleMap.OnMarkerClickListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     final int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124;
     final String yourPosition = "Sua posição";
     private GoogleMap mMap;
     private Services services = new Services();
     Location location;
+    private Location mLastLocation;
+    private GoogleApiClient mGoogleApiClient = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        checkPermissions();
-
-        try{
-            location = new Location("");// gps.getLocation();
-            location.setLatitude(-15.879405);
-            location.setLongitude(-47.8077307);
-        }catch (NullPointerException ex){
-            Toast.makeText(this, "Não foi possível localizar sua posição", Toast.LENGTH_SHORT).show();
-            Intent mainScreen = new Intent();
-            mainScreen.setClass(this, MainScreenController.class);
-            startActivity(mainScreen);
-            finish();
-        }
         setContentView(R.layout.map_screen);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         mMap = mapFragment.getMap();
         mMap.setOnMarkerClickListener(this);
+
+
+        if (mGoogleApiClient == null) {
+            mGoogleApiClient = new GoogleApiClient.Builder(this)
+                    .addConnectionCallbacks(this)
+                    .addOnConnectionFailedListener(this)
+                    .addApi(LocationServices.API)
+                    .build();
+        }
+    }
+
+    protected void onStart() {
+        mGoogleApiClient.connect();
+        super.onStart();
+    }
+
+    protected void onStop() {
+        mGoogleApiClient.disconnect();
+        super.onStop();
     }
 
     @Override
-    public void onMapReady(final GoogleMap googleMap) {
-        mMap = googleMap;
-        LatLng userLatLng = new LatLng(location.getLatitude() , location.getLongitude());
-        focusOnSelfPosition(userLatLng);
-        services.setMarkersOnMap(mMap , HealthUnitController.getClosestsUs() );
+    public void onConnected(Bundle connectionHint) {
+        if (Build.VERSION.SDK_INT >= 23) {
+            checkPermissions();
+        }
+
+        this.mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
+                mGoogleApiClient);
+
+        if (mLastLocation != null) {
+            location = mLastLocation;
+
+            LatLng userLatLng = new LatLng(location.getLatitude() , location.getLongitude());
+            focusOnSelfPosition(userLatLng);
+            services.setMarkersOnMap(mMap , HealthUnitController.getClosestsUs());
+
+        } else {
+            Toast.makeText(this, "Não foi possível localizar sua posição", Toast.LENGTH_SHORT).show();
+            Intent mainScreen = new Intent();
+            mainScreen.setClass(this, MainScreenController.class);
+            startActivity(mainScreen);
+            finish();        }
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
 
     }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        if (Build.VERSION.SDK_INT >= 23) {
+            checkPermissions();
+        }
+
+        mMap = googleMap;
+    }
+
 
     private void focusOnSelfPosition(LatLng userLatLng) {
         mMap.addMarker(new MarkerOptions().position(userLatLng).title(yourPosition)
@@ -169,6 +212,11 @@ public class MapScreenController extends FragmentActivity implements OnMapReadyC
             default:
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
+
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
 
