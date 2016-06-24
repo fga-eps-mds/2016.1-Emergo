@@ -45,4 +45,12 @@ public class ConfigControllerTest extends ActivityInstrumentationTestCase2<Confi
     public void testButtonAboutApp(){
         onView(withId(R.id.app)).perform(click());
     }
+
+    public void testButtonGo(){
+        onView(withId(R.id.buttonGo)).perform(click());
+    }
+
+    public void testSearch(){
+        onView(withId(R.id.iconSearch)).perform(click());
+    }
 }

@@ -3,7 +3,6 @@ package unlv.erc.emergo.controller;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -42,7 +41,15 @@ public class InformationUsScreenController extends Activity implements View.OnCl
         buttonGo.setOnClickListener(this);
 
         setHospInfo((ListView) findViewById(R.id.hospInformation));
-        setInformation(HealthUnitController.getClosestsUs().get(numberUsSelected));
+        try{
+            setInformation(HealthUnitController.getClosestsUs().get(numberUsSelected));
+        }catch(RuntimeException error){
+            Intent intent = new Intent();
+            intent.setClass(this , InformationUsScreenController.class);
+            startActivity(intent);
+            finish();
+        }
+
 
         addInformationToList();
 

@@ -1,14 +1,17 @@
-package unlv.erc.emergo.controller;
+package unlv.erc.emergo;
 
 import junit.framework.TestCase;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import unlv.erc.emergo.controller.InformationUsScreenController;
 
-public class InformationSearchScreenControllerUnitTest extends TestCase {
+
+public class InformationUsScreenControllerTest extends TestCase{
+
     List<String> listOfInformations = new ArrayList<String>();
-    InformationSearchScreenController info = new InformationSearchScreenController();
+    InformationUsScreenController info = new InformationUsScreenController();
 
     public void testIfListAddTitle (){
         boolean result = true;
@@ -176,7 +179,5 @@ public class InformationSearchScreenControllerUnitTest extends TestCase {
             assertTrue(valido);
         }
     }
-
-
 
 }
