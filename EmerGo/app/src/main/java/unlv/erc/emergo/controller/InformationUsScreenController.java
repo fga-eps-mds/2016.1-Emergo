@@ -43,6 +43,7 @@ public class InformationUsScreenController extends Activity implements View.OnCl
 
         setHospInfo((ListView) findViewById(R.id.hospInformation));
         setInformation(HealthUnitController.getClosestsUs().get(numberUsSelected));
+
         addInformationToList();
 
     }
@@ -144,33 +145,49 @@ public class InformationUsScreenController extends Activity implements View.OnCl
     public void setPadding(String padding) {
         this.padding = padding;
     }
+    public String getPadding() { return  padding;}
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
+    public String getTitulo() { return titulo; }
 
     public void setNome(String nome) {
         this.nome = nome;
     }
+    public String getNome(){ return nome; }
 
     public void setGestao(String gestao) {
         this.gestao = gestao;
     }
+    public String getGestao(){ return gestao; }
 
     public void setUf(String uf) {
         this.uf = uf;
     }
 
+    public String getUf(){return uf;}
+
     public void setMunicipio(String municipio) {
         this.municipio = municipio;
     }
+
+    public String getMunicipio(){return municipio;}
 
     public void setBairro(String bairro) {
         this.bairro = bairro;
     }
 
+    public String getBairro(){
+        return bairro;
+    }
+
     public void setCep(String cep) {
         this.cep = cep;
+    }
+
+    public String  getCep(){
+        return cep;
     }
 }
 

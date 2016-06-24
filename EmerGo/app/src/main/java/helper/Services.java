@@ -20,7 +20,6 @@ public class Services extends Activity {
                             ,uSs.get(markersQuantity).getLongitude()))
                     .title(uSs.get(markersQuantity).getNameHospital() + "")
                     .snippet(uSs.get(markersQuantity).getUnitType()));
-
         }
     }
 }

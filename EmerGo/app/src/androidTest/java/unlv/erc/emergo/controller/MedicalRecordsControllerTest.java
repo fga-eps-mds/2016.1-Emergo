@@ -479,5 +479,4 @@ public class MedicalRecordsControllerTest extends ActivityInstrumentationTestCas
         onView(withId(R.id.buttonGo)).perform(click());
     }
 
-
 }

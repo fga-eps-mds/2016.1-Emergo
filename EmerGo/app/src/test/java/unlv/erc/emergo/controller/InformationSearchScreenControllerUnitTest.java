@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class InformationUsScreenControllerTest extends TestCase{
-
+public class InformationSearchScreenControllerUnitTest extends TestCase {
     List<String> listOfInformations = new ArrayList<String>();
+    InformationSearchScreenController info = new InformationSearchScreenController();
 
     public void testIfListAddTitle (){
         boolean result = true;
@@ -102,4 +102,81 @@ public class InformationUsScreenControllerTest extends TestCase{
             assertFalse(result);
         }
     }
+
+    public void testIfSetCep(){
+        String cep = "123423";
+        boolean valido = true;
+        info.setCep(cep);
+        if(cep.compareTo(info.getCep()) == 0){
+            assertTrue(valido);
+        }else{
+            assertFalse(valido);
+        }
+    }
+
+    public void testIfSetBairro(){
+        String bairro = "Birro das flores";
+        boolean valido = true;
+        info.setCep(bairro);
+        if(bairro.equals(info.getBairro())){
+            assertTrue(valido);
+        }
+    }
+
+    public void testIfSetMunicipio(){
+        String municipio = "municipio";
+        boolean valido = true;
+        info.setMunicipio(municipio);
+        if(municipio.equals(info.getMunicipio())){
+            assertTrue(valido);
+        }
+    }
+
+    public void testIfSetUf(){
+        String uf = "unidade federativa";
+        boolean valido = true;
+        info.setUf(uf);
+        if(uf.equals(info.getUf())){
+            assertTrue(valido);
+        }
+    }
+
+    public void testIfSetGestao(){
+        String gestao = "gestao de negocio";
+        boolean valido = true;
+        info.setGestao(gestao);
+        if(gestao.equals(info.getGestao())){
+            assertTrue(valido);
+        }
+    }
+
+    public void testIfSetNome(){
+        String nome = "my name";
+        boolean valido = true;
+        info.setNome(nome);
+        if(nome.equals(info.getNome())){
+            assertTrue(valido);
+        }
+    }
+
+    public void testIfSetTitulo(){
+        String titulo = "o titulo";
+        boolean valido = true;
+        info.setTitulo(titulo);
+        if(titulo.equals(info.getTitulo())){
+            assertTrue(valido);
+        }
+    }
+
+    public void testIfSetPadding(){
+        String padding = " o padding de padding";
+        boolean valido = true;
+        info.setPadding(padding);
+        if(padding.equals(info.getPadding())){
+            assertTrue(valido);
+        }
+    }
+
+
+
 }

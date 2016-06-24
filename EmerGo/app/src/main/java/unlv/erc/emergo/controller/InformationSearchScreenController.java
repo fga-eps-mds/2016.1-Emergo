@@ -17,7 +17,7 @@ import java.util.List;
 import unlv.erc.emergo.R;
 import unlv.erc.emergo.model.HealthUnit;
 
-public class InformationSearchScreenController extends Activity implements View.OnClickListener{
+public class InformationSearchScreenController extends Activity{
 
 
     private List<String> listOfInformations = new ArrayList<String>();
@@ -39,14 +39,21 @@ public class InformationSearchScreenController extends Activity implements View.
         setReceive(getIntent());
         setNumberUsSelected(receive.getIntExtra("position" , 0));
         route = (Button) findViewById(R.id.botaoRota);
-        route.setOnClickListener(this);
+        route.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v){
+                buttonRoute();
+            }
+        });
         buttonGo = (ImageView) findViewById(R.id.buttonGo);
-        buttonGo.setOnClickListener(this);
+        buttonGo.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v){
+                buttonClickGo();
+            }
+        });
 
         setHospInfo((ListView) findViewById(R.id.hospInformation));
         setInformation(HealthUnitController.getClosestsUs().get(numberUsSelected));
         addInformationToList();
-
     }
 
     public void setInformation(HealthUnit hospital){
@@ -82,23 +89,22 @@ public class InformationSearchScreenController extends Activity implements View.
         hospInfo.setAdapter(adapter);
     }
 
-    public void onClick(View v) {
-        if(v.getId() == R.id.botaoRota){
-            Intent route = new Intent();
-            route.setClass(this , RouteActivity.class);
-            route.putExtra("numeroUs" , receive.getIntExtra("position" , 0));
-            startActivity(route);
-            finish();
-        }
-        if(v.getId() == R.id.buttonGo){
-            final String ROUTETRACED = "Rota mais próxima traçada";
-            Toast.makeText(this, ROUTETRACED , Toast.LENGTH_SHORT).show();
-            Intent routeActivity = new Intent();
-            routeActivity.setClass(this , RouteActivity.class);
-            routeActivity.putExtra("numeroUs" , -1);
-            startActivity(routeActivity);
-            finish();
-        }
+    public void buttonRoute(){
+        Intent route = new Intent();
+        route.setClass(this , RouteActivity.class);
+        route.putExtra("numeroUs" , receive.getIntExtra("position" , 0));
+        startActivity(route);
+        finish();
+    }
+
+    public void buttonClickGo(){
+        final String ROUTETRACED = "Rota mais próxima traçada";
+        Toast.makeText(this, ROUTETRACED , Toast.LENGTH_SHORT).show();
+        Intent routeActivity = new Intent();
+        routeActivity.setClass(this , RouteActivity.class);
+        routeActivity.putExtra("numeroUs" , -1);
+        startActivity(routeActivity);
+        finish();
     }
 
     public void open_search(View mapScreen){
@@ -143,32 +149,48 @@ public class InformationSearchScreenController extends Activity implements View.
     public void setPadding(String padding) {
         this.padding = padding;
     }
+    public String getPadding() { return  padding;}
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
+    public String getTitulo() { return titulo; }
 
     public void setNome(String nome) {
         this.nome = nome;
     }
+    public String getNome(){ return nome; }
 
     public void setGestao(String gestao) {
         this.gestao = gestao;
     }
+    public String getGestao(){ return gestao; }
 
     public void setUf(String uf) {
         this.uf = uf;
     }
 
+    public String getUf(){return uf;}
+
     public void setMunicipio(String municipio) {
         this.municipio = municipio;
     }
+
+    public String getMunicipio(){return municipio;}
 
     public void setBairro(String bairro) {
         this.bairro = bairro;
     }
 
+    public String getBairro(){
+        return bairro;
+    }
+
     public void setCep(String cep) {
         this.cep = cep;
+    }
+
+    public String  getCep(){
+        return cep;
     }
 }
