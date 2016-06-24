@@ -17,22 +17,6 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 
-    <Button
-        android:layout_width="170dp"
-        android:layout_height="70dp"
-        android:id="@+id/buttonOkay"
-        android:layout_weight="0.23"
-        android:layout_marginTop="74dp"
-        android:layout_below="@+id/buttonGo"
-        android:layout_alignStart="@+id/buttonGo"
-        android:background="@drawable/inicial_bem"
-        android:clickable="true"
-        android:onClick="okayClicked"
-        android:layout_gravity="center"
-        android:layout_marginLeft="40dp"
-
-        />
-
     <ImageView
         android:layout_width="250dp"
         android:layout_height="120dp"
@@ -41,4 +25,32 @@
         android:background="@drawable/emergo"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="170dp"
+        android:layout_height="70dp"
+        android:id="@+id/buttonOkay"
+        android:layout_weight="0.23"
+        android:layout_marginTop="29dp"
+        android:background="@drawable/inicial_bem"
+        android:clickable="true"
+        android:onClick="okayClicked"
+        android:layout_gravity="center"
+        android:layout_marginLeft="40dp"
+
+        android:layout_below="@+id/buttonGo"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="COPYRIGHT GNU GENERAL PUBLIC LICENSE Version 3,29 June 2007 "
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:textColor="@color/common_google_signin_btn_text_light_default"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>
