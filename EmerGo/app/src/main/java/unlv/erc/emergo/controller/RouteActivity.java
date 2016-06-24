@@ -95,6 +95,7 @@ public class RouteActivity  extends FragmentActivity implements View.OnClickList
         checkPermissions();
         linkButtonsAndXml();
 
+        getExtraIntent();
     }
 
     protected void onStart() {
@@ -119,7 +120,6 @@ public class RouteActivity  extends FragmentActivity implements View.OnClickList
         myDatabase = new UserDao(this);
         result = myDatabase.getUser();
         getMapFragment();
-        getExtraIntent();
         Location location = getUserPosition(mLastLocation);
         HealthUnitController.setDistanceBetweenUserAndUs(HealthUnitController.getClosestsUs() , location);
         selectIndexOfClosestUs(location);
